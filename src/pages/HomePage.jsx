@@ -1,6 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { cities as citiesData } from '../data/cities.js';
+import { counties as countiesData } from '../data/counties.js';
+
+function useDebouncedValue(value, delay) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay]);
+  return debounced;
+}
 import {
   ArrowRight,
   Building2,
@@ -33,13 +43,6 @@ const services = [
   { slug: 'garage-cleanout', label: 'Garage cleanout pickup', icon: Home, price: 'From $85', detail: 'Garage-staged boxes, clutter, furniture, and bulky items ready for quick loading.', tags: ['garage', 'multi-item', 'fast load'] },
   { slug: 'yard-debris', label: 'Yard waste and storm debris', icon: Leaf, price: 'From $85', detail: 'Brush, branches, fencing, deck debris, and storm cleanup piles staged outside.', tags: ['seasonal', 'branches', 'debris'] },
   { slug: 'dumpster-rental', label: 'Dumpster and trailer rental', icon: Warehouse, price: 'By request', detail: 'Short-term drop options for remodels, cleanouts, and DIY loading.', tags: ['renovation', 'drop-off', 'pickup'] },
-];
-
-const cities = [
-  'All Minnesota cities', 'Apple Valley', 'Burnsville', 'Eagan', 'Farmington', 'Hastings', 'Lakeville', 'Rosemount',
-  'Minneapolis', 'St. Paul', 'Bloomington', 'Eden Prairie', 'Edina', 'Maple Grove', 'Woodbury', 'Rochester', 'Duluth',
-  'St. Cloud', 'Mankato', 'Moorhead', 'Brainerd', 'Winona', 'Northfield', 'Owatonna', 'Faribault', 'Roseville',
-  'White Bear Lake', 'Plymouth', 'Minnetonka', 'Cottage Grove', 'Stillwater',
 ];
 
 const counties = [
@@ -104,7 +107,24 @@ export default function HomePage() {
   const [timing, setTiming] = useState('morning');
   const [selectedService, setSelectedService] = useState(services[0]);
   const [cityFilter, setCityFilter] = useState('');
+  const [citiesOpen, setCitiesOpen] = useState(false);
+  const [countiesOpen, setCountiesOpen] = useState(false);
   const [form, setForm] = useState({ name: '', city: '', date: '', details: '', photoCount: 0 });
+
+  const debouncedFilter = useDebouncedValue(cityFilter, 100);
+  const normalizedFilter = debouncedFilter.trim().toLowerCase();
+  const filteredCities = Object.entries(citiesData).filter(
+    ([, c]) => !normalizedFilter || c.name.toLowerCase().includes(normalizedFilter)
+  );
+  const filteredCounties = counties.filter(
+    (c) => !normalizedFilter || c.toLowerCase().includes(normalizedFilter)
+  );
+  const countySlugsWithPages = useMemo(() => new Set(Object.keys(countiesData)), []);
+  const areaFilterAnnouncement = normalizedFilter
+    ? (filteredCities.length === 0 && filteredCounties.length === 0
+        ? 'No matches'
+        : `Showing ${filteredCities.length} cities and ${filteredCounties.length} counties`)
+    : '';
 
   const location = useLocation();
 
@@ -135,7 +155,6 @@ export default function HomePage() {
   const encodedQuote = encodeURIComponent(quoteBody);
   const mailto = `mailto:${email}?subject=${encodeURIComponent('Dakota Valley quote request')}&body=${encodedQuote}`;
   const sms = `${smsLink}?&body=${encodedQuote}`;
-  const normalizedCityFilter = cityFilter.trim().toLowerCase();
 
   return (
     <main>
@@ -333,45 +352,109 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className='section areas' id='areas'>
-        <div className='areas-copy'>
+      <section className='areas-v2' id='areas'>
+        <header className='areas-head'>
           <p className='section-kicker'>Service areas</p>
           <h2>One statewide brand, local routes that make sense.</h2>
           <p className='section-copy'>
             Dakota Valley serves all Minnesota cities and counties with route-aware scheduling and practical curbside or garage pickup.
           </p>
-          <input className='city-search' aria-label='Search service cities and counties' placeholder='Search your city or county' value={cityFilter} onChange={(event) => setCityFilter(event.target.value)} />
-          <div className='city-grid' aria-label='Popular service cities'>
-            <span className={normalizedCityFilter && 'all minnesota cities'.includes(normalizedCityFilter) ? 'match' : ''}>All Minnesota cities</span>
-            {Object.entries(citiesData).map(([slug, c]) => (
-              <Link
-                key={slug}
-                to={`/cities/${slug}`}
-                className={`city-link${normalizedCityFilter && c.name.toLowerCase().includes(normalizedCityFilter) ? ' match' : ''}`}
-              >
+        </header>
+
+        <div className='areas-search'>
+          <label htmlFor='areas-search-input' className='sr-only'>
+            Search Minnesota cities and counties
+          </label>
+          <input
+            id='areas-search-input'
+            type='search'
+            className='areas-search-input'
+            placeholder='Search your city or county'
+            value={cityFilter}
+            onChange={(event) => setCityFilter(event.target.value)}
+            aria-controls='areas-cities-list areas-counties-list'
+          />
+          {cityFilter && (
+            <button
+              type='button'
+              className='areas-search-clear'
+              onClick={() => setCityFilter('')}
+              aria-label='Clear search'
+            >×</button>
+          )}
+        </div>
+
+        <div className='areas-featured' role='group' aria-label='Featured counties and statewide'>
+          <Link to='/counties/dakota-county' className='areas-pill'>Dakota County</Link>
+          <Link to='/counties/hennepin-county' className='areas-pill'>Hennepin County</Link>
+          <Link to='/counties/ramsey-county' className='areas-pill'>Ramsey County</Link>
+          <Link to='/counties/washington-county' className='areas-pill'>Washington County</Link>
+          <Link to='/counties/scott-county' className='areas-pill'>Scott County</Link>
+          <Link to='/counties/olmsted-county' className='areas-pill'>Olmsted County</Link>
+          <Link to='/counties/st-louis-county' className='areas-pill'>St. Louis County</Link>
+          <button
+            type='button'
+            className='areas-pill areas-pill-allmn'
+            onClick={() => {
+              setCitiesOpen(true);
+              setCountiesOpen(true);
+              document.getElementById('areas-cities-details')
+                ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+          >All Minnesota</button>
+        </div>
+
+        <div aria-live='polite' className='sr-only'>{areaFilterAnnouncement}</div>
+
+        <details
+          className='areas-accordion'
+          id='areas-cities-details'
+          open={!!cityFilter || citiesOpen}
+          onToggle={(event) => setCitiesOpen(event.currentTarget.open)}
+        >
+          <summary>
+            <h3>View all 44 Minnesota cities</h3>
+          </summary>
+          <div className='areas-link-grid' id='areas-cities-list'>
+            {filteredCities.length === 0 && cityFilter && (
+              <p className='areas-no-match'>No matching cities</p>
+            )}
+            {filteredCities.map(([slug, c]) => (
+              <Link key={slug} to={`/cities/${slug}`} className='areas-link'>
                 {c.name}
               </Link>
             ))}
           </div>
-          <div className='county-panel'>
-            <h3>All Minnesota counties</h3>
-            <div className='city-grid' aria-label='Minnesota counties'>
-              {counties.map((county) => (
-                <span key={county} className={normalizedCityFilter && county.toLowerCase().includes(normalizedCityFilter) ? 'match' : ''}>{county} County</span>
-              ))}
-            </div>
+        </details>
+
+        <details
+          className='areas-accordion'
+          id='areas-counties-details'
+          open={!!cityFilter || countiesOpen}
+          onToggle={(event) => setCountiesOpen(event.currentTarget.open)}
+        >
+          <summary>
+            <h3>View all 87 Minnesota counties</h3>
+          </summary>
+          <div className='areas-link-grid' id='areas-counties-list'>
+            {filteredCounties.length === 0 && cityFilter && (
+              <p className='areas-no-match'>No matching counties</p>
+            )}
+            {filteredCounties.map((county) => {
+              const slug = county.toLowerCase().replace(/[. ]+/g, '-') + '-county';
+              const hasPage = countySlugsWithPages.has(slug);
+              return hasPage ? (
+                <Link key={county} to={`/counties/${slug}`} className='areas-link'>
+                  {county} County
+                </Link>
+              ) : (
+                <span key={county} className='areas-link areas-link-text'>
+                  {county} County
+                </span>
+              );
+            })}
           </div>
-        </div>
-        <div className='route-map' aria-label='Minnesota service route map'>
-          <span className='map-pin primary'>Dakota County</span>
-          <span className='map-pin'>Hennepin</span>
-          <span className='map-pin'>Ramsey</span>
-          <span className='map-pin'>Washington</span>
-          <span className='map-pin'>Scott</span>
-          <span className='map-pin'>Olmsted</span>
-          <span className='map-pin'>St. Louis</span>
-          <span className='map-pin'>All MN</span>
-        </div>
+        </details>
       </section>
 
       <section className='section process'>
