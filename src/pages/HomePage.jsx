@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { cities as citiesData } from '../data/cities.js';
 import {
   ArrowRight,
   Building2,
@@ -311,8 +312,15 @@ export default function HomePage() {
           </p>
           <input className='city-search' aria-label='Search service cities and counties' placeholder='Search your city or county' value={cityFilter} onChange={(event) => setCityFilter(event.target.value)} />
           <div className='city-grid' aria-label='Popular service cities'>
-            {cities.map((city) => (
-              <span key={city} className={normalizedCityFilter && city.toLowerCase().includes(normalizedCityFilter) ? 'match' : ''}>{city}</span>
+            <span className={normalizedCityFilter && 'all minnesota cities'.includes(normalizedCityFilter) ? 'match' : ''}>All Minnesota cities</span>
+            {Object.entries(citiesData).map(([slug, c]) => (
+              <Link
+                key={slug}
+                to={`/cities/${slug}`}
+                className={`city-link${normalizedCityFilter && c.name.toLowerCase().includes(normalizedCityFilter) ? ' match' : ''}`}
+              >
+                {c.name}
+              </Link>
             ))}
           </div>
           <div className='county-panel'>

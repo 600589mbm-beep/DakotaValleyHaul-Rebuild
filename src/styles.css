@@ -258,8 +258,18 @@ textarea { min-height: 92px; resize: vertical; }
 .areas { display: grid; grid-template-columns: 0.82fr 1fr; gap: 36px; align-items: start; }
 .city-search { margin: 20px 0 16px; }
 .city-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-.city-grid span { background: #ffffff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; color: var(--muted); font-weight: 800; }
-.city-grid span.match { border-color: var(--green); color: var(--green-dark); background: #eef6ff; }
+.city-grid span, .city-grid .city-link {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--muted);
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-block;
+}
+.city-grid .city-link:hover { border-color: var(--blue); color: var(--blue); }
+.city-grid span.match, .city-grid .city-link.match { border-color: var(--green); color: var(--green-dark); background: #eef6ff; }
 .county-panel { margin-top: 22px; }
 .county-panel h3 { font-size: 18px; margin-bottom: 12px; }
 .route-map {
