@@ -27,12 +27,12 @@ const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremoval.com';
 
 const services = [
-  { label: 'Junk pickup', icon: Truck, price: 'From $85', detail: 'Affordable pickup for items placed at the curb or in the garage.', tags: ['curbside', 'garage', '$85 minimum'] },
-  { label: 'Furniture removal', icon: Sofa, price: 'From $85', detail: 'Sofas, beds, dressers, tables, sectionals, and office furniture staged for pickup.', tags: ['sofas', 'mattresses', 'desks'] },
-  { label: 'Appliance recycling', icon: Recycle, price: 'From $85', detail: 'Refrigerators, washers, dryers, stoves, dishwashers, and metal items staged curbside or in the garage.', tags: ['appliances', 'metal', 'eco route'] },
-  { label: 'Garage cleanout pickup', icon: Home, price: 'From $85', detail: 'Garage-staged boxes, clutter, furniture, and bulky items ready for quick loading.', tags: ['garage', 'multi-item', 'fast load'] },
-  { label: 'Yard waste and storm debris', icon: Leaf, price: 'From $85', detail: 'Brush, branches, fencing, deck debris, and storm cleanup piles staged outside.', tags: ['seasonal', 'branches', 'debris'] },
-  { label: 'Dumpster and trailer rental', icon: Warehouse, price: 'By request', detail: 'Short-term drop options for remodels, cleanouts, and DIY loading.', tags: ['renovation', 'drop-off', 'pickup'] },
+  { slug: 'junk-pickup', label: 'Junk pickup', icon: Truck, price: 'From $85', detail: 'Affordable pickup for items placed at the curb or in the garage.', tags: ['curbside', 'garage', '$85 minimum'] },
+  { slug: 'furniture-removal', label: 'Furniture removal', icon: Sofa, price: 'From $85', detail: 'Sofas, beds, dressers, tables, sectionals, and office furniture staged for pickup.', tags: ['sofas', 'mattresses', 'desks'] },
+  { slug: 'appliance-recycling', label: 'Appliance recycling', icon: Recycle, price: 'From $85', detail: 'Refrigerators, washers, dryers, stoves, dishwashers, and metal items staged curbside or in the garage.', tags: ['appliances', 'metal', 'eco route'] },
+  { slug: 'garage-cleanout', label: 'Garage cleanout pickup', icon: Home, price: 'From $85', detail: 'Garage-staged boxes, clutter, furniture, and bulky items ready for quick loading.', tags: ['garage', 'multi-item', 'fast load'] },
+  { slug: 'yard-debris', label: 'Yard waste and storm debris', icon: Leaf, price: 'From $85', detail: 'Brush, branches, fencing, deck debris, and storm cleanup piles staged outside.', tags: ['seasonal', 'branches', 'debris'] },
+  { slug: 'dumpster-rental', label: 'Dumpster and trailer rental', icon: Warehouse, price: 'By request', detail: 'Short-term drop options for remodels, cleanouts, and DIY loading.', tags: ['renovation', 'drop-off', 'pickup'] },
 ];
 
 const cities = [
@@ -215,6 +215,13 @@ export default function HomePage() {
                 </button>
               );
             })}
+          </div>
+          <div className='service-deep-links' aria-label='Service pages'>
+            {services.map((service) => (
+              <Link key={service.slug} to={`/services/${service.slug}`} className='service-deep-link'>
+                {service.label} →
+              </Link>
+            ))}
           </div>
         </div>
 

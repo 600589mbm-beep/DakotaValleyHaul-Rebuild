@@ -269,6 +269,21 @@ textarea { min-height: 92px; resize: vertical; }
   display: inline-block;
 }
 .city-grid .city-link:hover { border-color: var(--blue); color: var(--blue); }
+.service-deep-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+}
+.service-deep-link {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+}
+.service-deep-link:hover { text-decoration: underline; }
 .city-grid span.match, .city-grid .city-link.match { border-color: var(--green); color: var(--green-dark); background: #eef6ff; }
 .county-panel { margin-top: 22px; }
 .county-panel h3 { font-size: 18px; margin-bottom: 12px; }
