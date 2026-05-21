@@ -78,6 +78,12 @@ const faqs = [
   { q: 'Why curbside and garage only?', a: 'This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers.' },
   { q: 'Do I need to call?', a: 'No. Text and the booking form are preferred. Photos, item details, city or county, and your preferred calendar window are usually enough to start.' },
   { q: 'Do you serve my city or county?', a: 'Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location.' },
+  { q: 'When is the soonest you can pick up?', a: 'Appointments are typically scheduled about two business days out so the crew is prepared with the right equipment. Most customers book within 2–3 business days. Text or use the booking form to check current availability.' },
+  { q: 'Do I need to be home during the pickup?', a: 'No — as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a confirmation photo when the job is complete.' },
+  { q: 'What items do you remove?', a: 'Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs like hot tubs and estate cleanouts are quoted by request — send photos to start.' },
+  { q: 'What items do you NOT accept?', a: 'For safety and legal reasons, hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives. If unsure about an item, text a photo first.' },
+  { q: 'Do you recycle or donate items?', a: 'Yes. Furniture in good condition goes to Bridging, Arc’s Value Village, and Goodwill Twin Cities. Electronics go to R2-certified recyclers. Mattresses are recycled at certified Minnesota facilities. Target is 60%+ diverted from landfill.' },
+  { q: 'How long does junk removal take?', a: 'Most residential pickups take 30–90 minutes depending on volume. Full estate cleanouts may take 2–4 hours. The crew works efficiently and never rushes — the property is left clean.' },
 ];
 
 const loadSizes = [['small', 'Small'], ['medium', 'Medium'], ['large', 'Large'], ['truck', 'Truck']];
@@ -129,6 +135,7 @@ export default function App() {
             <a href='#services'>Services</a>
             <a href='#pricing'>Pricing</a>
             <a href='#areas'>Areas</a>
+            <a href='#about'>About</a>
             <a href='#faq'>FAQ</a>
           </div>
           <a className='nav-call' href={smsLink}><MessageSquareText size={17} /> Text {phoneDisplay}</a>
@@ -336,6 +343,50 @@ export default function App() {
             {promises.map((promise) => (
               <article className='promise' key={promise.title}><h3>{promise.title}</h3><p>{promise.text}</p></article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className='section about' id='about'>
+        <div className='section-head'>
+          <div>
+            <p className='section-kicker'>About Dakota Valley</p>
+            <h2>Twin Cities-grown since 2009.</h2>
+          </div>
+        </div>
+        <div className='about-grid'>
+          <div className='about-body'>
+            <p>
+              Dakota Valley Junk Removal started in 2009 with one truck serving
+              Uptown Minneapolis and Highland Park St. Paul. The routes now reach
+              the full metro and beyond, but the principles haven't changed:
+              honest pricing, exceptional service, and environmental responsibility.
+            </p>
+            <p>
+              Donation partners include <strong>Bridging</strong>, <strong>Arc's
+              Value Village</strong>, and <strong>Goodwill Twin Cities</strong>.
+              Through county recycling programs in Hennepin, Ramsey, and Dakota,
+              more than 60% of materials are diverted from landfills.
+            </p>
+            <p>
+              Locally-owned. The team lives in the same communities it serves —
+              from Edina to Eagan to Northeast Minneapolis. Every job gets the
+              same care, whether it's a Kenwood mansion or a Frogtown bungalow.
+            </p>
+          </div>
+          <div className='about-stats'>
+            <div className='about-stat'>
+              <div className='about-stat-number'>60%+</div>
+              <div className='about-stat-label'>Materials diverted from landfill</div>
+            </div>
+            <div className='about-stat'>
+              <div className='about-stat-number'>44+</div>
+              <div className='about-stat-label'>Tons diverted annually</div>
+            </div>
+            <div className='about-stat'>
+              <div className='about-stat-number'>15+</div>
+              <div className='about-stat-label'>Local charity partners</div>
+            </div>
           </div>
         </div>
       </section>

@@ -39,10 +39,16 @@
       "focus": "Text photos, pick a calendar window, $85 minimum"
     },
     {
+      "url": "https://dakotavalleyjunkremoval.com/#about",
+      "section": "About",
+      "priority": 0.7,
+      "focus": "Twin Cities-grown since 2009, charity partners (Bridging, Arc, Goodwill), 60%+ landfill diversion"
+    },
+    {
       "url": "https://dakotavalleyjunkremoval.com/#faq",
       "section": "FAQ",
       "priority": 0.6,
-      "focus": "Quick answers about pickup, pricing, scheduling"
+      "focus": "Pricing, scheduling, accepted items, recycling and donation practices"
     }
   ]
 }
