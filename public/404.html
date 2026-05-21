@@ -8,7 +8,8 @@
          and hands off to react-router. See https://github.com/rafgraph/spa-github-pages -->
     <script>
       (function () {
-        var pathSegmentsToKeep = 0; // 0 for apex / custom domain at root
+        // 1 for github.io subpath (preview), 0 for custom domain at root.
+        var pathSegmentsToKeep = window.location.hostname.endsWith('.github.io') ? 1 : 0;
         var l = window.location;
         l.replace(
           l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
