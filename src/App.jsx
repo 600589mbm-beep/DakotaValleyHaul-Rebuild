@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx';
 import CityPage from './pages/CityPage.jsx';
 import ServicePage from './pages/ServicePage.jsx';
+import CityServicePage from './pages/CityServicePage.jsx';
 
 // On github.io subpath preview, BrowserRouter needs to know the repo prefix.
 // At custom domain root, basename stays empty.
@@ -16,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cities/:slug" element={<CityPage />} />
+        <Route path="/cities/:citySlug/:serviceSlug" element={<CityServicePage />} />
         <Route path="/services/:slug" element={<ServicePage />} />
       </Routes>
     </BrowserRouter>

@@ -13,6 +13,7 @@ import {
   Camera,
 } from 'lucide-react';
 import { getCity } from '../data/cities.js';
+import { services as servicesData } from '../data/services.js';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
@@ -211,6 +212,22 @@ export default function CityPage() {
           </blockquote>
         </section>
       )}
+
+      <section className='section city-locale'>
+        <div className='section-head'>
+          <div>
+            <p className='section-kicker'>Services in {city.name}</p>
+            <h2>Pick your service.</h2>
+          </div>
+        </div>
+        <div className='city-grid'>
+          {Object.entries(servicesData).map(([serviceSlug, s]) => (
+            <Link key={serviceSlug} to={`/cities/${slug}/${serviceSlug}`} className='city-link'>
+              {s.name} in {city.name}
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className='section city-cta'>
         <div>
