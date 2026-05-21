@@ -146,6 +146,294 @@ export const services = {
       'You load over the rental window; crew picks up on signal.',
     ],
   },
+  'mattress-removal': {
+    name: 'Mattress removal',
+    icon: 'Sofa',
+    headline: "Mattress and box spring removal with certified recycling",
+    intro:
+      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80% of components (steel coils, foam, fiber, fabric) are recovered. $85 minimum, no hidden disposal fees.",
+    metaTitle: "Mattress removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80...",
+    services: [
+      "Single mattress pickup",
+      "Multi-mattress bundles (move-out, hotel turnover)",
+      "Box spring + frame removal",
+      "Pillow-top and memory-foam mattresses",
+      "Crib and toddler mattresses",
+      "Certified mattress recycling chain",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'hot-tub-removal': {
+    name: 'Hot tub removal',
+    icon: 'Warehouse',
+    headline: "Hot tub disassembly and removal across Minnesota",
+    intro:
+      "Hot tub removal from decks, backyards, patios, and below-grade installations. Crew handles disassembly, lifting, hauling, and disposal. Quoted by request \u2014 text photos of the tub, deck, and access path.",
+    metaTitle: "Hot tub removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Hot tub removal from decks, backyards, patios, and below-grade installations. Crew handles disassembly, lifting, hauling, and disposal. Quoted by request \u2014...",
+    services: [
+      "Free-standing hot tub removal",
+      "Sunken / below-grade tub removal",
+      "Cover and accessories disposal",
+      "Spa equipment and pump removal",
+      "Inflatable hot tub removal",
+      "Saunas (separate quote)",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'scrap-metal-removal': {
+    name: 'Scrap metal removal',
+    icon: 'Recycle',
+    headline: "Scrap metal pickup and certified recycling",
+    intro:
+      "Scrap metal removal across Minnesota \u2014 appliances, exercise equipment, fencing, gutters, swing sets, file cabinets, and bulk metal piles. Routed to certified Minnesota metal recyclers, not landfill.",
+    metaTitle: "Scrap metal removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Scrap metal removal across Minnesota \u2014 appliances, exercise equipment, fencing, gutters, swing sets, file cabinets, and bulk metal piles. Routed to certifi...",
+    services: [
+      "Appliance metal recovery",
+      "Aluminum, copper, steel piles",
+      "Fencing and gutter removal",
+      "Filing cabinet bundles",
+      "Swing set and play structure metal",
+      "Exercise equipment",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'electronics-removal': {
+    name: 'Electronics removal',
+    icon: 'Recycle',
+    headline: "Electronics removal with R2-certified e-waste recycling",
+    intro:
+      "Electronics pickup across Minnesota \u2014 TVs (including old CRTs), computers, monitors, printers, gaming consoles, audio equipment. Routed to R2-certified e-waste recyclers. Hard drives wiped or physically destroyed on request.",
+    metaTitle: "Electronics removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Electronics pickup across Minnesota \u2014 TVs (including old CRTs), computers, monitors, printers, gaming consoles, audio equipment. Routed to R2-certified e-w...",
+    services: [
+      "CRT and flat-panel TV pickup",
+      "Computer towers and laptops",
+      "Printers and scanners",
+      "Gaming consoles",
+      "Audio/video equipment",
+      "Hard drive destruction (on request)",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'hoarder-cleanout': {
+    name: 'Hoarder cleanout',
+    icon: 'Home',
+    headline: "Compassionate, discreet hoarder cleanout services",
+    intro:
+      "Hoarder cleanout across Minnesota. Discreet, judgment-free, thorough. Crew works at your pace, sorts donations vs trash on-site, and leaves the property clean. Quoted on-site for each job.",
+    metaTitle: "Hoarder cleanout Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Hoarder cleanout across Minnesota. Discreet, judgment-free, thorough. Crew works at your pace, sorts donations vs trash on-site, and leaves the property cl...",
+    services: [
+      "Full-property hoarder cleanout",
+      "Partial-room cleanout",
+      "Sort-on-site donation routing",
+      "Biohazard-adjacent prep (defer hazmat to licensed)",
+      "Multi-day projects",
+      "Family/landlord coordination",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'estate-cleanout': {
+    name: 'Estate cleanout',
+    icon: 'Home',
+    headline: "Estate cleanout services across Minnesota",
+    intro:
+      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs trash, route donatable items to Bridging / Arc / Goodwill, and leave the property show-ready.",
+    metaTitle: "Estate cleanout Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs tr...",
+    services: [
+      "Full estate cleanout",
+      "Selective room cleanout",
+      "Donation pickup with tax receipts",
+      "Photo documentation before haul",
+      "Family coordination for valuables",
+      "Property show-prep cleaning",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'attic-cleanout': {
+    name: 'Attic cleanout',
+    icon: 'Home',
+    headline: "Attic cleanout and old storage haul-out",
+    intro:
+      "Attic cleanout across Minnesota. Decades of boxes, old furniture, insulation debris, holiday decorations, and forgotten storage. Crew brings everything down, sorts donations, and hauls the rest.",
+    metaTitle: "Attic cleanout Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Attic cleanout across Minnesota. Decades of boxes, old furniture, insulation debris, holiday decorations, and forgotten storage. Crew brings everything dow...",
+    services: [
+      "Full attic cleanout",
+      "Selective box removal",
+      "Old furniture from attic",
+      "Insulation debris (loose, not asbestos)",
+      "Holiday decoration bundles",
+      "Trunk and chest removal",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'basement-cleanout': {
+    name: 'Basement cleanout',
+    icon: 'Home',
+    headline: "Basement cleanout \u2014 furniture, storage, debris",
+    intro:
+      "Basement cleanout across Minnesota. Old furniture, exercise equipment, paint cans (empty only), storage bins, water-damaged debris, and the basement-junk that builds up over decades. Crew handles stairs.",
+    metaTitle: "Basement cleanout Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Basement cleanout across Minnesota. Old furniture, exercise equipment, paint cans (empty only), storage bins, water-damaged debris, and the basement-junk t...",
+    services: [
+      "Full basement cleanout",
+      "Old furniture from basement",
+      "Exercise equipment",
+      "Water-damaged debris",
+      "Empty paint cans + clean materials",
+      "Storage shelving breakdown",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'fence-removal': {
+    name: 'Fence removal',
+    icon: 'Leaf',
+    headline: "Fence removal and hauling across Minnesota",
+    intro:
+      "Fence removal \u2014 wood, chain-link, vinyl, wrought iron. Crew dismantles and hauls. Concrete footings broken up by request. Yard left clean and fillable.",
+    metaTitle: "Fence removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Fence removal \u2014 wood, chain-link, vinyl, wrought iron. Crew dismantles and hauls. Concrete footings broken up by request. Yard left clean and fillable.",
+    services: [
+      "Wood fence removal",
+      "Chain-link fence removal",
+      "Vinyl/PVC fencing",
+      "Wrought iron fence",
+      "Concrete footing breakup (by quote)",
+      "Gate hardware removal",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'shed-removal': {
+    name: 'Shed removal',
+    icon: 'Warehouse',
+    headline: "Shed removal and demolition across Minnesota",
+    intro:
+      "Shed removal \u2014 wood, metal, plastic, brick. Crew breaks down the shed, hauls debris, and leaves the slab/site clean. Concrete pad demo quoted separately.",
+    metaTitle: "Shed removal Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Shed removal \u2014 wood, metal, plastic, brick. Crew breaks down the shed, hauls debris, and leaves the slab/site clean. Concrete pad demo quoted separately.",
+    services: [
+      "Wood shed dismantling + haul",
+      "Metal shed (Tuff Shed etc.) breakdown",
+      "Plastic/resin shed removal",
+      "Brick shed demolition (quote)",
+      "Foundation pad demo (quote)",
+      "Site cleanup + sweep",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'single-item-pickup': {
+    name: 'Single-item pickup',
+    icon: 'Truck',
+    headline: "One sofa, one fridge, one mattress \u2014 $85 minimum",
+    intro:
+      "Single-item pickup across Minnesota. One sofa. One fridge. One mattress. One desk. $85 minimum applies. Curbside or garage staging keeps the price low.",
+    metaTitle: "Single-item pickup Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Single-item pickup across Minnesota. One sofa. One fridge. One mattress. One desk. $85 minimum applies. Curbside or garage staging keeps the price low.",
+    services: [
+      "Single sofa or sectional",
+      "Single refrigerator",
+      "Single mattress + box",
+      "Single piano (by quote)",
+      "Single appliance",
+      "Single bulky item (treadmill, etc.)",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
+  'demolition': {
+    name: 'Light demolition',
+    icon: 'Warehouse',
+    headline: "Light demolition \u2014 sheds, fences, decks, bathrooms",
+    intro:
+      "Light demolition across Minnesota. Sheds, fences, decks, interior bathroom and kitchen demo, light wall removal, hot tubs. Crew handles tear-down, hauling, and disposal. Quoted by job.",
+    metaTitle: "Light demolition Minnesota | Dakota Valley Junk Removal",
+    metaDescription:
+      "Light demolition across Minnesota. Sheds, fences, decks, interior bathroom and kitchen demo, light wall removal, hot tubs. Crew handles tear-down, hauling,...",
+    services: [
+      "Deck demolition",
+      "Shed demolition",
+      "Fence demolition",
+      "Bathroom interior demo",
+      "Kitchen demo (cabinets, counters)",
+      "Hot tub + spa demolition",
+    ],
+    process: [
+      "Text photos and a quick description.",
+      "Crew confirms quote and pickup window via text.",
+      "Items go curbside or in the garage (or as agreed).",
+      "Crew arrives, loads, and routes for donation or certified recycling.",
+    ],
+  },
 };
 
 export function getService(slug) {

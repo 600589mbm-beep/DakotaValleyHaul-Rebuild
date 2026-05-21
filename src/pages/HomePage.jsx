@@ -190,9 +190,32 @@ export default function HomePage() {
 
       <section className='band metrics' aria-label='Key service stats'>
         <div><strong>$85</strong><span>Minimum pickup</span></div>
-        <div><strong>6</strong><span>Core hauling services</span></div>
-        <div><strong>2 spots</strong><span>Curbside or garage</span></div>
-        <div><strong>All MN</strong><span>Cities and counties</span></div>
+        <div><strong>18</strong><span>Service categories</span></div>
+        <div><strong>44</strong><span>Cities served</span></div>
+        <div><strong>Since 2009</strong><span>Locally owned</span></div>
+      </section>
+
+      <section className='band trust-grid' aria-label='Trust signals'>
+        <article>
+          <ShieldCheck size={22} />
+          <h3>Licensed and insured</h3>
+          <p>Fully licensed for waste hauling. General liability insurance covers your property during pickup.</p>
+        </article>
+        <article>
+          <CalendarDays size={22} />
+          <h3>Same-day eligible</h3>
+          <p>Most pickups scheduled within 2-3 business days. Same-day jobs available based on crew capacity.</p>
+        </article>
+        <article>
+          <Recycle size={22} />
+          <h3>60%+ diverted from landfill</h3>
+          <p>Furniture donated to Bridging, Arc, Goodwill. Electronics to R2-certified recyclers. Mattresses recycled.</p>
+        </article>
+        <article>
+          <CheckCircle2 size={22} />
+          <h3>Transparent pricing</h3>
+          <p>$85 minimum. Volume-based tiers. Surcharges disclosed upfront. <Link to='/pricing'>See pricing</Link>.</p>
+        </article>
       </section>
 
       <section className='section split' id='services'>
