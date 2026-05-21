@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Truck, MessageSquareText, Mail } from 'lucide-react';
+import { Truck, MessageSquareText, Mail, Facebook, Star } from 'lucide-react';
 import { cities as citiesData } from '../data/cities.js';
 import { counties as countiesData } from '../data/counties.js';
 import { services as servicesData } from '../data/services.js';
@@ -7,6 +7,15 @@ import { services as servicesData } from '../data/services.js';
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremoval.com';
+
+// Social profiles — update these when exact URLs are confirmed.
+// These are also wired into the LocalBusiness JSON-LD `sameAs` array
+// in index.html. Keep both in sync.
+const socialLinks = [
+  { name: 'Facebook', url: 'https://www.facebook.com/dakotavalleyjunkremoval', icon: Facebook },
+  { name: 'Yelp', url: 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan', icon: Star },
+  // Add Google Business Profile, Instagram, etc. as accounts are created.
+];
 
 const allCountyNames = [
   'Aitkin', 'Anoka', 'Becker', 'Beltrami', 'Benton', 'Big Stone', 'Blue Earth', 'Brown', 'Carlton', 'Carver', 'Cass',
@@ -86,6 +95,22 @@ export default function SiteFooter() {
               <Link to='/pricing'>Pricing</Link>
               <Link to='/reviews'>Reviews</Link>
             </nav>
+            <div className='site-footer-social' aria-label='Follow Dakota Valley on social'>
+              {socialLinks.map(({ name, url, icon: Icon }) => (
+                <a
+                  key={name}
+                  href={url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={`${name} (opens in new tab)`}
+                  className='site-footer-social-link'
+                  title={name}
+                >
+                  <Icon size={16} />
+                  <span>{name}</span>
+                </a>
+              ))}
+            </div>
             <p className='site-footer-copy'>© {new Date().getFullYear()} Dakota Valley Junk Removal. All rights reserved.</p>
           </div>
         </div>
