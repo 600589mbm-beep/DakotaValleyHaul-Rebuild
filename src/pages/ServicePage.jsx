@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import {
   Truck,
@@ -27,16 +28,11 @@ export default function ServicePage() {
 
   useEffect(() => {
     if (!service) return;
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = service.metaTitle;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', service.metaDescription);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const serviceCanonical = `https://dakotavalleyjunkremoval.com/services/${slug}`;
-    if (canonical) canonical.setAttribute('href', serviceCanonical);
+    const restoreMeta = setPageMeta({
+      title: service.metaTitle,
+      description: service.metaDescription,
+      canonical: serviceCanonical,
+    });
 
     const schema = {
       '@context': 'https://schema.org',
@@ -86,9 +82,7 @@ export default function ServicePage() {
 
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (desc && prevDesc) desc.setAttribute('content', prevDesc);
-      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      restoreMeta();
       document.getElementById('service-schema')?.remove();
     };
   }, [service, slug]);

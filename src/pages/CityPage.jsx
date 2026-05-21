@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import {
   MapPin,
@@ -35,16 +36,11 @@ export default function CityPage() {
 
   useEffect(() => {
     if (!city) return;
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = city.metaTitle;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', city.metaDescription);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const cityCanonical = `https://dakotavalleyjunkremoval.com/cities/${slug}`;
-    if (canonical) canonical.setAttribute('href', cityCanonical);
+    const restoreMeta = setPageMeta({
+      title: city.metaTitle,
+      description: city.metaDescription,
+      canonical: cityCanonical,
+    });
 
     // Inject per-city JSON-LD (BreadcrumbList + LocalBusiness + Service)
     const schema = {
@@ -105,9 +101,7 @@ export default function CityPage() {
 
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (desc && prevDesc) desc.setAttribute('content', prevDesc);
-      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      restoreMeta();
       document.getElementById('city-schema')?.remove();
     };
   }, [city, slug]);

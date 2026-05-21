@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import {
   Truck,
@@ -21,16 +22,11 @@ export default function CountyPage() {
 
   useEffect(() => {
     if (!county) return;
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = county.metaTitle;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', county.metaDescription);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const countyCanonical = `https://dakotavalleyjunkremoval.com/counties/${slug}`;
-    if (canonical) canonical.setAttribute('href', countyCanonical);
+    const restoreMeta = setPageMeta({
+      title: county.metaTitle,
+      description: county.metaDescription,
+      canonical: countyCanonical,
+    });
 
     const schema = {
       '@context': 'https://schema.org',
@@ -70,9 +66,7 @@ export default function CountyPage() {
 
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (desc && prevDesc) desc.setAttribute('content', prevDesc);
-      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      restoreMeta();
       document.getElementById('county-schema')?.remove();
     };
   }, [county, slug]);

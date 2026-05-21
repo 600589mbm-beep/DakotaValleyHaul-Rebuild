@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { Truck, MessageSquareText, Camera, Star } from 'lucide-react';
 import { cities as citiesData } from '../data/cities.js';
@@ -14,20 +15,14 @@ export default function ReviewsPage() {
     .map(([slug, c]) => ({ slug, city: c.name, ...c.testimonial }));
 
   useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = 'Reviews from Across Minnesota | Dakota Valley Junk Removal';
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', `Customer reviews from across all 44 Minnesota cities Dakota Valley serves. Real testimonials from real Minnesota neighborhoods.`);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', 'https://dakotavalleyjunkremoval.com/reviews');
+    const restoreMeta = setPageMeta({
+      title: 'Reviews from Across Minnesota | Dakota Valley Junk Removal',
+      description: 'Customer reviews from across all 44+ Minnesota cities Dakota Valley serves. Real testimonials from real Minnesota neighborhoods.',
+      canonical: 'https://dakotavalleyjunkremoval.com/reviews',
+    });
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (desc && prevDesc) desc.setAttribute('content', prevDesc);
-      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      restoreMeta();
     };
   }, []);
 

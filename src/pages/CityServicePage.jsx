@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import {
   Truck,
@@ -35,15 +36,11 @@ export default function CityServicePage() {
 
   useEffect(() => {
     if (!city || !service) return;
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = title;
-    const descEl = document.querySelector('meta[name="description"]');
-    if (descEl) descEl.setAttribute('content', description);
-    const canonicalEl = document.querySelector('link[rel="canonical"]');
-    if (canonicalEl) canonicalEl.setAttribute('href', canonical);
+    const restoreMeta = setPageMeta({
+      title: title,
+      description: description,
+      canonical: canonical,
+    });
 
     const schema = {
       '@context': 'https://schema.org',
@@ -102,9 +99,7 @@ export default function CityServicePage() {
 
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (descEl && prevDesc) descEl.setAttribute('content', prevDesc);
-      if (canonicalEl && prevCanonical) canonicalEl.setAttribute('href', prevCanonical);
+      restoreMeta();
       document.getElementById('city-service-schema')?.remove();
     };
   }, [city, service, citySlug, serviceSlug, title, description, canonical]);

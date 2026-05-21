@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { setPageMeta } from '../lib/seoMeta.js';
 import SiteFooter from '../components/SiteFooter.jsx';
 import { Truck, MessageSquareText, CheckCircle2, Camera } from 'lucide-react';
 
@@ -51,21 +52,15 @@ const surcharges = [
 
 export default function PricingPage() {
   useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
-    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
-
-    document.title = 'Junk Removal Pricing Minnesota | Transparent Tiers | Dakota Valley';
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', 'Transparent junk removal pricing across Minnesota. $85 minimum, volume-based tiers, no hidden fees. Text photos for a precise quote.');
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', 'https://dakotavalleyjunkremoval.com/pricing');
+    const restoreMeta = setPageMeta({
+      title: 'Junk Removal Pricing Minnesota | Transparent Tiers | Dakota Valley',
+      description: 'Transparent junk removal pricing across Minnesota. $85 minimum, volume-based tiers, no hidden fees. Text photos for a precise quote.',
+      canonical: 'https://dakotavalleyjunkremoval.com/pricing',
+    });
 
     window.scrollTo(0, 0);
     return () => {
-      document.title = prevTitle;
-      if (desc && prevDesc) desc.setAttribute('content', prevDesc);
-      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      restoreMeta();
     };
   }, []);
 
