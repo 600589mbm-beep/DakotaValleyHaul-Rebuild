@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Truck, MessageSquareText, Mail, Facebook, Star } from 'lucide-react';
+import { Truck, MessageSquareText, Mail, Facebook, Star, Search } from 'lucide-react';
 import { cities as citiesData } from '../data/cities.js';
 import { counties as countiesData } from '../data/counties.js';
 import { services as servicesData } from '../data/services.js';
@@ -12,9 +12,12 @@ const email = 'info@dakotavalleyjunkremoval.com';
 // These are also wired into the LocalBusiness JSON-LD `sameAs` array
 // in index.html. Keep both in sync.
 const socialLinks = [
+  { name: 'Google', url: 'https://www.google.com/search?q=dakota+valley+junk+removal+minnesota', icon: Search },
   { name: 'Facebook', url: 'https://www.facebook.com/dakotavalleyjunkremoval', icon: Facebook },
   { name: 'Yelp', url: 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan', icon: Star },
-  // Add Google Business Profile, Instagram, etc. as accounts are created.
+  // When Google Business Profile is set up, swap the Google entry to the GBP URL
+  // (something like https://maps.app.goo.gl/... or https://g.co/kgs/...) and add
+  // the URL to the LocalBusiness JSON-LD sameAs array in index.html.
 ];
 
 const allCountyNames = [
