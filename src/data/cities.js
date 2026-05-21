@@ -1868,6 +1868,535 @@ export const cities = {
     },
     geo: { latitude: 44.9239, longitude: -92.9594 },
   },
+  'brooklyn-park': {
+    name: 'Brooklyn Park',
+    county: 'Hennepin County',
+    intro:
+      'Brooklyn Park is part of Hennepin County. Curbside and garage junk pickup throughout Brooklyn Park — from Edinburgh USA Golf Course and Eidem Homestead to Edinburgh and Champlin Park. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Brooklyn Park MN | Hennepin County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Brooklyn Park, MN. Serving all Brooklyn Park neighborhoods across Hennepin County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Edinburgh',
+      'Champlin Park',
+      'Brookdale',
+      'Park Center',
+      'Birch Grove',
+      'Riverview',
+      'River Falls',
+      'Mississippi Pointe',
+      'Hidden Falls',
+      'Heron Lake',
+    ],
+    landmarks: [
+      'Edinburgh USA Golf Course',
+      'Eidem Homestead',
+      'Brookdale Library',
+      'Brooklyn Park Community Center',
+      'North Hennepin Community College',
+      'Coon Rapids Dam Regional Park',
+      'River Park',
+      'Target North Campus',
+    ],
+    testimonial: {
+      name: 'Jennifer Carlson',
+      location: 'Edinburgh, Brooklyn Park',
+      text:
+        'Cleared out our garage in Edinburgh in one trip. Crew was efficient and friendly, and the price was fair.',
+    },
+    geo: { latitude: 45.0941, longitude: -93.3563 },
+  },
+  'blaine': {
+    name: 'Blaine',
+    county: 'Anoka County',
+    intro:
+      'Blaine is part of Anoka County. Curbside and garage junk pickup throughout Blaine — from National Sports Center and TPC Twin Cities to Northtown and Lexington. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Blaine MN | Anoka County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Blaine, MN. Serving all Blaine neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Northtown',
+      'Lexington',
+      'Tournament Players Club',
+      'Lakes',
+      'Spring Lake Park area',
+      'University Avenue corridor',
+    ],
+    landmarks: [
+      'National Sports Center',
+      'TPC Twin Cities',
+      'Lakes at Blaine',
+      'Blaine Wetland Sanctuary',
+      'Northtown Mall',
+      'Aquatore Park',
+    ],
+    testimonial: {
+      name: 'Mark Thompson',
+      location: 'Lakes at Blaine',
+      text:
+        'Old furniture from our basement, gone in 20 minutes. Very professional team.',
+    },
+    geo: { latitude: 45.1608, longitude: -93.2349 },
+  },
+  'coon-rapids': {
+    name: 'Coon Rapids',
+    county: 'Anoka County',
+    intro:
+      'Coon Rapids is part of Anoka County. Curbside and garage junk pickup throughout Coon Rapids — from Bunker Hills Regional Park and Coon Rapids Dam to Riverdale and Sand Creek. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Coon Rapids MN | Anoka County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Coon Rapids, MN. Serving all Coon Rapids neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Riverdale',
+      'Sand Creek',
+      'Coon Creek',
+      'Bunker Hills',
+      'Foley Park',
+      'River Pines',
+      'Sandburg',
+      'Crooked Lake',
+    ],
+    landmarks: [
+      'Bunker Hills Regional Park',
+      'Coon Rapids Dam',
+      'Coon Lake Park',
+      'Riverdale Village',
+      'Anoka-Ramsey Community College',
+      'Coon Creek Watershed',
+    ],
+    testimonial: {
+      name: 'Susan Park',
+      location: 'Sand Creek, Coon Rapids',
+      text:
+        'Estate cleanout went smoothly. They donated what they could and recycled the rest. Highly recommend.',
+    },
+    geo: { latitude: 45.1199, longitude: -93.2876 },
+  },
+  'shakopee': {
+    name: 'Shakopee',
+    county: 'Scott County',
+    intro:
+      'Shakopee is part of Scott County. Curbside and garage junk pickup throughout Shakopee — from Valleyfair and Canterbury Park to Downtown Shakopee and Westwood. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Shakopee MN | Scott County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Shakopee, MN. Serving all Shakopee neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Shakopee',
+      'Westwood',
+      'Southbridge',
+      'Eagle Creek',
+      'Whispering Oaks',
+      'Stonebrooke',
+    ],
+    landmarks: [
+      'Valleyfair',
+      'Canterbury Park',
+      'Mystic Lake Casino',
+      'Murphy\'s Landing',
+      'Minnesota River',
+      'Shakopee Mdewakanton land',
+    ],
+    testimonial: {
+      name: 'David Wright',
+      location: 'Southbridge, Shakopee',
+      text:
+        'Had a hot tub to dispose of — they handled the whole thing. Disassembly to disposal. Excellent.',
+    },
+    geo: { latitude: 44.798, longitude: -93.5271 },
+  },
+  'cottage-grove': {
+    name: 'Cottage Grove',
+    county: 'Washington County',
+    intro:
+      'Cottage Grove is part of Washington County. Curbside and garage junk pickup throughout Cottage Grove — from Cottage Grove Ravine Regional Park and Old Cottage Grove to Hamlet and Pine Coulee. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Cottage Grove MN | Washington County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Cottage Grove, MN. Serving all Cottage Grove neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Hamlet',
+      'Pine Coulee',
+      'Old Cottage Grove',
+      'Mississippi Dunes',
+      'East Ravine',
+      'Pine Tree Pond',
+    ],
+    landmarks: [
+      'Cottage Grove Ravine Regional Park',
+      'Old Cottage Grove',
+      'Hamlet Park',
+      'River Oaks Golf Course',
+      'Mississippi River bluffs',
+    ],
+    testimonial: {
+      name: 'Linda Olson',
+      location: 'Hamlet, Cottage Grove',
+      text:
+        'Yard waste pile from our spring renovation — done in one stop. Fast, easy quote.',
+    },
+    geo: { latitude: 44.8277, longitude: -92.9437 },
+  },
+  'andover': {
+    name: 'Andover',
+    county: 'Anoka County',
+    intro:
+      'Andover is part of Anoka County. Curbside and garage junk pickup throughout Andover — from Bunker Hills Regional Park and Andover Community Center to Hidden Creek and Woodland Estates. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Andover MN | Anoka County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Andover, MN. Serving all Andover neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Hidden Creek',
+      'Woodland Estates',
+      'Pheasant Run',
+      'Coon Creek',
+      'Bunker Lake area',
+    ],
+    landmarks: [
+      'Bunker Hills Regional Park',
+      'Andover Community Center',
+      'Crooked Lake',
+      'Sunshine Park',
+      'Round Lake',
+    ],
+    testimonial: {
+      name: 'Chris Anderson',
+      location: 'Hidden Creek, Andover',
+      text:
+        'Garage cleanout took half a day. They gave a fair quote and stuck to it.',
+    },
+    geo: { latitude: 45.2333, longitude: -93.2911 },
+  },
+  'savage': {
+    name: 'Savage',
+    county: 'Scott County',
+    intro:
+      'Savage is part of Scott County. Curbside and garage junk pickup throughout Savage — from Hidden Valley Sports Complex and Murphy Hanrehan Park Reserve to Glendale and Hamilton. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Savage MN | Scott County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Savage, MN. Serving all Savage neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Glendale',
+      'Hamilton',
+      'Stonebrooke',
+      'Connelly Place',
+      'Boudin',
+      'Yorkshire',
+    ],
+    landmarks: [
+      'Hidden Valley Sports Complex',
+      'Murphy Hanrehan Park Reserve',
+      'McColl Pond ELC',
+      'O\'Connell Park',
+      'Minnesota River valley',
+    ],
+    testimonial: {
+      name: 'Patricia Lee',
+      location: 'Glendale, Savage',
+      text:
+        'Multi-room cleanout before listing the house. They donated furniture and made the place show-ready.',
+    },
+    geo: { latitude: 44.7791, longitude: -93.3361 },
+  },
+  'prior-lake': {
+    name: 'Prior Lake',
+    county: 'Scott County',
+    intro:
+      'Prior Lake is part of Scott County. Curbside and garage junk pickup throughout Prior Lake — from Lower Prior Lake and Upper Prior Lake to Downtown Prior Lake and Wilds. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Prior Lake MN | Scott County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Prior Lake, MN. Serving all Prior Lake neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Prior Lake',
+      'Wilds',
+      'Spring Lake',
+      'Pike Lake',
+      'Northwood',
+      'Crystal Lake area',
+    ],
+    landmarks: [
+      'Lower Prior Lake',
+      'Upper Prior Lake',
+      'The Wilds Golf Club',
+      'Mystic Lake Casino',
+      'Cleary Lake Regional Park',
+    ],
+    testimonial: {
+      name: 'James Reilly',
+      location: 'Spring Lake, Prior Lake',
+      text:
+        'Old dock sections and yard debris — gone same day. Saved us hauling it ourselves.',
+    },
+    geo: { latitude: 44.7133, longitude: -93.4222 },
+  },
+  'chaska': {
+    name: 'Chaska',
+    county: 'Carver County',
+    intro:
+      'Chaska is part of Carver County. Curbside and garage junk pickup throughout Chaska — from Chaska Town Course and Hazeltine National Golf Club to Downtown Chaska and Jonathan. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Chaska MN | Carver County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Chaska, MN. Serving all Chaska neighborhoods across Carver County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Chaska',
+      'Jonathan',
+      'Clover Ridge',
+      'Pioneer Trail area',
+      'Lake Bavaria',
+    ],
+    landmarks: [
+      'Chaska Town Course',
+      'Hazeltine National Golf Club',
+      'Minnesota Landscape Arboretum nearby',
+      'Chaska Community Center',
+      'Firemen\'s Park',
+    ],
+    testimonial: {
+      name: 'Robert Yang',
+      location: 'Jonathan, Chaska',
+      text:
+        'Cleared out years of accumulated junk from our walkout basement. Very respectful crew.',
+    },
+    geo: { latitude: 44.7894, longitude: -93.6019 },
+  },
+  'oakdale': {
+    name: 'Oakdale',
+    county: 'Washington County',
+    intro:
+      'Oakdale is part of Washington County. Curbside and garage junk pickup throughout Oakdale — from Tartan Park and Oakdale Discovery Center to Oakdale Estates and Linwood Park. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Oakdale MN | Washington County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Oakdale, MN. Serving all Oakdale neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Oakdale Estates',
+      'Linwood Park',
+      'Tartan Hills',
+      'Lake Elmo area',
+      '3M corridor',
+    ],
+    landmarks: [
+      'Tartan Park',
+      'Oakdale Discovery Center',
+      'Mall of Oakdale',
+      '3M campus',
+      'Tanners Lake',
+    ],
+    testimonial: {
+      name: 'Karen Mitchell',
+      location: 'Oakdale Estates',
+      text:
+        'Fast quote by text, even faster pickup. Old appliances and a sofa, done.',
+    },
+    geo: { latitude: 44.9633, longitude: -92.965 },
+  },
+  'chanhassen': {
+    name: 'Chanhassen',
+    county: 'Carver County',
+    intro:
+      'Chanhassen is part of Carver County. Curbside and garage junk pickup throughout Chanhassen — from Chanhassen Dinner Theatres and Paisley Park (Prince\'s home) to Downtown Chanhassen and Lake Lucy. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Chanhassen MN | Carver County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Chanhassen, MN. Serving all Chanhassen neighborhoods across Carver County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Chanhassen',
+      'Lake Lucy',
+      'Lake Susan',
+      'Lake Riley',
+      'Pioneer Pass',
+      'Lotus Lake',
+    ],
+    landmarks: [
+      'Chanhassen Dinner Theatres',
+      'Paisley Park (Prince\'s home)',
+      'Minnesota Landscape Arboretum',
+      'Lake Ann Park',
+      'Riley Lake Park',
+    ],
+    testimonial: {
+      name: 'Amanda Peterson',
+      location: 'Lake Susan, Chanhassen',
+      text:
+        'Full garage cleanout. They sorted donations for Goodwill and hauled the rest. Outstanding.',
+    },
+    geo: { latitude: 44.8622, longitude: -93.5302 },
+  },
+  'elk-river': {
+    name: 'Elk River',
+    county: 'Sherburne County',
+    intro:
+      'Elk River is part of Sherburne County. Curbside and garage junk pickup throughout Elk River — from Elk River Energy Resource Center and Lake Orono to Downtown Elk River and Lakeland. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Elk River MN | Sherburne County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Elk River, MN. Serving all Elk River neighborhoods across Sherburne County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Elk River',
+      'Lakeland',
+      'Trott Brook',
+      'Big Lake area corridor',
+      'Mississippi River bluffs',
+    ],
+    landmarks: [
+      'Elk River Energy Resource Center',
+      'Lake Orono',
+      'Mississippi River',
+      'Bailey Lake',
+      'Houlton-Hannah Park',
+    ],
+    testimonial: {
+      name: 'Tom Becker',
+      location: 'Lakeland, Elk River',
+      text:
+        'Estate cleanout for my mother\'s house. They were patient, respectful, and fair on pricing.',
+    },
+    geo: { latitude: 45.3033, longitude: -93.5675 },
+  },
+  'champlin': {
+    name: 'Champlin',
+    county: 'Hennepin County',
+    intro:
+      'Champlin is part of Hennepin County. Curbside and garage junk pickup throughout Champlin — from Mississippi Point Park and Elm Creek Park Reserve to Mississippi Crossings and Champlin Mill Pond. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Champlin MN | Hennepin County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Champlin, MN. Serving all Champlin neighborhoods across Hennepin County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Mississippi Crossings',
+      'Champlin Mill Pond',
+      'Elm Creek',
+      'Sunset Pointe',
+    ],
+    landmarks: [
+      'Mississippi Point Park',
+      'Elm Creek Park Reserve',
+      'Champlin Park',
+      'Mississippi River trails',
+      'Champlin Mill Pond',
+    ],
+    testimonial: {
+      name: 'Eric Larson',
+      location: 'Mississippi Crossings, Champlin',
+      text:
+        'Garage cleanout was easier than I expected. Photo quote, scheduled, done. Recommend.',
+    },
+    geo: { latitude: 45.1886, longitude: -93.3961 },
+  },
+  'lino-lakes': {
+    name: 'Lino Lakes',
+    county: 'Anoka County',
+    intro:
+      'Lino Lakes is part of Anoka County. Curbside and garage junk pickup throughout Lino Lakes — from Rice Creek Chain of Lakes Park Reserve and Birch Lake to Birch Lake and Centerville Lake. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Lino Lakes MN | Anoka County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Lino Lakes, MN. Serving all Lino Lakes neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Birch Lake',
+      'Centerville Lake',
+      'Marshan Lake',
+      'Pine Tree Pond area',
+      'Hidden Lakes',
+    ],
+    landmarks: [
+      'Rice Creek Chain of Lakes Park Reserve',
+      'Birch Lake',
+      'Centerville Lake',
+      'Lino Lakes YMCA',
+      'Sunrise River',
+    ],
+    testimonial: {
+      name: 'Michelle Berg',
+      location: 'Birch Lake, Lino Lakes',
+      text:
+        'Yard renovation debris and old fencing — they took it all in one trip. Quick and reasonable.',
+    },
+    geo: { latitude: 45.1608, longitude: -93.0903 },
+  },
+  'forest-lake': {
+    name: 'Forest Lake',
+    county: 'Washington County',
+    intro:
+      'Forest Lake is part of Washington County. Curbside and garage junk pickup throughout Forest Lake — from Forest Lake (the actual lake) and Lakeside Memorial Park to Downtown Forest Lake and Castlewood. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Forest Lake MN | Washington County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Forest Lake, MN. Serving all Forest Lake neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Forest Lake',
+      'Castlewood',
+      'Heath Lake',
+      'Forest Hills',
+      'Bald Eagle Lake area',
+    ],
+    landmarks: [
+      'Forest Lake (the actual lake)',
+      'Lakeside Memorial Park',
+      'Forest Lake Area Historical Society',
+      'Imperial Avenue corridor',
+    ],
+    testimonial: {
+      name: 'Bill Anderson',
+      location: 'Castlewood, Forest Lake',
+      text:
+        'Hot tub disposal — they disassembled and hauled. Wasn\'t cheap but the alternative was a nightmare.',
+    },
+    geo: { latitude: 45.2783, longitude: -92.9852 },
+  },
+  'stillwater': {
+    name: 'Stillwater',
+    county: 'Washington County',
+    intro:
+      'Stillwater is part of Washington County. Curbside and garage junk pickup throughout Stillwater — from Stillwater Lift Bridge and St. Croix River to Historic Downtown Stillwater and Liberty. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Stillwater MN | Washington County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Stillwater, MN. Serving all Stillwater neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Historic Downtown Stillwater',
+      'Liberty',
+      'Croixwood',
+      'Oak Park Heights border',
+      'St. Croix bluffs',
+    ],
+    landmarks: [
+      'Stillwater Lift Bridge',
+      'St. Croix River',
+      'Pioneer Park',
+      'Lowell Park',
+      'Joseph Wolf Brewery (historic)',
+      'Washington County Historic Courthouse',
+    ],
+    testimonial: {
+      name: 'Karen O\'Brien',
+      location: 'Croixwood, Stillwater',
+      text:
+        'Cleared out an old downtown apartment over the river. They navigated the narrow streets without issue.',
+    },
+    geo: { latitude: 45.0563, longitude: -92.806 },
+  },
+  'anoka': {
+    name: 'Anoka',
+    county: 'Anoka County',
+    intro:
+      'Anoka is part of Anoka County. Curbside and garage junk pickup throughout Anoka — from Anoka County Historical Society and Anoka County Fairgrounds to Downtown Anoka and Riverside Park. $85 minimum, photo quotes, calendar booking.',
+    metaTitle: 'Junk Removal Anoka MN | Anoka County | Dakota Valley',
+    metaDescription:
+      'Curbside and garage junk removal in Anoka, MN. Serving all Anoka neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+    neighborhoods: [
+      'Downtown Anoka',
+      'Riverside Park',
+      'Lions Park area',
+      'Greenhaven',
+      'Crooked Lake area',
+    ],
+    landmarks: [
+      'Anoka County Historical Society',
+      'Anoka County Fairgrounds',
+      'Rum River',
+      'Greenhaven Golf Course',
+      'Halloween Capital of the World monument',
+    ],
+    testimonial: {
+      name: 'Greg Henderson',
+      location: 'Riverside Park, Anoka',
+      text:
+        'Single-item pickup for an old fridge with refrigerant recovery. Done right.',
+    },
+    geo: { latitude: 45.1977, longitude: -93.3872 },
+  },
 };
 
 export function getCity(slug) {
