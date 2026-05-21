@@ -1,0 +1,48 @@
+{
+  "name": "Dakota Valley Junk Removal",
+  "description": "Affordable curbside and garage junk pickup across Minnesota with text-first photo quotes, calendar booking, and an $85 minimum.",
+  "url": "https://dakotavalleyjunkremoval.com",
+  "telephone": "+1-952-232-5107",
+  "email": "info@dakotavalleyjunkremoval.com",
+  "priceRange": "From $85",
+  "areaServed": ["Minnesota", "All Minnesota cities", "All Minnesota counties"],
+  "lastUpdated": "2026-05-21",
+  "sections": [
+    {
+      "url": "https://dakotavalleyjunkremoval.com/",
+      "section": "Home",
+      "priority": 1.0,
+      "focus": "Curbside and garage junk pickup across Minnesota"
+    },
+    {
+      "url": "https://dakotavalleyjunkremoval.com/#services",
+      "section": "Services",
+      "priority": 0.8,
+      "focus": "Curbside pickup, garage cleanout, furniture and appliance removal, light demo"
+    },
+    {
+      "url": "https://dakotavalleyjunkremoval.com/#items",
+      "section": "Items accepted",
+      "priority": 0.7,
+      "focus": "Single items to full property resets"
+    },
+    {
+      "url": "https://dakotavalleyjunkremoval.com/#areas",
+      "section": "Service areas",
+      "priority": 0.8,
+      "focus": "All Minnesota counties and cities, statewide brand with local routes"
+    },
+    {
+      "url": "https://dakotavalleyjunkremoval.com/#quote",
+      "section": "Quote helper",
+      "priority": 0.9,
+      "focus": "Text photos, pick a calendar window, $85 minimum"
+    },
+    {
+      "url": "https://dakotavalleyjunkremoval.com/#faq",
+      "section": "FAQ",
+      "priority": 0.6,
+      "focus": "Quick answers about pickup, pricing, scheduling"
+    }
+  ]
+}
