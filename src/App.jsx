@@ -2,16 +2,15 @@ import { useMemo, useState } from 'react';
 import {
   ArrowRight,
   Building2,
+  CalendarDays,
   Camera,
   CheckCircle2,
-  Clock,
   Home,
   Leaf,
   Mail,
   Map as MapIcon,
   MapPin,
   MessageSquareText,
-  Phone,
   Recycle,
   ShieldCheck,
   Sofa,
@@ -22,82 +21,94 @@ import {
 } from 'lucide-react';
 
 const phoneDisplay = '(952) 232-5107';
-const phoneLink = 'tel:9522325107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremoval.com';
 
 const services = [
-  { label: 'Junk pickup', icon: Truck, price: 'From $95', detail: 'Curbside, garage, basement, and full-home cleanouts.', tags: ['single items', 'multi-room', 'storage'] },
-  { label: 'Furniture removal', icon: Sofa, price: 'From $85', detail: 'Sofas, beds, dressers, tables, sectionals, and office furniture.', tags: ['sofas', 'mattresses', 'desks'] },
-  { label: 'Appliance recycling', icon: Recycle, price: 'From $90', detail: 'Refrigerators, washers, dryers, stoves, dishwashers, and metal items.', tags: ['certified', 'heavy lift', 'eco route'] },
-  { label: 'Estate and rental cleanouts', icon: Home, price: 'Scoped', detail: 'Full homes, apartments, basements, garages, rentals, and move-outs.', tags: ['multi-load', 'scheduled', 'sweep up'] },
-  { label: 'Yard waste and storm debris', icon: Leaf, price: 'From $100', detail: 'Brush, branches, fencing, deck debris, and storm cleanup piles.', tags: ['seasonal', 'branches', 'debris'] },
-  { label: 'Dumpster and trailer rental', icon: Warehouse, price: '10 to 20 yd', detail: 'Short-term drop options for remodels, cleanouts, and DIY loading.', tags: ['renovation', 'drop-off', 'pickup'] },
+  { label: 'Junk pickup', icon: Truck, price: 'From $85', detail: 'Affordable pickup for items placed at the curb or in the garage.', tags: ['curbside', 'garage', '$85 minimum'] },
+  { label: 'Furniture removal', icon: Sofa, price: 'From $85', detail: 'Sofas, beds, dressers, tables, sectionals, and office furniture staged for pickup.', tags: ['sofas', 'mattresses', 'desks'] },
+  { label: 'Appliance recycling', icon: Recycle, price: 'From $85', detail: 'Refrigerators, washers, dryers, stoves, dishwashers, and metal items staged curbside or in the garage.', tags: ['appliances', 'metal', 'eco route'] },
+  { label: 'Garage cleanout pickup', icon: Home, price: 'From $85', detail: 'Garage-staged boxes, clutter, furniture, and bulky items ready for quick loading.', tags: ['garage', 'multi-item', 'fast load'] },
+  { label: 'Yard waste and storm debris', icon: Leaf, price: 'From $85', detail: 'Brush, branches, fencing, deck debris, and storm cleanup piles staged outside.', tags: ['seasonal', 'branches', 'debris'] },
+  { label: 'Dumpster and trailer rental', icon: Warehouse, price: 'By request', detail: 'Short-term drop options for remodels, cleanouts, and DIY loading.', tags: ['renovation', 'drop-off', 'pickup'] },
 ];
 
 const cities = [
-  'Apple Valley', 'Burnsville', 'Eagan', 'Farmington', 'Hastings', 'Lakeville', 'Rosemount', 'Minneapolis',
-  'St. Paul', 'Bloomington', 'Eden Prairie', 'Edina', 'Maple Grove', 'Woodbury', 'Rochester', 'Duluth',
-  'St. Cloud', 'Mankato', 'Moorhead', 'Brainerd', 'Winona', 'Northfield', 'Owatonna', 'Faribault',
-  'Roseville', 'White Bear Lake', 'Plymouth', 'Minnetonka', 'Cottage Grove', 'Stillwater',
+  'All Minnesota cities', 'Apple Valley', 'Burnsville', 'Eagan', 'Farmington', 'Hastings', 'Lakeville', 'Rosemount',
+  'Minneapolis', 'St. Paul', 'Bloomington', 'Eden Prairie', 'Edina', 'Maple Grove', 'Woodbury', 'Rochester', 'Duluth',
+  'St. Cloud', 'Mankato', 'Moorhead', 'Brainerd', 'Winona', 'Northfield', 'Owatonna', 'Faribault', 'Roseville',
+  'White Bear Lake', 'Plymouth', 'Minnetonka', 'Cottage Grove', 'Stillwater',
+];
+
+const counties = [
+  'Aitkin', 'Anoka', 'Becker', 'Beltrami', 'Benton', 'Big Stone', 'Blue Earth', 'Brown', 'Carlton', 'Carver', 'Cass',
+  'Chippewa', 'Chisago', 'Clay', 'Clearwater', 'Cook', 'Cottonwood', 'Crow Wing', 'Dakota', 'Dodge', 'Douglas',
+  'Faribault', 'Fillmore', 'Freeborn', 'Goodhue', 'Grant', 'Hennepin', 'Houston', 'Hubbard', 'Isanti', 'Itasca',
+  'Jackson', 'Kanabec', 'Kandiyohi', 'Kittson', 'Koochiching', 'Lac qui Parle', 'Lake', 'Lake of the Woods',
+  'Le Sueur', 'Lincoln', 'Lyon', 'Mahnomen', 'Marshall', 'Martin', 'McLeod', 'Meeker', 'Mille Lacs', 'Morrison',
+  'Mower', 'Murray', 'Nicollet', 'Nobles', 'Norman', 'Olmsted', 'Otter Tail', 'Pennington', 'Pine', 'Pipestone',
+  'Polk', 'Pope', 'Ramsey', 'Red Lake', 'Redwood', 'Renville', 'Rice', 'Rock', 'Roseau', 'St. Louis', 'Scott',
+  'Sherburne', 'Sibley', 'Stearns', 'Steele', 'Stevens', 'Swift', 'Todd', 'Traverse', 'Wabasha', 'Wadena', 'Waseca',
+  'Washington', 'Watonwan', 'Wilkin', 'Winona', 'Wright', 'Yellow Medicine',
 ];
 
 const trust = [
-  { icon: Clock, title: 'Same-day options', text: 'Fast dispatch windows when routes are open and the job details are clear.' },
-  { icon: ShieldCheck, title: 'Upfront pricing', text: 'Clear ranges before lifting starts, with specialty fees called out early.' },
-  { icon: Recycle, title: 'Eco-first disposal', text: 'Donation and recycling are prioritized before landfill disposal.' },
-  { icon: Home, title: 'Clean handoff', text: 'The crew loads, sweeps the pickup area, and leaves the space ready to use.' },
+  { icon: MessageSquareText, title: 'Text preferred', text: 'Photos and details by text help quote jobs faster than back-and-forth calls.' },
+  { icon: ShieldCheck, title: '$85 minimum', text: 'Clear minimum pricing with specialty fees called out before booking.' },
+  { icon: Home, title: 'Curb or garage', text: 'Customers stage items in the easiest pickup spots to keep labor costs low.' },
+  { icon: CalendarDays, title: 'Calendar booking', text: 'Choose a preferred pickup date and window through the form.' },
 ];
 
 const takeCategories = [
-  { icon: Sofa, title: 'Household', text: 'Rooms, garages, basements, storage units, and apartments.', items: ['Mattresses', 'Furniture', 'Boxes and clutter'] },
-  { icon: Wrench, title: 'Renovation', text: 'Project debris hauled quickly after remodels and repairs.', items: ['Cabinets', 'Flooring', 'Construction debris'] },
-  { icon: Leaf, title: 'Outdoor', text: 'Storm cleanup, brush, fencing, deck tear-outs, and yard piles.', items: ['Branches', 'Brush', 'Old fencing'] },
-  { icon: Building2, title: 'Commercial', text: 'Office, retail, rental, and move-out cleanouts with predictable timing.', items: ['Desks', 'Fixtures', 'Tenant debris'] },
+  { icon: Sofa, title: 'Household', text: 'Items placed at the curb or staged in the garage.', items: ['Mattresses', 'Furniture', 'Boxes and clutter'] },
+  { icon: Wrench, title: 'Renovation', text: 'Bagged or stacked debris ready for quick pickup.', items: ['Cabinets', 'Flooring', 'Construction debris'] },
+  { icon: Leaf, title: 'Outdoor', text: 'Yard piles, brush, branches, and storm debris staged outside.', items: ['Branches', 'Brush', 'Old fencing'] },
+  { icon: Building2, title: 'Commercial', text: 'Office or rental items staged for efficient loading.', items: ['Desks', 'Fixtures', 'Tenant debris'] },
 ];
 
 const promises = [
-  { title: 'No mystery arrival', text: 'Customers get a practical window and can call or text when plans change.' },
-  { title: 'Disposal explained', text: 'Specialty items, recycling, donation, and dump fees are surfaced early.' },
-  { title: 'Property respect', text: 'Crews plan access around floors, stairs, elevators, driveways, and tight entries.' },
-  { title: 'Built for repeat work', text: 'Rentals, offices, and cleanout partners get a simple path back to booking.' },
+  { title: 'Text-first service', text: 'Customers can send details and photos without needing a phone call.' },
+  { title: 'Lower labor model', text: 'Curbside and garage pickup reduces time on site and helps keep prices down.' },
+  { title: 'Photo-based estimates', text: 'Photos help confirm volume, truck space, and any specialty disposal notes.' },
+  { title: 'All MN coverage', text: 'City and county coverage is built into the quote and scheduling flow.' },
 ];
 
 const faqs = [
-  { q: 'How fast can you pick up junk?', a: 'Same-day and next-day pickup may be available when routes are open. Photos, city, and access details help confirm the window faster.' },
-  { q: 'How is the price calculated?', a: 'Pricing is based on volume, labor, access, weight, dump fees, and specialty disposal. The quote helper gives a starting range before booking.' },
-  { q: 'Do I need to move items outside?', a: 'No. Curbside is fastest, but crews can remove items from garages, basements, apartments, offices, and inside rooms when access is clear.' },
-  { q: 'What items need special handling?', a: 'Appliances, electronics, tires, mattresses, construction debris, and heavy materials may need extra disposal planning. Mention them when requesting a quote.' },
+  { q: 'What is the minimum pickup price?', a: 'The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal.' },
+  { q: 'Why curbside and garage only?', a: 'This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers.' },
+  { q: 'Do I need to call?', a: 'No. Text and the booking form are preferred. Photos, item details, city or county, and your preferred calendar window are usually enough to start.' },
+  { q: 'Do you serve my city or county?', a: 'Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location.' },
 ];
 
 const loadSizes = [['small', 'Small'], ['medium', 'Medium'], ['large', 'Large'], ['truck', 'Truck']];
-const accessOptions = [['curb', 'Curbside'], ['garage', 'Garage'], ['inside', 'Inside'], ['stairs', 'Stairs']];
-const timingOptions = [['flex', 'Flexible'], ['soon', '48h'], ['today', 'Today']];
-const basePrice = { small: 95, medium: 185, large: 325, truck: 495 };
-const accessAdd = { curb: 0, garage: 25, inside: 60, stairs: 95 };
-const timingAdd = { flex: 0, soon: 35, today: 75 };
+const accessOptions = [['curb', 'Curbside'], ['garage', 'Garage']];
+const timingOptions = [['morning', 'Morning'], ['afternoon', 'Afternoon'], ['evening', 'Evening']];
+const basePrice = { small: 85, medium: 145, large: 275, truck: 425 };
+const accessAdd = { curb: 0, garage: 0 };
 
-function estimatePrice(loadSize, access, timing) {
-  return basePrice[loadSize] + accessAdd[access] + timingAdd[timing];
+function estimatePrice(loadSize, access) {
+  return basePrice[loadSize] + accessAdd[access];
 }
 
 export default function App() {
   const [loadSize, setLoadSize] = useState('medium');
   const [access, setAccess] = useState('garage');
-  const [timing, setTiming] = useState('flex');
+  const [timing, setTiming] = useState('morning');
   const [selectedService, setSelectedService] = useState(services[0]);
   const [cityFilter, setCityFilter] = useState('');
-  const [form, setForm] = useState({ name: '', city: '', details: '' });
+  const [form, setForm] = useState({ name: '', city: '', date: '', details: '', photoCount: 0 });
 
-  const estimate = useMemo(() => estimatePrice(loadSize, access, timing), [loadSize, access, timing]);
-  const estimateHigh = estimate + 125 + (loadSize === 'truck' ? 95 : 0);
+  const estimate = useMemo(() => estimatePrice(loadSize, access), [loadSize, access]);
+  const estimateHigh = estimate + 90 + (loadSize === 'truck' ? 80 : 0);
   const quoteBody = [
     `Name: ${form.name}`,
-    `City: ${form.city}`,
+    `City or county: ${form.city}`,
     `Service: ${selectedService.label}`,
     `Load size: ${loadSize}`,
-    `Access: ${access}`,
-    `Timing: ${timing}`,
+    `Pickup spot: ${access}`,
+    `Preferred window: ${timing}`,
+    `Preferred date: ${form.date}`,
+    `Photos selected in form: ${form.photoCount}`,
     `Estimated range: $${estimate} to $${estimateHigh}`,
     `Details: ${form.details}`,
   ].join('\n');
@@ -120,47 +131,47 @@ export default function App() {
             <a href='#areas'>Areas</a>
             <a href='#faq'>FAQ</a>
           </div>
-          <a className='nav-call' href={phoneLink}><Phone size={17} /> Call {phoneDisplay}</a>
+          <a className='nav-call' href={smsLink}><MessageSquareText size={17} /> Text {phoneDisplay}</a>
         </nav>
 
         <div className='hero-content'>
           <p className='eyebrow'><Sparkles size={16} /> Minnesota junk removal, cleaned up</p>
           <h1>Dakota Valley Junk Removal</h1>
           <p className='hero-copy'>
-            Fast hauling, fair pricing, and clean handoffs for homes, rentals, garages, offices, yard debris, and renovation messes across Minnesota.
+            Affordable curbside and garage junk pickup across Minnesota. Text photos, choose a calendar window, and book without a phone call.
           </p>
           <div className='hero-actions'>
-            <a className='button primary' href='#quote'>Get a fast quote <ArrowRight size={18} /></a>
-            <a className='button secondary' href={phoneLink}><Phone size={18} /> Call now</a>
+            <a className='button primary' href={smsLink}>Text a photo quote <ArrowRight size={18} /></a>
+            <a className='button secondary' href='#quote'><CalendarDays size={18} /> Book pickup</a>
             <a className='button ghost' href='#areas'><MapPin size={18} /> Check service area</a>
           </div>
           <div className='hero-proof' aria-label='Business highlights'>
-            <span><CheckCircle2 size={16} /> Same-day when routes are open</span>
-            <span><Camera size={16} /> Photo estimates</span>
-            <span><Recycle size={16} /> Donation and recycling first</span>
+            <span><CheckCircle2 size={16} /> $85 minimum pickup</span>
+            <span><Camera size={16} /> Photo estimates by text or form</span>
+            <span><Home size={16} /> Curbside and garage only</span>
           </div>
         </div>
 
         <div className='quick-panel' aria-label='Quick quote details'>
           <div className='route-card'>
             <div className='quick-stats'>
-              <div className='quick-stat'><Clock size={22} /><div><strong>Open daily</strong><span>8 AM to 9 PM</span></div></div>
-              <div className='quick-stat'><ShieldCheck size={22} /><div><strong>Clear range</strong><span>Before lifting starts</span></div></div>
-              <div className='quick-stat'><MapIcon size={22} /><div><strong>Route aware</strong><span>Twin Cities and beyond</span></div></div>
+              <div className='quick-stat'><MessageSquareText size={22} /><div><strong>Text-first</strong><span>Faster than calls</span></div></div>
+              <div className='quick-stat'><Camera size={22} /><div><strong>Photo quote</strong><span>Upload or text photos</span></div></div>
+              <div className='quick-stat'><CalendarDays size={22} /><div><strong>Calendar</strong><span>Request a pickup window</span></div></div>
             </div>
           </div>
           <div className='photo-card'>
             <strong>Fastest quote path</strong>
-            <p>Send a pile photo, the city, and whether the crew needs stairs, basement, garage, or curbside access.</p>
+            <p>Send a pile photo, your city or county, curbside vs garage pickup, and the date window that works best.</p>
           </div>
         </div>
       </section>
 
       <section className='band metrics' aria-label='Key service stats'>
-        <div><strong>44+</strong><span>Minnesota cities</span></div>
+        <div><strong>$85</strong><span>Minimum pickup</span></div>
         <div><strong>6</strong><span>Core hauling services</span></div>
-        <div><strong>3 ways</strong><span>Call, photo, or form</span></div>
-        <div><strong>Local</strong><span>Dakota Valley crew</span></div>
+        <div><strong>2 spots</strong><span>Curbside or garage</span></div>
+        <div><strong>All MN</strong><span>Cities and counties</span></div>
       </section>
 
       <section className='section split' id='services'>
@@ -168,7 +179,7 @@ export default function App() {
           <p className='section-kicker'>Services</p>
           <h2>Built for the jobs people actually put off.</h2>
           <p className='section-copy'>
-            Pick the service that matches your situation. Pricing updates by volume, access, and timing so customers understand the range before booking.
+            Pick the service that matches your situation. Keeping pickup to curbside and garage jobs lowers labor time so savings can go back to customers.
           </p>
           <div className='service-list' role='list'>
             {services.map((service) => {
@@ -198,34 +209,39 @@ export default function App() {
             ))}
           </div>
 
-          <label>Access</label>
+          <label>Pickup spot</label>
           <div className='segmented two'>
             {accessOptions.map(([value, label]) => (
               <button key={value} type='button' className={access === value ? 'selected' : ''} onClick={() => setAccess(value)}>{label}</button>
             ))}
           </div>
 
-          <label>Timing</label>
+          <label>Preferred window</label>
           <div className='segmented three'>
             {timingOptions.map(([value, label]) => (
               <button key={value} type='button' className={timing === value ? 'selected' : ''} onClick={() => setTiming(value)}>{label}</button>
             ))}
           </div>
 
+          <label>Preferred date</label>
+          <input aria-label='Preferred pickup date' type='date' value={form.date} onChange={(event) => setForm({ ...form, date: event.target.value })} />
+
+          <label>Photos</label>
+          <input aria-label='Job photos' type='file' accept='image/*' multiple onChange={(event) => setForm({ ...form, photoCount: event.target.files?.length || 0 })} />
+
           <div className='estimate'>
             <span>Estimated range</span>
             <strong>${estimate} - ${estimateHigh}</strong>
           </div>
-          <p className='mini-note'>Final price depends on exact volume, weight, dump fees, and specialty items. Photos help tighten the range fast.</p>
+          <p className='mini-note'>Minimum pickup is $85. Final price depends on volume, weight, dump fees, and specialty items. Curbside and garage-only pickup keeps labor lower.</p>
 
           <input aria-label='Name' placeholder='Your name' value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
-          <input aria-label='City' placeholder='City' value={form.city} onChange={(event) => setForm({ ...form, city: event.target.value })} />
-          <textarea aria-label='Items' placeholder='What needs to go? Add photos when you email or text.' value={form.details} onChange={(event) => setForm({ ...form, details: event.target.value })} />
+          <input aria-label='City or county' placeholder='City or county' value={form.city} onChange={(event) => setForm({ ...form, city: event.target.value })} />
+          <textarea aria-label='Items' placeholder='What needs to go? Include item count, size, and curbside or garage location.' value={form.details} onChange={(event) => setForm({ ...form, details: event.target.value })} />
 
           <div className='quote-actions'>
-            <a className='button primary full' href={mailto}><Mail size={18} /> Send quote request</a>
-            <a className='button secondary full' href={sms}><MessageSquareText size={18} /> Text the job details</a>
-            <a className='button secondary full' href={phoneLink}><Phone size={18} /> Call {phoneDisplay}</a>
+            <a className='button primary full' href={sms}><MessageSquareText size={18} /> Text job photos</a>
+            <a className='button secondary full' href={mailto}><Mail size={18} /> Send form request</a>
           </div>
         </aside>
       </section>
@@ -249,7 +265,7 @@ export default function App() {
             <p className='section-kicker'>What we take</p>
             <h2>From one bulky item to a full property reset.</h2>
           </div>
-          <p className='section-copy'>Household items, renovation debris, outdoor piles, and business cleanouts each need a different crew plan. Mention anything heavy, sharp, or unusual when requesting a quote.</p>
+          <p className='section-copy'>Stage items at the curb or in the garage. Mention anything heavy, sharp, oversized, or unusual when requesting a quote.</p>
         </div>
         <div className='take-grid'>
           {takeCategories.map((category) => {
@@ -271,24 +287,32 @@ export default function App() {
           <p className='section-kicker'>Service areas</p>
           <h2>One statewide brand, local routes that make sense.</h2>
           <p className='section-copy'>
-            Dakota Valley serves the Twin Cities metro and greater Minnesota communities with route-aware scheduling and practical hauling options.
+            Dakota Valley serves all Minnesota cities and counties with route-aware scheduling and practical curbside or garage pickup.
           </p>
-          <input className='city-search' aria-label='Search service cities' placeholder='Search your city' value={cityFilter} onChange={(event) => setCityFilter(event.target.value)} />
+          <input className='city-search' aria-label='Search service cities and counties' placeholder='Search your city or county' value={cityFilter} onChange={(event) => setCityFilter(event.target.value)} />
           <div className='city-grid' aria-label='Popular service cities'>
             {cities.map((city) => (
               <span key={city} className={normalizedCityFilter && city.toLowerCase().includes(normalizedCityFilter) ? 'match' : ''}>{city}</span>
             ))}
           </div>
+          <div className='county-panel'>
+            <h3>All Minnesota counties</h3>
+            <div className='city-grid' aria-label='Minnesota counties'>
+              {counties.map((county) => (
+                <span key={county} className={normalizedCityFilter && county.toLowerCase().includes(normalizedCityFilter) ? 'match' : ''}>{county} County</span>
+              ))}
+            </div>
+          </div>
         </div>
         <div className='route-map' aria-label='Minnesota service route map'>
-          <span className='map-pin primary'>Apple Valley</span>
-          <span className='map-pin'>Lakeville</span>
-          <span className='map-pin'>Eagan</span>
-          <span className='map-pin'>Minneapolis</span>
-          <span className='map-pin'>St. Paul</span>
-          <span className='map-pin'>Woodbury</span>
-          <span className='map-pin'>Rochester</span>
-          <span className='map-pin'>Duluth</span>
+          <span className='map-pin primary'>Dakota County</span>
+          <span className='map-pin'>Hennepin</span>
+          <span className='map-pin'>Ramsey</span>
+          <span className='map-pin'>Washington</span>
+          <span className='map-pin'>Scott</span>
+          <span className='map-pin'>Olmsted</span>
+          <span className='map-pin'>St. Louis</span>
+          <span className='map-pin'>All MN</span>
         </div>
       </section>
 
@@ -296,9 +320,9 @@ export default function App() {
         <p className='section-kicker'>How it works</p>
         <h2>Three steps from clutter to clear.</h2>
         <div className='steps'>
-          <article><span className='step-number'>1</span><h3>Send photos</h3><p>Show the pile, the access path, and anything heavy, sharp, or unusual.</p></article>
-          <article><span className='step-number'>2</span><h3>Pick a window</h3><p>We match the job to the right crew, truck, disposal route, and arrival window.</p></article>
-          <article><span className='step-number'>3</span><h3>We haul it away</h3><p>Items are loaded, the area is swept, and usable goods are routed for donation.</p></article>
+          <article><span className='step-number'>1</span><h3>Text or upload photos</h3><p>Show the pile, item count, and whether pickup is curbside or garage.</p></article>
+          <article><span className='step-number'>2</span><h3>Pick a calendar window</h3><p>Request the date and morning, afternoon, or evening window that works best.</p></article>
+          <article><span className='step-number'>3</span><h3>Stage and save</h3><p>Items stay at the curb or garage so pickup is faster and more affordable.</p></article>
         </div>
       </section>
 
@@ -320,9 +344,9 @@ export default function App() {
         <div className='section-head'>
           <div>
             <p className='section-kicker'>FAQ</p>
-            <h2>Quick answers before someone calls.</h2>
+            <h2>Quick answers before someone texts.</h2>
           </div>
-          <a className='button secondary' href={phoneLink}><Phone size={18} /> Ask a question</a>
+          <a className='button secondary' href={smsLink}><MessageSquareText size={18} /> Ask by text</a>
         </div>
         <div className='faq-list'>
           {faqs.map((faq, index) => (
@@ -337,17 +361,17 @@ export default function App() {
       <footer className='footer'>
         <div>
           <strong>Dakota Valley Junk Removal</strong>
-          <p>Minnesota junk removal, cleanouts, trailer rental, dumpster rental, and labor help. Open daily from 8 AM to 9 PM.</p>
+          <p>Minnesota curbside and garage junk pickup. Text or use the form for photo quotes, calendar booking, and service across all cities and counties.</p>
         </div>
         <div className='footer-actions'>
-          <a href={phoneLink}>{phoneDisplay}</a>
+          <a href={smsLink}>Text {phoneDisplay}</a>
           <a href={`mailto:${email}`}>{email}</a>
         </div>
       </footer>
 
       <div className='mobile-cta' aria-label='Mobile contact actions'>
-        <a className='button primary' href='#quote'>Quote</a>
-        <a className='button secondary' href={phoneLink}>Call</a>
+        <a className='button primary' href={smsLink}>Text</a>
+        <a className='button secondary' href='#quote'>Book</a>
       </div>
     </main>
   );
