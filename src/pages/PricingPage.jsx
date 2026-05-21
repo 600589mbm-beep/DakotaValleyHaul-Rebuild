@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SiteFooter from '../components/SiteFooter.jsx';
 import { Truck, MessageSquareText, CheckCircle2, Camera } from 'lucide-react';
 
 const phoneDisplay = '(952) 232-5107';
@@ -146,17 +147,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <footer className='footer'>
-        <div>
-          <strong>Dakota Valley Junk Removal</strong>
-          <p>Minnesota curbside and garage junk pickup. Text or use the form for photo quotes, calendar booking, and service across all cities and counties.</p>
-        </div>
-        <div className='footer-actions'>
-          <a href={smsLink}>Text {phoneDisplay}</a>
-          <a href={`mailto:${email}`}>{email}</a>
-          <Link to='/'>Back to home</Link>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <div className='mobile-cta' aria-label='Mobile contact actions'>
         <a className='button primary' href={smsLink}>Text</a>

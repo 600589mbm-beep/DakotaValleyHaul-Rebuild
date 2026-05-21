@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { cities as citiesData } from '../data/cities.js';
 import { counties as countiesData } from '../data/counties.js';
+import SiteFooter from '../components/SiteFooter.jsx';
 
 function useDebouncedValue(value, delay) {
   const [debounced, setDebounced] = useState(value);
@@ -543,16 +544,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className='footer'>
-        <div>
-          <strong>Dakota Valley Junk Removal</strong>
-          <p>Minnesota curbside and garage junk pickup. Text or use the form for photo quotes, calendar booking, and service across all cities and counties.</p>
-        </div>
-        <div className='footer-actions'>
-          <a href={smsLink}>Text {phoneDisplay}</a>
-          <a href={`mailto:${email}`}>{email}</a>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <div className='mobile-cta' aria-label='Mobile contact actions'>
         <a className='button primary' href={smsLink}>Text</a>
