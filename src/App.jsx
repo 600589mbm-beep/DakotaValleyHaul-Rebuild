@@ -5,6 +5,7 @@ import ServicePage from './pages/ServicePage.jsx';
 import CityServicePage from './pages/CityServicePage.jsx';
 import CountyPage from './pages/CountyPage.jsx';
 import PricingPage from './pages/PricingPage.jsx';
+import ReviewsPage from './pages/ReviewsPage.jsx';
 
 // On github.io subpath preview, BrowserRouter needs to know the repo prefix.
 // At custom domain root, basename stays empty.
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/cities/:slug" element={<CityPage />} />
         <Route path="/cities/:citySlug/:serviceSlug" element={<CityServicePage />} />
         <Route path="/services/:slug" element={<ServicePage />} />
