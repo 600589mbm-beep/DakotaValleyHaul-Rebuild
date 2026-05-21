@@ -10,20 +10,128 @@
     <meta property="og:description" content="Text photos, choose a calendar window, and book affordable curbside or garage junk pickup across Minnesota." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dakotavalleyjunkremoval.com" />
+    <meta property="og:site_name" content="Dakota Valley Junk Removal" />
     <link rel="canonical" href="https://dakotavalleyjunkremoval.com" />
     <title>Dakota Valley Junk Removal | Curbside and Garage Pickup</title>
+
+    <!-- GitHub Pages SPA URL decoder: recovers deep-link path from 404.html redirect -->
+    <script>
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+
+    <!-- Combined schema graph: LocalBusiness, WebSite, FAQPage -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Dakota Valley Junk Removal",
-        "url": "https://dakotavalleyjunkremoval.com",
-        "telephone": "+1-952-232-5107",
-        "email": "info@dakotavalleyjunkremoval.com",
-        "priceRange": "From $85",
-        "areaServed": ["Minnesota", "All Minnesota cities", "All Minnesota counties"],
-        "serviceType": "Curbside and garage junk pickup"
-      }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://dakotavalleyjunkremoval.com/#business",
+          "name": "Dakota Valley Junk Removal",
+          "url": "https://dakotavalleyjunkremoval.com",
+          "telephone": "+1-952-232-5107",
+          "email": "info@dakotavalleyjunkremoval.com",
+          "priceRange": "From $85",
+          "image": "https://dakotavalleyjunkremoval.com/attached_assets/IMG_7020_1750653174383.jpeg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "MN",
+            "addressCountry": "US",
+            "addressLocality": "Twin Cities Metro"
+          },
+          "areaServed": [
+            { "@type": "State", "name": "Minnesota" },
+            { "@type": "AdministrativeArea", "name": "Dakota County" },
+            { "@type": "AdministrativeArea", "name": "Hennepin County" },
+            { "@type": "AdministrativeArea", "name": "Ramsey County" }
+          ],
+          "serviceType": [
+            "Curbside junk pickup",
+            "Garage junk pickup",
+            "Furniture removal",
+            "Appliance recycling",
+            "Yard waste removal",
+            "Estate cleanout"
+          ],
+          "founder": { "@type": "Person", "name": "Dakota Valley Team" },
+          "foundingDate": "2009",
+          "knowsAbout": ["Junk removal", "Furniture removal", "Appliance recycling", "Estate cleanout", "Yard waste"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://dakotavalleyjunkremoval.com/#website",
+          "url": "https://dakotavalleyjunkremoval.com",
+          "name": "Dakota Valley Junk Removal",
+          "publisher": { "@id": "https://dakotavalleyjunkremoval.com/#business" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://dakotavalleyjunkremoval.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the minimum pickup price?",
+              "acceptedAnswer": { "@type": "Answer", "text": "The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal." }
+            },
+            {
+              "@type": "Question",
+              "name": "Why curbside and garage only?",
+              "acceptedAnswer": { "@type": "Answer", "text": "This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to call?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Text and the booking form are preferred. Photos, item details, city or county, and your preferred calendar window are usually enough to start." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you serve my city or county?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location." }
+            },
+            {
+              "@type": "Question",
+              "name": "When is the soonest you can pick up?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Appointments are typically scheduled about two business days out so the crew is prepared with the right equipment. Most customers book within 2-3 business days. Text or use the booking form to check current availability." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to be home during the pickup?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No, as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a confirmation photo when the job is complete." }
+            },
+            {
+              "@type": "Question",
+              "name": "What items do you remove?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs like hot tubs and estate cleanouts are quoted by request." }
+            },
+            {
+              "@type": "Question",
+              "name": "What items do you NOT accept?",
+              "acceptedAnswer": { "@type": "Answer", "text": "For safety and legal reasons, hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives. If unsure about an item, text a photo first." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you recycle or donate items?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Furniture in good condition goes to Bridging, Arc's Value Village, and Goodwill Twin Cities. Electronics go to R2-certified recyclers. Mattresses are recycled at certified Minnesota facilities. Target is 60%+ diverted from landfill." }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does junk removal take?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Most residential pickups take 30-90 minutes depending on volume. Full estate cleanouts may take 2-4 hours. The crew works efficiently and never rushes - the property is left clean." }
+            }
+          ]
+        }
+      ]
+    }
     </script>
   </head>
   <body>

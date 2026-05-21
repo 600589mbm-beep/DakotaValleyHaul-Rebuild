@@ -117,24 +117,6 @@ export default function HomePage() {
     }
   }, [location.state]);
 
-  // Intercept in-page anchor clicks so HashRouter doesn't reroute on them.
-  useEffect(() => {
-    const handler = (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const href = a.getAttribute('href');
-      if (href && href.length > 1 && !href.startsWith('#/')) {
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    };
-    document.addEventListener('click', handler);
-    return () => document.removeEventListener('click', handler);
-  }, []);
-
   const estimate = useMemo(() => estimatePrice(loadSize, access), [loadSize, access]);
   const estimateHigh = estimate + 90 + (loadSize === 'truck' ? 80 : 0);
   const quoteBody = [

@@ -35,15 +35,80 @@ export default function CityPage() {
     if (!city) return;
     const prevTitle = document.title;
     const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content');
+    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+
     document.title = city.metaTitle;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', city.metaDescription);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const cityCanonical = `https://dakotavalleyjunkremoval.com/cities/${slug}`;
+    if (canonical) canonical.setAttribute('href', cityCanonical);
+
+    // Inject per-city JSON-LD (BreadcrumbList + LocalBusiness + Service)
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremoval.com/#areas' },
+            { '@type': 'ListItem', position: 3, name: `${city.name}, MN` },
+          ],
+        },
+        {
+          '@type': 'LocalBusiness',
+          name: `Dakota Valley Junk Removal — ${city.name}`,
+          url: cityCanonical,
+          telephone: '+1-952-232-5107',
+          email: 'info@dakotavalleyjunkremoval.com',
+          priceRange: 'From $85',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: city.name,
+            addressRegion: 'MN',
+            addressCountry: 'US',
+          },
+          ...(city.geo && {
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: city.geo.latitude,
+              longitude: city.geo.longitude,
+            },
+          }),
+          areaServed: {
+            '@type': 'City',
+            name: city.name,
+            containedIn: { '@type': 'AdministrativeArea', name: city.county },
+          },
+          serviceType: ['Curbside junk pickup', 'Garage junk pickup', 'Furniture removal', 'Appliance recycling'],
+        },
+        {
+          '@type': 'Service',
+          name: `Junk Removal in ${city.name}, MN`,
+          provider: { '@type': 'LocalBusiness', name: 'Dakota Valley Junk Removal' },
+          areaServed: { '@type': 'City', name: city.name },
+          description: city.intro,
+          serviceType: 'Curbside and garage junk pickup',
+        },
+      ],
+    };
+    const scriptEl = document.createElement('script');
+    scriptEl.type = 'application/ld+json';
+    scriptEl.id = 'city-schema';
+    scriptEl.textContent = JSON.stringify(schema);
+    // Remove any prior city schema, then add the new one
+    document.getElementById('city-schema')?.remove();
+    document.head.appendChild(scriptEl);
+
     window.scrollTo(0, 0);
     return () => {
       document.title = prevTitle;
       if (desc && prevDesc) desc.setAttribute('content', prevDesc);
+      if (canonical && prevCanonical) canonical.setAttribute('href', prevCanonical);
+      document.getElementById('city-schema')?.remove();
     };
-  }, [city]);
+  }, [city, slug]);
 
   if (!city) return <Navigate to="/" replace />;
 
