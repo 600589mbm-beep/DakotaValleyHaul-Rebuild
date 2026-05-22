@@ -7,7 +7,7 @@ import { services } from '../data/services.js';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const email = 'info@dakotavalleyjunkremoval.com';
+const email = 'info@dakotavalleyjunkremovalservice.com';
 
 const allCountyNames = [
   'Aitkin', 'Anoka', 'Becker', 'Beltrami', 'Benton', 'Big Stone', 'Blue Earth', 'Brown', 'Carlton', 'Carver', 'Cass',
@@ -27,10 +27,10 @@ const homepageSchema = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://dakotavalleyjunkremoval.com/#organization',
+      '@id': 'https://dakotavalleyjunkremovalservice.com/#organization',
       name: 'Dakota Valley Junk Removal',
-      url: 'https://dakotavalleyjunkremoval.com',
-      logo: 'https://dakotavalleyjunkremoval.com/favicon.svg',
+      url: 'https://dakotavalleyjunkremovalservice.com',
+      logo: 'https://dakotavalleyjunkremovalservice.com/favicon.svg',
       sameAs: [
         'https://www.facebook.com/dakotavalleyjunkremoval',
         'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan',
@@ -38,14 +38,14 @@ const homepageSchema = {
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://dakotavalleyjunkremoval.com/#business',
-      parentOrganization: { '@id': 'https://dakotavalleyjunkremoval.com/#organization' },
+      '@id': 'https://dakotavalleyjunkremovalservice.com/#business',
+      parentOrganization: { '@id': 'https://dakotavalleyjunkremovalservice.com/#organization' },
       name: 'Dakota Valley Junk Removal',
-      url: 'https://dakotavalleyjunkremoval.com',
+      url: 'https://dakotavalleyjunkremovalservice.com',
       telephone: '+1-952-232-5107',
-      email: 'info@dakotavalleyjunkremoval.com',
+      email: 'info@dakotavalleyjunkremovalservice.com',
       priceRange: 'From $85',
-      image: 'https://dakotavalleyjunkremoval.com/attached_assets/IMG_7020_1750653174383.jpeg',
+      image: 'https://dakotavalleyjunkremovalservice.com/attached_assets/IMG_7020_1750653174383.jpeg',
       address: {
         '@type': 'PostalAddress',
         addressRegion: 'MN',
@@ -69,15 +69,15 @@ const homepageSchema = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://dakotavalleyjunkremoval.com/#website',
-      url: 'https://dakotavalleyjunkremoval.com',
+      '@id': 'https://dakotavalleyjunkremovalservice.com/#website',
+      url: 'https://dakotavalleyjunkremovalservice.com',
       name: 'Dakota Valley Junk Removal',
-      publisher: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      publisher: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
       inLanguage: 'en-US',
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://dakotavalleyjunkremoval.com/#faq',
+      '@id': 'https://dakotavalleyjunkremovalservice.com/#faq',
       mainEntity: [
         { '@type': 'Question', name: 'What is the minimum pickup price?', acceptedAnswer: { '@type': 'Answer', text: 'The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal.' } },
         { '@type': 'Question', name: 'Why curbside and garage only?', acceptedAnswer: { '@type': 'Answer', text: 'This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers.' } },
@@ -110,7 +110,7 @@ const faqs = [
 <Layout
   title="Dakota Valley Junk Removal | Curbside and Garage Pickup"
   description="Dakota Valley Junk Removal offers affordable curbside and garage junk pickup across Minnesota with an $85 minimum, text-first photo quotes, and calendar booking."
-  canonical="https://dakotavalleyjunkremoval.com/"
+  canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
 >
   <main>

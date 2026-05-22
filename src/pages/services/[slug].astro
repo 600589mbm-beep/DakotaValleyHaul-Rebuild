@@ -14,7 +14,7 @@ export function getStaticPaths() {
 const { service, slug } = Astro.props;
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const canonical = `https://dakotavalleyjunkremoval.com/services/${slug}/`;
+const canonical = `https://dakotavalleyjunkremovalservice.com/services/${slug}/`;
 const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request.\nPlease send photos and item details.`)}`;
 const popularCities = Object.entries(cities).slice(0, 12);
 
@@ -24,15 +24,15 @@ const schema = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://dakotavalleyjunkremoval.com/#services' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://dakotavalleyjunkremovalservice.com/#services' },
         { '@type': 'ListItem', position: 3, name: service.name },
       ],
     },
     {
       '@type': 'Service',
       name: service.name,
-      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
       areaServed: [
         { '@type': 'State', name: 'Minnesota' },
         { '@type': 'AdministrativeArea', name: 'Dakota County' },

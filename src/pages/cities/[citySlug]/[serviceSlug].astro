@@ -20,7 +20,7 @@ export function getStaticPaths() {
 const { city, service, citySlug, serviceSlug } = Astro.props;
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const canonical = `https://dakotavalleyjunkremoval.com/cities/${citySlug}/${serviceSlug}/`;
+const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${citySlug}/${serviceSlug}/`;
 const title = `${service.name} in ${city.name}, MN | Dakota Valley`;
 const description = `${service.name} in ${city.name}, ${city.county}. Curbside and garage pickup with $85 minimum. Text photos for a quote, calendar booking, route-aware scheduling for ${city.name} neighborhoods.`;
 const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request for ${city.name}, MN.\nPlease send photos and item details.`)}`;
@@ -34,15 +34,15 @@ const schema = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
-        { '@type': 'ListItem', position: 2, name: `${city.name}, MN`, item: `https://dakotavalleyjunkremoval.com/cities/${citySlug}/` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
+        { '@type': 'ListItem', position: 2, name: `${city.name}, MN`, item: `https://dakotavalleyjunkremovalservice.com/cities/${citySlug}/` },
         { '@type': 'ListItem', position: 3, name: service.name },
       ],
     },
     {
       '@type': 'Service',
       name: `${service.name} in ${city.name}, MN`,
-      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
       areaServed: {
         '@type': 'City',
         name: city.name,

@@ -14,8 +14,8 @@ export function getStaticPaths() {
 const { city, slug } = Astro.props;
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const email = 'info@dakotavalleyjunkremoval.com';
-const canonical = `https://dakotavalleyjunkremoval.com/cities/${slug}/`;
+const email = 'info@dakotavalleyjunkremovalservice.com';
+const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${slug}/`;
 const citySms = `${smsLink}?&body=${encodeURIComponent(`Junk removal quote for ${city.name}, MN.\nPlease send photos and item details.`)}`;
 
 const schema = {
@@ -24,15 +24,15 @@ const schema = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremoval.com/#areas' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/#areas' },
         { '@type': 'ListItem', position: 3, name: `${city.name}, MN` },
       ],
     },
     {
       '@type': 'Service',
       name: `Junk Removal in ${city.name}, MN`,
-      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
       areaServed: {
         '@type': 'City',
         name: city.name,
@@ -42,7 +42,7 @@ const schema = {
       serviceType: 'Curbside and garage junk pickup',
       ...(city.geo && {
         provider: {
-          '@id': 'https://dakotavalleyjunkremoval.com/#business',
+          '@id': 'https://dakotavalleyjunkremovalservice.com/#business',
         },
       }),
     },
@@ -51,7 +51,7 @@ const schema = {
       name: `Dakota Valley Junk Removal — ${city.name}`,
       url: canonical,
       telephone: '+1-952-232-5107',
-      email: 'info@dakotavalleyjunkremoval.com',
+      email: 'info@dakotavalleyjunkremovalservice.com',
       priceRange: 'From $85',
       address: {
         '@type': 'PostalAddress',

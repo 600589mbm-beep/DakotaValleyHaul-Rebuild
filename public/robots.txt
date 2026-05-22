@@ -17,4 +17,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://dakotavalleyjunkremoval.com/sitemap.xml
+Sitemap: https://dakotavalleyjunkremovalservice.com/sitemap.xml
