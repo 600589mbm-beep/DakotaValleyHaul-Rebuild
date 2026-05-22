@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { counties, getCountySlugs } from '../../data/counties.js';
+import { services } from '../../data/services.js';
+
+export function getStaticPaths() {
+  return getCountySlugs().map((slug) => ({
+    params: { slug },
+    props: { county: counties[slug], slug },
+  }));
+}
+
+const { county, slug } = Astro.props;
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = `https://dakotavalleyjunkremoval.com/counties/${slug}/`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Counties' },
+        { '@type': 'ListItem', position: 3, name: county.name },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: `Junk Removal ${county.name}, MN`,
+      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      areaServed: {
+        '@type': 'AdministrativeArea',
+        name: county.name,
+        containedIn: { '@type': 'State', name: 'Minnesota' },
+      },
+      description: county.intro,
+      serviceType: 'Curbside and garage junk pickup',
+    },
+  ],
+};
+---
+<Layout title={county.metaTitle} description={county.metaDescription} canonical={canonical} schema={schema}>
+  <main>
+    <section class="city-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+      </nav>
+      <div class="city-hero-content">
+        <p class="breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true"> / </span>
+          <a href="/#areas">Counties</a> <span aria-hidden="true"> / </span>
+          <span>{county.name}</span>
+        </p>
+        <h1>Junk Removal in <span class="city-accent">{county.name}, MN</span></h1>
+        <p class="hero-copy">{county.intro}</p>
+        <div class="hero-actions">
+          <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+        </div>
+        <p class="hero-meta">📍 Population {county.population} &middot; County seat {county.seat} &middot; $85 minimum</p>
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head"><div>
+        <p class="section-kicker">{county.name} cities served</p>
+        <h2>Coverage across {county.name}.</h2>
+      </div></div>
+      <div class="city-grid">
+        {county.cities.map((c) => <span class="city-link" style="cursor: default">{c}</span>)}
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head"><div>
+        <p class="section-kicker">Services in {county.name}</p>
+        <h2>All Dakota Valley services available.</h2>
+      </div></div>
+      <div class="city-grid">
+        {Object.entries(services).map(([sl, s]) => (
+          <a href={`/services/${sl}/`} class="city-link">{s.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Ready for pickup in {county.name}?</h2>
+        <p>Text photos, item details, and a preferred calendar window. Crew confirms and routes around your county.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta">
+      <a class="button primary" href={smsLink}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>

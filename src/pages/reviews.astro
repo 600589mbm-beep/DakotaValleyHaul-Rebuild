@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { cities } from '../data/cities.js';
+
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = 'https://dakotavalleyjunkremoval.com/reviews/';
+
+const allReviews = Object.entries(cities)
+  .filter(([, c]) => c.testimonial)
+  .map(([slug, c]) => ({ slug, city: c.name, ...c.testimonial }));
+---
+<Layout
+  title="Reviews from Across Minnesota | Dakota Valley Junk Removal"
+  description={`Customer reviews from across the ${allReviews.length} Minnesota cities Dakota Valley serves. Real testimonials from real Minnesota neighborhoods.`}
+  canonical={canonical}
+>
+  <main>
+    <section class="city-hero">
+      <nav class="nav"><a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a></nav>
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Reviews</span></p>
+        <h1>What <span class="city-accent">Minnesotans</span> are saying.</h1>
+        <p class="hero-copy">Real reviews from real Minnesota neighborhoods. Click into any city for that city's full landing page.</p>
+        <div class="hero-actions">
+          <a class="button primary" href={smsLink}>✉ Text for a quote</a>
+          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">{allReviews.length} reviews across Minnesota</p>
+        <h2>From {allReviews[0]?.city} to {allReviews[allReviews.length - 1]?.city}.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        {allReviews.map((r) => (
+          <article class="city-service-card">
+            <div style="display: flex; gap: 2px; margin-bottom: 10px; color: #f5b401">★★★★★</div>
+            <p style="font-size: 15px; line-height: 1.5; color: var(--ink); margin-bottom: 14px">&ldquo;{r.text}&rdquo;</p>
+            <div>
+              <strong style="display: block; color: var(--ink)">{r.name}</strong>
+              <span style="color: var(--muted); font-size: 13px">{r.location}</span>
+            </div>
+            <a href={`/cities/${r.slug}/`} style="display: inline-block; margin-top: 10px; color: var(--blue); font-size: 13px; font-weight: 800; text-decoration: none">
+              {r.city} pickup details →
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Ready to add yours?</h2>
+        <p>Text photos for a quote. Once the job is done, the crew will share a link to leave a review.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta">
+      <a class="button primary" href={smsLink}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>

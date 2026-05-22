@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+<Layout
+  title="Page not found | Dakota Valley Junk Removal"
+  description="The page you're looking for doesn't exist. Browse services, cities, or text us at (952) 232-5107."
+  canonical="https://dakotavalleyjunkremoval.com/404"
+  noindex={true}
+>
+  <main>
+    <section class="city-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
+        <a class="nav-call" href="sms:+19522325107">✉ Text (952) 232-5107</a>
+      </nav>
+      <div class="city-hero-content" style="text-align: center">
+        <h1>Page not found</h1>
+        <p class="hero-copy" style="margin: 0 auto 24px">
+          The page you're looking for doesn't exist. Try one of these instead:
+        </p>
+        <div class="hero-actions" style="justify-content: center">
+          <a class="button primary" href="/">Home</a>
+          <a class="button secondary" href="/pricing/">Pricing</a>
+          <a class="button secondary" href="/reviews/">Reviews</a>
+        </div>
+      </div>
+    </section>
+    <SiteFooter />
+  </main>
+</Layout>

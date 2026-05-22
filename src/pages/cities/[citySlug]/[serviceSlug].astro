@@ -1,0 +1,218 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+import { cities, getCitySlugs } from '../../../data/cities.js';
+import { services, getServiceSlugs } from '../../../data/services.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const citySlug of getCitySlugs()) {
+    for (const serviceSlug of getServiceSlugs()) {
+      paths.push({
+        params: { citySlug, serviceSlug },
+        props: { city: cities[citySlug], service: services[serviceSlug], citySlug, serviceSlug },
+      });
+    }
+  }
+  return paths;
+}
+
+const { city, service, citySlug, serviceSlug } = Astro.props;
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = `https://dakotavalleyjunkremoval.com/cities/${citySlug}/${serviceSlug}/`;
+const title = `${service.name} in ${city.name}, MN | Dakota Valley`;
+const description = `${service.name} in ${city.name}, ${city.county}. Curbside and garage pickup with $85 minimum. Text photos for a quote, calendar booking, route-aware scheduling for ${city.name} neighborhoods.`;
+const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request for ${city.name}, MN.\nPlease send photos and item details.`)}`;
+
+const otherServices = Object.entries(services).filter(([sl]) => sl !== serviceSlug);
+const otherCities = Object.entries(cities).filter(([sl]) => sl !== citySlug).slice(0, 12);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
+        { '@type': 'ListItem', position: 2, name: `${city.name}, MN`, item: `https://dakotavalleyjunkremoval.com/cities/${citySlug}/` },
+        { '@type': 'ListItem', position: 3, name: service.name },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: `${service.name} in ${city.name}, MN`,
+      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      areaServed: {
+        '@type': 'City',
+        name: city.name,
+        containedIn: { '@type': 'AdministrativeArea', name: city.county },
+      },
+      description,
+      serviceType: service.name,
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `${service.name} options in ${city.name}`,
+        itemListElement: service.services.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s },
+        })),
+      },
+    },
+  ],
+};
+---
+<Layout title={title} description={description} canonical={canonical} schema={schema}>
+  <main>
+    <section class="city-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/">
+          <span class="brand-mark">🚚</span>
+          <span>Dakota Valley</span>
+        </a>
+        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+      </nav>
+
+      <div class="city-hero-content">
+        <p class="breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true"> / </span>
+          <a href={`/cities/${citySlug}/`}>{city.name}, MN</a>
+          <span aria-hidden="true"> / </span>
+          <span>{service.name}</span>
+        </p>
+        <h1>
+          <span class="city-accent">{service.name}</span> in {city.name}, MN
+        </h1>
+        <p class="hero-copy">
+          {service.headline} for {city.name} residents. {city.intro}
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href={ctaSms}>✉ Text photos to start</a>
+          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+        </div>
+        <p class="hero-meta">
+          📍 {city.county} &middot; $85 minimum &middot; Curbside and garage pickup
+        </p>
+      </div>
+    </section>
+
+    <section class="section city-services">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{service.name} in {city.name}</p>
+          <h2>What we include</h2>
+        </div>
+      </div>
+      <div class="city-service-grid">
+        {service.services.map((s) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">✓</span>
+            <h3>{s}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} pickup process</p>
+          <h2>Four steps, mostly text.</h2>
+        </div>
+      </div>
+      <div class="city-service-grid">
+        {service.process.map((step, i) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">{i + 1}</span>
+            <h3>Step {i + 1}</h3>
+            <p>{step}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} coverage</p>
+          <h2>Routes covering every neighborhood.</h2>
+        </div>
+      </div>
+      <div class="city-locale-grid">
+        <div>
+          <h3 class="city-list-title">{city.name} neighborhoods we serve</h3>
+          <ul class="city-list">
+            {city.neighborhoods.map((n) => <li>✓ {n}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h3 class="city-list-title">Nearby landmarks</h3>
+          <ul class="city-list">
+            {city.landmarks.map((l) => <li>📍 {l}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {city.testimonial && (
+      <section class="section city-testimonial">
+        <blockquote>
+          <p>&ldquo;{city.testimonial.text}&rdquo;</p>
+          <footer>
+            <strong>{city.testimonial.name}</strong>
+            <span>{city.testimonial.location}</span>
+          </footer>
+        </blockquote>
+      </section>
+    )}
+
+    <section class="section city-locale">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Other services in {city.name}</p>
+          <h2>What else we haul.</h2>
+        </div>
+      </div>
+      <div class="city-grid">
+        {otherServices.map(([sl, s]) => (
+          <a href={`/cities/${citySlug}/${sl}/`} class="city-link">{s.name}</a>
+        ))}
+        <a href={`/cities/${citySlug}/`} class="city-link">All services in {city.name}</a>
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{service.name} in other cities</p>
+          <h2>We also serve…</h2>
+        </div>
+      </div>
+      <div class="city-grid">
+        {otherCities.map(([sl, c]) => (
+          <a href={`/cities/${sl}/${serviceSlug}/`} class="city-link">{c.name}</a>
+        ))}
+        <a href={`/services/${serviceSlug}/`} class="city-link">See all cities</a>
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Need {service.name.toLowerCase()} in {city.name}?</h2>
+        <p>Text photos, item details, and a preferred calendar window. Crew confirms within a few hours.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={ctaSms}>✉ Text {phoneDisplay}</a>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+
+    <div class="mobile-cta" aria-label="Mobile contact actions">
+      <a class="button primary" href={ctaSms}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { services, getServiceSlugs } from '../../data/services.js';
+import { cities } from '../../data/cities.js';
+
+export function getStaticPaths() {
+  return getServiceSlugs().map((slug) => ({
+    params: { slug },
+    props: { service: services[slug], slug },
+  }));
+}
+
+const { service, slug } = Astro.props;
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = `https://dakotavalleyjunkremoval.com/services/${slug}/`;
+const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request.\nPlease send photos and item details.`)}`;
+const popularCities = Object.entries(cities).slice(0, 12);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremoval.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://dakotavalleyjunkremoval.com/#services' },
+        { '@type': 'ListItem', position: 3, name: service.name },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: service.name,
+      provider: { '@id': 'https://dakotavalleyjunkremoval.com/#business' },
+      areaServed: [
+        { '@type': 'State', name: 'Minnesota' },
+        { '@type': 'AdministrativeArea', name: 'Dakota County' },
+        { '@type': 'AdministrativeArea', name: 'Hennepin County' },
+        { '@type': 'AdministrativeArea', name: 'Ramsey County' },
+      ],
+      description: service.intro,
+      serviceType: service.name,
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `${service.name} options`,
+        itemListElement: service.services.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s },
+        })),
+      },
+    },
+  ],
+};
+---
+<Layout title={service.metaTitle} description={service.metaDescription} canonical={canonical} schema={schema}>
+  <main>
+    <section class="city-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+      </nav>
+      <div class="city-hero-content">
+        <p class="breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true"> / </span>
+          <a href="/#services">Services</a> <span aria-hidden="true"> / </span>
+          <span>{service.name}</span>
+        </p>
+        <h1><span class="city-accent">{service.name}</span></h1>
+        <p class="hero-copy">{service.headline}</p>
+        <p class="hero-copy" style="margin-top: 0">{service.intro}</p>
+        <div class="hero-actions">
+          <a class="button primary" href={ctaSms}>✉ Text photos to start</a>
+          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section city-services">
+      <div class="section-head"><div>
+        <p class="section-kicker">What's included</p>
+        <h2>{service.name} options</h2>
+      </div></div>
+      <div class="city-service-grid">
+        {service.services.map((s) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">✓</span>
+            <h3>{s}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">How it works</p>
+        <h2>Four steps, mostly text.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        {service.process.map((step, i) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">{i + 1}</span>
+            <h3>Step {i + 1}</h3>
+            <p>{step}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head"><div>
+        <p class="section-kicker">{service.name} cities</p>
+        <h2>Available across Minnesota.</h2>
+      </div></div>
+      <div class="city-grid">
+        {popularCities.map(([sl, c]) => (
+          <a href={`/cities/${sl}/${slug}/`} class="city-link">{c.name}</a>
+        ))}
+        <a href="/#areas" class="city-link">See all 61 cities</a>
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Need {service.name.toLowerCase()}?</h2>
+        <p>Text photos, item details, and a preferred calendar window. The crew confirms and handles the rest.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={ctaSms}>✉ Text {phoneDisplay}</a>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta">
+      <a class="button primary" href={ctaSms}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>
