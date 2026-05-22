@@ -5,9 +5,21 @@
 // To swap images later: replace files in public/attached_assets/ and update
 // the src/width/height/desc here. Pages auto-update on next build.
 //
-// IMPORTANT: descriptions here are conservative defaults — review against the
-// actual photo content and edit for accuracy. Wrong alt text is worse than
-// generic alt text.
+// ────────────────────────────────────────────────────────────────────────
+// TODO (OWNER ACTION REQUIRED): The `desc` strings below were written
+// without ability to see the actual photo content. They are conservative
+// guesses ("Curbside junk pickup in progress", "Crew loading household
+// items from the driveway"). For each photo, open it locally and rewrite
+// its `desc` to literally describe what's IN the photo:
+//   - The truck model if visible (e.g., "Isuzu NPR gas cab over truck")
+//   - The items being loaded (sofa, fridge, mattress, branches, etc.)
+//   - The setting (curbside, garage, driveway, alley, dumpster)
+//   - The crew action if relevant (loading, sweeping, securing)
+//
+// Wrong alt text is worse than generic — it misleads screen readers and
+// hurts image-search relevance. Spend 5 minutes here for real ROI.
+// Alt text auto-rebuilds across all 1,193 pages on next `npm run build`.
+// ────────────────────────────────────────────────────────────────────────
 
 export const photos = [
   {

@@ -758,6 +758,94 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 .city-testimonial footer strong { color: var(--ink); font-weight: 900; }
 .city-testimonial footer span { color: var(--muted); font-size: 14px; }
 
+/* ─── Quote Helper React island ─────────────────────────── */
+.quote-helper-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+.quote-helper-intro {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+.quote-helper-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.quote-helper-field label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.quote-helper-optional {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 12px;
+}
+.quote-helper-field input,
+.quote-helper-field textarea {
+  font: inherit;
+  font-size: 15px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+.quote-helper-field input:focus-visible,
+.quote-helper-field textarea:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+.quote-helper-field-photo input[type="file"] {
+  padding: 8px;
+}
+.quote-helper-submit {
+  margin-top: 6px;
+}
+.quote-helper-submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+.quote-helper-status {
+  margin: 0;
+  font-size: 13px;
+  color: #b81f1f;
+  min-height: 1em;
+}
+.quote-helper-status:empty {
+  display: none;
+}
+.quote-helper-fallback {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.quote-helper-fallback a {
+  color: var(--blue);
+  font-weight: 800;
+}
+.quote-helper-success {
+  padding: 22px 24px;
+  border-radius: 12px;
+  background: rgba(9, 87, 195, 0.06);
+  border: 1px solid rgba(9, 87, 195, 0.22);
+}
+.quote-helper-success h3 {
+  margin: 0 0 8px;
+  color: var(--blue);
+  font-size: 18px;
+}
+.quote-helper-success p {
+  margin: 0 0 14px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
 /* ─── Photos ────────────────────────────────────────────── */
 .city-hero-image {
   width: min(1180px, calc(100% - 32px));
