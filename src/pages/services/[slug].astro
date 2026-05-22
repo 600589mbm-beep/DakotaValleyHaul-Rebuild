@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { PRICE_FLOOR } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { services, getServiceSlugs } from '../../data/services.js';
@@ -74,6 +75,7 @@ const schema = {
         <p class="hero-copy" style="margin-top: 0">{service.intro}</p>
         <div class="hero-actions">
           <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
       </div>
@@ -141,6 +143,7 @@ const schema = {
       </div>
       <div class="hero-actions">
         <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

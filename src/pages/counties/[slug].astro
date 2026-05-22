@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { PRICE_FLOOR } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { counties, getCountySlugs } from '../../data/counties.js';
@@ -60,6 +61,7 @@ const schema = {
         <p class="hero-copy">{county.intro}</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
         <p class="hero-meta"><Icon name="lucide:map-pin" size={15} /> Population {county.population} &middot; County seat {county.seat} &middot; $85 minimum</p>
@@ -95,6 +97,7 @@ const schema = {
       </div>
       <div class="hero-actions">
         <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

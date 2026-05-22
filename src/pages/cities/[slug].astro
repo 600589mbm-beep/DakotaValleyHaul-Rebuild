@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { PRICE_FLOOR } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
@@ -117,6 +118,7 @@ const schema = {
         <p class="hero-copy">{city.intro}</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
         <p class="hero-meta">
@@ -268,6 +270,7 @@ const schema = {
       </div>
       <div class="hero-actions">
         <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={16} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

@@ -7,6 +7,8 @@ import { counties as countiesData } from '../data/counties.js';
 import { services } from '../data/services.js';
 import { photos } from '../data/photos.js';
 import { iconForService } from '../data/serviceIcons.js';
+import BookingWidget from '../components/BookingWidget.astro';
+import { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from '../data/booking.js';
 
 const homeHeroPhoto = photos[0]; // canonical "lead" photo
 const homeGalleryPhotos = photos.slice(1, 4); // 3 supporting shots
@@ -159,8 +161,9 @@ const faqs = [
           Text photos, get a firm quote in hours, pick a calendar window. $85 minimum, no phone call required.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href={smsLink}>Text a photo quote →</a>
-          <a class="button secondary" href="#quote"><Icon name="lucide:calendar-days" size={18} /> Book pickup</a>
+          <a class="button primary" href="#quote"><Icon name="lucide:calendar-days" size={18} /> Book a pickup window</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+          <a class="button secondary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text a photo quote</a>
           <a class="button ghost" href="#areas"><Icon name="lucide:map-pin" size={18} /> Check service area</a>
         </div>
         <div class="hero-proof" aria-label="Business highlights">
@@ -231,22 +234,12 @@ const faqs = [
       </div>
 
       <aside class="quote-card" id="quote">
-        <p class="section-kicker" id="pricing">Fast quote helper</p>
-        <h3>Text a photo for a quote</h3>
-        <p>The fastest path: send a few photos of the items, your city or county, and a preferred calendar window. Crew confirms within hours.</p>
-        <form
-          action={`mailto:${email}`}
-          method="post"
-          enctype="text/plain"
-          style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px"
-        >
-          <label>Name<br /><input name="Name" required style="width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px" /></label>
-          <label>Phone<br /><input name="Phone" type="tel" required style="width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px" /></label>
-          <label>City or county<br /><input name="City" required style="width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px" /></label>
-          <label>What needs to go?<br /><textarea name="Items" rows="3" required placeholder="Items, count, curbside or garage location" style="width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px"></textarea></label>
-          <button type="submit" class="button primary" style="margin-top: 4px">Send quote request</button>
-        </form>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 10px">Or text photos directly to <a href={smsLink}>{phoneDisplay}</a> for the fastest response.</p>
+        <p class="section-kicker" id="pricing">Book a pickup window</p>
+        <h3>Pick a date, lock the slot</h3>
+        <p>
+          <strong>{PRICE_FLOOR_DETAIL}</strong> Select an arrival window below and the crew is on the route. No phone tag, no "we'll call you back."
+        </p>
+        <BookingWidget />
       </aside>
     </section>
 

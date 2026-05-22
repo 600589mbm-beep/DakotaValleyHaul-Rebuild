@@ -846,6 +846,67 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   line-height: 1.55;
 }
 
+/* ─── Pricing anchor chip (next to primary CTAs) ─────────── */
+.price-floor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  background: rgba(9, 87, 195, 0.09);
+  color: var(--blue);
+  border: 1px solid rgba(9, 87, 195, 0.22);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.price-floor svg { color: var(--blue); }
+.city-cta .price-floor {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.city-cta .price-floor svg { color: #ffffff; }
+
+/* ─── BookingWidget styling ─────────────────────────────── */
+.booking-widget {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.booking-trust {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+.booking-trust svg { flex-shrink: 0; margin-top: 2px; color: var(--blue); }
+.booking-fallback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+.booking-fallback a {
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: none;
+}
+.booking-fallback a:hover { text-decoration: underline; }
+.calendly-inline-widget {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
 /* ─── Photos ────────────────────────────────────────────── */
 .city-hero-image {
   width: min(1180px, calc(100% - 32px));

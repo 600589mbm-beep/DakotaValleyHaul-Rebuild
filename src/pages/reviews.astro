@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { PRICE_FLOOR } from '../data/booking.js';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
@@ -27,6 +28,7 @@ const allReviews = Object.entries(cities)
         <p class="hero-copy">Real reviews from real Minnesota neighborhoods. Click into any city for that city's full landing page.</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a quote</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
       </div>
@@ -61,6 +63,7 @@ const allReviews = Object.entries(cities)
       </div>
       <div class="hero-actions">
         <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>
