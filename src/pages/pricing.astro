@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = 'https://dakotavalleyjunkremoval.com/pricing/';
+
+const tiers = [
+  { label: 'Single item', price: '$85', detail: '$85 minimum', examples: ['One sofa', 'One mattress + box', 'One refrigerator', 'One dresser', 'One desk', 'One large item'] },
+  { label: 'Small load', price: '$120 – $185', detail: '~1/8 to 1/4 truck', examples: ['Living room set', 'Bedroom set', '2-3 appliances', 'Yard waste pile (small)', 'Garage corner load'] },
+  { label: 'Medium load', price: '$220 – $320', detail: '~1/4 to 1/2 truck', examples: ['Half garage cleanout', 'Multi-room furniture', 'Apartment move-out', 'Estate cleanout (partial)', 'Storm debris pile'] },
+  { label: 'Large load', price: '$380 – $520', detail: '~1/2 to 3/4 truck', examples: ['Full garage cleanout', 'Multi-room cleanout', 'Estate cleanout (most)', 'Office cleanout', 'Hot tub removal (base)'] },
+  { label: 'Full truck', price: '$580 – $750', detail: 'Full truckload', examples: ['Full house cleanout', 'Hoarder cleanout (per truck)', 'Large estate', 'Large yard renovation debris', 'Multi-room remodel debris'] },
+];
+const surcharges = [
+  { item: 'Refrigerator / freezer', surcharge: '+ $25 (refrigerant recovery)' },
+  { item: 'CRT TV / monitor', surcharge: '+ $25 (e-waste)' },
+  { item: 'Mattress + box', surcharge: '+ $20 (recycling fee)' },
+  { item: 'Tires (per tire)', surcharge: '+ $10' },
+  { item: 'Heavy appliance with stairs', surcharge: '+ $20 per flight' },
+  { item: 'Hot tub disassembly', surcharge: 'Quoted separately' },
+];
+---
+<Layout
+  title="Junk Removal Pricing Minnesota | Transparent Tiers | Dakota Valley"
+  description="Transparent junk removal pricing across Minnesota. $85 minimum, volume-based tiers, no hidden fees. Text photos for a precise quote."
+  canonical={canonical}
+>
+  <main>
+    <section class="city-hero">
+      <nav class="nav"><a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a></nav>
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Pricing</span></p>
+        <h1><span class="city-accent">Transparent</span> junk removal pricing.</h1>
+        <p class="hero-copy">$85 minimum. Volume-based tiers. Text photos for a precise quote. No hidden fees — surcharges shown below for items that require certified recycling.</p>
+        <div class="hero-actions">
+          <a class="button primary" href={smsLink}>✉ Text for a precise quote</a>
+          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Volume tiers</p>
+        <h2>You pay for the space your stuff takes up.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        {tiers.map((tier) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">🚚</span>
+            <h3>{tier.label}</h3>
+            <p style="font-size: 22px; font-weight: 900; color: var(--blue); margin: 4px 0">{tier.price}</p>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px">{tier.detail}</p>
+            <ul style="padding-left: 18px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7">
+              {tier.examples.map((ex) => <li>{ex}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Surcharges (full disclosure)</p>
+        <h2>Items that require certified recycling.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        {surcharges.map((s) => (
+          <article class="city-service-card">
+            <span class="city-service-icon">✓</span>
+            <h3>{s.item}</h3>
+            <p>{s.surcharge}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Need a precise quote?</h2>
+        <p>Text 3-5 photos of what you need hauled. Crew sends a firm quote within a few hours. No surprises at pickup.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta">
+      <a class="button primary" href={smsLink}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>
