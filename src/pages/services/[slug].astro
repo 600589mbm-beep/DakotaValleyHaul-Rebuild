@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { services, getServiceSlugs } from '../../data/services.js';
 import { cities } from '../../data/cities.js';
+import { pickPhotos, buildAlt } from '../../data/photos.js';
 
 export function getStaticPaths() {
   return getServiceSlugs().map((slug) => ({
@@ -17,6 +18,7 @@ const smsLink = 'sms:+19522325107';
 const canonical = `https://dakotavalleyjunkremovalservice.com/services/${slug}/`;
 const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request.\nPlease send photos and item details.`)}`;
 const popularCities = Object.entries(cities).slice(0, 12);
+const heroPhoto = pickPhotos(slug, 1)[0];
 
 const schema = {
   '@context': 'https://schema.org',
@@ -75,6 +77,17 @@ const schema = {
         </div>
       </div>
     </section>
+
+    <figure class="city-hero-image">
+      <img
+        src={heroPhoto.src}
+        width={heroPhoto.width}
+        height={heroPhoto.height}
+        alt={`${heroPhoto.desc} — ${service.name} across Minnesota — Dakota Valley Junk Removal`}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
 
     <section class="section city-services">
       <div class="section-head"><div>

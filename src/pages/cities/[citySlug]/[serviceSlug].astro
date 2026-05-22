@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../../data/cities.js';
 import { services, getServiceSlugs } from '../../../data/services.js';
+import { pickPhotos, buildAlt } from '../../../data/photos.js';
 
 export function getStaticPaths() {
   const paths = [];
@@ -27,6 +28,10 @@ const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request f
 
 const otherServices = Object.entries(services).filter(([sl]) => sl !== serviceSlug);
 const otherCities = Object.entries(cities).filter(([sl]) => sl !== citySlug).slice(0, 12);
+
+// Same photos as the city page, but with combo-specific alt text
+const comboPhotos = pickPhotos(citySlug, 2);
+const heroPhoto = comboPhotos[0];
 
 const schema = {
   '@context': 'https://schema.org',
@@ -96,6 +101,18 @@ const schema = {
         </p>
       </div>
     </section>
+
+    <figure class="city-hero-image">
+      <img
+        src={heroPhoto.src}
+        width={heroPhoto.width}
+        height={heroPhoto.height}
+        alt={buildAlt(heroPhoto.desc, city.name, service.name)}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption>{buildAlt(heroPhoto.desc, city.name, service.name)}</figcaption>
+    </figure>
 
     <section class="section city-services">
       <div class="section-head">

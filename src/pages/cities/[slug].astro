@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
 import { services } from '../../data/services.js';
+import { pickPhotos, buildAlt } from '../../data/photos.js';
 
 export function getStaticPaths() {
   return getCitySlugs().map((slug) => ({
@@ -12,6 +13,9 @@ export function getStaticPaths() {
 }
 
 const { city, slug } = Astro.props;
+const cityPhotos = pickPhotos(slug, 3);
+const heroPhoto = cityPhotos[0];
+const galleryPhotos = cityPhotos.slice(1);
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
@@ -104,6 +108,18 @@ const schema = {
       </div>
     </section>
 
+    <figure class="city-hero-image">
+      <img
+        src={heroPhoto.src}
+        width={heroPhoto.width}
+        height={heroPhoto.height}
+        alt={buildAlt(heroPhoto.desc, city.name)}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption>{buildAlt(heroPhoto.desc, city.name)}</figcaption>
+    </figure>
+
     <section class="section city-services">
       <div class="section-head">
         <div>
@@ -163,6 +179,28 @@ const schema = {
         </blockquote>
       </section>
     )}
+
+    <section class="section city-gallery">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} job photos</p>
+          <h2>Real loads, real curbs.</h2>
+        </div>
+      </div>
+      <div class="city-gallery-grid">
+        {galleryPhotos.map((p) => (
+          <figure>
+            <img
+              src={p.src}
+              width={p.width}
+              height={p.height}
+              alt={buildAlt(p.desc, city.name)}
+              loading="lazy"
+            />
+          </figure>
+        ))}
+      </div>
+    </section>
 
     <section class="section city-locale">
       <div class="section-head">

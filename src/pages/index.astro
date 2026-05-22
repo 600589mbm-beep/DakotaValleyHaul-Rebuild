@@ -4,6 +4,10 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
 import { counties as countiesData } from '../data/counties.js';
 import { services } from '../data/services.js';
+import { photos } from '../data/photos.js';
+
+const homeHeroPhoto = photos[0]; // canonical "lead" photo
+const homeGalleryPhotos = photos.slice(1, 4); // 3 supporting shots
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
@@ -148,6 +152,17 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <figure class="city-hero-image">
+      <img
+        src={homeHeroPhoto.src}
+        width={homeHeroPhoto.width}
+        height={homeHeroPhoto.height}
+        alt={`${homeHeroPhoto.desc} — Dakota Valley Junk Removal serving Minneapolis, St. Paul, and Minnesota`}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
 
     <section class="band metrics" aria-label="Key service stats">
       <div><strong>$85</strong><span>Minimum pickup</span></div>
