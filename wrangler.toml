@@ -1,11 +1,7 @@
 name = "dakota-valley-telegram-bridge"
 main = "telegram-worker.js"
 compatibility_date = "2025-05-21"
-workers_dev = false
-routes = [
-  { pattern = "dakotavalleyjunkremovalservice.com/api/telegram-quote", zone_name = "dakotavalleyjunkremovalservice.com" },
-  { pattern = "www.dakotavalleyjunkremovalservice.com/api/telegram-quote", zone_name = "dakotavalleyjunkremovalservice.com" }
-]
+workers_dev = true
 
 # Keep secrets out of this file. Set these as Cloudflare Worker secrets:
 # TELEGRAM_BOT_TOKEN
