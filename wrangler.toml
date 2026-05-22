@@ -1,0 +1,9 @@
+name = "dakota-valley-telegram-bridge"
+main = "telegram-worker.js"
+compatibility_date = "2025-05-21"
+workers_dev = true
+
+# Keep secrets out of this file. Set these as Cloudflare Worker secrets:
+# TELEGRAM_BOT_TOKEN
+# TELEGRAM_CHAT_ID
+# TELEGRAM_THREAD_ID optional
