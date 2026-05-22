@@ -59,8 +59,10 @@ const schema = {
       priceRange: 'From $85',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: city.name,
+        streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
+        addressLocality: 'Eagan',
         addressRegion: 'MN',
+        postalCode: '55122',
         addressCountry: 'US',
       },
       ...(city.geo && {
@@ -68,6 +70,19 @@ const schema = {
       }),
       areaServed: { '@type': 'City', name: city.name, containedIn: { '@type': 'AdministrativeArea', name: city.county } },
       serviceType: ['Curbside junk pickup', 'Garage junk pickup', 'Furniture removal', 'Appliance recycling'],
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '08:00',
+        closes: '21:00',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5.0',
+        reviewCount: '6',
+        bestRating: '5',
+        worstRating: '1',
+      },
     },
   ],
 };
@@ -124,9 +139,12 @@ const schema = {
       <div class="section-head">
         <div>
           <p class="section-kicker">What we haul in {city.name}</p>
-          <h2>Built for the jobs people actually put off.</h2>
+          <h2>What junk removal services do we offer in {city.name}?</h2>
         </div>
       </div>
+      <p class="section-copy" style="margin-bottom: 24px">
+        Dakota Valley provides comprehensive junk hauling in {city.name}, MN — including furniture removal, appliance recycling, full garage cleanouts, yard waste, mattress disposal, and estate cleanouts. Crews handle the loading; you stage items at the curb or in the garage.
+      </p>
       <div class="city-service-grid">
         {[
           { label: 'Junk pickup', detail: 'Curbside or garage pickup for everyday clutter, single items, or a full garage worth of stuff.' },
@@ -149,9 +167,12 @@ const schema = {
       <div class="section-head">
         <div>
           <p class="section-kicker">{city.name} neighborhoods</p>
-          <h2>Routes that cover the whole city.</h2>
+          <h2>Which {city.name} neighborhoods does Dakota Valley serve?</h2>
         </div>
       </div>
+      <p class="section-copy" style="margin-bottom: 24px">
+        Routes cover every {city.name} neighborhood and the surrounding {city.county} grid. Same-day pickups are scheduled based on crew capacity along the route — text photos and a location to confirm a window.
+      </p>
       <div class="city-locale-grid">
         <div>
           <h3 class="city-list-title">Neighborhoods served</h3>
@@ -206,9 +227,12 @@ const schema = {
       <div class="section-head">
         <div>
           <p class="section-kicker">Services in {city.name}</p>
-          <h2>Pick your service.</h2>
+          <h2>Which junk removal services are most popular in {city.name}?</h2>
         </div>
       </div>
+      <p class="section-copy" style="margin-bottom: 24px">
+        Most {city.name} jobs are garage cleanouts, furniture removal, and appliance recycling. Each service has its own landing page with pricing examples, accepted items, and the request flow.
+      </p>
       <div class="city-grid">
         {Object.entries(services).map(([serviceSlug, s]) => (
           <a href={`/cities/${slug}/${serviceSlug}/`} class="city-link">
@@ -216,6 +240,30 @@ const schema = {
           </a>
         ))}
       </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} pricing</p>
+          <h2>How does junk removal pricing work in {city.name}?</h2>
+        </div>
+      </div>
+      <p class="section-copy">
+        Pricing in {city.name} is volume-based with an $85 minimum — you pay for the space your items take up in the truck, not by the hour. Single items start at $85; small loads run $120–$185; full truckloads cap around $580–$750. Surcharges for refrigerators, mattresses, and CRT TVs are disclosed upfront. <a href="/pricing/">See the full pricing breakdown</a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} scheduling</p>
+          <h2>How quickly can Dakota Valley pick up in {city.name}?</h2>
+        </div>
+      </div>
+      <p class="section-copy">
+        Most {city.name} appointments are scheduled within 2–3 business days. Same-day pickups are available based on crew capacity along the route — text photos and your zip to check current availability. The crew calls 30 minutes before arrival and sends a completion photo when the job is done.
+      </p>
     </section>
 
     <section class="section city-cta">

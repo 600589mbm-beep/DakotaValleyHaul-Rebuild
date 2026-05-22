@@ -52,10 +52,13 @@ const homepageSchema = {
       image: 'https://dakotavalleyjunkremovalservice.com/attached_assets/IMG_7020_1750653174383.jpeg',
       address: {
         '@type': 'PostalAddress',
+        streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
+        addressLocality: 'Eagan',
         addressRegion: 'MN',
+        postalCode: '55122',
         addressCountry: 'US',
-        addressLocality: 'Twin Cities Metro',
       },
+      geo: { '@type': 'GeoCoordinates', latitude: 44.8041, longitude: -93.1666 },
       areaServed: [
         { '@type': 'State', name: 'Minnesota' },
         { '@type': 'AdministrativeArea', name: 'Dakota County' },
@@ -70,6 +73,19 @@ const homepageSchema = {
         'https://www.facebook.com/dakotavalleyjunkremoval',
         'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan',
       ],
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '08:00',
+        closes: '21:00',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5.0',
+        reviewCount: '6',
+        bestRating: '5',
+        worstRating: '1',
+      },
     },
     {
       '@type': 'WebSite',
