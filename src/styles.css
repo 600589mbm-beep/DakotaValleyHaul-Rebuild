@@ -870,14 +870,14 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 }
 .city-cta .price-floor svg { color: #ffffff; }
 
-/* ─── BookingWidget styling ─────────────────────────────── */
-.booking-widget {
+/* ─── TelegramForm (booking form) ───────────────────────── */
+.tg-form {
   margin-top: 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.booking-trust {
+.tg-form-intro {
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -886,26 +886,104 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   margin: 0 0 4px;
   line-height: 1.5;
 }
-.booking-trust svg { flex-shrink: 0; margin-top: 2px; color: var(--blue); }
-.booking-fallback {
+.tg-form-intro svg { flex-shrink: 0; margin-top: 2px; color: var(--blue); }
+.tg-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.tg-form label em {
+  color: var(--blue);
+  font-style: normal;
+  font-weight: 900;
+}
+.tg-form label small {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 12px;
+}
+.tg-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 480px) {
+  .tg-form-row { grid-template-columns: 1fr; }
+}
+.tg-form-stack { width: 100%; }
+.tg-form input[type="text"],
+.tg-form input[type="tel"],
+.tg-form input[type="date"],
+.tg-form select,
+.tg-form textarea {
+  font: inherit;
+  font-size: 15px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+.tg-form input:focus-visible,
+.tg-form select:focus-visible,
+.tg-form textarea:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+.tg-form-photos input[type="file"] {
+  padding: 8px;
+  font: inherit;
+  font-size: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tg-form-photos input[type="file"]:hover {
+  border-color: var(--blue);
+}
+.tg-form-submit {
+  margin-top: 6px;
+}
+.tg-form-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.tg-form-status {
+  margin: 4px 0 0;
+  font-size: 13px;
+  min-height: 1em;
+  line-height: 1.4;
+}
+.tg-form-status:empty { display: none; }
+.tg-form-status.is-sending { color: var(--muted); }
+.tg-form-status.is-success {
+  color: #0a7d31;
+  font-weight: 800;
+}
+.tg-form-status.is-error {
+  color: #b81f1f;
+  font-weight: 700;
+}
+.tg-form-fallback {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
   color: var(--muted);
-  margin: 0;
+  margin: 8px 0 0;
 }
-.booking-fallback a {
+.tg-form-fallback a {
   color: var(--blue);
   font-weight: 800;
   text-decoration: none;
 }
-.booking-fallback a:hover { text-decoration: underline; }
-.calendly-inline-widget {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
+.tg-form-fallback a:hover { text-decoration: underline; }
 
 /* ─── Photos ────────────────────────────────────────────── */
 .city-hero-image {

@@ -1,0 +1,132 @@
+---
+import { Icon } from 'astro-icon/components';
+import { WORKER_URL } from '../data/booking.js';
+---
+<form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
+  <p class="tg-form-intro">
+    <Icon name="lucide:shield-check" size={16} />
+    Goes straight to the crew via Telegram. No call-back queue, no email chain.
+  </p>
+
+  <div class="tg-form-row">
+    <label>
+      <span>Name <em>*</em></span>
+      <input name="name" type="text" required autocomplete="name" />
+    </label>
+    <label>
+      <span>Phone <em>*</em></span>
+      <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(xxx) xxx-xxxx" />
+    </label>
+  </div>
+
+  <label class="tg-form-stack">
+    <span>Pickup address <em>*</em></span>
+    <input name="address" type="text" required placeholder="Street address" />
+  </label>
+
+  <div class="tg-form-row">
+    <label>
+      <span>City or county <em>*</em></span>
+      <input name="city" type="text" required />
+    </label>
+    <label>
+      <span>Preferred date <em>*</em></span>
+      <input name="date" type="date" required />
+    </label>
+  </div>
+
+  <div class="tg-form-row">
+    <label>
+      <span>Pickup spot</span>
+      <select name="pickupSpot">
+        <option value="curbside">Curbside</option>
+        <option value="garage">Garage</option>
+        <option value="driveway">Driveway</option>
+        <option value="yard">Yard</option>
+      </select>
+    </label>
+    <label>
+      <span>Preferred window</span>
+      <select name="preferredWindow">
+        <option value="morning">Morning (8 AM – 12 PM)</option>
+        <option value="afternoon">Afternoon (12 – 5 PM)</option>
+        <option value="evening">Evening (5 – 9 PM)</option>
+        <option value="anytime">Any time</option>
+      </select>
+    </label>
+  </div>
+
+  <label class="tg-form-stack">
+    <span>Load size</span>
+    <select name="loadSize">
+      <option value="single-item">Single item (≈ $85)</option>
+      <option value="small">Small load — 1/8 to 1/4 truck ($120–$185)</option>
+      <option value="medium" selected>Medium load — 1/4 to 1/2 truck ($220–$320)</option>
+      <option value="large">Large load — 1/2 to 3/4 truck ($380–$520)</option>
+      <option value="full">Full truck ($580–$750)</option>
+    </select>
+  </label>
+
+  <label class="tg-form-stack">
+    <span>What needs to go? <em>*</em></span>
+    <textarea name="details" rows="3" required placeholder="e.g., One sofa and two mattresses in the garage."></textarea>
+  </label>
+
+  <label class="tg-form-stack tg-form-photos">
+    <span>Photos <em>*</em> <small>(at least one — phone camera is fine)</small></span>
+    <input name="photos" type="file" accept="image/*" capture="environment" multiple required />
+  </label>
+
+  {/* Honeypot */}
+  <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
+
+  <button type="submit" class="button primary tg-form-submit">
+    <Icon name="lucide:send" size={18} /> Send booking to crew
+  </button>
+
+  <p class="tg-form-status" id="tg-form-status" role="status" aria-live="polite"></p>
+
+  <p class="tg-form-fallback">
+    <Icon name="lucide:message-square-text" size={14} />
+    Prefer text? Send photos directly to <a href="sms:+19522325107">(952) 232-5107</a>.
+  </p>
+</form>
+
+<script>
+  const form = document.getElementById('tg-form');
+  const status = document.getElementById('tg-form-status');
+  const submit = form?.querySelector('.tg-form-submit');
+  const workerUrl = form?.dataset.workerUrl;
+
+  if (form && status && submit && workerUrl) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      // honeypot
+      if (form.elements.botcheck && form.elements.botcheck.checked) return;
+
+      status.className = 'tg-form-status is-sending';
+      status.textContent = 'Sending to the crew…';
+      submit.disabled = true;
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(workerUrl, { method: 'POST', body: data });
+        const json = await res.json().catch(() => ({}));
+        if (json && json.success) {
+          status.className = 'tg-form-status is-success';
+          status.textContent = '✓ Booking sent. The crew will text back within a few hours.';
+          form.reset();
+        } else {
+          const msg = (json && json.error) || 'Submission failed. Please text us at (952) 232-5107.';
+          status.className = 'tg-form-status is-error';
+          status.textContent = msg;
+        }
+      } catch (err) {
+        status.className = 'tg-form-status is-error';
+        status.textContent = 'Network error. Please text us at (952) 232-5107.';
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  }
+</script>
