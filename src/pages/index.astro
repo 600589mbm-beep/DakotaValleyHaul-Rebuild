@@ -3,7 +3,6 @@ import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
-import { counties as countiesData } from '../data/counties.js';
 import { services } from '../data/services.js';
 import { photos } from '../data/photos.js';
 import { iconForService } from '../data/serviceIcons.js';
@@ -17,18 +16,9 @@ const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
 
-const allCountyNames = [
-  'Aitkin', 'Anoka', 'Becker', 'Beltrami', 'Benton', 'Big Stone', 'Blue Earth', 'Brown', 'Carlton', 'Carver', 'Cass',
-  'Chippewa', 'Chisago', 'Clay', 'Clearwater', 'Cook', 'Cottonwood', 'Crow Wing', 'Dakota', 'Dodge', 'Douglas',
-  'Faribault', 'Fillmore', 'Freeborn', 'Goodhue', 'Grant', 'Hennepin', 'Houston', 'Hubbard', 'Isanti', 'Itasca',
-  'Jackson', 'Kanabec', 'Kandiyohi', 'Kittson', 'Koochiching', 'Lac qui Parle', 'Lake', 'Lake of the Woods',
-  'Le Sueur', 'Lincoln', 'Lyon', 'Mahnomen', 'Marshall', 'Martin', 'McLeod', 'Meeker', 'Mille Lacs', 'Morrison',
-  'Mower', 'Murray', 'Nicollet', 'Nobles', 'Norman', 'Olmsted', 'Otter Tail', 'Pennington', 'Pine', 'Pipestone',
-  'Polk', 'Pope', 'Ramsey', 'Red Lake', 'Redwood', 'Renville', 'Rice', 'Rock', 'Roseau', 'St. Louis', 'Scott',
-  'Sherburne', 'Sibley', 'Stearns', 'Steele', 'Stevens', 'Swift', 'Todd', 'Traverse', 'Wabasha', 'Wadena', 'Waseca',
-  'Washington', 'Watonwan', 'Wilkin', 'Winona', 'Wright', 'Yellow Medicine',
-];
-const countySlugsWithPages = new Set(Object.keys(countiesData));
+// Featured cities row at the top of the areas section (the high-traffic
+// Twin Cities metros — pure visual hooks, full list lives in the accordion).
+const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
 
 const homepageSchema = {
   '@context': 'https://schema.org',
@@ -268,25 +258,21 @@ const faqs = [
       </header>
 
       <div class="areas-search">
-        <label for="areas-search-input" class="sr-only">Search Minnesota cities and counties</label>
+        <label for="areas-search-input" class="sr-only">Search Minnesota cities</label>
         <input
           id="areas-search-input"
           type="search"
           class="areas-search-input"
-          placeholder="Search your city or county"
-          aria-controls="areas-cities-list areas-counties-list"
+          placeholder="Search your city"
+          aria-controls="areas-cities-list"
         />
         <button type="button" class="areas-search-clear" id="areas-search-clear" aria-label="Clear search" style="display: none">×</button>
       </div>
 
-      <div class="areas-featured" role="group" aria-label="Featured counties and statewide">
-        <a href="/counties/dakota-county/" class="areas-pill">Dakota County</a>
-        <a href="/counties/hennepin-county/" class="areas-pill">Hennepin County</a>
-        <a href="/counties/ramsey-county/" class="areas-pill">Ramsey County</a>
-        <a href="/counties/washington-county/" class="areas-pill">Washington County</a>
-        <a href="/counties/scott-county/" class="areas-pill">Scott County</a>
-        <a href="/counties/olmsted-county/" class="areas-pill">Olmsted County</a>
-        <a href="/counties/st-louis-county/" class="areas-pill">St. Louis County</a>
+      <div class="areas-featured" role="group" aria-label="Featured Minnesota cities">
+        {featuredCitySlugs.map((sl) => cities[sl] && (
+          <a href={`/cities/${sl}/`} class="areas-pill">{cities[sl].name}</a>
+        ))}
         <button type="button" class="areas-pill areas-pill-allmn" id="areas-allmn-button">All Minnesota</button>
       </div>
 
@@ -298,20 +284,6 @@ const faqs = [
           {Object.entries(cities).map(([slug, c]) => (
             <a href={`/cities/${slug}/`} class="areas-link" data-areas-name={c.name.toLowerCase()}>{c.name}</a>
           ))}
-        </div>
-      </details>
-
-      <details class="areas-accordion" id="areas-counties-details">
-        <summary><h3>View all 87 Minnesota counties</h3></summary>
-        <div class="areas-link-grid" id="areas-counties-list">
-          {allCountyNames.map((county) => {
-            const slug = county.toLowerCase().replace(/[. ]+/g, '-') + '-county';
-            const hasPage = countySlugsWithPages.has(slug);
-            const text = `${county} County`;
-            return hasPage
-              ? <a href={`/counties/${slug}/`} class="areas-link" data-areas-name={text.toLowerCase()}>{text}</a>
-              : <span class="areas-link areas-link-text" data-areas-name={text.toLowerCase()}>{text}</span>;
-          })}
         </div>
       </details>
     </section>
@@ -368,42 +340,34 @@ const faqs = [
     </div>
   </main>
 
-  <!-- Areas filter — vanilla JS, hydrates the static accordions for live search -->
+  <!-- Areas filter — vanilla JS, hydrates the static accordion for live search -->
   <script>
     (function () {
       const input = document.getElementById('areas-search-input');
       const clearBtn = document.getElementById('areas-search-clear');
       const citiesDetails = document.getElementById('areas-cities-details');
-      const countiesDetails = document.getElementById('areas-counties-details');
       const allMnBtn = document.getElementById('areas-allmn-button');
       const announce = document.getElementById('areas-filter-announce');
       if (!input) return;
 
       const cityLinks = document.querySelectorAll('#areas-cities-list [data-areas-name]');
-      const countyLinks = document.querySelectorAll('#areas-counties-list [data-areas-name]');
 
       let timeout;
       function filter() {
         const q = input.value.trim().toLowerCase();
-        let cityCount = 0, countyCount = 0;
+        let cityCount = 0;
         cityLinks.forEach((el) => {
           const match = !q || el.dataset.areasName.includes(q);
           el.style.display = match ? '' : 'none';
           if (match) cityCount++;
         });
-        countyLinks.forEach((el) => {
-          const match = !q || el.dataset.areasName.includes(q);
-          el.style.display = match ? '' : 'none';
-          if (match) countyCount++;
-        });
         if (q) {
           citiesDetails.open = true;
-          countiesDetails.open = true;
         }
         clearBtn.style.display = q ? 'grid' : 'none';
         if (announce) {
           announce.textContent = q
-            ? (cityCount + countyCount === 0 ? 'No matches' : `Showing ${cityCount} cities and ${countyCount} counties`)
+            ? (cityCount === 0 ? 'No matches' : `Showing ${cityCount} cities`)
             : '';
         }
       }
@@ -418,7 +382,6 @@ const faqs = [
       });
       allMnBtn.addEventListener('click', () => {
         citiesDetails.open = true;
-        countiesDetails.open = true;
         citiesDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     })();
