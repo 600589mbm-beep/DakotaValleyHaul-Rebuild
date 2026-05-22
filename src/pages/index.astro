@@ -1,10 +1,12 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
 import { counties as countiesData } from '../data/counties.js';
 import { services } from '../data/services.js';
 import { photos } from '../data/photos.js';
+import { iconForService } from '../data/serviceIcons.js';
 
 const homeHeroPhoto = photos[0]; // canonical "lead" photo
 const homeGalleryPhotos = photos.slice(1, 4); // 3 supporting shots
@@ -137,7 +139,7 @@ const faqs = [
     <section class="hero" id="top">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top">
-          <span class="brand-mark">🚚</span>
+          <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
           <span>Dakota Valley</span>
         </a>
         <div class="nav-links">
@@ -147,10 +149,10 @@ const faqs = [
           <a href="#about">About</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
       <div class="hero-content">
-        <p class="eyebrow">✨ Minnesota junk removal, cleaned up</p>
+        <p class="eyebrow"><Icon name="lucide:sparkles" size={16} /> Minnesota junk removal, cleaned up</p>
         <h1>Dakota Valley Junk Removal</h1>
         <p class="hero-copy">
           <strong>Same-day eligible curbside and garage junk pickup across Minnesota.</strong>
@@ -158,13 +160,13 @@ const faqs = [
         </p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}>Text a photo quote →</a>
-          <a class="button secondary" href="#quote">📅 Book pickup</a>
-          <a class="button ghost" href="#areas">📍 Check service area</a>
+          <a class="button secondary" href="#quote"><Icon name="lucide:calendar-days" size={18} /> Book pickup</a>
+          <a class="button ghost" href="#areas"><Icon name="lucide:map-pin" size={18} /> Check service area</a>
         </div>
         <div class="hero-proof" aria-label="Business highlights">
-          <span>✓ $85 minimum pickup</span>
-          <span>📷 Photo estimates by text or form</span>
-          <span>🏠 Curbside and garage only</span>
+          <span><Icon name="lucide:check-circle-2" size={16} /> $85 minimum pickup</span>
+          <span><Icon name="lucide:camera" size={16} /> Photo estimates by text or form</span>
+          <span><Icon name="lucide:home" size={16} /> Curbside and garage only</span>
         </div>
       </div>
     </section>
@@ -189,19 +191,19 @@ const faqs = [
 
     <section class="band trust-grid" aria-label="Trust signals">
       <article>
-        <h3>🛡 Licensed and insured</h3>
+        <h3><Icon name="lucide:shield-check" size={20} /> Licensed and insured</h3>
         <p>Fully licensed for waste hauling. General liability insurance covers your property during pickup.</p>
       </article>
       <article>
-        <h3>📅 Same-day eligible</h3>
+        <h3><Icon name="lucide:calendar-days" size={20} /> Same-day eligible</h3>
         <p>Most pickups scheduled within 2-3 business days. Same-day jobs available based on crew capacity.</p>
       </article>
       <article>
-        <h3>♻ 60%+ diverted from landfill</h3>
+        <h3><Icon name="lucide:recycle" size={20} /> 60%+ diverted from landfill</h3>
         <p>Furniture donated to Bridging, Arc, Goodwill. Electronics to R2-certified recyclers. Mattresses recycled.</p>
       </article>
       <article>
-        <h3>✓ Transparent pricing</h3>
+        <h3><Icon name="lucide:check-circle-2" size={20} /> Transparent pricing</h3>
         <p>$85 minimum. Volume-based tiers. Surcharges disclosed upfront. <a href="/pricing/">See pricing</a>.</p>
       </article>
     </section>
@@ -216,7 +218,7 @@ const faqs = [
         <div class="service-list">
           {Object.entries(services).slice(0, 6).map(([slug, s]) => (
             <a href={`/services/${slug}/`} class="service-row">
-              <span class="icon-box">🚚</span>
+              <span class="icon-box"><Icon name={iconForService(slug)} size={22} /></span>
               <span><strong>{s.name}</strong><small>{s.headline}</small></span>
             </a>
           ))}

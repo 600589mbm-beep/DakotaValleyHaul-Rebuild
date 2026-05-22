@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { services, getServiceSlugs } from '../../data/services.js';
@@ -59,8 +60,8 @@ const schema = {
   <main>
     <section class="city-hero">
       <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
       <div class="city-hero-content">
         <p class="breadcrumb">
@@ -72,8 +73,8 @@ const schema = {
         <p class="hero-copy">{service.headline}</p>
         <p class="hero-copy" style="margin-top: 0">{service.intro}</p>
         <div class="hero-actions">
-          <a class="button primary" href={ctaSms}>✉ Text photos to start</a>
-          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+          <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
       </div>
     </section>
@@ -97,7 +98,7 @@ const schema = {
       <div class="city-service-grid">
         {service.services.map((s) => (
           <article class="city-service-card">
-            <span class="city-service-icon">✓</span>
+            <span class="city-service-icon"><Icon name="lucide:check-circle-2" size={20} /></span>
             <h3>{s}</h3>
           </article>
         ))}
@@ -139,7 +140,7 @@ const schema = {
         <p>Text photos, item details, and a preferred calendar window. The crew confirms and handles the rest.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={ctaSms}>✉ Text {phoneDisplay}</a>
+        <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

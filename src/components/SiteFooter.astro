@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { cities } from '../data/cities.js';
 import { counties } from '../data/counties.js';
 import { services } from '../data/services.js';
@@ -64,7 +65,7 @@ const year = new Date().getFullYear();
     <div class="site-footer-bottom">
       <div class="site-footer-brand">
         <strong>
-          <span class="site-footer-mark">🚚</span>
+          <span class="site-footer-mark"><Icon name="lucide:truck" size={18} /></span>
           Dakota Valley Junk Removal
         </strong>
         <p>
@@ -73,8 +74,8 @@ const year = new Date().getFullYear();
         </p>
       </div>
       <div class="site-footer-actions">
-        <a href={smsLink}>✉ Text {phoneDisplay}</a>
-        <a href={`mailto:${email}`}>📧 {email}</a>
+        <a href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <a href={`mailto:${email}`}><Icon name="lucide:mail" size={14} /> {email}</a>
         <nav class="site-footer-nav" aria-label="Footer navigation">
           <a href="/">Home</a>
           <a href="/pricing/">Pricing</a>

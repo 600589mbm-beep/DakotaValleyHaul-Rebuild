@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
@@ -18,15 +19,15 @@ const allReviews = Object.entries(cities)
 >
   <main>
     <section class="city-hero">
-      <nav class="nav"><a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a></nav>
+      <nav class="nav"><a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a></nav>
       <div class="city-hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Reviews</span></p>
         <h1>What <span class="city-accent">Minnesotans</span> are saying.</h1>
         <p class="hero-copy">Real reviews from real Minnesota neighborhoods. Click into any city for that city's full landing page.</p>
         <div class="hero-actions">
-          <a class="button primary" href={smsLink}>✉ Text for a quote</a>
-          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+          <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a quote</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
       </div>
     </section>
@@ -59,7 +60,7 @@ const allReviews = Object.entries(cities)
         <p>Text photos for a quote. Once the job is done, the crew will share a link to leave a review.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

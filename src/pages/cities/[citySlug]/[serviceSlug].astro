@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../../../layouts/Layout.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../../data/cities.js';
@@ -72,10 +73,10 @@ const schema = {
     <section class="city-hero">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="/">
-          <span class="brand-mark">🚚</span>
+          <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
           <span>Dakota Valley</span>
         </a>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
 
       <div class="city-hero-content">
@@ -93,11 +94,11 @@ const schema = {
           {service.headline} for {city.name} residents. {city.intro}
         </p>
         <div class="hero-actions">
-          <a class="button primary" href={ctaSms}>✉ Text photos to start</a>
-          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+          <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
         <p class="hero-meta">
-          📍 {city.county} &middot; $85 minimum &middot; Curbside and garage pickup
+          <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; $85 minimum &middot; Curbside and garage pickup
         </p>
       </div>
     </section>
@@ -124,7 +125,7 @@ const schema = {
       <div class="city-service-grid">
         {service.services.map((s) => (
           <article class="city-service-card">
-            <span class="city-service-icon">✓</span>
+            <span class="city-service-icon"><Icon name="lucide:check-circle-2" size={20} /></span>
             <h3>{s}</h3>
           </article>
         ))}
@@ -160,13 +161,13 @@ const schema = {
         <div>
           <h3 class="city-list-title">{city.name} neighborhoods we serve</h3>
           <ul class="city-list">
-            {city.neighborhoods.map((n) => <li>✓ {n}</li>)}
+            {city.neighborhoods.map((n) => <li><Icon name="lucide:check" size={14} /> {n}</li>)}
           </ul>
         </div>
         <div>
           <h3 class="city-list-title">Nearby landmarks</h3>
           <ul class="city-list">
-            {city.landmarks.map((l) => <li>📍 {l}</li>)}
+            {city.landmarks.map((l) => <li><Icon name="lucide:map-pin" size={14} /> {l}</li>)}
           </ul>
         </div>
       </div>
@@ -220,7 +221,7 @@ const schema = {
         <p>Text photos, item details, and a preferred calendar window. Crew confirms within a few hours.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={ctaSms}>✉ Text {phoneDisplay}</a>
+        <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
@@ -29,15 +30,15 @@ const surcharges = [
 >
   <main>
     <section class="city-hero">
-      <nav class="nav"><a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a></nav>
+      <nav class="nav"><a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a></nav>
       <div class="city-hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Pricing</span></p>
         <h1><span class="city-accent">Transparent</span> junk removal pricing.</h1>
         <p class="hero-copy">$85 minimum. Volume-based tiers. Text photos for a precise quote. No hidden fees — surcharges shown below for items that require certified recycling.</p>
         <div class="hero-actions">
-          <a class="button primary" href={smsLink}>✉ Text for a precise quote</a>
-          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+          <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a precise quote</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
       </div>
     </section>
@@ -50,7 +51,7 @@ const surcharges = [
       <div class="city-service-grid">
         {tiers.map((tier) => (
           <article class="city-service-card">
-            <span class="city-service-icon">🚚</span>
+            <span class="city-service-icon"><Icon name="lucide:truck" size={20} /></span>
             <h3>{tier.label}</h3>
             <p style="font-size: 22px; font-weight: 900; color: var(--blue); margin: 4px 0">{tier.price}</p>
             <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px">{tier.detail}</p>
@@ -70,7 +71,7 @@ const surcharges = [
       <div class="city-service-grid">
         {surcharges.map((s) => (
           <article class="city-service-card">
-            <span class="city-service-icon">✓</span>
+            <span class="city-service-icon"><Icon name="lucide:check-circle-2" size={20} /></span>
             <h3>{s.item}</h3>
             <p>{s.surcharge}</p>
           </article>
@@ -84,7 +85,7 @@ const surcharges = [
         <p>Text 3-5 photos of what you need hauled. Crew sends a firm quote within a few hours. No surprises at pickup.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>

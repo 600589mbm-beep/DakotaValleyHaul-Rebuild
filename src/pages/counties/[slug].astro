@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { counties, getCountySlugs } from '../../data/counties.js';
@@ -46,8 +47,8 @@ const schema = {
   <main>
     <section class="city-hero">
       <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/"><span class="brand-mark">🚚</span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
       <div class="city-hero-content">
         <p class="breadcrumb">
@@ -58,10 +59,10 @@ const schema = {
         <h1>Junk Removal in <span class="city-accent">{county.name}, MN</span></h1>
         <p class="hero-copy">{county.intro}</p>
         <div class="hero-actions">
-          <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
-          <a class="button secondary" href="/#quote">📷 Use the quote helper</a>
+          <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
-        <p class="hero-meta">📍 Population {county.population} &middot; County seat {county.seat} &middot; $85 minimum</p>
+        <p class="hero-meta"><Icon name="lucide:map-pin" size={15} /> Population {county.population} &middot; County seat {county.seat} &middot; $85 minimum</p>
       </div>
     </section>
 
@@ -93,7 +94,7 @@ const schema = {
         <p>Text photos, item details, and a preferred calendar window. Crew confirms and routes around your county.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={smsLink}>✉ Text {phoneDisplay}</a>
+        <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>
