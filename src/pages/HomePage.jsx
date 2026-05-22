@@ -20,7 +20,6 @@ import {
   CheckCircle2,
   Home,
   Leaf,
-  Mail,
   Map as MapIcon,
   MapPin,
   MessageSquareText,
@@ -35,7 +34,6 @@ import {
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const email = 'info@dakotavalleyjunkremoval.com';
 
 const services = [
   { slug: 'junk-pickup', label: 'Junk pickup', icon: Truck, price: 'From $85', detail: 'Affordable pickup for items placed at the curb or in the garage.', tags: ['curbside', 'garage', '$85 minimum'] },
@@ -97,6 +95,7 @@ const accessOptions = [['curb', 'Curbside'], ['garage', 'Garage']];
 const timingOptions = [['morning', 'Morning'], ['afternoon', 'Afternoon'], ['evening', 'Evening']];
 const basePrice = { small: 85, medium: 145, large: 275, truck: 425 };
 const accessAdd = { curb: 0, garage: 0 };
+const initialQuoteForm = { name: '', phone: '', address: '', city: '', date: '', details: '', photos: [] };
 
 function estimatePrice(loadSize, access) {
   return basePrice[loadSize] + accessAdd[access];
@@ -110,7 +109,9 @@ export default function HomePage() {
   const [cityFilter, setCityFilter] = useState('');
   const [citiesOpen, setCitiesOpen] = useState(false);
   const [countiesOpen, setCountiesOpen] = useState(false);
-  const [form, setForm] = useState({ name: '', city: '', date: '', details: '', photoCount: 0 });
+  const [form, setForm] = useState(initialQuoteForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitState, setSubmitState] = useState({ status: 'idle', message: '' });
 
   const debouncedFilter = useDebouncedValue(cityFilter, 100);
   const normalizedFilter = debouncedFilter.trim().toLowerCase();
@@ -141,21 +142,104 @@ export default function HomePage() {
 
   const estimate = useMemo(() => estimatePrice(loadSize, access), [loadSize, access]);
   const estimateHigh = estimate + 90 + (loadSize === 'truck' ? 80 : 0);
+  const displayedPhotoNames = form.photos.slice(0, 3).map((file) => file.name || 'job photo').join(', ');
+  const extraPhotoCount = form.photos.length > 3 ? `, +${form.photos.length - 3} more` : '';
+  const photoSummary = form.photos.length ? `${form.photos.length} selected (${displayedPhotoNames}${extraPhotoCount})` : 'No photos selected';
   const quoteBody = [
     `Name: ${form.name}`,
+    `Phone: ${form.phone}`,
+    `Pickup address: ${form.address}`,
     `City or county: ${form.city}`,
     `Service: ${selectedService.label}`,
     `Load size: ${loadSize}`,
     `Pickup spot: ${access}`,
     `Preferred window: ${timing}`,
     `Preferred date: ${form.date}`,
-    `Photos selected in form: ${form.photoCount}`,
+    `Photos selected in form: ${photoSummary}`,
     `Estimated range: $${estimate} to $${estimateHigh}`,
     `Details: ${form.details}`,
   ].join('\n');
   const encodedQuote = encodeURIComponent(quoteBody);
-  const mailto = `mailto:${email}?subject=${encodeURIComponent('Dakota Valley quote request')}&body=${encodedQuote}`;
   const sms = `${smsLink}?&body=${encodedQuote}`;
+
+  const updateForm = (field, value) => {
+    setForm((current) => ({ ...current, [field]: value }));
+    if (submitState.status !== 'idle') {
+      setSubmitState({ status: 'idle', message: '' });
+    }
+  };
+
+  const handlePhotoChange = (event) => {
+    const selectedPhotos = Array.from(event.target.files || []);
+    if (!selectedPhotos.length) return;
+    setForm((current) => ({ ...current, photos: [...current.photos, ...selectedPhotos] }));
+    setSubmitState({ status: 'idle', message: '' });
+    event.target.value = '';
+  };
+
+  const clearPhotos = () => {
+    setForm((current) => ({ ...current, photos: [] }));
+    setSubmitState({ status: 'idle', message: '' });
+  };
+
+  const handleQuoteSubmit = async (event) => {
+    event.preventDefault();
+    const cleanForm = {
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      address: form.address.trim(),
+      city: form.city.trim(),
+      date: form.date.trim(),
+      details: form.details.trim(),
+    };
+    const missingField = [
+      ['name', cleanForm.name],
+      ['phone number', cleanForm.phone],
+      ['pickup address', cleanForm.address],
+      ['city or county', cleanForm.city],
+      ['preferred date', cleanForm.date],
+      ['job details', cleanForm.details],
+    ].find(([, value]) => !value);
+
+    if (missingField) {
+      setSubmitState({ status: 'error', message: `Please add your ${missingField[0]} before sending.` });
+      return;
+    }
+
+    if (!form.photos.length) {
+      setSubmitState({ status: 'error', message: 'Please add at least one job photo so we can quote the pickup accurately.' });
+      return;
+    }
+
+    const data = new FormData();
+    Object.entries({
+      ...cleanForm,
+      service: selectedService.label,
+      loadSize,
+      pickupSpot: access,
+      preferredWindow: timing,
+      estimateMin: String(estimate),
+      estimateMax: String(estimateHigh),
+    }).forEach(([key, value]) => data.append(key, value));
+    form.photos.forEach((photo) => data.append('photos', photo));
+
+    setIsSubmitting(true);
+    setSubmitState({ status: 'idle', message: '' });
+
+    try {
+      const response = await fetch('/api/telegram-quote', { method: 'POST', body: data });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false) {
+        throw new Error(result.error || 'The request could not be sent.');
+      }
+      setSubmitState({ status: 'success', message: 'Request sent. Dakota Valley will text you back soon.' });
+      setForm({ ...initialQuoteForm, photos: [] });
+    } catch (error) {
+      setSubmitState({ status: 'error', message: error.message || `Could not send the form. Please text photos to ${phoneDisplay} as a backup.` });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main>
@@ -269,51 +353,76 @@ export default function HomePage() {
         </div>
 
         <aside className='quote-card' id='quote'>
-          <p className='section-kicker' id='pricing'>Fast quote helper</p>
-          <h3>{selectedService.label}</h3>
-          <p>{selectedService.detail}</p>
+          <form onSubmit={handleQuoteSubmit}>
+            <p className='section-kicker' id='pricing'>Fast quote helper</p>
+            <h3>{selectedService.label}</h3>
+            <p>{selectedService.detail}</p>
 
-          <label>Load size</label>
-          <div className='segmented'>
-            {loadSizes.map(([value, label]) => (
-              <button key={value} type='button' className={loadSize === value ? 'selected' : ''} onClick={() => setLoadSize(value)}>{label}</button>
-            ))}
-          </div>
+            <label>Load size</label>
+            <div className='segmented'>
+              {loadSizes.map(([value, label]) => (
+                <button key={value} type='button' className={loadSize === value ? 'selected' : ''} onClick={() => setLoadSize(value)}>{label}</button>
+              ))}
+            </div>
 
-          <label>Pickup spot</label>
-          <div className='segmented two'>
-            {accessOptions.map(([value, label]) => (
-              <button key={value} type='button' className={access === value ? 'selected' : ''} onClick={() => setAccess(value)}>{label}</button>
-            ))}
-          </div>
+            <label>Pickup spot</label>
+            <div className='segmented two'>
+              {accessOptions.map(([value, label]) => (
+                <button key={value} type='button' className={access === value ? 'selected' : ''} onClick={() => setAccess(value)}>{label}</button>
+              ))}
+            </div>
 
-          <label>Preferred window</label>
-          <div className='segmented three'>
-            {timingOptions.map(([value, label]) => (
-              <button key={value} type='button' className={timing === value ? 'selected' : ''} onClick={() => setTiming(value)}>{label}</button>
-            ))}
-          </div>
+            <label>Preferred window</label>
+            <div className='segmented three'>
+              {timingOptions.map(([value, label]) => (
+                <button key={value} type='button' className={timing === value ? 'selected' : ''} onClick={() => setTiming(value)}>{label}</button>
+              ))}
+            </div>
 
-          <label>Preferred date</label>
-          <input aria-label='Preferred pickup date' type='date' value={form.date} onChange={(event) => setForm({ ...form, date: event.target.value })} />
+            <label>Preferred date</label>
+            <input aria-label='Preferred pickup date' type='date' required value={form.date} onChange={(event) => updateForm('date', event.target.value)} />
 
-          <label>Photos</label>
-          <input aria-label='Job photos' type='file' accept='image/*' multiple onChange={(event) => setForm({ ...form, photoCount: event.target.files?.length || 0 })} />
+            <label>Photos</label>
+            <input aria-label='Job photos' type='file' accept='image/*' multiple onChange={handlePhotoChange} />
+            {form.photos.length > 0 ? (
+              <div className='mini-note' aria-live='polite'>
+                <strong>{form.photos.length} photo{form.photos.length === 1 ? '' : 's'} ready to send.</strong>
+                <ul>
+                  {form.photos.slice(0, 4).map((file, index) => (
+                    <li key={`${file.name || 'photo'}-${file.lastModified || index}-${index}`}>{file.name || `Photo ${index + 1}`}</li>
+                  ))}
+                  {form.photos.length > 4 && <li>{form.photos.length - 4} more photo{form.photos.length - 4 === 1 ? '' : 's'}</li>}
+                </ul>
+                <button className='button secondary full' type='button' onClick={clearPhotos}>Clear photos</button>
+              </div>
+            ) : (
+              <p className='mini-note'>Upload all job photos here. More angles help confirm price and truck space before pickup.</p>
+            )}
 
-          <div className='estimate'>
-            <span>Estimated range</span>
-            <strong>${estimate} - ${estimateHigh}</strong>
-          </div>
-          <p className='mini-note'>Minimum pickup is $85. Final price depends on volume, weight, dump fees, and specialty items. Curbside and garage-only pickup keeps labor lower.</p>
+            <div className='estimate'>
+              <span>Estimated range</span>
+              <strong>${estimate} - ${estimateHigh}</strong>
+            </div>
+            <p className='mini-note'>Minimum pickup is $85. Final price depends on volume, weight, dump fees, and specialty items. Curbside and garage-only pickup keeps labor lower.</p>
 
-          <input aria-label='Name' placeholder='Your name' value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
-          <input aria-label='City or county' placeholder='City or county' value={form.city} onChange={(event) => setForm({ ...form, city: event.target.value })} />
-          <textarea aria-label='Items' placeholder='What needs to go? Include item count, size, and curbside or garage location.' value={form.details} onChange={(event) => setForm({ ...form, details: event.target.value })} />
+            <input aria-label='Name' placeholder='Your name' required value={form.name} onChange={(event) => updateForm('name', event.target.value)} />
+            <input aria-label='Phone number' type='tel' placeholder='Phone number' required value={form.phone} onChange={(event) => updateForm('phone', event.target.value)} />
+            <input aria-label='Pickup address' placeholder='Pickup address' required value={form.address} onChange={(event) => updateForm('address', event.target.value)} />
+            <input aria-label='City or county' placeholder='City or county' required value={form.city} onChange={(event) => updateForm('city', event.target.value)} />
+            <textarea aria-label='Items' placeholder='What needs to go? Include item count, size, and curbside or garage location.' required value={form.details} onChange={(event) => updateForm('details', event.target.value)} />
 
-          <div className='quote-actions'>
-            <a className='button primary full' href={sms}><MessageSquareText size={18} /> Text job photos</a>
-            <a className='button secondary full' href={mailto}><Mail size={18} /> Send form request</a>
-          </div>
+            <p className='mini-note'>Your request and photos go straight to Dakota Valley's Telegram. Text stays available as a backup.</p>
+            {submitState.message && (
+              <p className='mini-note' role={submitState.status === 'error' ? 'alert' : 'status'}>{submitState.message}</p>
+            )}
+
+            <div className='quote-actions'>
+              <button className='button primary full' type='submit' disabled={isSubmitting}>
+                <MessageSquareText size={18} /> {isSubmitting ? 'Sending request' : 'Send booking request'}
+              </button>
+              <a className='button secondary full' href={sms}><MessageSquareText size={18} /> Text backup</a>
+            </div>
+          </form>
         </aside>
       </section>
 
