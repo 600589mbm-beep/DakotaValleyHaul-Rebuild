@@ -10,6 +10,7 @@ The original full-stack source remains in `600589mbm-beep/DakotaValleyHaul`. Thi
 - Clearer hero offer and calls to action
 - Cleaner service-area presentation
 - Quote helper flow with lead-friendly summary
+- Telegram-ready booking form with address, phone, calendar date, details, and multiple photo uploads
 - SEO basics: sitemap, robots.txt, metadata, and structured data
 
 ## Run locally
@@ -24,6 +25,16 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Telegram booking form
+
+The booking form posts to `/api/telegram-quote` and sends the customer request plus uploaded photos to Telegram. Add these environment variables in Vercel before production submissions will deliver:
+
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `TELEGRAM_THREAD_ID` optional, only for Telegram forum topics
+
+Keep the bot token private. Do not commit it to this repository.
 
 ## Deploy
 
