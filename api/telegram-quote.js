@@ -56,13 +56,22 @@ async function sendTelegramFile(apiBase, chatId, threadId, file, index, total, c
 }
 
 export default async function handler(request) {
-  if (request.method !== 'POST') {
-    return json({ success: false, error: 'Method not allowed.' }, 405);
-  }
-
   const token = clean(process.env.TELEGRAM_BOT_TOKEN);
   const chatId = clean(process.env.TELEGRAM_CHAT_ID);
   const threadId = clean(process.env.TELEGRAM_THREAD_ID);
+
+  if (request.method === 'GET') {
+    return json({
+      success: true,
+      endpoint: 'telegram-quote',
+      configured: Boolean(token && chatId),
+      needs: token && chatId ? [] : ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'].filter((key) => !clean(process.env[key])),
+    });
+  }
+
+  if (request.method !== 'POST') {
+    return json({ success: false, error: 'Method not allowed.' }, 405);
+  }
 
   if (!token || !chatId) {
     return json({ success: false, error: 'Telegram is not configured yet.' }, 500);
