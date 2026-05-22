@@ -15,9 +15,22 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      WORKERS_DEV_SUBDOMAIN: dakota-valley-haul-600589
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Ensure workers.dev subdomain
+        shell: bash
+        run: |
+          response="$(curl -sS -X PUT "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/workers/subdomain" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data "{\"subdomain\":\"${WORKERS_DEV_SUBDOMAIN}\"}")"
+          if [ "$(printf '%s' "$response" | jq -r '.success')" != "true" ]; then
+            printf '%s\n' "$response" | jq -c '.errors'
+            exit 1
+          fi
       - name: Deploy Worker with secrets
         uses: cloudflare/wrangler-action@v3
         with:
