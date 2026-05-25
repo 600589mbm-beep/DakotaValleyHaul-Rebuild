@@ -389,12 +389,12 @@ export const services = {
   'single-item-pickup': {
     name: 'Single-item pickup',
     icon: 'Truck',
-    headline: "One sofa, one fridge, one mattress \u2014 $85 minimum",
+    headline: "Single-item pickup \u2014 from $85",
     intro:
-      "Single-item pickup across Minnesota. One sofa. One fridge. One mattress. One desk. $85 minimum applies. Curbside or garage staging keeps the price low.",
+      "Single-item pickup across Minnesota. Small items like a small sofa, kids mattress, mini fridge, or small dresser start at $85. Refrigerators and mattress + box spring are $120 each. Curbside or garage staging keeps the price low.",
     metaTitle: "Single-item pickup Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Single-item pickup across Minnesota. One sofa. One fridge. One mattress. One desk. $85 minimum applies. Curbside or garage staging keeps the price low.",
+      "Single-item pickup across Minnesota. Small items from $85; refrigerators and mattress + box spring $120 each. Curbside or garage staging keeps the price low.",
     services: [
       "Single sofa or sectional",
       "Single refrigerator",

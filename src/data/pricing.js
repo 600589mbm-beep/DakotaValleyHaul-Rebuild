@@ -10,12 +10,12 @@ export const tiers = [
   {
     slug: 'single-item',
     label: 'Single item',
-    price: '$85',
+    price: '$85 – $120',
     priceLow: 85,
-    priceHigh: 85,
-    detail: '$85 minimum',
-    blurb: 'One sofa, mattress, fridge, or large item.',
-    examples: ['One sofa', 'One mattress + box', 'One refrigerator', 'One dresser', 'One desk', 'One large item'],
+    priceHigh: 120,
+    detail: 'from $85',
+    blurb: 'Small items from $85. Large items, refrigerators, and mattress + box from $120 each.',
+    examples: ['Small sofa – $85', 'Kids mattress – $85', 'Mini fridge – $85', 'Small dresser – $85', 'Refrigerator – $120+', 'Mattress + box spring – $120'],
   },
   {
     slug: 'small',
