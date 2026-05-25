@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
     </section>
 
     <section class="site-footer-block">
-      <h4>Service areas — cities</h4>
+      <h4>Service areas - cities</h4>
       <div class="site-footer-grid site-footer-grid-dense">
         {Object.entries(cities).map(([slug, c]) => (
           <a href={`/cities/${slug}/`} class="site-footer-link">{c.name}</a>
@@ -42,15 +42,17 @@ const year = new Date().getFullYear();
           Dakota Valley Junk Removal
         </strong>
         <p>
-          Minnesota curbside and garage junk pickup. Text or use the form for photo quotes,
-          calendar booking, and service across all cities and counties.
+          Minnesota curbside and garage junk pickup. Send photos for a fast quote,
+          transparent pricing, calendar booking, and service across all cities and counties.
         </p>
       </div>
       <div class="site-footer-actions">
+        <a href="/quote/"><Icon name="lucide:send" size={18} /> Get a quote</a>
         <a href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
         <a href={`mailto:${email}`}><Icon name="lucide:mail" size={14} /> {email}</a>
         <nav class="site-footer-nav" aria-label="Footer navigation">
           <a href="/">Home</a>
+          <a href="/quote/">Quote</a>
           <a href="/pricing/">Pricing</a>
           <a href="/reviews/">Reviews</a>
         </nav>
