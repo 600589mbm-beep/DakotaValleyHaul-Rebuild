@@ -137,12 +137,15 @@ export default {
       };
 
       const missing = ['name', 'phone', 'address', 'city', 'date', 'details'].filter((field) => !payload[field]);
+      if (missing.includes('address')) {
+        return json(request, { success: false, error: 'Pickup address is required for pricing.' }, 400);
+      }
       if (missing.length) {
         return json(request, { success: false, error: `Missing ${missing.join(', ')}.` }, 400);
       }
 
       if (!photos.length) {
-        return json(request, { success: false, error: 'Please upload at least one photo.' }, 400);
+        return json(request, { success: false, error: 'At least one photo is required for pricing.' }, 400);
       }
 
       if (photos.length > MAX_PHOTOS) {
