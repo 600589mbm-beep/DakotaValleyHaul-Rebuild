@@ -8,6 +8,9 @@ const ALLOWED_ORIGINS = new Set([
   'https://600589mbm-beep.github.io',
 ]);
 
+const MAX_PHOTOS = 8;
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
+
 function clean(value) {
   return String(value || '').trim();
 }
@@ -92,6 +95,7 @@ export default {
         success: true,
         endpoint: 'dakota-valley-telegram-worker',
         configured: Boolean(token && chatId),
+        maxPhotos: MAX_PHOTOS,
         needs: token && chatId ? [] : ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'].filter((key) => !clean(env[key])),
       });
     }
@@ -106,6 +110,11 @@ export default {
 
     try {
       const formData = await request.formData();
+
+      if (clean(formData.get('botcheck'))) {
+        return json(request, { success: true, ignored: true });
+      }
+
       const photos = formData
         .getAll('photos')
         .filter((file) => file && typeof file.arrayBuffer === 'function' && file.size > 0);
@@ -123,6 +132,8 @@ export default {
         preferredWindow: clean(formData.get('preferredWindow')),
         estimateMin: clean(formData.get('estimateMin')),
         estimateMax: clean(formData.get('estimateMax')),
+        sourcePage: clean(formData.get('sourcePage')),
+        referrer: clean(formData.get('referrer')) || clean(request.headers.get('Referer')),
       };
 
       const missing = ['name', 'phone', 'address', 'city', 'date', 'details'].filter((field) => !payload[field]);
@@ -134,10 +145,23 @@ export default {
         return json(request, { success: false, error: 'Please upload at least one photo.' }, 400);
       }
 
+      if (photos.length > MAX_PHOTOS) {
+        return json(request, { success: false, error: `Please upload ${MAX_PHOTOS} photos or fewer.` }, 400);
+      }
+
+      const oversized = photos.find((file) => file.size > MAX_PHOTO_BYTES);
+      if (oversized) {
+        return json(request, { success: false, error: 'One photo is over 10 MB. Please send a smaller image or text it directly.' }, 400);
+      }
+
       const apiBase = `https://api.telegram.org/bot${token}`;
       const estimate = payload.estimateMin && payload.estimateMax
         ? `$${payload.estimateMin} - $${payload.estimateMax}`
         : 'Not provided';
+      const sourceLines = [
+        payload.sourcePage ? `<b>Source page:</b> ${escapeHtml(payload.sourcePage)}` : '',
+        payload.referrer ? `<b>Referrer:</b> ${escapeHtml(payload.referrer)}` : '',
+      ].filter(Boolean);
 
       const message = [
         '<b>New Dakota Valley Booking Request</b>',
@@ -153,6 +177,7 @@ export default {
         `<b>Preferred window:</b> ${escapeHtml(titleCase(payload.preferredWindow))}`,
         `<b>Estimate shown:</b> ${escapeHtml(estimate)}`,
         `<b>Photos:</b> ${photos.length}`,
+        ...sourceLines,
         '',
         `<b>Details:</b> ${escapeHtml(payload.details)}`,
       ].join('\n');
