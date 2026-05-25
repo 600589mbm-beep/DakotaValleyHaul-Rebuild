@@ -1,0 +1,314 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import TelegramForm from '../components/TelegramForm.astro';
+import { PRICE_FLOOR } from '../data/booking.js';
+
+const phoneDisplay = '(952) 232-5107';
+const smsLink = `sms:+19522325107?&body=${encodeURIComponent('Junk removal quote request. I can send photos, pickup city, and the items I need removed.')}`;
+const canonical = 'https://dakotavalleyjunkremovalservice.com/quote/';
+
+const quoteChecklist = [
+  'Pickup address and city',
+  'Photos of every pile or bulky item',
+  'Preferred date and time window',
+  'Where items will be staged: curb, driveway, garage, or yard',
+];
+
+const proof = [
+  { label: '$85 minimum', detail: 'Curbside and garage pickups start low when items are staged and easy to load.' },
+  { label: 'Photo-first quotes', detail: 'Photos help the crew price volume, weight, access, and recycling fees before arrival.' },
+  { label: 'No phone call required', detail: 'Text or submit the form. The crew follows up by text with a firm window.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Quote' },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: 'Get a Junk Removal Quote | Dakota Valley Junk Removal',
+      description: 'Send photos, pickup details, and a preferred date for a fast Dakota Valley Junk Removal quote across Minnesota.',
+      isPartOf: { '@id': 'https://dakotavalleyjunkremovalservice.com/#website' },
+      about: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
+      inLanguage: 'en-US',
+    },
+    {
+      '@type': 'Service',
+      name: 'Minnesota junk removal quote',
+      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
+      areaServed: { '@type': 'State', name: 'Minnesota' },
+      serviceType: 'Curbside and garage junk pickup',
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'USD',
+        price: '85',
+        description: 'Minimum curbside or garage junk pickup price. Final quote depends on volume, weight, access, and recycling fees.',
+        availability: 'https://schema.org/InStock',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What should I send for an accurate junk removal quote?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Send photos of every pile or item, the pickup city, the staging location, and your preferred pickup window.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How fast does Dakota Valley respond?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Most quote requests receive a text response within a few hours during business hours.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I book without calling?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Yes. The quote form and text message flow are built for photo-first booking without a phone call.' },
+        },
+      ],
+    },
+  ],
+};
+---
+<Layout
+  title="Get a Junk Removal Quote Minnesota | Dakota Valley"
+  description="Send photos, pickup details, and a preferred date for a fast Dakota Valley Junk Removal quote. $85 minimum, text-first booking, Minnesota service area."
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="city-hero quote-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Dakota Valley home">
+          <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
+          <span>Dakota Valley</span>
+        </a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+      </nav>
+
+      <div class="city-hero-content quote-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><span>Quote</span></p>
+        <p class="section-kicker">Fast photo quote</p>
+        <h1>Get a firm junk removal quote without a phone call.</h1>
+        <p class="hero-copy">
+          Upload photos, tell us where the items are staged, and pick a preferred date. Dakota Valley texts back with a clear price and pickup window.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#quote-form"><Icon name="lucide:send" size={18} /> Start the quote form</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+          <a class="button secondary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text photos instead</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-proof" aria-label="Quote highlights">
+      {proof.map((item) => (
+        <article>
+          <strong>{item.label}</strong>
+          <p>{item.detail}</p>
+        </article>
+      ))}
+    </section>
+
+    <section class="section quote-layout" id="quote-form">
+      <aside class="quote-prep" aria-labelledby="quote-prep-title">
+        <p class="section-kicker">Before you send</p>
+        <h2 id="quote-prep-title">The four details that make pricing faster.</h2>
+        <ul>
+          {quoteChecklist.map((item) => (
+            <li><Icon name="lucide:check-circle-2" size={18} /> <span>{item}</span></li>
+          ))}
+        </ul>
+        <div class="quote-note">
+          <Icon name="lucide:camera" size={20} />
+          <p>One wide photo plus one close-up usually beats a long description. For multi-room jobs, send one photo per room or pile.</p>
+        </div>
+      </aside>
+
+      <section class="quote-card quote-page-form" aria-labelledby="quote-form-title">
+        <p class="section-kicker">Booking form</p>
+        <h2 id="quote-form-title">Send the job details.</h2>
+        <p>Photos are required so the crew can quote honestly before the truck rolls.</p>
+        <TelegramForm />
+      </section>
+    </section>
+
+    <section class="section quote-expectations">
+      <div class="section-head"><div>
+        <p class="section-kicker">What happens next</p>
+        <h2>A cleaner handoff from quote to pickup.</h2>
+      </div></div>
+      <div class="steps">
+        <article><span class="step-number">1</span><h3>Review</h3><p>The crew checks the photos, location, access, and recycling needs.</p></article>
+        <article><span class="step-number">2</span><h3>Confirm</h3><p>You get a text with the price range or firm quote plus available pickup windows.</p></article>
+        <article><span class="step-number">3</span><h3>Pickup</h3><p>Stage the items where agreed. The crew loads, sweeps, and sends completion confirmation.</p></article>
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Need the fastest answer?</h2>
+        <p>Text photos directly and mention your city, staging spot, and preferred date.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+        <a class="button secondary" href="/pricing/">See pricing</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+
+    <div class="mobile-cta" aria-label="Mobile contact actions">
+      <a class="button primary" href={smsLink}>Text</a>
+      <a class="button secondary" href="#quote-form">Quote</a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .quote-hero {
+    background:
+      linear-gradient(90deg, rgba(2, 8, 18, 0.94), rgba(5, 18, 40, 0.78), rgba(9, 87, 195, 0.44)),
+      url('/attached_assets/IMG_7020_1750653174383.jpeg') center 42% / cover;
+  }
+
+  .quote-hero-content {
+    padding-bottom: 96px;
+  }
+
+  .quote-proof {
+    width: min(1180px, calc(100% - 32px));
+    margin: -42px auto 54px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-proof article {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .quote-proof strong {
+    display: block;
+    color: var(--blue);
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .quote-proof p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .quote-layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 34px;
+    align-items: start;
+  }
+
+  .quote-prep {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 28px;
+  }
+
+  .quote-prep h2 {
+    font-size: 34px;
+  }
+
+  .quote-prep ul {
+    list-style: none;
+    margin: 24px 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .quote-prep li {
+    display: flex;
+    gap: 10px;
+    color: var(--ink);
+    font-weight: 800;
+    line-height: 1.45;
+  }
+
+  .quote-prep li svg,
+  .quote-note svg {
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+
+  .quote-note {
+    display: flex;
+    gap: 12px;
+    background: #eef6ff;
+    border: 1px solid #bad4ff;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .quote-note p {
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .quote-page-form {
+    position: static;
+  }
+
+  .quote-page-form h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+  }
+
+  .quote-expectations {
+    margin-top: 10px;
+  }
+
+  @media (max-width: 980px) {
+    .quote-proof,
+    .quote-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .quote-proof {
+      margin-top: 16px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .quote-hero-content {
+      padding-bottom: 48px;
+    }
+
+    .quote-prep,
+    .quote-page-form {
+      padding: 22px;
+    }
+
+    .quote-prep h2,
+    .quote-page-form h2 {
+      font-size: 28px;
+    }
+  }
+</style>
