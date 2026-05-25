@@ -10,12 +10,12 @@ export const tiers = [
   {
     slug: 'single-item',
     label: 'Single item',
-    price: '$85 – $120',
+    price: '$85',
     priceLow: 85,
-    priceHigh: 120,
-    detail: 'from $85',
-    blurb: 'Small items from $85. Large items, refrigerators, and mattress + box from $120 each.',
-    examples: ['Small sofa – $85', 'Kids mattress – $85', 'Mini fridge – $85', 'Small dresser – $85', 'Refrigerator – $120+', 'Mattress + box spring – $120'],
+    priceHigh: 85,
+    detail: '$85 each',
+    blurb: 'One small item — small sofa, kids mattress, mini fridge, or small dresser.',
+    examples: ['Small sofa', 'Kids mattress', 'Mini fridge', 'Small dresser'],
   },
   {
     slug: 'small',
@@ -24,8 +24,8 @@ export const tiers = [
     priceLow: 120,
     priceHigh: 185,
     detail: '~1/8 to 1/4 truck',
-    blurb: 'A room of furniture or a few appliances.',
-    examples: ['Living room set', 'Bedroom set', '2–3 appliances', 'Yard waste pile (small)', 'Garage corner load'],
+    blurb: 'A few large items or appliances.',
+    examples: ['Refrigerator – $120', 'Mattress + box spring – $120', '2–3 appliances', 'Yard waste pile (small)', 'Garage corner load'],
   },
   {
     slug: 'medium',
@@ -35,7 +35,7 @@ export const tiers = [
     priceHigh: 320,
     detail: '~1/4 to 1/2 truck',
     blurb: 'Half a garage or a multi-room pickup.',
-    examples: ['Half garage cleanout', 'Multi-room furniture', 'Apartment move-out', 'Partial estate cleanout', 'Storm debris pile'],
+    examples: ['Living room set', 'Bedroom set', 'Half garage cleanout', 'Apartment move-out', 'Partial estate cleanout'],
   },
   {
     slug: 'large',
