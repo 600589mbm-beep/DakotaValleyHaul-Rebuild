@@ -23,6 +23,14 @@ button, input, textarea { font: inherit; }
 button { cursor: pointer; }
 svg { display: block; }
 
+/* ── Global responsive safety net ──────────────────────────────────────────
+   Media never exceeds its container, long strings wrap instead of forcing a
+   horizontal scrollbar, and iOS won't auto-inflate text. This is what makes
+   every page fit the screen automatically on phones. */
+img, video, iframe, canvas { max-width: 100%; height: auto; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, p, li, h1, h2, h3, h4, a, span, strong, em, blockquote { overflow-wrap: break-word; word-break: break-word; }
+
 .hero {
   color: #ffffff;
   /* Brand-safe gradient hero (no photo). Real hero photography drops in later
@@ -1088,6 +1096,10 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 }
 
 @media (max-width: 980px) {
+  /* Hard guard against horizontal overflow on phones/tablets. Safe here
+     because the only position:sticky element (.quote-card) goes static at
+     this breakpoint, so clipping the page scroll container has no side-effects. */
+  html, body { overflow-x: hidden; max-width: 100%; }
   .nav { align-items: flex-start; }
   .nav-links { display: none; }
   h1 { font-size: 52px; }
