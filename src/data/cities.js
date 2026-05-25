@@ -2214,7 +2214,7 @@ export const cities = {
       name: 'Amanda Peterson',
       location: 'Lake Susan, Chanhassen',
       text:
-        'Full garage cleanout. They sorted donations for Goodwill and hauled the rest. Outstanding.',
+        'Full garage cleanout. They sorted donations for Savers and hauled the rest. Outstanding.',
     },
     geo: { latitude: 44.8622, longitude: -93.5302 },
   },

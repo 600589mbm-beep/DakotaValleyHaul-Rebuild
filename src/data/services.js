@@ -47,7 +47,7 @@ export const services = {
       'Photo of each piece + dimensions if oversized.',
       'Crew confirms quote and pickup window via text.',
       'Items at the curb, in the driveway, or just inside the garage.',
-      'Donatable pieces routed to Bridging, Arc, or Goodwill.',
+      'Donatable pieces routed to Bridging, Arc, or Savers.',
     ],
   },
   'appliance-recycling': {
@@ -271,7 +271,7 @@ export const services = {
     icon: 'Home',
     headline: "Estate cleanout services across Minnesota",
     intro:
-      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs trash, route donatable items to Bridging / Arc / Goodwill, and leave the property show-ready.",
+      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs trash, route donatable items to Bridging / Arc / Savers, and leave the property show-ready.",
     metaTitle: "Estate cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
       "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs tr...",
