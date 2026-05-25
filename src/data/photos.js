@@ -1,74 +1,69 @@
-// Production photo registry for Dakota Valley Junk Removal.
-// Each entry: src (path), width/height (intrinsic — for CLS prevention),
-// desc (base alt text, gets city/service name appended at render time).
+// Production image registry for Dakota Valley Junk Removal.
 //
-// To swap images later: replace files in public/attached_assets/ and update
-// the src/width/height/desc here. Pages auto-update on next build.
+// ─────────────────────────────────────────────────────────────────────────
+// IMPORTANT (2026-05-25): The previous entries here pointed at files that
+// were NOT real job photos — they were screenshots of a competitor's booking
+// app and CRM screens that exposed customer PII. Those files were removed
+// from the repo. Until the owner supplies real photography, this registry
+// serves brand-safe vector ILLUSTRATIONS so every page still has on-brand
+// imagery without misleading customers or leaking data.
 //
-// ────────────────────────────────────────────────────────────────────────
-// TODO (OWNER ACTION REQUIRED): The `desc` strings below were written
-// without ability to see the actual photo content. They are conservative
-// guesses ("Curbside junk pickup in progress", "Crew loading household
-// items from the driveway"). For each photo, open it locally and rewrite
-// its `desc` to literally describe what's IN the photo:
-//   - The truck model if visible (e.g., "Isuzu NPR gas cab over truck")
-//   - The items being loaded (sofa, fridge, mattress, branches, etc.)
-//   - The setting (curbside, garage, driveway, alley, dumpster)
-//   - The crew action if relevant (loading, sweeping, securing)
-//
-// Wrong alt text is worse than generic — it misleads screen readers and
-// hurts image-search relevance. Spend 5 minutes here for real ROI.
-// Alt text auto-rebuilds across all 1,193 pages on next `npm run build`.
-// ────────────────────────────────────────────────────────────────────────
+// TO ADD REAL PHOTOS (see public/PHOTO-SHOT-LIST.md):
+//   1. Drop optimized images into public/attached_assets/ (or /photos/).
+//   2. Replace the `src`, `width`, `height`, and `desc` below.
+//   3. `npm run build` — alt text + image-sitemap rebuild across all pages.
+// Each entry: src, width/height (intrinsic — prevents layout shift),
+// desc (base alt text; city/service name is appended at render time),
+// illustration (true while these are vector placeholders).
+// ─────────────────────────────────────────────────────────────────────────
 
 export const photos = [
   {
-    src: '/attached_assets/IMG_7020_1750653174383.jpeg',
-    width: 1242,
-    height: 1847,
-    desc: 'Dakota Valley Junk Removal truck loaded with furniture and appliances',
+    src: '/illustrations/truck-load.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Dakota Valley Junk Removal truck loaded with furniture and appliances outside a home',
+    illustration: true,
   },
   {
-    src: '/attached_assets/IMG_7038_1750897423693.jpeg',
-    width: 1242,
-    height: 1576,
-    desc: 'Curbside junk pickup in progress',
+    src: '/illustrations/curbside.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Sofa, chairs and boxes staged at the curb for junk pickup',
+    illustration: true,
   },
   {
-    src: '/attached_assets/IMG_7039_1750897423693.jpeg',
-    width: 1242,
-    height: 1793,
-    desc: 'Crew loading household items from the driveway',
+    src: '/illustrations/garage.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Open garage stacked with boxes and items ready for a cleanout',
+    illustration: true,
   },
   {
-    src: '/attached_assets/IMG_7040_1750897423693.jpeg',
-    width: 1242,
-    height: 1551,
-    desc: 'Garage cleanout staged for pickup',
+    src: '/illustrations/appliances.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Refrigerator, washer and stove lined up for appliance removal and recycling',
+    illustration: true,
   },
   {
-    src: '/attached_assets/IMG_7041_1750897423693.jpeg',
-    width: 1242,
-    height: 1604,
-    desc: 'Truck loaded with furniture ready for transport',
+    src: '/illustrations/yard-debris.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Branches, fencing and yard debris piled for yard waste removal',
+    illustration: true,
   },
   {
-    src: '/attached_assets/IMG_7042_1750897423693.jpeg',
-    width: 1121,
-    height: 2162,
-    desc: 'Items staged at the curb for Dakota Valley pickup',
-  },
-  {
-    src: '/attached_assets/IMG_7021_1750696599185.png',
-    width: 1242,
-    height: 2688,
-    desc: 'Full driveway load ready for hauling',
+    src: '/illustrations/estate.svg',
+    width: 1200,
+    height: 800,
+    desc: 'Furniture, boxes and appliances from a full property cleanout',
+    illustration: true,
   },
 ];
 
-// Deterministic photo selection per slug — same city always gets the same
-// photos across builds, but different cities get different photos.
-// Uses a simple character-sum hash; spread via small prime offset.
+// Deterministic image selection per slug — same city always gets the same
+// images across builds, but different cities get different ones.
 export function pickPhotos(slug, count = 2) {
   const hash = [...slug].reduce((a, c) => a + c.charCodeAt(0), 0);
   const result = [];
@@ -84,7 +79,7 @@ export function pickPhotos(slug, count = 2) {
 }
 
 // Build city-specific alt text. Pattern:
-// "{base desc} — {service or context} in {City}, MN"
+// "{base desc} — Dakota Valley Junk Removal in {City}, MN"
 export function buildAlt(photoDesc, cityName, context = '') {
   const contextPart = context ? ` (${context})` : '';
   return `${photoDesc}${contextPart} — Dakota Valley Junk Removal in ${cityName}, MN`;

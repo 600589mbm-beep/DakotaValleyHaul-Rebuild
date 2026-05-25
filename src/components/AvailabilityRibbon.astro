@@ -1,0 +1,57 @@
+---
+// "Next available window" ribbon. Reads public/availability.json at build for a
+// server-rendered default, then a tiny client script recomputes upcoming
+// windows from the current date so a stale static build is never wrong.
+import { Icon } from 'astro-icon/components';
+import availability from '../../public/availability.json';
+
+const lead = availability.leadTimeBusinessDays ?? 2;
+const perDay = availability.windowsPerDay ?? ['8 AM – 12 PM'];
+
+// Compute the next N business-day windows at build time (matches client logic).
+function nextWindows(n) {
+  const out = [];
+  const d = new Date();
+  let added = 0;
+  // advance `lead` business days first
+  while (added < lead) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) added++; }
+  while (out.length < n) {
+    if (d.getDay() !== 0) { // open Mon–Sat
+      const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      out.push(`${label}, ${perDay[0]}`);
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return out;
+}
+const initial = availability.windows?.length ? availability.windows : nextWindows(3);
+---
+<div class="availability" id="availability" data-lead={lead} data-windows={JSON.stringify(perDay)} data-fixed={JSON.stringify(availability.windows || [])}>
+  <Icon name="lucide:calendar-clock" size={18} />
+  <span class="availability-label">Next available:</span>
+  <span class="availability-windows" id="availability-windows">{initial.slice(0, 3).join('  ·  ')}</span>
+</div>
+
+<script>
+  (function () {
+    const el = document.getElementById('availability');
+    const out = document.getElementById('availability-windows');
+    if (!el || !out) return;
+    const fixed = JSON.parse(el.dataset.fixed || '[]');
+    if (fixed.length) { out.textContent = fixed.slice(0, 3).join('  ·  '); return; }
+    const lead = parseInt(el.dataset.lead || '2', 10);
+    const perDay = JSON.parse(el.dataset.windows || '["8 AM – 12 PM"]');
+    const d = new Date();
+    let added = 0;
+    while (added < lead) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) added++; }
+    const wins = [];
+    while (wins.length < 3) {
+      if (d.getDay() !== 0) {
+        const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        wins.push(`${label}, ${perDay[0]}`);
+      }
+      d.setDate(d.getDate() + 1);
+    }
+    out.textContent = wins.join('  ·  ');
+  })();
+</script>

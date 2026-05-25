@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+# Keep crawlers off form-action / serverless endpoints (not content)
+Disallow: /api/
+
 # AI / LLM crawlers — allow indexing for content discovery
 User-agent: GPTBot
 Allow: /
@@ -17,4 +20,5 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://dakotavalleyjunkremovalservice.com/sitemap.xml
+Sitemap: https://dakotavalleyjunkremovalservice.com/sitemap-index.xml
+Sitemap: https://dakotavalleyjunkremovalservice.com/image-sitemap.xml

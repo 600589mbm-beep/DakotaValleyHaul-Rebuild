@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of an empty, swept garage after a Dakota Valley cleanout">
+  <rect width="1200" height="800" fill="#f7faff"/>
+  <rect y="640" width="1200" height="160" fill="#e4ebf3"/>
+  <rect x="180" y="180" width="840" height="470" fill="#ffffff" stroke="#d2dde8" stroke-width="6"/>
+  <rect x="150" y="150" width="900" height="50" fill="#0957c3"/>
+  <rect x="210" y="200" width="780" height="60" fill="#dce6f1"/>
+  <line x1="210" y1="230" x2="990" y2="230" stroke="#c2cedb" stroke-width="4"/>
+  <!-- swept floor sheen -->
+  <ellipse cx="600" cy="600" rx="320" ry="30" fill="#eef2f7"/>
+  <line x1="280" y1="640" x2="920" y2="640" stroke="#dce6f1" stroke-width="4"/>
+  <!-- empty shelving -->
+  <rect x="230" y="300" width="40" height="350" fill="#9fb3c8"/>
+  <rect x="230" y="320" width="220" height="14" fill="#b8c7d8"/>
+  <rect x="230" y="440" width="220" height="14" fill="#b8c7d8"/>
+  <!-- checkmark badge -->
+  <g transform="translate(820 400)">
+    <circle r="70" fill="#0957c3"/>
+    <path d="M-30 0 L-8 26 L34 -26" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

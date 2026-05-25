@@ -1,0 +1,32 @@
+---
+// "Heavy / awkward items we still take" — the moat. Competitors duck these;
+// owning them wins high-intent searches.
+import { Icon } from 'astro-icon/components';
+const items = [
+  { name: 'Hot tubs', icon: 'lucide:bath', note: 'Drained, cut down, hauled' },
+  { name: 'Pianos', icon: 'lucide:piano', note: 'Uprights & spinets' },
+  { name: 'Sheds', icon: 'lucide:tent', note: 'Dismantled & removed' },
+  { name: 'Treadmills & gym gear', icon: 'lucide:dumbbell', note: 'No assembly to undo for you' },
+  { name: 'Riding mowers', icon: 'lucide:tractor', note: 'Fluids handled right' },
+  { name: 'Swing sets & trampolines', icon: 'lucide:trees', note: 'Backyard teardown' },
+];
+const smsLink = 'sms:+19522325107';
+---
+<section class="section heavy" aria-label="Heavy and awkward items we take">
+  <div class="section-head"><div>
+    <p class="section-kicker">The hard stuff</p>
+    <h2>The heavy, awkward items most haulers refuse.</h2>
+  </div>
+    <p class="section-copy">If it's bulky, heavy, or a pain to break down, it's exactly what we're set up for. Text a photo and we'll quote it.</p>
+  </div>
+  <div class="heavy-grid">
+    {items.map((it) => (
+      <article class="heavy-card">
+        <span class="heavy-icon"><Icon name={it.icon} size={26} /></span>
+        <strong>{it.name}</strong>
+        <small>{it.note}</small>
+      </article>
+    ))}
+  </div>
+  <p class="heavy-cta"><a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text a photo of the heavy stuff</a></p>
+</section>

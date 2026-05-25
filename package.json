@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/fetch-reviews.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
     "build": "astro build",
     "preview": "astro preview",
+    "reviews": "node scripts/fetch-reviews.mjs",
     "astro": "astro"
   },
   "dependencies": {

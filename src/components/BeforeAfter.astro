@@ -1,0 +1,51 @@
+---
+// Before/after slider. Pure CSS + a tiny range input per pair — no framework.
+// Renders illustrations today (clearly labeled); swap to real photos via
+// src/data/beforeAfter.js. Below-the-fold, so images lazy-load.
+import { beforeAfter } from '../data/beforeAfter.js';
+const anyIllustration = beforeAfter.some((p) => p.illustration);
+---
+<section class="section beforeafter" aria-label="Before and after results">
+  <div class="section-head"><div>
+    <p class="section-kicker">Before &amp; after</p>
+    <h2>From buried to broom-clean.</h2>
+  </div>
+    <p class="section-copy">
+      Drag the slider on each job to see the difference.
+      {anyIllustration && <span class="ba-note"> (Illustrated previews — real job photos coming soon.)</span>}
+    </p>
+  </div>
+
+  <div class="ba-grid">
+    {beforeAfter.map((pair, i) => (
+      <figure class="ba-item">
+        <div class="ba-stage" style={`--pos:50%`}>
+          <img class="ba-after" src={pair.after.src} alt={pair.after.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
+          <div class="ba-before-wrap" id={`ba-clip-${i}`}>
+            <img class="ba-before" src={pair.before.src} alt={pair.before.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
+          </div>
+          <span class="ba-tag ba-tag-before">Before</span>
+          <span class="ba-tag ba-tag-after">After</span>
+          <input class="ba-range" type="range" min="0" max="100" value="50"
+            aria-label={`${pair.title}: reveal before and after`} data-ba-target={`ba-clip-${i}`} />
+          <span class="ba-handle" aria-hidden="true" id={`ba-handle-${i}`}></span>
+        </div>
+        <figcaption>{pair.title}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.ba-range').forEach((range) => {
+    const clip = document.getElementById(range.dataset.baTarget);
+    const handle = document.getElementById(range.dataset.baTarget.replace('clip', 'handle'));
+    const apply = () => {
+      const v = range.value + '%';
+      if (clip) clip.style.width = v;
+      if (handle) handle.style.left = v;
+    };
+    range.addEventListener('input', apply);
+    apply();
+  });
+</script>

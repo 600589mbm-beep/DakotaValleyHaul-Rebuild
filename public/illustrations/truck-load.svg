@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of a Dakota Valley junk removal truck loaded with furniture and appliances outside a home">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf2ff"/>
+      <stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <!-- ground -->
+  <rect y="620" width="1200" height="180" fill="#e4ebf3"/>
+  <rect y="612" width="1200" height="10" fill="#d2dde8"/>
+  <!-- house -->
+  <g>
+    <rect x="120" y="300" width="360" height="320" fill="#ffffff" stroke="#d2dde8" stroke-width="4"/>
+    <polygon points="100,300 300,170 500,300" fill="#0957c3"/>
+    <rect x="180" y="380" width="90" height="90" fill="#eaf2ff" stroke="#cfdceb" stroke-width="4"/>
+    <rect x="330" y="430" width="90" height="190" fill="#0b3d8c"/>
+  </g>
+  <!-- truck body -->
+  <g>
+    <rect x="560" y="360" width="430" height="260" rx="14" fill="#0957c3"/>
+    <rect x="560" y="360" width="430" height="60" rx="14" fill="#0b64e0"/>
+    <text x="775" y="510" font-family="Inter, sans-serif" font-size="46" font-weight="900" fill="#ffffff" text-anchor="middle">DAKOTA VALLEY</text>
+    <text x="775" y="556" font-family="Inter, sans-serif" font-size="26" font-weight="700" fill="#cfe0ff" text-anchor="middle">JUNK REMOVAL</text>
+  </g>
+  <!-- cab -->
+  <g>
+    <rect x="990" y="430" width="150" height="190" rx="12" fill="#07306e"/>
+    <rect x="1010" y="455" width="110" height="70" rx="8" fill="#bcd4ff"/>
+  </g>
+  <!-- wheels -->
+  <g fill="#1a1f2a">
+    <circle cx="650" cy="640" r="48"/><circle cx="900" cy="640" r="48"/><circle cx="1075" cy="640" r="48"/>
+  </g>
+  <g fill="#54606e">
+    <circle cx="650" cy="640" r="20"/><circle cx="900" cy="640" r="20"/><circle cx="1075" cy="640" r="20"/>
+  </g>
+  <!-- load: sofa + boxes + fridge poking from truck bed top -->
+  <g>
+    <rect x="600" y="300" width="120" height="70" rx="10" fill="#9fb3c8"/>
+    <rect x="600" y="290" width="120" height="26" rx="10" fill="#b8c7d8"/>
+    <rect x="740" y="280" width="80" height="90" fill="#cdd8e4"/>
+    <rect x="740" y="280" width="80" height="14" fill="#aebccd"/>
+    <rect x="840" y="300" width="90" height="70" rx="6" fill="#e8edf3"/>
+    <line x1="885" y1="300" x2="885" y2="370" stroke="#c2cedb" stroke-width="4"/>
+  </g>
+</svg>

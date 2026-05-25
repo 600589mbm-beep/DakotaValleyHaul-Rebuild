@@ -17,7 +17,7 @@ export const serviceIcons = {
   'hoarder-cleanout':      'lucide:boxes',
   'estate-cleanout':       'lucide:home',
   'attic-cleanout':        'lucide:triangle',
-  'basement-cleanout':     'lucide:stairs',
+  'basement-cleanout':     'lucide:layers',
   'fence-removal':         'lucide:fence',
   'shed-removal':          'lucide:tent',
   'single-item-pickup':    'lucide:package',
@@ -29,4 +29,32 @@ export const FALLBACK_ICON = 'lucide:check-circle-2';
 
 export function iconForService(slug) {
   return serviceIcons[slug] || FALLBACK_ICON;
+}
+
+// "Starting from" price shown on service cards. All jobs honor the $85 minimum;
+// larger cleanouts start higher because they fill more of the truck. These are
+// honest entry points, not quotes — final price is volume-based.
+export const serviceStartingPrice = {
+  'junk-pickup':         'From $85',
+  'furniture-removal':   'From $85',
+  'appliance-recycling': 'From $85',
+  'garage-cleanout':     'From $185',
+  'yard-debris':         'From $120',
+  'dumpster-rental':     'By quote',
+  'mattress-removal':    'From $85',
+  'hot-tub-removal':     'From $380',
+  'scrap-metal-removal': 'From $85',
+  'electronics-removal': 'From $85',
+  'hoarder-cleanout':    'By quote',
+  'estate-cleanout':     'From $220',
+  'attic-cleanout':      'From $120',
+  'basement-cleanout':   'From $185',
+  'fence-removal':       'From $120',
+  'shed-removal':        'From $185',
+  'single-item-pickup':  'From $85',
+  'demolition':          'By quote',
+};
+
+export function startingPriceForService(slug) {
+  return serviceStartingPrice[slug] || 'From $85';
 }

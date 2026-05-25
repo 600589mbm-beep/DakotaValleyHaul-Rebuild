@@ -14,7 +14,7 @@ const {
   title,
   description,
   canonical,
-  ogImage = 'https://dakotavalleyjunkremovalservice.com/attached_assets/IMG_7020_1750653174383.jpeg',
+  ogImage = 'https://dakotavalleyjunkremovalservice.com/og-card.png',
   schema,
   noindex = false,
 } = Astro.props;
@@ -36,6 +36,8 @@ const {
     <meta name="description" content={description} />
     <meta name="author" content="Dakota Valley Junk Removal" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en-us" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
 
     <!-- OpenGraph -->
     <meta property="og:title" content={title} />
@@ -45,9 +47,9 @@ const {
     <meta property="og:site_name" content="Dakota Valley Junk Removal" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Dakota Valley Junk Removal truck and crew" />
+    <meta property="og:image:alt" content="Dakota Valley Junk Removal — curbside & garage pickup across Minnesota, $85 minimum" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="900" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -74,5 +76,39 @@ const {
   </head>
   <body>
     <slot />
+
+    <!-- Lightweight analytics dispatcher. Vendor-agnostic: pushes to
+         window.dataLayer (GA/GTM), fires a CustomEvent, and is a no-op-safe
+         global. Wire GA4/Plausible later by reading dvq events or dataLayer. -->
+    <script is:inline>
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dvTrack = function (event, props) {
+          var payload = Object.assign({ event: 'dv_' + event }, props || {});
+          window.dataLayer.push(payload);
+          try { window.dispatchEvent(new CustomEvent('dv:' + event, { detail: props || {} })); } catch (e) {}
+          if (window.gtag) window.gtag('event', event, props || {});
+        };
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href], [data-track]');
+          if (!a) return;
+          var named = a.getAttribute('data-track');
+          if (named) { window.dvTrack(named, { href: a.getAttribute('href') || undefined }); return; }
+          var href = a.getAttribute('href') || '';
+          if (href.indexOf('sms:') === 0) window.dvTrack('sms_click', { href: href });
+          else if (href.indexOf('tel:') === 0) window.dvTrack('phone_click', { href: href });
+        }, true);
+        var pv = document.getElementById('pricing-preview');
+        if (pv && 'IntersectionObserver' in window) {
+          var seen = false;
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && !seen) { seen = true; window.dvTrack('pricing_view', {}); io.disconnect(); }
+            });
+          }, { threshold: 0.4 });
+          io.observe(pv);
+        }
+      })();
+    </script>
   </body>
 </html>

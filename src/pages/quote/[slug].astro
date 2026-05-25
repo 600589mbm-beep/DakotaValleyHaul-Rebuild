@@ -1,0 +1,132 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import { cities, getCitySlugs } from '../../data/cities.js';
+import { tiers, PRICE_FLOOR } from '../../data/pricing.js';
+import reviewsData from '../../data/reviews.json';
+
+export function getStaticPaths() {
+  return getCitySlugs().map((slug) => ({ params: { slug }, props: { city: cities[slug], slug } }));
+}
+
+const { city, slug } = Astro.props;
+const site = 'https://dakotavalleyjunkremovalservice.com';
+const canonical = `${site}/quote/${slug}/`;
+const phoneDisplay = '(952) 232-5107';
+const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: 0 };
+const verified = reviewsData.source === 'google';
+
+const smsBody = encodeURIComponent(`Hi Dakota Valley — I'd like a junk removal quote in ${city.name}, MN. Here are photos and item details:`);
+const citySms = `sms:+19522325107?&body=${smsBody}`;
+const neighborhoods = (city.neighborhoods || []).slice(0, 4);
+const county = city.county || 'your county';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+        { '@type': 'ListItem', position: 2, name: 'Get a quote', item: `${site}/#quote` },
+        { '@type': 'ListItem', position: 3, name: `${city.name} quote` },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: `Junk removal in ${city.name}, MN`,
+      serviceType: 'Junk removal',
+      areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'AdministrativeArea', name: county } },
+      provider: { '@type': 'LocalBusiness', name: 'Dakota Valley Junk Removal', telephone: '+1-952-232-5107', priceRange: 'From $85' },
+      url: canonical,
+      offers: { '@type': 'Offer', priceCurrency: 'USD', price: '85', description: '$85 minimum curbside or garage pickup' },
+    },
+  ],
+};
+---
+<Layout
+  title={`Junk Removal Quote in ${city.name}, MN | Text Photos, $85 Min | Dakota Valley`}
+  description={`Get a fast junk removal quote in ${city.name}, ${county}. Text photos, get a firm price and a pickup window — no phone call. $85 minimum, licensed & insured.`}
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="hero" id="top">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+      </nav>
+      <div class="hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>{city.name} quote</span></p>
+        <p class="eyebrow"><Icon name="lucide:map-pin" size={16} /> {city.name}, {county}</p>
+        <h1>Get a junk removal quote in {city.name}.</h1>
+        <div class="hero-rating" aria-label="Rating and credentials">
+          <span class="hero-stars" aria-hidden="true">★★★★★</span><strong>{agg.ratingValue.toFixed(1)}</strong>
+          <span class="hero-rating-sep">·</span><span>{agg.reviewCount} reviews</span>
+          <span class="hero-rating-sep">·</span><span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
+        </div>
+        <p class="hero-copy">
+          <strong>Text a few photos of what needs to go.</strong> The crew that routes through {city.name} and {county}
+          sends a firm quote and a pickup window — usually within hours. {PRICE_FLOOR}, no phone call required.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos for a {city.name} quote</a>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:file-text" size={18} /> Use the booking form</a>
+          <span class="price-chip"><Icon name="lucide:tag" size={14} /> {PRICE_FLOOR}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="band-wrap"><TrustBar aggregate={agg} verified={verified} /></div>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Local pickup</p>
+        <h2>Routes built around {city.name}.</h2>
+      </div>
+        <p class="section-copy">
+          Because we schedule by route through {county}, {city.name} pickups stay efficient — which keeps your price down.
+          {neighborhoods.length > 0 && <span> We regularly serve {neighborhoods.join(', ')} and the rest of {city.name}.</span>}
+        </p>
+      </div>
+
+      <div class="pricing-cards">
+        {tiers.map((t) => (
+          <a class="pricing-card" href="/pricing/" data-track="pricing_view">
+            <span class="pricing-card-label">{t.label}</span>
+            <span class="pricing-card-price">{t.price}</span>
+            <span class="pricing-card-detail">{t.detail}</span>
+            <span class="pricing-card-blurb">{t.blurb}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Where it goes</p>
+        <h2>{city.name} junk, kept out of the landfill.</h2>
+      </div></div>
+      <p class="section-copy">
+        Usable items from {city.name} are donated through Bridging, Arc's Value Village, and Goodwill Twin Cities.
+        Metal, electronics, and mattresses are recycled via {county} and certified Minnesota programs — 60%+ diverted overall.
+      </p>
+      {city.testimonial && (
+        <article class="testimonial-card" style="max-width:560px;margin-top:22px">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">&ldquo;{city.testimonial.text}&rdquo;</p>
+          <div class="testimonial-who"><strong>{city.testimonial.name}</strong><span>{city.testimonial.location || `${city.name}, MN`}</span></div>
+        </article>
+      )}
+      <p style="margin-top:24px"><a href={`/cities/${slug}/`} style="color:var(--blue);font-weight:900">Full {city.name} service details →</a></p>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href={citySms} data-track="sms_click">Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>

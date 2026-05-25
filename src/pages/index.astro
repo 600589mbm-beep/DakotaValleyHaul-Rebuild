@@ -2,55 +2,126 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import TelegramForm from '../components/TelegramForm.astro';
+import TrustBar from '../components/TrustBar.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import PricingPreview from '../components/PricingPreview.astro';
+import AvailabilityRibbon from '../components/AvailabilityRibbon.astro';
+import ImpactChart from '../components/ImpactChart.astro';
+import HeavyItems from '../components/HeavyItems.astro';
+import QuickQuote from '../components/QuickQuote.astro';
 import { cities } from '../data/cities.js';
 import { services } from '../data/services.js';
-import { photos } from '../data/photos.js';
-import { iconForService } from '../data/serviceIcons.js';
-import TelegramForm from '../components/TelegramForm.astro';
-import { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from '../data/booking.js';
-
-const homeHeroPhoto = photos[0]; // canonical "lead" photo
-const homeGalleryPhotos = photos.slice(1, 4); // 3 supporting shots
+import { iconForService, startingPriceForService } from '../data/serviceIcons.js';
+import { PRICE_FLOOR, PRICE_FLOOR_DETAIL, tiers } from '../data/pricing.js';
+import reviewsData from '../data/reviews.json';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
+const site = 'https://dakotavalleyjunkremovalservice.com';
 
-// Featured cities row at the top of the areas section (the high-traffic
-// Twin Cities metros — pure visual hooks, full list lives in the accordion).
+const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: 0 };
+
 const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
+const topServices = Object.entries(services).slice(0, 6);
+const restServices = Object.entries(services).slice(6);
+
+// Compact {slug,name,lat,lng} list for the client-side city finder.
+const cityGeo = Object.entries(cities)
+  .filter(([, c]) => c.geo)
+  .map(([slug, c]) => ({ slug, name: c.name, lat: c.geo.latitude, lng: c.geo.longitude }));
+
+const faqs = [
+  { q: 'What is the minimum pickup price?', a: 'The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal.' },
+  { q: 'Why text instead of calling?', a: 'A photo tells us more than a phone call ever could. Text a few shots and the crew sends a firm quote and a pickup window — no phone tag, no salesperson, no waiting on hold.' },
+  { q: 'Do you serve my city or county?', a: 'Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location.' },
+  { q: 'When is the soonest you can pick up?', a: 'Most pickups are scheduled about two business days out so the crew arrives with the right equipment. Same-day jobs are sometimes available based on crew capacity — text to check.' },
+  { q: 'Do I need to be home during the pickup?', a: 'No — as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a confirmation photo when the job is complete.' },
+  { q: 'What items do you remove?', a: 'Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs like hot tubs and estate cleanouts are quoted by request — send photos to start.' },
+  { q: 'What items do you NOT accept?', a: 'For safety and legal reasons, hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives. If unsure about an item, text a photo first.' },
+  { q: 'Do you recycle or donate items?', a: 'Yes. Furniture in good condition goes to Bridging, Arc\'s Value Village, and Goodwill Twin Cities. Electronics go to R2-certified recyclers. Mattresses are recycled at certified Minnesota facilities. Target is 60%+ diverted from landfill.' },
+  { q: 'How long does junk removal take?', a: 'Most residential pickups take 30–90 minutes depending on volume. Full estate cleanouts may take 2–4 hours. The crew works efficiently and never rushes — the property is left clean.' },
+];
+
+// ── Structured data ───────────────────────────────────────────────────────
+const businessId = `${site}/#business`;
+
+const serviceSchema = Object.entries(services).map(([slug, s]) => ({
+  '@type': 'Service',
+  '@id': `${site}/services/${slug}/#service`,
+  name: s.name,
+  description: s.metaDescription || s.intro,
+  serviceType: s.name,
+  provider: { '@id': businessId },
+  areaServed: { '@type': 'State', name: 'Minnesota' },
+  url: `${site}/services/${slug}/`,
+}));
+
+const offerCatalog = {
+  '@type': 'OfferCatalog',
+  '@id': `${site}/#pricing`,
+  name: 'Junk removal pricing tiers',
+  itemListElement: tiers.map((t) => ({
+    '@type': 'Offer',
+    name: t.label,
+    description: t.blurb,
+    priceCurrency: 'USD',
+    ...(t.priceLow === t.priceHigh
+      ? { price: String(t.priceLow) }
+      : { priceSpecification: { '@type': 'PriceSpecification', minPrice: t.priceLow, maxPrice: t.priceHigh, priceCurrency: 'USD' } }),
+    availability: 'https://schema.org/InStock',
+  })),
+};
+
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  '@id': `${site}/#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${site}/#services` },
+    { '@type': 'ListItem', position: 3, name: 'Pricing', item: `${site}/pricing/` },
+    { '@type': 'ListItem', position: 4, name: 'Reviews', item: `${site}/reviews/` },
+  ],
+};
+
+// Only emit Review markup when reviews come from a verified source (Google).
+const verifiedReviews = reviewsData.source === 'google'
+  ? (reviewsData.reviews || []).slice(0, 12).map((r) => ({
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: String(r.rating || 5), bestRating: '5' },
+      author: { '@type': 'Person', name: r.author },
+      reviewBody: r.text,
+      ...(r.publishedAt ? { datePublished: r.publishedAt } : {}),
+    }))
+  : [];
 
 const homepageSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://dakotavalleyjunkremovalservice.com/#organization',
+      '@id': `${site}/#organization`,
       name: 'Dakota Valley Junk Removal',
-      url: 'https://dakotavalleyjunkremovalservice.com',
-      logo: 'https://dakotavalleyjunkremovalservice.com/favicon.svg',
-      sameAs: [
-        'https://www.facebook.com/dakotavalleyjunkremoval',
-        'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan',
-      ],
+      url: site,
+      logo: `${site}/favicon.svg`,
+      sameAs: ['https://www.facebook.com/dakotavalleyjunkremoval', 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan'],
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://dakotavalleyjunkremovalservice.com/#business',
-      parentOrganization: { '@id': 'https://dakotavalleyjunkremovalservice.com/#organization' },
+      '@id': businessId,
+      parentOrganization: { '@id': `${site}/#organization` },
       name: 'Dakota Valley Junk Removal',
-      url: 'https://dakotavalleyjunkremovalservice.com',
+      url: site,
       telephone: '+1-952-232-5107',
-      email: 'info@dakotavalleyjunkremovalservice.com',
+      email,
       priceRange: 'From $85',
-      image: 'https://dakotavalleyjunkremovalservice.com/attached_assets/IMG_7020_1750653174383.jpeg',
+      image: `${site}/og-card.png`,
       address: {
         '@type': 'PostalAddress',
         streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
-        addressLocality: 'Eagan',
-        addressRegion: 'MN',
-        postalCode: '55122',
-        addressCountry: 'US',
+        addressLocality: 'Eagan', addressRegion: 'MN', postalCode: '55122', addressCountry: 'US',
       },
       geo: { '@type': 'GeoCoordinates', latitude: 44.8041, longitude: -93.1666 },
       areaServed: [
@@ -59,71 +130,58 @@ const homepageSchema = {
         { '@type': 'AdministrativeArea', name: 'Hennepin County' },
         { '@type': 'AdministrativeArea', name: 'Ramsey County' },
       ],
-      serviceType: ['Curbside junk pickup', 'Garage junk pickup', 'Furniture removal', 'Appliance recycling', 'Yard waste removal', 'Estate cleanout'],
-      founder: { '@type': 'Person', name: 'Dakota Valley Team' },
+      hasOfferCatalog: { '@id': `${site}/#pricing` },
       foundingDate: '2009',
       knowsAbout: ['Junk removal', 'Furniture removal', 'Appliance recycling', 'Estate cleanout', 'Yard waste'],
-      sameAs: [
-        'https://www.facebook.com/dakotavalleyjunkremoval',
-        'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan',
-      ],
+      sameAs: ['https://www.facebook.com/dakotavalleyjunkremoval', 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan'],
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '08:00',
-        closes: '21:00',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '08:00', closes: '21:00',
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5.0',
-        reviewCount: '6',
-        bestRating: '5',
-        worstRating: '1',
-      },
+      // Only assert aggregateRating + Review markup when reviews come from a
+      // verified source (Google, via scripts/fetch-reviews.mjs). The on-page
+      // testimonials still render as social proof regardless — but unverified
+      // counts must not become rich-snippet claims.
+      ...(reviewsData.source === 'google'
+        ? {
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: agg.ratingValue.toFixed(1),
+              reviewCount: String(agg.reviewCount),
+              bestRating: '5', worstRating: '1',
+            },
+          }
+        : {}),
+      ...(verifiedReviews.length ? { review: verifiedReviews } : {}),
     },
+    offerCatalog,
+    ...serviceSchema,
+    breadcrumb,
     {
       '@type': 'WebSite',
-      '@id': 'https://dakotavalleyjunkremovalservice.com/#website',
-      url: 'https://dakotavalleyjunkremovalservice.com',
+      '@id': `${site}/#website`,
+      url: site,
       name: 'Dakota Valley Junk Removal',
-      publisher: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
+      publisher: { '@id': businessId },
       inLanguage: 'en-US',
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://dakotavalleyjunkremovalservice.com/#faq',
-      mainEntity: [
-        { '@type': 'Question', name: 'What is the minimum pickup price?', acceptedAnswer: { '@type': 'Answer', text: 'The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal.' } },
-        { '@type': 'Question', name: 'Why curbside and garage only?', acceptedAnswer: { '@type': 'Answer', text: 'This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers.' } },
-        { '@type': 'Question', name: 'Do I need to call?', acceptedAnswer: { '@type': 'Answer', text: 'No. Text and the booking form are preferred. Photos, item details, city or county, and your preferred calendar window are usually enough to start.' } },
-        { '@type': 'Question', name: 'Do you serve my city or county?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location.' } },
-        { '@type': 'Question', name: 'When is the soonest you can pick up?', acceptedAnswer: { '@type': 'Answer', text: 'Appointments are typically scheduled about two business days out so the crew is prepared with the right equipment. Most customers book within 2-3 business days. Text or use the booking form to check current availability.' } },
-        { '@type': 'Question', name: 'Do I need to be home during the pickup?', acceptedAnswer: { '@type': 'Answer', text: 'No, as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a confirmation photo when the job is complete.' } },
-        { '@type': 'Question', name: 'What items do you remove?', acceptedAnswer: { '@type': 'Answer', text: 'Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs like hot tubs and estate cleanouts are quoted by request.' } },
-        { '@type': 'Question', name: 'What items do you NOT accept?', acceptedAnswer: { '@type': 'Answer', text: 'For safety and legal reasons, hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives. If unsure about an item, text a photo first.' } },
-        { '@type': 'Question', name: 'Do you recycle or donate items?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Furniture in good condition goes to Bridging, Arc\'s Value Village, and Goodwill Twin Cities. Electronics go to R2-certified recyclers. Mattresses are recycled at certified Minnesota facilities. Target is 60%+ diverted from landfill.' } },
-        { '@type': 'Question', name: 'How long does junk removal take?', acceptedAnswer: { '@type': 'Answer', text: 'Most residential pickups take 30-90 minutes depending on volume. Full estate cleanouts may take 2-4 hours. The crew works efficiently and never rushes - the property is left clean.' } },
-      ],
+      '@id': `${site}/#faq`,
+      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.faq-card summary', '.faq-card p'] },
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     },
   ],
 };
-
-const faqs = [
-  { q: 'What is the minimum pickup price?', a: 'The minimum pickup price is $85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal.' },
-  { q: 'Why curbside and garage only?', a: 'This keeps labor time low, helps the crew move faster, and lets Dakota Valley pass savings directly back to customers.' },
-  { q: 'Do I need to call?', a: 'No. Text and the booking form are preferred. Photos, item details, city or county, and your preferred calendar window are usually enough to start.' },
-  { q: 'Do you serve my city or county?', a: 'Yes. Dakota Valley is set up for all Minnesota cities and counties, with route-aware scheduling based on your location.' },
-  { q: 'When is the soonest you can pick up?', a: 'Appointments are typically scheduled about two business days out so the crew is prepared with the right equipment. Most customers book within 2–3 business days. Text or use the booking form to check current availability.' },
-  { q: 'Do I need to be home during the pickup?', a: 'No — as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a confirmation photo when the job is complete.' },
-  { q: 'What items do you remove?', a: 'Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs like hot tubs and estate cleanouts are quoted by request — send photos to start.' },
-  { q: 'What items do you NOT accept?', a: 'For safety and legal reasons, hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives. If unsure about an item, text a photo first.' },
-  { q: 'Do you recycle or donate items?', a: 'Yes. Furniture in good condition goes to Bridging, Arc\'s Value Village, and Goodwill Twin Cities. Electronics go to R2-certified recyclers. Mattresses are recycled at certified Minnesota facilities. Target is 60%+ diverted from landfill.' },
-  { q: 'How long does junk removal take?', a: 'Most residential pickups take 30–90 minutes depending on volume. Full estate cleanouts may take 2–4 hours. The crew works efficiently and never rushes — the property is left clean.' },
-];
 ---
 <Layout
-  title="Dakota Valley Junk Removal | Curbside and Garage Pickup"
-  description="Dakota Valley Junk Removal offers affordable curbside and garage junk pickup across Minnesota with an $85 minimum, text-first photo quotes, and calendar booking."
+  title="Junk Removal Minnesota | Curbside & Garage Pickup, $85 Min | Dakota Valley"
+  description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, $85 minimum, photo quotes in hours, 5.0★ rated, licensed & insured since 2009."
   canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
 >
@@ -137,43 +195,47 @@ const faqs = [
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="/pricing/">Pricing</a>
-          <a href="#areas">Areas</a>
-          <a href="#about">About</a>
+          <a href="#areas">Service area</a>
+          <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <a class="nav-call" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
+
       <div class="hero-content">
-        <p class="eyebrow"><Icon name="lucide:sparkles" size={16} /> Minnesota junk removal, cleaned up</p>
-        <h1>Dakota Valley Junk Removal</h1>
+        <p class="eyebrow"><Icon name="lucide:sparkles" size={16} /> Minnesota junk removal, done by text</p>
+        <h1>Junk gone — no phone call required.</h1>
+
+        <div class="hero-rating" aria-label="Rating and credentials">
+          <span class="hero-stars" aria-hidden="true">★★★★★</span>
+          <strong>{agg.ratingValue.toFixed(1)}</strong>
+          <span class="hero-rating-sep">·</span>
+          <span>{agg.reviewCount} reviews</span>
+          <span class="hero-rating-sep">·</span>
+          <span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
+          <span class="hero-rating-sep">·</span>
+          <span>Since 2009</span>
+          <span class="hero-rating-sep">·</span>
+          <span><Icon name="lucide:recycle" size={15} /> 60%+ diverted</span>
+        </div>
+
         <p class="hero-copy">
-          <strong>Same-day eligible curbside and garage junk pickup across Minnesota.</strong>
-          Text photos, get a firm quote in hours, pick a calendar window. $85 minimum, no phone call required.
+          <strong>Same-day eligible curbside and garage pickup across Minnesota.</strong>
+          Text photos, get a firm quote in hours, pick a window. $85 minimum, no salesperson, no hold music.
         </p>
+
         <div class="hero-actions">
-          <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text a photo quote</a>
-          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-          <a class="button secondary" href="#quote"><Icon name="lucide:send" size={18} /> Send booking form</a>
-          <a class="button ghost" href="#areas"><Icon name="lucide:map-pin" size={18} /> Check service area</a>
+          <a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text a photo for a quote</a>
+          <a class="button secondary" href="#quote"><Icon name="lucide:file-text" size={18} /> Get a written quote in 60 seconds</a>
+          <span class="price-chip"><Icon name="lucide:tag" size={14} /> {PRICE_FLOOR}</span>
         </div>
-        <div class="hero-proof" aria-label="Business highlights">
-          <span><Icon name="lucide:check-circle-2" size={16} /> $85 minimum pickup</span>
-          <span><Icon name="lucide:camera" size={16} /> Photo estimates by text or form</span>
-          <span><Icon name="lucide:home" size={16} /> Curbside and garage only</span>
-        </div>
+
+        <AvailabilityRibbon />
+        <QuickQuote />
       </div>
     </section>
 
-    <figure class="city-hero-image">
-      <img
-        src={homeHeroPhoto.src}
-        width={homeHeroPhoto.width}
-        height={homeHeroPhoto.height}
-        alt={`${homeHeroPhoto.desc} — Dakota Valley Junk Removal serving Minneapolis, St. Paul, and Minnesota`}
-        loading="eager"
-        fetchpriority="high"
-      />
-    </figure>
+    <div class="band-wrap"><TrustBar aggregate={agg} verified={reviewsData.source === 'google'} /></div>
 
     <section class="band metrics" aria-label="Key service stats">
       <div><strong>$85</strong><span>Minimum pickup</span></div>
@@ -182,96 +244,114 @@ const faqs = [
       <div><strong>Since 2009</strong><span>Locally owned</span></div>
     </section>
 
-    <section class="band trust-grid" aria-label="Trust signals">
-      <article>
-        <h3><Icon name="lucide:shield-check" size={20} /> Licensed and insured</h3>
-        <p>Fully licensed for waste hauling. General liability insurance covers your property during pickup.</p>
-      </article>
-      <article>
-        <h3><Icon name="lucide:calendar-days" size={20} /> Same-day eligible</h3>
-        <p>Most pickups scheduled within 2-3 business days. Same-day jobs available based on crew capacity.</p>
-      </article>
-      <article>
-        <h3><Icon name="lucide:recycle" size={20} /> 60%+ diverted from landfill</h3>
-        <p>Furniture donated to Bridging, Arc, Goodwill. Electronics to R2-certified recyclers. Mattresses recycled.</p>
-      </article>
-      <article>
-        <h3><Icon name="lucide:check-circle-2" size={20} /> Transparent pricing</h3>
-        <p>$85 minimum. Volume-based tiers. Surcharges disclosed upfront. <a href="/pricing/">See pricing</a>.</p>
-      </article>
-    </section>
-
-    <section class="section split" id="services">
-      <div>
+    <!-- Services grid: top 6 rich cards + disclosure for the rest -->
+    <section class="section services-v2" id="services">
+      <div class="section-head"><div>
         <p class="section-kicker">Services</p>
         <h2>Built for the jobs people actually put off.</h2>
-        <p class="section-copy">
-          Pick the service that matches your situation. Keeping pickup to curbside and garage jobs lowers labor time so savings can go back to customers.
-        </p>
-        <div class="service-list">
-          {Object.entries(services).slice(0, 6).map(([slug, s]) => (
-            <a href={`/services/${slug}/`} class="service-row">
-              <span class="icon-box"><Icon name={iconForService(slug)} size={22} /></span>
-              <span><strong>{s.name}</strong><small>{s.headline}</small></span>
+      </div>
+        <p class="section-copy">Curbside and garage focus keeps labor low — so savings go back to you. Tap a service for details and local pricing.</p>
+      </div>
+      <div class="service-cards">
+        {topServices.map(([slug, s]) => (
+          <a href={`/services/${slug}/`} class="service-card-v2" data-track="service_click" data-astro-prefetch>
+            <span class="service-card-icon"><Icon name={iconForService(slug)} size={26} /></span>
+            <strong class="service-card-name">{s.name}</strong>
+            <span class="service-card-desc">{s.headline}</span>
+            <span class="service-card-price">{startingPriceForService(slug)}</span>
+          </a>
+        ))}
+      </div>
+      <details class="services-more">
+        <summary>See all {Object.keys(services).length} services</summary>
+        <div class="services-more-grid">
+          {restServices.map(([slug, s]) => (
+            <a href={`/services/${slug}/`} class="services-more-link" data-track="service_click" data-astro-prefetch>
+              <Icon name={iconForService(slug)} size={18} /> {s.name}
+              <span class="services-more-price">{startingPriceForService(slug)}</span>
             </a>
           ))}
         </div>
-        <div class="service-deep-links" aria-label="Service pages">
-          {Object.entries(services).map(([slug, s]) => (
-            <a href={`/services/${slug}/`} class="service-deep-link">{s.name} →</a>
-          ))}
+      </details>
+    </section>
+
+    <PricingPreview />
+
+    <!-- Booking section -->
+    <section class="section booking" id="quote">
+      <div class="booking-grid">
+        <div class="booking-intro">
+          <p class="section-kicker" id="pricing">Get your quote</p>
+          <h2>Send it once. Get a window back.</h2>
+          <p>{PRICE_FLOOR_DETAIL} Fastest path: <a href={smsLink} data-track="sms_click">text photos to {phoneDisplay}</a>.</p>
+          <TrustBar aggregate={agg} compact={true} verified={reviewsData.source === 'google'} />
         </div>
+        <aside class="quote-card">
+          <p class="quote-step2-banner">Step 2 — confirm a couple details and you're booked.</p>
+          <TelegramForm />
+        </aside>
       </div>
-
-      <aside class="quote-card" id="quote">
-        <p class="section-kicker" id="pricing">Booking form</p>
-        <h3>Send a booking, get a window</h3>
-        <p>
-          <strong>{PRICE_FLOOR_DETAIL}</strong>
-        </p>
-        <TelegramForm />
-      </aside>
     </section>
 
-    <section class="section tight" id="items">
+    <Testimonials count={9} />
+
+    <BeforeAfter />
+
+    <!-- Why text, not call -->
+    <section class="section whytext" aria-label="Why text instead of call">
       <div class="section-head"><div>
-        <p class="section-kicker">What we take</p>
-        <h2>From one bulky item to a full property reset.</h2>
-      </div>
-        <p class="section-copy">Stage items at the curb or in the garage. Mention anything heavy, sharp, oversized, or unusual when requesting a quote.</p>
-      </div>
-      <div class="take-grid">
-        <article class="take-card"><h3>Furniture & home goods</h3><p>Sofas, beds, dressers, dining sets, exercise equipment.</p></article>
-        <article class="take-card"><h3>Appliances</h3><p>Refrigerators (refrigerant recovered), washers, dryers, stoves.</p></article>
-        <article class="take-card"><h3>Yard & construction debris</h3><p>Brush, fencing, deck debris, light remodel debris.</p></article>
-        <article class="take-card"><h3>Estate & garage cleanouts</h3><p>Full property resets. Donations routed to Bridging, Arc, Goodwill.</p></article>
+        <p class="section-kicker">Why text, not call</p>
+        <h2>The 30-second difference.</h2>
+      </div></div>
+      <div class="whytext-cols">
+        <article class="whytext-card whytext-them">
+          <h3>The big-brand way</h3>
+          <ul>
+            <li><Icon name="lucide:phone-off" size={16} /> Call center, hold music, upsells</li>
+            <li><Icon name="lucide:clock" size={16} /> "Arrival window" wastes your morning</li>
+            <li><Icon name="lucide:circle-help" size={16} /> Price guessed on the phone, settled on site</li>
+            <li><Icon name="lucide:trash-2" size={16} /> Most of it goes straight to the landfill</li>
+          </ul>
+        </article>
+        <article class="whytext-card whytext-us">
+          <h3>The Dakota Valley way</h3>
+          <ul>
+            <li><Icon name="lucide:message-square-text" size={16} /> Text a photo — no call, no salesperson</li>
+            <li><Icon name="lucide:calendar-check" size={16} /> Pick a real window that fits your day</li>
+            <li><Icon name="lucide:badge-check" size={16} /> Firm quote from the photo, in writing</li>
+            <li><Icon name="lucide:recycle" size={16} /> 60%+ donated or recycled, not dumped</li>
+          </ul>
+          <a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text a photo now</a>
+        </article>
       </div>
     </section>
 
+    <ImpactChart />
+
+    <HeavyItems />
+
+    <!-- Service areas + city finder -->
     <section class="areas-v2" id="areas">
       <header class="areas-head">
         <p class="section-kicker">Service areas</p>
         <h2>One statewide brand, local routes that make sense.</h2>
-        <p class="section-copy">
-          Dakota Valley serves all Minnesota cities and counties with route-aware scheduling and practical curbside or garage pickup.
-        </p>
+        <p class="section-copy">Dakota Valley serves all Minnesota cities and counties with route-aware scheduling and practical curbside or garage pickup.</p>
       </header>
+
+      <div class="city-finder">
+        <button type="button" class="button secondary" id="city-finder-btn"><Icon name="lucide:locate-fixed" size={18} /> Find my city</button>
+        <p class="city-finder-result" id="city-finder-result" role="status" aria-live="polite"></p>
+      </div>
 
       <div class="areas-search">
         <label for="areas-search-input" class="sr-only">Search Minnesota cities</label>
-        <input
-          id="areas-search-input"
-          type="search"
-          class="areas-search-input"
-          placeholder="Search your city"
-          aria-controls="areas-cities-list"
-        />
+        <input id="areas-search-input" type="search" class="areas-search-input" placeholder="Search your city" aria-controls="areas-cities-list" />
         <button type="button" class="areas-search-clear" id="areas-search-clear" aria-label="Clear search" style="display: none">×</button>
       </div>
 
       <div class="areas-featured" role="group" aria-label="Featured Minnesota cities">
         {featuredCitySlugs.map((sl) => cities[sl] && (
-          <a href={`/cities/${sl}/`} class="areas-pill">{cities[sl].name}</a>
+          <a href={`/quote/${sl}/`} class="areas-pill" data-track="city_click" data-astro-prefetch>{cities[sl].name}</a>
         ))}
         <button type="button" class="areas-pill areas-pill-allmn" id="areas-allmn-button">All Minnesota</button>
       </div>
@@ -282,7 +362,7 @@ const faqs = [
         <summary><h3>View all {Object.keys(cities).length} Minnesota cities</h3></summary>
         <div class="areas-link-grid" id="areas-cities-list">
           {Object.entries(cities).map(([slug, c]) => (
-            <a href={`/cities/${slug}/`} class="areas-link" data-areas-name={c.name.toLowerCase()}>{c.name}</a>
+            <a href={`/cities/${slug}/`} class="areas-link" data-areas-name={c.name.toLowerCase()} data-track="city_click">{c.name}</a>
           ))}
         </div>
       </details>
@@ -334,56 +414,70 @@ const faqs = [
 
     <SiteFooter />
 
-    <div class="mobile-cta">
-      <a class="button primary" href={smsLink}>Text</a>
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href={smsLink} data-track="sms_click">Text</a>
       <a class="button secondary" href="#quote">Book</a>
     </div>
   </main>
 
-  <!-- Areas filter — vanilla JS, hydrates the static accordion for live search -->
-  <script>
+  <!-- Areas filter + city finder — vanilla JS -->
+  <script define:vars={{ cityGeo }}>
     (function () {
+      // ── live city search ──
       const input = document.getElementById('areas-search-input');
       const clearBtn = document.getElementById('areas-search-clear');
       const citiesDetails = document.getElementById('areas-cities-details');
       const allMnBtn = document.getElementById('areas-allmn-button');
       const announce = document.getElementById('areas-filter-announce');
-      if (!input) return;
-
-      const cityLinks = document.querySelectorAll('#areas-cities-list [data-areas-name]');
-
-      let timeout;
-      function filter() {
-        const q = input.value.trim().toLowerCase();
-        let cityCount = 0;
-        cityLinks.forEach((el) => {
-          const match = !q || el.dataset.areasName.includes(q);
-          el.style.display = match ? '' : 'none';
-          if (match) cityCount++;
-        });
-        if (q) {
-          citiesDetails.open = true;
+      if (input) {
+        const cityLinks = document.querySelectorAll('#areas-cities-list [data-areas-name]');
+        let timeout;
+        function filter() {
+          const q = input.value.trim().toLowerCase();
+          let count = 0;
+          cityLinks.forEach((el) => {
+            const match = !q || el.dataset.areasName.includes(q);
+            el.style.display = match ? '' : 'none';
+            if (match) count++;
+          });
+          if (q) citiesDetails.open = true;
+          clearBtn.style.display = q ? 'grid' : 'none';
+          if (announce) announce.textContent = q ? (count === 0 ? 'No matches' : `Showing ${count} cities`) : '';
         }
-        clearBtn.style.display = q ? 'grid' : 'none';
-        if (announce) {
-          announce.textContent = q
-            ? (cityCount === 0 ? 'No matches' : `Showing ${cityCount} cities`)
-            : '';
-        }
+        input.addEventListener('input', () => { clearTimeout(timeout); timeout = setTimeout(filter, 100); });
+        clearBtn.addEventListener('click', () => { input.value = ''; filter(); input.focus(); });
+        allMnBtn.addEventListener('click', () => { citiesDetails.open = true; citiesDetails.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
       }
-      input.addEventListener('input', () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(filter, 100);
-      });
-      clearBtn.addEventListener('click', () => {
-        input.value = '';
-        filter();
-        input.focus();
-      });
-      allMnBtn.addEventListener('click', () => {
-        citiesDetails.open = true;
-        citiesDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+
+      // ── city finder (geolocation → nearest served city) ──
+      const btn = document.getElementById('city-finder-btn');
+      const result = document.getElementById('city-finder-result');
+      if (btn && result && navigator.geolocation) {
+        btn.addEventListener('click', () => {
+          result.textContent = 'Locating…';
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const { latitude, longitude } = pos.coords;
+              let best = null, bestD = Infinity;
+              cityGeo.forEach((c) => {
+                const dLat = (c.lat - latitude), dLng = (c.lng - longitude);
+                const d = dLat * dLat + dLng * dLng;
+                if (d < bestD) { bestD = d; best = c; }
+              });
+              if (best) {
+                result.innerHTML = `We serve <strong>${best.name}</strong> — most pickups 2–3 business days out. <a href="/cities/${best.slug}/" data-track="city_click">See ${best.name} pickup details →</a>`;
+                window.dvTrack && window.dvTrack('city_click', { source: 'finder', city: best.slug });
+              } else {
+                result.textContent = 'Use the search box below to find your city.';
+              }
+            },
+            () => { result.textContent = 'No problem — search your city below.'; },
+            { timeout: 8000 }
+          );
+        });
+      } else if (btn) {
+        btn.style.display = 'none';
+      }
     })();
   </script>
 </Layout>

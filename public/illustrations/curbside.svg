@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of household furniture staged at the curb for Dakota Valley junk pickup">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf2ff"/><stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky2)"/>
+  <rect y="620" width="1200" height="180" fill="#e4ebf3"/>
+  <rect y="612" width="1200" height="10" fill="#d2dde8"/>
+  <!-- curb -->
+  <rect y="600" width="1200" height="22" fill="#cdd8e4"/>
+  <!-- house behind -->
+  <rect x="760" y="250" width="380" height="360" fill="#ffffff" stroke="#d2dde8" stroke-width="4"/>
+  <polygon points="740,250 950,120 1160,250" fill="#0957c3"/>
+  <rect x="900" y="430" width="100" height="180" fill="#0b3d8c"/>
+  <!-- sofa -->
+  <g>
+    <rect x="120" y="450" width="300" height="120" rx="18" fill="#0957c3"/>
+    <rect x="120" y="420" width="300" height="70" rx="18" fill="#0b64e0"/>
+    <rect x="110" y="440" width="40" height="130" rx="14" fill="#07306e"/>
+    <rect x="390" y="440" width="40" height="130" rx="14" fill="#07306e"/>
+  </g>
+  <!-- chair -->
+  <g>
+    <rect x="470" y="490" width="120" height="80" rx="12" fill="#9fb3c8"/>
+    <rect x="470" y="430" width="120" height="70" rx="12" fill="#b8c7d8"/>
+  </g>
+  <!-- boxes -->
+  <g>
+    <rect x="630" y="470" width="110" height="100" fill="#d8b48a"/>
+    <rect x="630" y="470" width="110" height="16" fill="#c79c6e"/>
+    <rect x="645" y="490" width="80" height="10" fill="#b78a58"/>
+    <rect x="660" y="400" width="90" height="70" fill="#e0c39e"/>
+    <rect x="660" y="400" width="90" height="14" fill="#c79c6e"/>
+  </g>
+  <!-- mattress leaning -->
+  <rect x="280" y="360" width="60" height="200" rx="12" fill="#eef2f7" stroke="#cfdceb" stroke-width="4" transform="rotate(-8 310 460)"/>
+</svg>

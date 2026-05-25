@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of a clean, clear curb after a Dakota Valley furniture pickup">
+  <defs><linearGradient id="skyc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf2ff"/><stop offset="1" stop-color="#f7faff"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#skyc)"/>
+  <rect y="620" width="1200" height="180" fill="#e4ebf3"/>
+  <rect y="600" width="1200" height="22" fill="#cdd8e4"/>
+  <rect x="760" y="250" width="380" height="360" fill="#ffffff" stroke="#d2dde8" stroke-width="4"/>
+  <polygon points="740,250 950,120 1160,250" fill="#0957c3"/>
+  <rect x="900" y="430" width="100" height="180" fill="#0b3d8c"/>
+  <!-- tidy lawn + tree -->
+  <circle cx="300" cy="430" r="90" fill="#cfe0ff"/>
+  <rect x="290" y="430" width="20" height="170" fill="#9fb3c8"/>
+  <g transform="translate(560 410)"><circle r="70" fill="#0957c3"/><path d="M-30 0 L-8 26 L34 -26" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

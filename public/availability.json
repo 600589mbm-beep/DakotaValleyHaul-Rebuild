@@ -1,0 +1,7 @@
+{
+  "_comment": "Owner: update 'updated' and (optionally) 'windows' as your schedule changes. If 'windows' is empty or stale, the site auto-computes the next openings from leadTimeBusinessDays so the ribbon is never wrong.",
+  "updated": "2026-05-25",
+  "leadTimeBusinessDays": 2,
+  "windowsPerDay": ["8 AM – 12 PM", "12 – 4 PM"],
+  "windows": []
+}

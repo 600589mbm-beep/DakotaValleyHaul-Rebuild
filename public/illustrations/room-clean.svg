@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of an empty, cleared room after a Dakota Valley estate cleanout">
+  <rect width="1200" height="800" fill="#f7faff"/>
+  <!-- back wall -->
+  <rect x="120" y="120" width="960" height="500" fill="#ffffff" stroke="#e2e9f1" stroke-width="4"/>
+  <!-- floor -->
+  <polygon points="120,620 1080,620 1180,720 20,720" fill="#e4ebf3"/>
+  <g stroke="#d2dde8" stroke-width="3">
+    <line x1="200" y1="620" x2="140" y2="720"/><line x1="400" y1="620" x2="380" y2="720"/>
+    <line x1="600" y1="620" x2="600" y2="720"/><line x1="800" y1="620" x2="820" y2="720"/><line x1="1000" y1="620" x2="1060" y2="720"/>
+  </g>
+  <!-- window -->
+  <rect x="780" y="220" width="220" height="200" fill="#eaf2ff" stroke="#cfdceb" stroke-width="6"/>
+  <line x1="890" y1="220" x2="890" y2="420" stroke="#cfdceb" stroke-width="6"/>
+  <line x1="780" y1="320" x2="1000" y2="320" stroke="#cfdceb" stroke-width="6"/>
+  <g transform="translate(360 380)"><circle r="80" fill="#0957c3"/><path d="M-34 0 L-9 30 L38 -30" stroke="#fff" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

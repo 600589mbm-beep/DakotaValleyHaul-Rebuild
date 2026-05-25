@@ -6,6 +6,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://dakotavalleyjunkremovalservice.com',
   output: 'static',
+  prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   integrations: [react(), sitemap(), icon()],
   build: {
     format: 'directory',

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of branches, fencing and yard debris piled for Dakota Valley yard waste removal">
+  <defs>
+    <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf2ff"/><stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky3)"/>
+  <rect y="600" width="1200" height="200" fill="#e4ebf3"/>
+  <rect y="592" width="1200" height="10" fill="#d2dde8"/>
+  <!-- fence panels stacked -->
+  <g transform="rotate(-6 300 480)">
+    <rect x="180" y="400" width="260" height="160" fill="#d8b48a"/>
+    <g stroke="#c79c6e" stroke-width="6">
+      <line x1="210" y1="400" x2="210" y2="560"/><line x1="260" y1="400" x2="260" y2="560"/>
+      <line x1="310" y1="400" x2="310" y2="560"/><line x1="360" y1="400" x2="360" y2="560"/><line x1="410" y1="400" x2="410" y2="560"/>
+    </g>
+  </g>
+  <!-- branch pile -->
+  <g stroke="#0b3d8c" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M520 580 L760 420"/><path d="M540 590 L820 470"/><path d="M560 585 L700 380"/>
+    <path d="M620 560 L880 520"/><path d="M600 575 L840 400"/>
+  </g>
+  <g stroke="#0957c3" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M700 460 L740 430"/><path d="M780 470 L820 440"/><path d="M660 430 L690 405"/>
+  </g>
+  <!-- bags -->
+  <g fill="#9fb3c8">
+    <path d="M900 470 q60 -10 70 60 q5 50 -35 60 q-50 5 -55 -45 q-5 -65 20 -75 Z"/>
+    <path d="M1000 500 q55 -8 62 55 q4 45 -32 54 q-45 4 -50 -40 q-4 -58 20 -69 Z"/>
+  </g>
+</svg>

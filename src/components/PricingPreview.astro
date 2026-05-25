@@ -1,0 +1,33 @@
+---
+// Homepage pricing snapshot — same five tiers as the booking form and /pricing/.
+import { Icon } from 'astro-icon/components';
+import { tiers, priceFactors } from '../data/pricing.js';
+---
+<section class="section pricing-preview" id="pricing-preview" aria-label="Pricing snapshot">
+  <div class="section-head"><div>
+    <p class="section-kicker">What it costs</p>
+    <h2>Straightforward, volume-based pricing.</h2>
+  </div>
+    <p class="section-copy">$85 minimum. You only pay for the truck space you fill. Text photos for a firm number.</p>
+  </div>
+
+  <div class="pricing-cards">
+    {tiers.map((t) => (
+      <a class="pricing-card" href="/pricing/" data-track="pricing_view">
+        <span class="pricing-card-label">{t.label}</span>
+        <span class="pricing-card-price">{t.price}</span>
+        <span class="pricing-card-detail">{t.detail}</span>
+        <span class="pricing-card-blurb">{t.blurb}</span>
+      </a>
+    ))}
+  </div>
+
+  <details class="pricing-explainer">
+    <summary><Icon name="lucide:help-circle" size={18} /> What changes the price?</summary>
+    <div class="pricing-factors">
+      {priceFactors.map((f) => (
+        <div class="pricing-factor"><strong>{f.label}</strong><span>{f.detail}</span></div>
+      ))}
+    </div>
+  </details>
+</section>

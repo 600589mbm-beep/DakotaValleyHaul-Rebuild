@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07306e"/>
+      <stop offset="1" stop-color="#0957c3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- truck mark -->
+  <g transform="translate(80 70)">
+    <rect x="0" y="0" width="64" height="64" rx="12" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+    <rect x="12" y="22" width="26" height="22" rx="3" fill="#fff"/>
+    <path d="M38 28 h10 l8 8 v8 h-18 z" fill="#cfe0ff"/>
+    <circle cx="20" cy="48" r="6" fill="#07111f"/><circle cx="44" cy="48" r="6" fill="#07111f"/>
+  </g>
+  <text x="168" y="115" font-family="Inter, sans-serif" font-size="34" font-weight="800" fill="#cfe0ff">Dakota Valley Junk Removal</text>
+  <text x="80" y="300" font-family="Inter, sans-serif" font-size="86" font-weight="900" fill="#ffffff">Junk gone, no</text>
+  <text x="80" y="395" font-family="Inter, sans-serif" font-size="86" font-weight="900" fill="#ffffff">phone call needed.</text>
+  <text x="80" y="475" font-family="Inter, sans-serif" font-size="36" font-weight="700" fill="#cfe0ff">Curbside &amp; garage pickup across Minnesota</text>
+  <!-- proof chips -->
+  <g font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#ffffff">
+    <rect x="80" y="520" width="300" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
+    <text x="110" y="558">★★★★★ 5.0 rated</text>
+    <rect x="400" y="520" width="270" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
+    <text x="430" y="558">$85 minimum</text>
+    <rect x="690" y="520" width="430" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
+    <text x="720" y="558">Licensed &amp; insured · Since 2009</text>
+  </g>
+</svg>

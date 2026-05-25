@@ -1,0 +1,32 @@
+---
+// Monochrome trust strip: review platforms + credentials + donation/recycling
+// partners. Wordmarks are rendered as plain monochrome text (not pixel-exact
+// brand logos) so we don't misrepresent any badge we aren't certified for.
+// `aggregate` (rating + count) is passed in so it stays in sync with reviews.json.
+import { Icon } from 'astro-icon/components';
+const { aggregate = { ratingValue: 5.0, reviewCount: 0 }, compact = false, verified = false } = Astro.props;
+const rounded = Math.round(aggregate.ratingValue * 10) / 10;
+// Only name the platform ("on Google") once reviews are verified-sourced.
+const ratingSuffix = verified ? ' on Google' : ' rating';
+const partners = ['Bridging', "Arc's Value Village", 'Goodwill', 'R2 Certified Recyclers'];
+---
+<aside class={`trustbar${compact ? ' trustbar-compact' : ''}`} aria-label="Reviews, credentials and recycling partners">
+  <div class="trustbar-row">
+    <a class="trustbar-item trustbar-rating" href="/reviews/" data-track="reviews_click">
+      <span class="trustbar-stars" aria-hidden="true">★★★★★</span>
+      <span><strong>{rounded.toFixed(1)}</strong>{ratingSuffix}{aggregate.reviewCount ? ` · ${aggregate.reviewCount} reviews` : ''}</span>
+    </a>
+    <span class="trustbar-item"><Icon name="lucide:shield-check" size={16} /> Licensed &amp; insured</span>
+    <span class="trustbar-item"><Icon name="lucide:calendar-check" size={16} /> Locally owned since 2009</span>
+    <span class="trustbar-item"><Icon name="lucide:recycle" size={16} /> 60%+ diverted from landfill</span>
+  </div>
+  {!compact && (
+    <div class="trustbar-partners">
+      <span class="trustbar-partners-label">Donation &amp; recycling partners</span>
+      <div class="trustbar-partners-list">
+        {partners.map((p) => <span class="trustbar-partner">{p}</span>)}
+        <span class="trustbar-partner">Hennepin · Ramsey · Dakota County recycling</span>
+      </div>
+    </div>
+  )}
+</aside>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of an open garage stacked with boxes and items staged for a Dakota Valley cleanout">
+  <rect width="1200" height="800" fill="#f7faff"/>
+  <rect y="640" width="1200" height="160" fill="#e4ebf3"/>
+  <!-- garage shell -->
+  <rect x="180" y="180" width="840" height="470" fill="#ffffff" stroke="#d2dde8" stroke-width="6"/>
+  <rect x="150" y="150" width="900" height="50" fill="#0957c3"/>
+  <!-- open garage door (raised) -->
+  <rect x="210" y="200" width="780" height="60" fill="#dce6f1"/>
+  <line x1="210" y1="230" x2="990" y2="230" stroke="#c2cedb" stroke-width="4"/>
+  <!-- shelving -->
+  <rect x="230" y="300" width="40" height="350" fill="#9fb3c8"/>
+  <rect x="230" y="320" width="220" height="14" fill="#b8c7d8"/>
+  <rect x="230" y="440" width="220" height="14" fill="#b8c7d8"/>
+  <!-- boxes stacks -->
+  <g>
+    <rect x="260" y="480" width="120" height="120" fill="#d8b48a"/><rect x="260" y="480" width="120" height="18" fill="#c79c6e"/>
+    <rect x="280" y="360" width="90" height="90" fill="#e0c39e"/><rect x="280" y="360" width="90" height="16" fill="#c79c6e"/>
+    <rect x="520" y="450" width="150" height="150" fill="#cdd8e4"/><rect x="520" y="450" width="150" height="20" fill="#aebccd"/>
+    <rect x="540" y="320" width="110" height="120" fill="#e8edf3"/>
+  </g>
+  <!-- old bike -->
+  <g stroke="#0957c3" stroke-width="10" fill="none">
+    <circle cx="760" cy="560" r="50"/><circle cx="900" cy="560" r="50"/>
+    <path d="M760 560 L830 470 L900 560 M830 470 L850 470"/>
+  </g>
+  <!-- paint cans -->
+  <rect x="700" y="540" width="40" height="50" fill="#9fb3c8"/>
+  <rect x="700" y="535" width="40" height="10" fill="#7e90a4"/>
+</svg>

@@ -1,0 +1,34 @@
+---
+// "Where your junk actually goes" — a simple, accessible bar chart from
+// public/impact.json. Converts eco-conscious Twin Cities customers and is a
+// genuine differentiator vs. competitors who just landfill.
+import impact from '../../public/impact.json';
+const bars = [
+  { label: 'Donated', pct: impact.donatedPct, color: '#0957c3' },
+  { label: 'Recycled', pct: impact.recycledPct, color: '#3b82d9' },
+  { label: 'Landfill', pct: impact.landfillPct, color: '#9fb3c8' },
+];
+const diverted = (impact.donatedPct || 0) + (impact.recycledPct || 0);
+---
+<section class="section impact" id="impact" aria-label="Where your junk goes">
+  <div class="section-head"><div>
+    <p class="section-kicker">Where your junk goes</p>
+    <h2>{diverted}% kept out of the landfill.</h2>
+  </div>
+    <p class="section-copy">
+      Usable furniture is donated to Bridging, Arc, and Goodwill. Metal, e-waste, and mattresses are recycled.
+      Roughly {impact.tonsDivertedAnnually}+ tons diverted a year across {impact.charityPartners}+ partners.
+    </p>
+  </div>
+
+  <div class="impact-chart" role="img"
+    aria-label={`Donated ${impact.donatedPct}%, recycled ${impact.recycledPct}%, landfill ${impact.landfillPct}%`}>
+    {bars.map((b) => (
+      <div class="impact-row">
+        <span class="impact-row-label">{b.label}</span>
+        <div class="impact-row-track"><div class="impact-row-fill" style={`width:${b.pct}%;background:${b.color}`}></div></div>
+        <span class="impact-row-pct">{b.pct}%</span>
+      </div>
+    ))}
+  </div>
+</section>
