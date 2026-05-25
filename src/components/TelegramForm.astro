@@ -3,6 +3,11 @@ import { Icon } from 'astro-icon/components';
 import { WORKER_URL } from '../data/booking.js';
 ---
 <form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
+  <p class="tg-form-intro">
+    <Icon name="lucide:camera" size={16} />
+    Pickup address and at least one photo are required because pricing depends on location, access, and load size.
+  </p>
+
   <div class="tg-form-row">
     <label>
       <span>Name <em>*</em></span>
@@ -20,19 +25,24 @@ import { WORKER_URL } from '../data/booking.js';
   </label>
 
   <label class="tg-form-stack">
+    <span>Pickup address <em>*</em> <small>(required for pricing)</small></span>
+    <input name="address" type="text" required placeholder="Street address for pickup pricing" autocomplete="street-address" />
+  </label>
+
+  <label class="tg-form-stack">
     <span>What needs to go? <em>*</em></span>
     <textarea name="details" rows="3" required placeholder="e.g., One sofa and two mattresses in the garage."></textarea>
   </label>
 
-  {/* Everything below is optional — it just speeds up the quote. Hidden by
-     default so the form reads as 3 quick fields, not 11. */}
-  <details class="tg-form-more">
-    <summary>Add address, date &amp; photos <small>(optional — gets you a faster, firmer quote)</small></summary>
+  <label class="tg-form-stack tg-form-photos">
+    <span>Photos <em>*</em> <small>(required for pricing, 1-8 photos)</small></span>
+    <input name="photos" type="file" accept="image/*" capture="environment" multiple required />
+  </label>
 
-    <label class="tg-form-stack">
-      <span>Pickup address</span>
-      <input name="address" type="text" placeholder="Street address" autocomplete="street-address" />
-    </label>
+  {/* Everything below is optional. It helps the crew route and schedule faster,
+     but pricing now requires the address and at least one photo above. */}
+  <details class="tg-form-more">
+    <summary>Add date, pickup spot &amp; load size <small>(optional)</small></summary>
 
     <div class="tg-form-row">
       <label>
@@ -54,28 +64,23 @@ import { WORKER_URL } from '../data/booking.js';
       <label>
         <span>Preferred window</span>
         <select name="preferredWindow">
-          <option value="morning">Morning (8 AM – 12 PM)</option>
-          <option value="afternoon">Afternoon (12 – 5 PM)</option>
-          <option value="evening">Evening (5 – 9 PM)</option>
+          <option value="morning">Morning (8 AM - 12 PM)</option>
+          <option value="afternoon">Afternoon (12 - 5 PM)</option>
+          <option value="evening">Evening (5 - 9 PM)</option>
           <option value="anytime">Any time</option>
         </select>
       </label>
       <label>
         <span>Load size</span>
         <select name="loadSize">
-          <option value="single-item">Single item (≈ $85)</option>
-          <option value="small">Small load — 1/8 to 1/4 truck ($120–$185)</option>
-          <option value="medium" selected>Medium load — 1/4 to 1/2 truck ($220–$320)</option>
-          <option value="large">Large load — 1/2 to 3/4 truck ($380–$520)</option>
-          <option value="full">Full truck ($580–$750)</option>
+          <option value="single-item">Single item (about $85)</option>
+          <option value="small">Small load - 1/8 to 1/4 truck ($120-$185)</option>
+          <option value="medium" selected>Medium load - 1/4 to 1/2 truck ($220-$320)</option>
+          <option value="large">Large load - 1/2 to 3/4 truck ($380-$520)</option>
+          <option value="full">Full truck ($580-$750)</option>
         </select>
       </label>
     </div>
-
-    <label class="tg-form-stack tg-form-photos">
-      <span>Photos <small>(phone camera is fine — speeds up the quote)</small></span>
-      <input name="photos" type="file" accept="image/*" capture="environment" multiple />
-    </label>
   </details>
 
   {/* Honeypot */}
@@ -101,6 +106,11 @@ import { WORKER_URL } from '../data/booking.js';
 
   const track = (e, p) => window.dvTrack && window.dvTrack(e, p);
 
+  function setStatus(type, message) {
+    status.className = `tg-form-status ${type ? `is-${type}` : ''}`.trim();
+    status.textContent = message;
+  }
+
   if (form && status && submit && workerUrl) {
     let started = false;
     form.addEventListener('focusin', () => {
@@ -112,8 +122,43 @@ import { WORKER_URL } from '../data/booking.js';
       // honeypot
       if (form.elements.botcheck && form.elements.botcheck.checked) return;
 
+      const addressInput = form.querySelector('input[name="address"]');
+      const photoInput = form.querySelector('input[name="photos"]');
+      const photos = photoInput?.files ? Array.from(photoInput.files) : [];
+
+      if (!addressInput?.value.trim()) {
+        setStatus('error', 'Pickup address is required so the crew can price travel, access, and route timing.');
+        addressInput?.focus();
+        return;
+      }
+
+      if (!photos.length) {
+        setStatus('error', 'At least one photo is required so the crew can price the load accurately.');
+        photoInput?.focus();
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        setStatus('error', 'Please fill in the required fields before sending.');
+        form.reportValidity();
+        return;
+      }
+
+      if (photos.length > 8) {
+        setStatus('error', 'Please send 8 photos or fewer. Text extra photos if needed.');
+        photoInput?.focus();
+        return;
+      }
+
+      const oversized = photos.find((file) => file.size > 10 * 1024 * 1024);
+      if (oversized) {
+        setStatus('error', 'One photo is over 10 MB. Please choose a smaller image or text it directly.');
+        photoInput?.focus();
+        return;
+      }
+
       status.className = 'tg-form-status is-sending';
-      status.textContent = 'Sending to the crew…';
+      status.textContent = 'Sending to the crew...';
       submit.disabled = true;
 
       try {
@@ -122,7 +167,7 @@ import { WORKER_URL } from '../data/booking.js';
         const json = await res.json().catch(() => ({}));
         if (json && json.success) {
           status.className = 'tg-form-status is-success';
-          status.textContent = '✓ Booking sent. The crew will text back within a few hours.';
+          status.textContent = 'Booking sent. The crew will text back within a few hours.';
           track('quote_form_submitted', { step: 'full' });
           form.reset();
         } else {

@@ -8,6 +8,9 @@ const ALLOWED_ORIGINS = new Set([
   'https://600589mbm-beep.github.io',
 ]);
 
+const MAX_PHOTOS = 8;
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
+
 function clean(value) {
   return String(value || '').trim();
 }
@@ -92,6 +95,7 @@ export default {
         success: true,
         endpoint: 'dakota-valley-telegram-worker',
         configured: Boolean(token && chatId),
+        maxPhotos: MAX_PHOTOS,
         needs: token && chatId ? [] : ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'].filter((key) => !clean(env[key])),
       });
     }
@@ -106,6 +110,11 @@ export default {
 
     try {
       const formData = await request.formData();
+
+      if (clean(formData.get('botcheck'))) {
+        return json(request, { success: true, ignored: true });
+      }
+
       const photos = formData
         .getAll('photos')
         .filter((file) => file && typeof file.arrayBuffer === 'function' && file.size > 0);
@@ -125,13 +134,25 @@ export default {
         estimateMax: clean(formData.get('estimateMax')),
       };
 
-      const missing = ['name', 'phone', 'address', 'city', 'date', 'details'].filter((field) => !payload[field]);
+      const missing = ['name', 'phone', 'address', 'city', 'details'].filter((field) => !payload[field]);
+      if (missing.includes('address')) {
+        return json(request, { success: false, error: 'Pickup address is required for pricing.' }, 400);
+      }
       if (missing.length) {
         return json(request, { success: false, error: `Missing ${missing.join(', ')}.` }, 400);
       }
 
       if (!photos.length) {
-        return json(request, { success: false, error: 'Please upload at least one photo.' }, 400);
+        return json(request, { success: false, error: 'At least one photo is required for pricing.' }, 400);
+      }
+
+      if (photos.length > MAX_PHOTOS) {
+        return json(request, { success: false, error: `Please upload ${MAX_PHOTOS} photos or fewer.` }, 400);
+      }
+
+      const oversized = photos.find((file) => file.size > MAX_PHOTO_BYTES);
+      if (oversized) {
+        return json(request, { success: false, error: 'One photo is over 10 MB. Please send a smaller image or text it directly.' }, 400);
       }
 
       const apiBase = `https://api.telegram.org/bot${token}`;
@@ -149,7 +170,7 @@ export default {
         `<b>Service:</b> ${escapeHtml(payload.service || 'Junk pickup')}`,
         `<b>Load size:</b> ${escapeHtml(titleCase(payload.loadSize))}`,
         `<b>Pickup spot:</b> ${escapeHtml(titleCase(payload.pickupSpot))}`,
-        `<b>Preferred date:</b> ${escapeHtml(payload.date)}`,
+        `<b>Preferred date:</b> ${escapeHtml(payload.date || 'Not provided')}`,
         `<b>Preferred window:</b> ${escapeHtml(titleCase(payload.preferredWindow))}`,
         `<b>Estimate shown:</b> ${escapeHtml(estimate)}`,
         `<b>Photos:</b> ${photos.length}`,
