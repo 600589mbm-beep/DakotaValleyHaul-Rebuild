@@ -5,7 +5,7 @@ import { WORKER_URL } from '../data/booking.js';
 <form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
   <p class="tg-form-intro">
     <Icon name="lucide:camera" size={16} />
-    Photos help the crew quote faster and avoid surprise pricing at pickup.
+    Pickup address and at least one photo are required because pricing depends on location, access, and load size.
   </p>
 
   <input type="hidden" name="sourcePage" value="" />
@@ -23,8 +23,8 @@ import { WORKER_URL } from '../data/booking.js';
   </div>
 
   <label class="tg-form-stack">
-    <span>Pickup address <em>*</em></span>
-    <input name="address" type="text" required autocomplete="street-address" placeholder="Street address" />
+    <span>Pickup address <em>*</em> <small>(required for pricing)</small></span>
+    <input name="address" type="text" required autocomplete="street-address" placeholder="Street address for pickup pricing" />
   </label>
 
   <div class="tg-form-row">
@@ -90,7 +90,7 @@ import { WORKER_URL } from '../data/booking.js';
   </label>
 
   <label class="tg-form-stack tg-form-photos">
-    <span>Photos <em>*</em> <small>(1-8 photos, phone camera is fine)</small></span>
+    <span>Photos <em>*</em> <small>(required for pricing, 1-8 photos)</small></span>
     <input name="photos" type="file" accept="image/*" capture="environment" multiple required />
   </label>
 
@@ -149,19 +149,28 @@ import { WORKER_URL } from '../data/booking.js';
       // honeypot
       if (form.elements.botcheck && form.elements.botcheck.checked) return;
 
+      const addressInput = form.querySelector('input[name="address"]');
+      const photoInput = form.querySelector('input[name="photos"]');
+      const photos = photoInput?.files ? Array.from(photoInput.files) : [];
+
+      if (!addressInput?.value.trim()) {
+        setStatus('error', 'Pickup address is required so the crew can price travel, access, and route timing.');
+        addressInput?.focus();
+        return;
+      }
+
+      if (!photos.length) {
+        setStatus('error', 'At least one photo is required so the crew can price the load accurately.');
+        photoInput?.focus();
+        return;
+      }
+
       if (!form.checkValidity()) {
         setStatus('error', 'Please fill in the required fields before sending.');
         form.reportValidity();
         return;
       }
 
-      const photoInput = form.querySelector('input[name="photos"]');
-      const photos = photoInput?.files ? Array.from(photoInput.files) : [];
-      if (!photos.length) {
-        setStatus('error', 'Please add at least one photo so the crew can quote accurately.');
-        photoInput?.focus();
-        return;
-      }
       if (photos.length > 8) {
         setStatus('error', 'Please send 8 photos or fewer. Text extra photos if needed.');
         photoInput?.focus();
