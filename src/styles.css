@@ -1405,4 +1405,14 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   .qq-field, .qq-submit { flex: 1 1 auto; }
   .hero-rating { font-size: 13px; gap: 6px; }
   .impact-row { grid-template-columns: 84px 1fr 44px; gap: 8px; }
+
+  /* Keep CTA labels on one line so they can't break mid-word ("Te xt") */
+  .qq-submit, .mobile-cta .button { white-space: nowrap; }
+  .mobile-cta .button { min-width: 0; padding: 12px 10px; font-size: 15px; }
+
+  /* 16px input text stops iOS from zooming in on focus */
+  .qq-field input { font-size: 16px; }
+
+  /* Reserve room so the fixed mobile CTA never covers page content */
+  body { padding-bottom: 96px; }
 }
