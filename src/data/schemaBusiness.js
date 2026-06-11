@@ -34,7 +34,8 @@ export const businessNode = {
   sameAs: SAME_AS,
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    // All 7 days — confirmed by owner 2026-05-22; keep in sync with city pages.
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '08:00',
     closes: '21:00',
   },

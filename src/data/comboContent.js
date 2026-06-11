@@ -463,3 +463,107 @@ export function comboMeta(city, service, citySlug, serviceSlug) {
   ];
   return { title: at(seed, 5, titles), description: at(seed, 6, descriptions) };
 }
+
+// --- quote pages (/quote/[city]) — seeded differentiation ------------------
+// These 61 pages were 91% identical; each now gets seeded copy + a
+// quote-intent FAQ set distinct from the city/combo FAQ pools.
+
+export function quoteContent(city, citySlug) {
+  const seed = hashSeed(`quote:${citySlug}`);
+  const [n1, n2, n3] = sample(seed, city.neighborhoods, 3, 1);
+  const landmark = at(seed, 2, city.landmarks);
+
+  const titles = [
+    `Junk Removal Quote ${city.name} MN | Firm Price by Text | Dakota Valley`,
+    `Get a ${city.name} Junk Removal Quote | Photos In, Price Out | Dakota Valley`,
+    `${city.name} Junk Removal Quote in Hours | $85 Min | Dakota Valley`,
+  ];
+  const descriptions = [
+    `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it in hours. From $85, no estimate visit, no phone call.`,
+    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. $85 minimum.`,
+    `Fast ${city.name} junk removal quote: photos by text, firm price back in hours, calendar booking. From $85 across ${n1} and ${n2}. No phone call required.`,
+  ];
+  const heroCopies = [
+    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, usually within hours. $85 minimum, no phone call required.`,
+    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a calendar window come back fast — typically the same day you text. $85 minimum, no call needed.`,
+    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back in hours, and a booking link. No walkthrough appointment, no phone tag. $85 minimum.`,
+  ];
+  const routeCopies = [
+    `Because we schedule by route through ${city.county}, ${city.name} pickups stay efficient — which keeps your price down. We regularly serve ${n1}, ${n2}, ${n3} and the rest of ${city.name}.`,
+    `Trucks already pass near ${landmark} on ${city.county} routes most working days, so your ${city.name} pickup slots into an existing loop instead of a special trip — that efficiency is why the $85 floor holds.`,
+    `${city.name} quotes come back fast because the routing is already done: crews loop through ${city.county} daily, covering ${n1}, ${n2}, and the surrounding grid. Your pickup joins the loop.`,
+  ];
+
+  const disposalCopies = [
+    `Usable items from ${city.name} are donated through Bridging, Arc's Value Village, and Savers. Metal, electronics, and mattresses are recycled via ${city.county} and certified Minnesota programs — 60%+ diverted overall.`,
+    `What leaves ${city.name} doesn't all go to the landfill: usable furniture and goods route to Bridging, Arc's Value Village, and Savers, while metal, electronics, and mattresses head to certified Minnesota recyclers — 60%+ of volume diverted.`,
+    `Loads from ${n1} and the rest of ${city.name} get sorted, not dumped: donations to Savers, Bridging, and Arc's Value Village; metal, electronics, and mattresses to certified recycling. Overall diversion runs 60%+.`,
+  ];
+
+  const faqPool = [
+    {
+      q: at(seed, 10, [
+        `How fast do I get a junk removal quote in ${city.name}?`,
+        `How long does a ${city.name} quote take?`,
+      ]),
+      a: `Usually within hours. Crews respond to photo texts between 8 AM and 9 PM, seven days a week. Send photos of the items with your ${city.name} address or neighborhood and the quote comes back as a firm number with available pickup windows.`,
+    },
+    {
+      q: `What photos should I text for a ${city.name} quote?`,
+      a: `One wide shot showing everything that needs to go, plus a close-up of anything bulky or unusual. Mention whether items are at the curb, in the garage, or up stairs — access affects the crew plan, and the photo set is what makes the price firm.`,
+    },
+    {
+      q: at(seed, 11, [
+        `Is the ${city.name} quote a firm price or an estimate?`,
+        `Can the price change after I get a ${city.name} quote?`,
+      ]),
+      a: `Firm. The price is set from your photos before the crew rolls — it only changes if the load on the day is materially different from what was photographed. No arrival-day surprises, no hourly meter.`,
+    },
+    {
+      q: `Do I have to call to book a pickup in ${city.name}?`,
+      a: `No — the whole flow is text-first. Photos in, quote back, calendar window booked by text. If you prefer the form, the booking form on the homepage feeds the same ${city.county} crew.`,
+    },
+    {
+      q: `What should I include with my ${city.name} quote request?`,
+      a: `The photos, your ${city.name} neighborhood (${n1}, ${n2}, etc.), where the items sit (curb, garage, basement), and your preferred pickup window. That's everything the crew needs to send a firm price.`,
+    },
+  ];
+
+  return {
+    title: at(seed, 5, titles),
+    description: at(seed, 6, descriptions),
+    heroCopy: at(seed, 7, heroCopies),
+    routeCopy: at(seed, 8, routeCopies),
+    disposalCopy: at(seed, 9, disposalCopies),
+    faqs: sample(seed, faqPool, 3, 13),
+  };
+}
+
+// --- county hub pages (/counties/[slug]) ----------------------------------
+
+export function countyFaqs(county, slug) {
+  const seed = hashSeed(`countyfaq:${slug}`);
+  const cityNames = county.cities.slice(0, 5).join(', ');
+  const pool = [
+    {
+      q: `How much does junk removal cost in ${county.name}?`,
+      a: `The same volume pricing applies county-wide: single items from $85, small loads $120–$185, medium $220–$320, large $380–$520, and a full truckload $580–$750. Text photos to (952) 232-5107 for a firm quote anywhere in ${county.name}.`,
+    },
+    {
+      q: `Which ${county.name} cities do you serve?`,
+      a: `${cityNames}, and the surrounding ${county.name} communities. If your town isn't listed, text your address — county routes usually cover the gaps between the bigger cities.`,
+    },
+    {
+      q: at(seed, 11, [
+        `Is same-day junk removal available in ${county.name}?`,
+        `How fast can you pick up in ${county.name}?`,
+      ]),
+      a: `Most ${county.name} pickups are scheduled within 2–3 business days, and same-day windows open when a truck is already routing through the area around ${county.seat}. Texting photos early in the day gives the best odds.`,
+    },
+    {
+      q: `How do I book a pickup in ${county.name}?`,
+      a: `Text photos of the items to (952) 232-5107 with your city or zip. A firm quote comes back by text — no estimate visit — and you pick a calendar window. The crew calls about 30 minutes before arrival.`,
+    },
+  ];
+  return sample(seed, pool, 4, 13);
+}

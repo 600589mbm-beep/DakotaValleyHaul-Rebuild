@@ -2,6 +2,8 @@
 import { Icon } from 'astro-icon/components';
 import { cities } from '../data/cities.js';
 import { services } from '../data/services.js';
+import { counties } from '../data/counties.js';
+import { guides } from '../data/guides.js';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
@@ -21,6 +23,24 @@ const year = new Date().getFullYear();
       <div class="site-footer-grid">
         {Object.entries(services).map(([slug, s]) => (
           <a href={`/services/${slug}/`} class="site-footer-link">{s.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="site-footer-block">
+      <h4>Service areas — counties</h4>
+      <div class="site-footer-grid">
+        {Object.entries(counties).map(([slug, c]) => (
+          <a href={`/counties/${slug}/`} class="site-footer-link">{c.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="site-footer-block">
+      <h4>Guides</h4>
+      <div class="site-footer-grid">
+        {Object.entries(guides).map(([slug, g]) => (
+          <a href={`/guides/${slug}/`} class="site-footer-link">{g.shortTitle}</a>
         ))}
       </div>
     </section>

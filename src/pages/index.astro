@@ -136,7 +136,7 @@ const homepageSchema = {
       sameAs: ['https://www.facebook.com/dakotavalleyjunkremoval', 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan'],
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         opens: '08:00', closes: '21:00',
       },
       // Only assert aggregateRating + Review markup when reviews come from a
@@ -180,7 +180,7 @@ const homepageSchema = {
 };
 ---
 <Layout
-  title="Junk Removal Minnesota | Curbside & Garage Pickup, $85 Min | Dakota Valley"
+  title="Junk Removal Minnesota | From $85 by Text | Dakota Valley"
   description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, $85 minimum, photo quotes in hours, 5.0★ rated, licensed & insured since 2023."
   canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
@@ -204,7 +204,7 @@ const homepageSchema = {
 
       <div class="hero-content">
         <p class="eyebrow"><Icon name="lucide:sparkles" size={16} /> Minnesota junk removal, done by text</p>
-        <h1>Junk gone — no phone call required.</h1>
+        <h1>Minnesota junk removal — no phone call required.</h1>
 
         <div class="hero-rating" aria-label="Rating and credentials">
           <span class="hero-stars" aria-hidden="true">★★★★★</span>

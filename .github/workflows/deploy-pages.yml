@@ -58,7 +58,7 @@ jobs:
         run: |
           KEY=a8a8788968d87d8f1b70cc9159e82357
           HOST=dakotavalleyjunkremovalservice.com
-          sleep 30  # let Pages finish propagating so the key file resolves
+          sleep 60  # let Pages finish propagating so the key file resolves
           curl -fsS "https://${HOST}/sitemap-0.xml" \
             | grep -o '<loc>[^<]*</loc>' \
             | sed -e 's/<\/\?loc>//g' \

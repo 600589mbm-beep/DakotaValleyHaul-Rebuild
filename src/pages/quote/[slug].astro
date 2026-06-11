@@ -6,6 +6,7 @@ import TrustBar from '../../components/TrustBar.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
 import { tiers, PRICE_FLOOR } from '../../data/pricing.js';
 import reviewsData from '../../data/reviews.json';
+import { quoteContent, faqSchema } from '../../data/comboContent.js';
 
 export function getStaticPaths() {
   return getCitySlugs().map((slug) => ({ params: { slug }, props: { city: cities[slug], slug } }));
@@ -20,8 +21,8 @@ const verified = reviewsData.source === 'google';
 
 const smsBody = encodeURIComponent(`Hi Dakota Valley — I'd like a junk removal quote in ${city.name}, MN. Here are photos and item details:`);
 const citySms = `sms:+19522325107?&body=${smsBody}`;
-const neighborhoods = (city.neighborhoods || []).slice(0, 4);
 const county = city.county || 'your county';
+const q = quoteContent(city, slug);
 
 const schema = {
   '@context': 'https://schema.org',
@@ -43,12 +44,13 @@ const schema = {
       url: canonical,
       offers: { '@type': 'Offer', priceCurrency: 'USD', price: '85', description: '$85 minimum curbside or garage pickup' },
     },
+    faqSchema(q.faqs),
   ],
 };
 ---
 <Layout
-  title={`Junk Removal Quote in ${city.name}, MN | Text Photos, $85 Min | Dakota Valley`}
-  description={`Get a fast junk removal quote in ${city.name}, ${county}. Text photos, get a firm price and a pickup window — no phone call. $85 minimum, licensed & insured.`}
+  title={q.title}
+  description={q.description}
   canonical={canonical}
   schema={schema}
 >
@@ -67,10 +69,7 @@ const schema = {
           <span class="hero-rating-sep">·</span><span>{agg.reviewCount} reviews</span>
           <span class="hero-rating-sep">·</span><span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
         </div>
-        <p class="hero-copy">
-          <strong>Text a few photos of what needs to go.</strong> The crew that routes through {city.name} and {county}
-          sends a firm quote and a pickup window — usually within hours. {PRICE_FLOOR}, no phone call required.
-        </p>
+        <p class="hero-copy">{q.heroCopy}</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos for a {city.name} quote</a>
           <a class="button secondary" href="/#quote"><Icon name="lucide:file-text" size={18} /> Use the booking form</a>
@@ -86,10 +85,7 @@ const schema = {
         <p class="section-kicker">Local pickup</p>
         <h2>Routes built around {city.name}.</h2>
       </div>
-        <p class="section-copy">
-          Because we schedule by route through {county}, {city.name} pickups stay efficient — which keeps your price down.
-          {neighborhoods.length > 0 && <span> We regularly serve {neighborhoods.join(', ')} and the rest of {city.name}.</span>}
-        </p>
+        <p class="section-copy">{q.routeCopy}</p>
       </div>
 
       <div class="pricing-cards">
@@ -109,10 +105,7 @@ const schema = {
         <p class="section-kicker">Where it goes</p>
         <h2>{city.name} junk, kept out of the landfill.</h2>
       </div></div>
-      <p class="section-copy">
-        Usable items from {city.name} are donated through Bridging, Arc's Value Village, and Savers.
-        Metal, electronics, and mattresses are recycled via {county} and certified Minnesota programs — 60%+ diverted overall.
-      </p>
+      <p class="section-copy">{q.disposalCopy}</p>
       {city.testimonial && (
         <article class="testimonial-card" style="max-width:560px;margin-top:22px">
           <div class="testimonial-stars">★★★★★</div>
@@ -121,6 +114,21 @@ const schema = {
         </article>
       )}
       <p style="margin-top:24px"><a href={`/cities/${slug}/`} style="color:var(--blue);font-weight:900">Full {city.name} service details →</a></p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Quote FAQ</p>
+        <h2>How {city.name} quotes work.</h2>
+      </div></div>
+      <div class="faq-list">
+        {q.faqs.map(({ q: question, a }, index) => (
+          <details class="faq-card" open={index === 0}>
+            <summary>{question}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
     </section>
 
     <SiteFooter />

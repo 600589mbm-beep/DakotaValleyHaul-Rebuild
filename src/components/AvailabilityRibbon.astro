@@ -13,13 +13,11 @@ function nextWindows(n) {
   const out = [];
   const d = new Date();
   let added = 0;
-  // advance `lead` business days first
-  while (added < lead) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) added++; }
+  // advance `lead` days first — open all 7 days (owner-confirmed hours)
+  while (added < lead) { d.setDate(d.getDate() + 1); added++; }
   while (out.length < n) {
-    if (d.getDay() !== 0) { // open Mon–Sat
-      const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-      out.push(`${label}, ${perDay[0]}`);
-    }
+    const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    out.push(`${label}, ${perDay[0]}`);
     d.setDate(d.getDate() + 1);
   }
   return out;
@@ -43,13 +41,11 @@ const initial = availability.windows?.length ? availability.windows : nextWindow
     const perDay = JSON.parse(el.dataset.windows || '["8 AM – 12 PM"]');
     const d = new Date();
     let added = 0;
-    while (added < lead) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) added++; }
+    while (added < lead) { d.setDate(d.getDate() + 1); added++; }
     const wins = [];
     while (wins.length < 3) {
-      if (d.getDay() !== 0) {
-        const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-        wins.push(`${label}, ${perDay[0]}`);
-      }
+      const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      wins.push(`${label}, ${perDay[0]}`);
       d.setDate(d.getDate() + 1);
     }
     out.textContent = wins.join('  ·  ');

@@ -1,0 +1,141 @@
+---
+import { Icon } from 'astro-icon/components';
+import { PRICE_FLOOR } from '../../data/booking.js';
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { counties, getCountySlugs } from '../../data/counties.js';
+import { cities } from '../../data/cities.js';
+import { services } from '../../data/services.js';
+import { businessNode } from '../../data/schemaBusiness.js';
+import { countyFaqs, faqSchema } from '../../data/comboContent.js';
+
+export function getStaticPaths() {
+  return getCountySlugs().map((slug) => ({
+    params: { slug },
+    props: { county: counties[slug], slug },
+  }));
+}
+
+const { county, slug } = Astro.props;
+const phoneDisplay = '(952) 232-5107';
+const smsLink = 'sms:+19522325107';
+const canonical = `https://dakotavalleyjunkremovalservice.com/counties/${slug}/`;
+const faqs = countyFaqs(county, slug);
+
+// Map county city names to city-page slugs where a page exists.
+const cityNameToSlug = Object.fromEntries(
+  Object.entries(cities).map(([s, c]) => [c.name, s])
+);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    businessNode,
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/#areas' },
+        { '@type': 'ListItem', position: 3, name: county.name },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: `Junk Removal ${county.name}, MN`,
+      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
+      areaServed: {
+        '@type': 'AdministrativeArea',
+        name: county.name,
+        containedIn: { '@type': 'State', name: 'Minnesota' },
+      },
+      description: county.intro,
+      serviceType: 'Curbside and garage junk pickup',
+    },
+    faqSchema(faqs),
+  ],
+};
+---
+<Layout title={county.metaTitle} description={county.metaDescription} canonical={canonical} schema={schema}>
+  <main>
+    <section class="city-hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
+        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+      </nav>
+      <div class="city-hero-content">
+        <p class="breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true"> / </span>
+          <a href="/#areas">Service areas</a> <span aria-hidden="true"> / </span>
+          <span>{county.name}</span>
+        </p>
+        <h1>Junk Removal in <span class="city-accent">{county.name}, MN</span></h1>
+        <p class="hero-copy">{county.intro}</p>
+        <div class="hero-actions">
+          <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
+        </div>
+        <p class="hero-meta"><Icon name="lucide:map-pin" size={15} /> Population {county.population} &middot; County seat {county.seat} &middot; $85 minimum</p>
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head"><div>
+        <p class="section-kicker">{county.name} cities served</p>
+        <h2>Coverage across {county.name}.</h2>
+      </div></div>
+      <div class="city-grid">
+        {county.cities.map((c) =>
+          cityNameToSlug[c]
+            ? <a href={`/cities/${cityNameToSlug[c]}/`} class="city-link">{c}</a>
+            : <span class="city-link" style="cursor: default">{c}</span>
+        )}
+      </div>
+    </section>
+
+    <section class="section city-locale">
+      <div class="section-head"><div>
+        <p class="section-kicker">Services in {county.name}</p>
+        <h2>All Dakota Valley services available.</h2>
+      </div></div>
+      <div class="city-grid">
+        {Object.entries(services).map(([sl, s]) => (
+          <a href={`/services/${sl}/`} class="city-link">{s.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">{county.name} FAQ</p>
+        <h2>County-wide questions, answered.</h2>
+      </div></div>
+      <div class="faq-list">
+        {faqs.map(({ q, a }, index) => (
+          <details class="faq-card" open={index === 0}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-cta">
+      <div>
+        <h2>Ready for pickup in {county.name}?</h2>
+        <p>Text photos, item details, and a preferred calendar window. Crew confirms and routes around your county.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+        <a class="button secondary" href="/#quote">Use the quote helper</a>
+      </div>
+    </section>
+
+    <SiteFooter />
+    <div class="mobile-cta">
+      <a class="button primary" href={smsLink}>Text</a>
+      <a class="button secondary" href="/#quote">Book</a>
+    </div>
+  </main>
+</Layout>
