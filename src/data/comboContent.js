@@ -495,9 +495,9 @@ export function quoteContent(city, citySlug) {
   ];
 
   const disposalCopies = [
-    `Usable items from ${city.name} are donated through Bridging, Arc's Value Village, and Savers. Metal, electronics, and mattresses are recycled via ${city.county} and certified Minnesota programs — 60%+ diverted overall.`,
-    `What leaves ${city.name} doesn't all go to the landfill: usable furniture and goods route to Bridging, Arc's Value Village, and Savers, while metal, electronics, and mattresses head to certified Minnesota recyclers — 60%+ of volume diverted.`,
-    `Loads from ${n1} and the rest of ${city.name} get sorted, not dumped: donations to Savers, Bridging, and Arc's Value Village; metal, electronics, and mattresses to certified recycling. Overall diversion runs 60%+.`,
+    `Usable items from ${city.name} are donated through Bridging, Arc's Value Village, and Savers. Metal, electronics, and mattresses are recycled via ${city.county} and certified Minnesota programs.`,
+    `What leaves ${city.name} doesn't head straight to a landfill: usable furniture and goods route to Bridging, Arc's Value Village, and Savers, while metal, electronics, and mattresses go to certified Minnesota recyclers.`,
+    `Loads from ${n1} and the rest of ${city.name} get sorted, not dumped: donations to Savers, Bridging, and Arc's Value Village; metal, electronics, and mattresses to certified recycling.`,
   ];
 
   const faqPool = [
