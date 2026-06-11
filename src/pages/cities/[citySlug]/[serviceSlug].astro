@@ -5,6 +5,7 @@ import Layout from '../../../layouts/Layout.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../../data/cities.js';
 import { services, getServiceSlugs } from '../../../data/services.js';
+import { businessNode } from '../../../data/schemaBusiness.js';
 import { pickPhotos, buildAlt } from '../../../data/photos.js';
 
 export function getStaticPaths() {
@@ -38,6 +39,7 @@ const heroPhoto = comboPhotos[0];
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
+    businessNode,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [

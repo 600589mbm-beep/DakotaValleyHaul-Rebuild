@@ -4,6 +4,7 @@ import { PRICE_FLOOR } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { services, getServiceSlugs } from '../../data/services.js';
+import { businessNode } from '../../data/schemaBusiness.js';
 import { cities } from '../../data/cities.js';
 import { pickPhotos, buildAlt } from '../../data/photos.js';
 
@@ -25,6 +26,7 @@ const heroPhoto = pickPhotos(slug, 1)[0];
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
+    businessNode,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [

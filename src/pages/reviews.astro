@@ -4,19 +4,65 @@ import { PRICE_FLOOR } from '../data/booking.js';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
+import { businessNode } from '../data/schemaBusiness.js';
+import reviewsData from '../data/reviews.json';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
-const canonical = 'https://dakotavalleyjunkremovalservice.com/reviews/';
+const site = 'https://dakotavalleyjunkremovalservice.com';
+const canonical = `${site}/reviews/`;
 
 const allReviews = Object.entries(cities)
   .filter(([, c]) => c.testimonial)
   .map(([slug, c]) => ({ slug, city: c.name, ...c.testimonial }));
+
+// Same policy as the homepage: Review/AggregateRating markup ONLY when the
+// review source is verified (Google). Site-sourced testimonials render as
+// content but are never asserted as schema.org reviews.
+const verifiedReviewMarkup = reviewsData.source === 'google'
+  ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: reviewsData.aggregate.ratingValue.toFixed(1),
+        reviewCount: String(reviewsData.aggregate.reviewCount),
+        bestRating: '5',
+      },
+      review: (reviewsData.reviews || []).slice(0, 12).map((r) => ({
+        '@type': 'Review',
+        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating || 5), bestRating: '5' },
+        author: { '@type': 'Person', name: r.author },
+        reviewBody: r.text,
+      })),
+    }
+  : {};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { ...businessNode, ...verifiedReviewMarkup },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+        { '@type': 'ListItem', position: 2, name: 'Reviews' },
+      ],
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${canonical}#page`,
+      url: canonical,
+      name: 'Reviews from Across Minnesota',
+      description: `Customer testimonials from the ${allReviews.length} Minnesota cities Dakota Valley serves.`,
+      about: { '@id': businessNode['@id'] },
+    },
+  ],
+};
 ---
 <Layout
   title="Reviews from Across Minnesota | Dakota Valley Junk Removal"
   description={`Customer reviews from across the ${allReviews.length} Minnesota cities Dakota Valley serves. Real testimonials from real Minnesota neighborhoods.`}
   canonical={canonical}
+  schema={schema}
 >
   <main>
     <section class="city-hero">

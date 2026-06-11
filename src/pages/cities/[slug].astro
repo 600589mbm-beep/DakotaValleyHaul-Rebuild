@@ -4,6 +4,7 @@ import { PRICE_FLOOR } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
+import { BUSINESS_ID, SAME_AS } from '../../data/schemaBusiness.js';
 import { services } from '../../data/services.js';
 import { pickPhotos, buildAlt } from '../../data/photos.js';
 import { iconForService } from '../../data/serviceIcons.js';
@@ -55,8 +56,10 @@ const schema = {
     },
     {
       '@type': 'LocalBusiness',
+      '@id': BUSINESS_ID,   // resolves the Service.provider reference on-page
       name: `Dakota Valley Junk Removal — ${city.name}`,
       url: canonical,
+      sameAs: SAME_AS,
       telephone: '+1-952-232-5107',
       email: 'info@dakotavalleyjunkremovalservice.com',
       priceRange: 'From $85',
