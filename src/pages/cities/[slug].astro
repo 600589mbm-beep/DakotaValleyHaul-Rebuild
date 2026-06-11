@@ -8,6 +8,7 @@ import { BUSINESS_ID, SAME_AS } from '../../data/schemaBusiness.js';
 import { services } from '../../data/services.js';
 import { pickPhotos, buildAlt } from '../../data/photos.js';
 import { iconForService } from '../../data/serviceIcons.js';
+import { cityFaqs, faqSchema } from '../../data/comboContent.js';
 
 export function getStaticPaths() {
   return getCitySlugs().map((slug) => ({
@@ -25,6 +26,7 @@ const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
 const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${slug}/`;
 const citySms = `${smsLink}?&body=${encodeURIComponent(`Junk removal quote for ${city.name}, MN.\nPlease send photos and item details.`)}`;
+const faqs = cityFaqs(city, slug);
 
 const schema = {
   '@context': 'https://schema.org',
@@ -90,6 +92,7 @@ const schema = {
         worstRating: '1',
       },
     },
+    faqSchema(faqs),
   ],
 };
 ---
@@ -264,6 +267,23 @@ const schema = {
       <p class="section-copy">
         Most {city.name} appointments are scheduled within 2–3 business days. Same-day pickups are available based on crew capacity along the route — text photos and your zip to check current availability. The crew calls 30 minutes before arrival and sends a completion photo when the job is done.
       </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">{city.name} FAQ</p>
+          <h2>Common questions from {city.name} customers.</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        {faqs.map(({ q, a }, index) => (
+          <details class="faq-card" open={index === 0}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
     </section>
 
     <section class="section city-cta">

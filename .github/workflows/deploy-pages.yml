@@ -50,10 +50,20 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       # Classic Google/Bing sitemap "ping" endpoints were retired in 2023, so we
-      # notify via IndexNow (Bing, Yandex, etc.) instead. No-ops without a key.
+      # notify via IndexNow (Bing, Yandex, etc.). IndexNow does not parse
+      # sitemaps — it needs the URL list POSTed. The key is public by design
+      # (it must be hosted at the site root), so it lives in the repo at
+      # public/<key>.txt and is hardcoded here.
       - name: Notify search engines (IndexNow)
-        if: ${{ env.INDEXNOW_KEY != '' }}
-        env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: |
-          curl -fsS "https://api.indexnow.org/indexnow?url=https://dakotavalleyjunkremovalservice.com/sitemap-index.xml&key=${INDEXNOW_KEY}" || true
+          KEY=a8a8788968d87d8f1b70cc9159e82357
+          HOST=dakotavalleyjunkremovalservice.com
+          sleep 30  # let Pages finish propagating so the key file resolves
+          curl -fsS "https://${HOST}/sitemap-0.xml" \
+            | grep -o '<loc>[^<]*</loc>' \
+            | sed -e 's/<\/\?loc>//g' \
+            | jq -R -s --arg host "$HOST" --arg key "$KEY" \
+                '{host: $host, key: $key, keyLocation: ("https://" + $host + "/" + $key + ".txt"), urlList: (split("\n") | map(select(length > 0)))}' \
+            | curl -fsS -X POST "https://api.indexnow.org/indexnow" \
+                -H "Content-Type: application/json; charset=utf-8" \
+                --data @- || echo "IndexNow submission failed (non-fatal)"
