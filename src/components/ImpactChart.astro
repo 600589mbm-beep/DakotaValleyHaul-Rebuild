@@ -1,33 +1,42 @@
 ---
-// "Where your junk actually goes" — a simple, accessible bar chart from
-// public/impact.json. Converts eco-conscious Twin Cities customers and is a
-// genuine differentiator vs. competitors who just landfill.
-import impact from '../../public/impact.json';
-const bars = [
-  { label: 'Donated', pct: impact.donatedPct, color: '#0957c3' },
-  { label: 'Recycled', pct: impact.recycledPct, color: '#3b82d9' },
-  { label: 'Landfill', pct: impact.landfillPct, color: '#9fb3c8' },
+// "Where your junk actually goes" — destination routing, no landfill row.
+// Owner direction 2026-06-11: we don't landfill, so the old donated/
+// recycled/landfill percentage chart (placeholder numbers) is gone.
+// No invented percentages or tonnage — only the real routing chains.
+const destinations = [
+  {
+    label: 'Donated',
+    color: '#0957c3',
+    desc: 'Usable furniture and household goods go to Bridging, Arc’s Value Village, and Savers.',
+  },
+  {
+    label: 'Recycled',
+    color: '#3b82d9',
+    desc: 'Metal to certified recyclers, electronics to R2-certified e-waste facilities, mattresses to certified Minnesota mattress recycling.',
+  },
+  {
+    label: 'Composted',
+    color: '#2f9e6e',
+    desc: 'Brush, branches, and compostable yard material routed to certified compost facilities.',
+  },
 ];
-const diverted = (impact.donatedPct || 0) + (impact.recycledPct || 0);
 ---
 <section class="section impact" id="impact" aria-label="Where your junk goes">
   <div class="section-head"><div>
     <p class="section-kicker">Where your junk goes</p>
-    <h2>{diverted}% kept out of the landfill.</h2>
+    <h2>Donated, recycled, composted — not dumped.</h2>
   </div>
     <p class="section-copy">
-      Usable furniture is donated to Bridging, Arc, and Savers. Metal, e-waste, and mattresses are recycled.
-      Roughly {impact.tonsDivertedAnnually}+ tons diverted a year across {impact.charityPartners}+ partners.
+      Every load gets sorted by destination instead of heading to a landfill. Tell the crew which items are
+      donation candidates and they route them with the rest.
     </p>
   </div>
 
-  <div class="impact-chart" role="img"
-    aria-label={`Donated ${impact.donatedPct}%, recycled ${impact.recycledPct}%, landfill ${impact.landfillPct}%`}>
-    {bars.map((b) => (
-      <div class="impact-row">
-        <span class="impact-row-label">{b.label}</span>
-        <div class="impact-row-track"><div class="impact-row-fill" style={`width:${b.pct}%;background:${b.color}`}></div></div>
-        <span class="impact-row-pct">{b.pct}%</span>
+  <div class="impact-chart">
+    {destinations.map((d) => (
+      <div class="impact-row" style="grid-template-columns: 110px 1fr">
+        <span class="impact-row-label" style={`color:${d.color}`}>{d.label}</span>
+        <p style="margin:0;color:var(--muted);line-height:1.6">{d.desc}</p>
       </div>
     ))}
   </div>
