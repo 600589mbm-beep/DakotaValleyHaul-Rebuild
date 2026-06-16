@@ -1,12 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { PRICE_FLOOR } from '../../data/booking.js';
+import { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { services, getServiceSlugs } from '../../data/services.js';
 import { businessNode } from '../../data/schemaBusiness.js';
 import { cities } from '../../data/cities.js';
 import { pickPhotos, buildAlt } from '../../data/photos.js';
+import { serviceAngles, faqSchema } from '../../data/comboContent.js';
 
 export function getStaticPaths() {
   return getServiceSlugs().map((slug) => ({
@@ -22,6 +23,40 @@ const canonical = `https://dakotavalleyjunkremovalservice.com/services/${slug}/`
 const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request.\nPlease send photos and item details.`)}`;
 const popularCities = Object.entries(cities).slice(0, 12);
 const heroPhoto = pickPhotos(slug, 1)[0];
+
+// Per-service FAQ — statewide phrasing. Answers are sourced from booking.js
+// (price floor, scheduling) and comboContent.js serviceAngles (disposal chain),
+// so every claim is backed by an existing single-source-of-truth file.
+const lc = service.name.toLowerCase();
+const angle = serviceAngles[slug] || {};
+const faqs = [
+  {
+    q: `How much does ${lc} cost in Minnesota?`,
+    a: `Pickups start at an $85 minimum, and ${lc} is priced by volume — the share of the truck your items fill — not by the hour. ${PRICE_FLOOR_DETAIL} Text photos for a firm quote with no surprise on-site re-quote.`,
+  },
+  {
+    q: `How do I book ${lc}?`,
+    a: `Text photos of the items plus your city to (952) 232-5107, or use the photo-quote helper. The crew sends a firm quote and a pickup window — there is no on-site estimate visit.`,
+  },
+  {
+    q: `How soon can you schedule ${lc}?`,
+    a: `Most pickups are scheduled about two business days out so the crew arrives with the right equipment. Same-day jobs are sometimes available based on crew capacity — text to check.`,
+  },
+  {
+    q: `Do I need to be home for ${lc}?`,
+    a: `No — as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a completion photo when the job is done.`,
+  },
+  {
+    q: `Where do you offer ${lc}?`,
+    a: `Across all Minnesota cities and counties, with route-aware scheduling. Coverage is heaviest across the Twin Cities metro — Hennepin, Ramsey, Dakota, Anoka, Washington, Scott, and Carver counties.`,
+  },
+];
+if (angle.disposal) {
+  faqs.push({
+    q: `What happens to the items after ${lc}?`,
+    a: `Donation-first. ${angle.disposal}`,
+  });
+}
 
 const schema = {
   '@context': 'https://schema.org',
@@ -56,6 +91,7 @@ const schema = {
         })),
       },
     },
+    faqSchema(faqs),
   ],
 };
 ---
@@ -135,6 +171,21 @@ const schema = {
           <a href={`/cities/${sl}/${slug}/`} class="city-link">{c.name}</a>
         ))}
         <a href="/#areas" class="city-link">See all 61 cities</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">FAQ</p>
+        <h2>{service.name} — quick answers.</h2>
+      </div></div>
+      <div class="faq-list">
+        {faqs.map(({ q, a }, index) => (
+          <details class="faq-card" open={index === 0}>
+            <summary>{q</summary>
+            <p>{a}</p>
+          </details>
+        ))}
       </div>
     </section>
 
