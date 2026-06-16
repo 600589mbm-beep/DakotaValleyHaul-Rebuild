@@ -1,54 +1,45 @@
 {
   "name": "Dakota Valley Junk Removal",
-  "description": "Affordable curbside and garage junk pickup across Minnesota with text-first photo quotes, calendar booking, and an $85 minimum.",
+  "description": "Affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, calendar booking, $85 minimum, donation-first disposal.",
   "url": "https://dakotavalleyjunkremovalservice.com",
   "telephone": "+1-952-232-5107",
   "email": "info@dakotavalleyjunkremovalservice.com",
   "priceRange": "From $85",
-  "areaServed": ["Minnesota", "All Minnesota cities", "All Minnesota counties"],
-  "lastUpdated": "2026-05-21",
+  "foundingDate": "2023",
+  "address": "1964 Rahncliff Ct, Ste 200, #22342, Eagan, MN 55122",
+  "hours": "Open 7 days a week, 08:00-21:00",
+  "areaServed": ["Minnesota", "Twin Cities metro", "All Minnesota cities", "All Minnesota counties"],
+  "lastUpdated": "2026-06-15",
+  "llmsTxt": "https://dakotavalleyjunkremovalservice.com/llms.txt",
+  "sitemap": "https://dakotavalleyjunkremovalservice.com/sitemap-index.xml",
   "sections": [
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/",
-      "section": "Home",
-      "priority": 1.0,
-      "focus": "Curbside and garage junk pickup across Minnesota"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#services",
-      "section": "Services",
-      "priority": 0.8,
-      "focus": "Curbside pickup, garage cleanout, furniture and appliance removal, light demo"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#items",
-      "section": "Items accepted",
-      "priority": 0.7,
-      "focus": "Single items to full property resets"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#areas",
-      "section": "Service areas",
-      "priority": 0.8,
-      "focus": "All Minnesota counties and cities, statewide brand with local routes"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#quote",
-      "section": "Quote helper",
-      "priority": 0.9,
-      "focus": "Text photos, pick a calendar window, $85 minimum"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#about",
-      "section": "About",
-      "priority": 0.7,
-      "focus": "Twin Cities-grown since 2023, charity partners (Bridging, Arc, Savers), donation-first disposal"
-    },
-    {
-      "url": "https://dakotavalleyjunkremovalservice.com/#faq",
-      "section": "FAQ",
-      "priority": 0.6,
-      "focus": "Pricing, scheduling, accepted items, recycling and donation practices"
-    }
+    { "url": "https://dakotavalleyjunkremovalservice.com/", "section": "Home", "priority": 1.0, "focus": "Curbside and garage junk pickup across Minnesota, $85 minimum, text-first photo quotes" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/pricing/", "section": "Pricing", "priority": 0.9, "focus": "Volume-based tiers: single item $85, small $120-185, medium $220-320, large $380-520, full truck $580-750" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/junk-pickup/", "section": "Service: Junk pickup", "priority": 0.8, "focus": "Curbside and garage junk pickup, single items to garage cleanouts" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/furniture-removal/", "section": "Service: Furniture removal", "priority": 0.8, "focus": "Sofas, sectionals, beds, mattresses, dressers, office furniture" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/appliance-recycling/", "section": "Service: Appliance recycling", "priority": 0.8, "focus": "Fridges, washers, dryers, stoves; EPA-certified refrigerant recovery" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/garage-cleanout/", "section": "Service: Garage cleanout", "priority": 0.8, "focus": "Stage items in garage, crew loads and sweeps" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/mattress-removal/", "section": "Service: Mattress removal", "priority": 0.7, "focus": "Single/queen/king and box springs, certified recycling, $120 set" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/estate-cleanout/", "section": "Service: Estate cleanout", "priority": 0.7, "focus": "Donation-first full estate cleanouts, property show-ready" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/hoarder-cleanout/", "section": "Service: Hoarder cleanout", "priority": 0.7, "focus": "Discreet, judgment-free, sort-on-site donation routing" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/yard-debris/", "section": "Service: Yard and storm debris", "priority": 0.7, "focus": "Brush, branches, fencing, storm cleanup, compost routing" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/electronics-removal/", "section": "Service: Electronics removal", "priority": 0.7, "focus": "TVs, computers; R2-certified e-waste; hard-drive destruction" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/hot-tub-removal/", "section": "Service: Hot tub removal", "priority": 0.6, "focus": "Disassembly, lifting, hauling, disposal" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/services/demolition/", "section": "Service: Light demolition", "priority": 0.6, "focus": "Sheds, fences, decks, interior bath and kitchen demo" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/counties/hennepin-county/", "section": "Area: Hennepin County", "priority": 0.7, "focus": "Minneapolis, Bloomington, Edina, Eden Prairie, Plymouth, Maple Grove" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/counties/ramsey-county/", "section": "Area: Ramsey County", "priority": 0.7, "focus": "St. Paul, Roseville, Maplewood, White Bear Lake, Shoreview" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/counties/dakota-county/", "section": "Area: Dakota County", "priority": 0.7, "focus": "Eagan, Apple Valley, Burnsville, Lakeville, Hastings" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/guides/junk-removal-cost-minnesota/", "section": "Guide: Junk removal cost in Minnesota (2026)", "priority": 0.7, "focus": "How volume pricing works with real tiers" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/guides/get-rid-of-mattress-minnesota/", "section": "Guide: Get rid of a mattress in Minnesota", "priority": 0.6, "focus": "Mattress disposal and certified recycling options" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/guides/what-junk-removal-wont-take/", "section": "Guide: What junk removal won't take", "priority": 0.6, "focus": "Prohibited and hazardous items, alternatives" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/reviews/", "section": "Reviews", "priority": 0.6, "focus": "Customer reviews and ratings" }
+  ],
+  "faq": [
+    { "q": "What is the minimum pickup price?", "a": "$85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal." },
+    { "q": "Why text instead of calling?", "a": "A photo tells the crew more than a call. Text a few shots and get a firm quote and a pickup window." },
+    { "q": "Do you serve my city or county?", "a": "Yes — all Minnesota cities and counties, with route-aware scheduling." },
+    { "q": "When is the soonest you can pick up?", "a": "Most pickups are about two business days out; same-day is sometimes available based on crew capacity." },
+    { "q": "What items do you NOT accept?", "a": "Hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives." },
+    { "q": "Do you recycle or donate items?", "a": "Yes — donation-first. Furniture to Bridging/Arc/Savers, electronics to R2-certified recyclers, mattresses to certified MN facilities." }
   ]
 }
