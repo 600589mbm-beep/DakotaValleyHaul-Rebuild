@@ -6,7 +6,7 @@ The original full-stack source remains in `600589mbm-beep/DakotaValleyHaul`. Thi
 
 ## What changed
 
-- Fast React/Vite front end
+- Fast Astro static site (React islands where interactivity is needed)
 - Free GitHub Pages deployment workflow
 - Clearer hero offer and calls to action
 - Cleaner service-area presentation
