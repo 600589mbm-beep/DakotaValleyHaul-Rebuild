@@ -20,5 +20,8 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+# LLM-readable site guide
+# llms.txt: https://dakotavalleyjunkremovalservice.com/llms.txt
+
 Sitemap: https://dakotavalleyjunkremovalservice.com/sitemap-index.xml
 Sitemap: https://dakotavalleyjunkremovalservice.com/image-sitemap.xml
