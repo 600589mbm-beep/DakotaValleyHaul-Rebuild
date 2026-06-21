@@ -41,7 +41,7 @@ export const serviceStartingPrice = {
   'garage-cleanout':     'From $185',
   'yard-debris':         'From $120',
   'dumpster-rental':     'By quote',
-  'mattress-removal':    'From $85',
+  'mattress-removal':    'From $100',
   'hot-tub-removal':     'From $380',
   'scrap-metal-removal': 'From $85',
   'electronics-removal': 'From $85',

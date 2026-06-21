@@ -1,7 +1,7 @@
 ---
 // Homepage pricing snapshot — same five tiers as the booking form and /pricing/.
 import { Icon } from 'astro-icon/components';
-import { tiers, priceFactors } from '../data/pricing.js';
+import { tiers, priceFactors, itemPrices } from '../data/pricing.js';
 ---
 <section class="section pricing-preview" id="pricing-preview" aria-label="Pricing snapshot">
   <div class="section-head"><div>
@@ -20,6 +20,15 @@ import { tiers, priceFactors } from '../data/pricing.js';
         <span class="pricing-card-blurb">{t.blurb}</span>
       </a>
     ))}
+  </div>
+
+  <div class="item-prices">
+    <p class="item-prices-head">Common single items <small>— $85 minimum per pickup; appliances, electronics &amp; tires recycled, never landfilled.</small></p>
+    <ul class="item-prices-list">
+      {itemPrices.map((it) => (
+        <li><span class="item-prices-name">{it.item}{it.recycled && <Icon name="lucide:recycle" size={13} />}</span><span class="item-prices-price">{it.price}</span></li>
+      ))}
+    </ul>
   </div>
 
   <details class="pricing-explainer">

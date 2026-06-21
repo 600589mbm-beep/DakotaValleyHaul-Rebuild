@@ -70,11 +70,10 @@ import { WORKER_URL } from '../data/booking.js';
       <label>
         <span>Load size</span>
         <select name="loadSize">
-          <option value="single-item">Single item (≈ $85)</option>
-          <option value="small">Small load — 1/8 to 1/4 truck ($120–$185)</option>
-          <option value="medium" selected>Medium load — 1/4 to 1/2 truck ($220–$320)</option>
-          <option value="large">Large load — 1/2 to 3/4 truck ($380–$520)</option>
-          <option value="full">Full truck ($580–$750)</option>
+          <option value="single-item">Single item (from $85)</option>
+          <option value="pickup-bed" selected>Pickup-bed load — ~5-ft bed ($85–$170)</option>
+          <option value="van-load">Van load — Amazon-van size ($255–$550)</option>
+          <option value="full">Full load (up to $750)</option>
         </select>
       </label>
     </div>
