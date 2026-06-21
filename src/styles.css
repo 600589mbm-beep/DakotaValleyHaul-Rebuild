@@ -886,6 +886,13 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   flex-direction: column;
   gap: 12px;
 }
+.tg-form-lede {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted, #56616f);
+  line-height: 1.5;
+}
+.tg-form-lede strong { color: var(--ink, #1c2a3a); }
 .tg-form-intro {
   display: flex;
   align-items: flex-start;

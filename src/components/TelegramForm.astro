@@ -3,6 +3,8 @@ import { Icon } from 'astro-icon/components';
 import { WORKER_URL } from '../data/booking.js';
 ---
 <form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
+  <p class="tg-form-lede">Four things get you a firm quote: your <strong>name</strong>, <strong>address</strong>, <strong>phone</strong>, and a few <strong>photos</strong>.</p>
+
   <div class="tg-form-row">
     <label>
       <span>Name <em>*</em></span>
@@ -15,8 +17,18 @@ import { WORKER_URL } from '../data/booking.js';
   </div>
 
   <label class="tg-form-stack">
-    <span>City or county <em>*</em></span>
-    <input name="city" type="text" required placeholder="City, county, or ZIP" />
+    <span>Pickup address <em>*</em></span>
+    <input name="address" type="text" required placeholder="Street address" autocomplete="street-address" />
+  </label>
+
+  <label class="tg-form-stack">
+    <span>City, county or ZIP <em>*</em></span>
+    <input name="city" type="text" required placeholder="e.g., Apple Valley or 55124" />
+  </label>
+
+  <label class="tg-form-stack tg-form-photos">
+    <span>Photos <em>*</em> <small>(phone camera is fine — snap 2–3 angles + a doorway or person for scale)</small></span>
+    <input name="photos" type="file" accept="image/*" capture="environment" multiple required />
   </label>
 
   <label class="tg-form-stack">
@@ -24,15 +36,10 @@ import { WORKER_URL } from '../data/booking.js';
     <textarea name="details" rows="3" required placeholder="e.g., One sofa and two mattresses in the garage."></textarea>
   </label>
 
-  {/* Everything below is optional — it just speeds up the quote. Hidden by
-     default so the form reads as 3 quick fields, not 11. */}
+  {/* Truly optional — scheduling/sizing speed-ups. Hidden so the form reads
+     as the 4 essentials (name, address, phone, photos) + what to haul. */}
   <details class="tg-form-more">
-    <summary>Add address, date &amp; photos <small>(optional — gets you a faster, firmer quote)</small></summary>
-
-    <label class="tg-form-stack">
-      <span>Pickup address</span>
-      <input name="address" type="text" placeholder="Street address" autocomplete="street-address" />
-    </label>
+    <summary>Add a preferred date &amp; load size <small>(optional)</small></summary>
 
     <div class="tg-form-row">
       <label>
@@ -71,11 +78,6 @@ import { WORKER_URL } from '../data/booking.js';
         </select>
       </label>
     </div>
-
-    <label class="tg-form-stack tg-form-photos">
-      <span>Photos <small>(phone camera is fine — speeds up the quote)</small></span>
-      <input name="photos" type="file" accept="image/*" capture="environment" multiple />
-    </label>
   </details>
 
   {/* Honeypot */}

@@ -125,7 +125,7 @@ export default {
         estimateMax: clean(formData.get('estimateMax')),
       };
 
-      const missing = ['name', 'phone', 'address', 'city', 'date', 'details'].filter((field) => !payload[field]);
+      const missing = ['name', 'phone', 'address', 'city', 'details'].filter((field) => !payload[field]);
       if (missing.length) {
         return json(request, { success: false, error: `Missing ${missing.join(', ')}.` }, 400);
       }
