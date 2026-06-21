@@ -1441,10 +1441,10 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
    ════════════════════════════════════════════════════════════════════════ */
 
 :root{
-  --dv-pine-900:#0c2118; --dv-pine-800:#11301f; --dv-pine-700:#163a2b; --dv-pine-600:#1d4d35;
-  --dv-moss-soft:#8fd0b1;
+  --dv-pine-900:#07182f; --dv-pine-800:#0c2748; --dv-pine-700:#14407a; --dv-pine-600:#1b5bb0;
+  --dv-moss-soft:#8fb6e0;
   --dv-amber:#f0a92e; --dv-amber-600:#d4880f;
-  --dv-cream:#f3ead6; --dv-cream-mute:#aebfae;
+  --dv-cream:#f3ead6; --dv-cream-mute:#a9b8cf;
   --dv-line:#ddd2ba; --dv-ink:#15180f;
   --dv-shadow:0 22px 50px -20px rgba(12,33,24,.45);
   --dv-shadow-sm:0 8px 22px -12px rgba(12,33,24,.4);
@@ -1453,7 +1453,7 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 /* ── hero shell override (keeps your <nav>; restyles bg + layout) ── */
 .hero{
   background:
-    radial-gradient(900px 520px at 88% -8%, rgba(63,138,102,.42), transparent 62%),
+    radial-gradient(900px 520px at 88% -8%, rgba(47,109,200,.42), transparent 62%),
     radial-gradient(700px 500px at 6% 110%, rgba(240,169,46,.13), transparent 60%),
     linear-gradient(160deg,var(--dv-pine-800) 0%, var(--dv-pine-900) 100%) !important;
   justify-content:flex-start;
@@ -1462,7 +1462,7 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:radial-gradient(rgba(143,208,177,.10) 1px,transparent 1px);
+  background-image:radial-gradient(rgba(143,176,224,.10) 1px,transparent 1px);
   background-size:26px 26px;opacity:.5;
   -webkit-mask-image:linear-gradient(to bottom,#000,transparent 75%);
   mask-image:linear-gradient(to bottom,#000,transparent 75%);
@@ -1511,7 +1511,7 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 
 .dv-price-flag{display:inline-flex;align-items:center;gap:8px;
   font-family:"Spline Sans Mono",monospace;font-size:.85rem;font-weight:600;color:var(--dv-cream);
-  background:rgba(255,255,255,.06);border:1px solid rgba(143,208,177,.25);padding:8px 14px;border-radius:999px}
+  background:rgba(255,255,255,.06);border:1px solid rgba(143,176,224,.25);padding:8px 14px;border-radius:999px}
 .dv-price-flag strong{color:var(--dv-amber)}
 .dv-price-flag svg{color:var(--dv-amber)}
 
@@ -1523,9 +1523,9 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 
 /* ── SMS thread (signature) ── */
 .dv-phone{position:relative;justify-self:center;width:min(360px,100%);
-  background:#0a1c14;border-radius:30px;padding:13px;
-  box-shadow:var(--dv-shadow),0 0 0 1px rgba(143,208,177,.16);
-  border:1px solid rgba(143,208,177,.12)}
+  background:#08172e;border-radius:30px;padding:13px;
+  box-shadow:var(--dv-shadow),0 0 0 1px rgba(143,176,224,.16);
+  border:1px solid rgba(143,176,224,.12)}
 .dv-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);
   width:120px;height:6px;border-radius:99px;background:rgba(255,255,255,.14);z-index:3}
 .dv-thread{background:linear-gradient(180deg,#f7f3ea,#efe7d6);border-radius:20px;
@@ -1535,7 +1535,7 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 .dv-av{width:34px;height:34px;border-radius:10px;background:var(--dv-pine-700);
   display:grid;place-items:center;flex:none;color:var(--dv-amber)}
 .dv-who{font-weight:800;font-size:.92rem;color:var(--dv-ink);line-height:1.1}
-.dv-who small{display:block;font-weight:600;font-size:.66rem;color:#3f8a66;letter-spacing:.04em;margin-top:1px}
+.dv-who small{display:block;font-weight:600;font-size:.66rem;color:#2f6fb0;letter-spacing:.04em;margin-top:1px}
 .dv-bubble{max-width:80%;padding:10px 13px;border-radius:16px;font-size:.9rem;line-height:1.4;
   position:relative;opacity:0;transform:translateY(8px);animation:dv-rise .5s forwards}
 .dv-in{align-self:flex-end;background:var(--dv-pine-700);color:#f4ead4;border-bottom-right-radius:5px}
