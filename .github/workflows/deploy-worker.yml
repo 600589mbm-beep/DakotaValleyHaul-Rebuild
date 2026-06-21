@@ -28,8 +28,13 @@ jobs:
             -H "Content-Type: application/json" \
             --data "{\"subdomain\":\"${WORKERS_DEV_SUBDOMAIN}\"}")"
           if [ "$(printf '%s' "$response" | jq -r '.success')" != "true" ]; then
-            printf '%s\n' "$response" | jq -c '.errors'
-            exit 1
+            code="$(printf '%s' "$response" | jq -r '.errors[0].code // empty')"
+            if [ "$code" = "10036" ]; then
+              echo "workers.dev subdomain already exists (10036) — continuing."
+            else
+              printf '%s\n' "$response" | jq -c '.errors'
+              exit 1
+            fi
           fi
       - name: Deploy Worker with secrets
         uses: cloudflare/wrangler-action@v3
