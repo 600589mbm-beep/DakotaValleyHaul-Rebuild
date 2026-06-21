@@ -391,10 +391,10 @@ export const services = {
     icon: 'Truck',
     headline: "Single-item pickup \u2014 from $85",
     intro:
-      "Single-item pickup across Minnesota. Small items like a small sofa, kids mattress, mini fridge, or small dresser start at $85. Refrigerators and mattress + box spring are $120 each. Curbside or garage staging keeps the price low.",
+      "Single-item pickup across Minnesota. Small items start low — $85 minimum per pickup; mini fridge $45, TV from $50. Refrigerators and mattresses start at $100 each. Curbside or garage staging keeps the price down.",
     metaTitle: "Single-item pickup Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Single-item pickup across Minnesota. Small items from $85; refrigerators and mattress + box spring $120 each. Curbside or garage staging keeps the price low.",
+      "Single-item pickup across Minnesota. Small items from $85; mini fridge $45, TV from $50, refrigerators and mattresses from $100. Curbside or garage staging keeps the price low.",
     services: [
       "Single sofa or sectional",
       "Single refrigerator",
