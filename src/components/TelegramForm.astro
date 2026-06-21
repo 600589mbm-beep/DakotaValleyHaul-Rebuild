@@ -36,49 +36,6 @@ import { WORKER_URL } from '../data/booking.js';
     <textarea name="details" rows="3" required placeholder="e.g., One sofa and two mattresses in the garage."></textarea>
   </label>
 
-  {/* Truly optional — scheduling/sizing speed-ups. Hidden so the form reads
-     as the 4 essentials (name, address, phone, photos) + what to haul. */}
-  <details class="tg-form-more">
-    <summary>Add a preferred date &amp; load size <small>(optional)</small></summary>
-
-    <div class="tg-form-row">
-      <label>
-        <span>Preferred date</span>
-        <input name="date" type="date" />
-      </label>
-      <label>
-        <span>Pickup spot</span>
-        <select name="pickupSpot">
-          <option value="curbside">Curbside</option>
-          <option value="garage">Garage</option>
-          <option value="driveway">Driveway</option>
-          <option value="yard">Yard</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="tg-form-row">
-      <label>
-        <span>Preferred window</span>
-        <select name="preferredWindow">
-          <option value="morning">Morning (8 AM – 12 PM)</option>
-          <option value="afternoon">Afternoon (12 – 5 PM)</option>
-          <option value="evening">Evening (5 – 9 PM)</option>
-          <option value="anytime">Any time</option>
-        </select>
-      </label>
-      <label>
-        <span>Load size</span>
-        <select name="loadSize">
-          <option value="single-item">Single item (from $85)</option>
-          <option value="pickup-bed" selected>Pickup-bed load — ~5-ft bed ($85–$170)</option>
-          <option value="van-load">Van load — Amazon-van size ($255–$550)</option>
-          <option value="full">Full load (up to $750)</option>
-        </select>
-      </label>
-    </div>
-  </details>
-
   {/* Honeypot */}
   <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
 
