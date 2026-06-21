@@ -7,7 +7,6 @@ import TrustBar from '../components/TrustBar.astro';
 import Testimonials from '../components/Testimonials.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
 import PricingPreview from '../components/PricingPreview.astro';
-import AvailabilityRibbon from '../components/AvailabilityRibbon.astro';
 import ImpactChart from '../components/ImpactChart.astro';
 import HeavyItems from '../components/HeavyItems.astro';
 import { cities } from '../data/cities.js';
@@ -220,41 +219,65 @@ const homepageSchema = {
         <a class="nav-call" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
 
-      <div class="hero-content">
-        <p class="eyebrow"><Icon name="lucide:sparkles" size={16} /> Minnesota junk removal, done by text</p>
-        <h1>Minnesota junk removal — no phone call required.</h1>
+      <div class="dv-hero-grid">
+        <div class="dv-hero-copy">
+          <span class="dv-eyebrow"><span class="dv-dot"></span> Junk removal · done by text</span>
+          <h1 class="dv-h1">We haul it.<br>You just <span class="amber">text<br>a photo.</span></h1>
+          <p class="dv-sub"><strong>Curbside &amp; garage pickup across the Twin Cities.</strong> Send a couple shots, get a firm quote back in hours, pick a window. No call center. No hold music.</p>
 
-        <div class="hero-rating" aria-label="Rating and credentials">
-          {reviewsVerified && (
-            <Fragment>
-              <span class="hero-stars" aria-hidden="true">★★★★★</span>
-              <strong>{agg.ratingValue.toFixed(1)}</strong>
-              <span class="hero-rating-sep">·</span>
-              <span>{agg.reviewCount} reviews</span>
-              <span class="hero-rating-sep">·</span>
-            </Fragment>
-          )}
-          <span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
-          <span class="hero-rating-sep">·</span>
-          <span>Since 2023</span>
-          <span class="hero-rating-sep">·</span>
-          <span><Icon name="lucide:recycle" size={15} /> Donation-first disposal</span>
+          <div class="dv-actions">
+            <a class="dv-btn dv-btn-amber" href={smsLink} data-track="sms_click"><Icon name="lucide:camera" size={19} /> Text a photo for a quote</a>
+            <a class="dv-btn dv-btn-ghost" href="#how">See how it works</a>
+            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> From <strong>$85</strong> minimum</span>
+          </div>
+
+          <div class="dv-trust">
+            <span><Icon name="lucide:shield-check" size={16} /> Licensed &amp; insured</span>
+            <span><Icon name="lucide:recycle" size={16} /> Donation-first disposal</span>
+            <span><Icon name="lucide:truck" size={16} /> Locally owned since 2023</span>
+          </div>
         </div>
 
-        <p class="hero-copy">
-          <strong>Same-day eligible curbside and garage pickup across Minnesota.</strong>
-          Text photos, get a firm quote in hours, pick a window. $85 minimum, no salesperson, no hold music.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text a photo for a quote</a>
-          <a class="button secondary" href="#quote"><Icon name="lucide:file-text" size={18} /> Get a written quote in 60 seconds</a>
-          <span class="price-chip"><Icon name="lucide:tag" size={14} /> {PRICE_FLOOR}</span>
+        {/* signature element: the text-a-photo quote thread */}
+        <div class="dv-phone" role="img" aria-label="Text exchange: a customer sends a photo of a couch and two boxes; Dakota Valley replies with a firm $85 quote and a pickup window of tomorrow 9 to 11 AM.">
+          <span class="dv-notch" aria-hidden="true"></span>
+          <div class="dv-thread">
+            <div class="dv-thread-head">
+              <span class="dv-av"><Icon name="lucide:truck" size={18} /></span>
+              <span class="dv-who">Dakota Valley Junk<small>● Texting now · replies in hrs</small></span>
+            </div>
+            <div class="dv-bubble dv-in">Hey — got an old couch and a couple boxes to get rid of in Eagan 🛋️<span class="dv-t">2:14 PM</span></div>
+            <div class="dv-photo" aria-hidden="true">
+              <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="120" fill="#2b2018"/>
+                <rect x="0" y="86" width="200" height="34" fill="#3a2c20"/>
+                <rect x="22" y="48" width="92" height="40" rx="7" fill="#7d5a3c"/>
+                <rect x="22" y="40" width="92" height="16" rx="7" fill="#946b48"/>
+                <rect x="30" y="56" width="34" height="28" rx="4" fill="#5e4129"/>
+                <rect x="72" y="56" width="34" height="28" rx="4" fill="#5e4129"/>
+                <rect x="120" y="58" width="40" height="30" fill="#b59a6a" stroke="#8a7044" stroke-width="2"/>
+                <rect x="124" y="62" width="40" height="30" fill="#c7ab78" stroke="#8a7044" stroke-width="2"/>
+                <line x1="124" y1="77" x2="164" y2="77" stroke="#8a7044" stroke-width="2"/>
+                <rect x="158" y="44" width="34" height="44" fill="#9c8050" stroke="#75603a" stroke-width="2"/>
+                <circle cx="178" cy="22" r="13" fill="#f0a92e" opacity=".22"/>
+              </svg>
+            </div>
+            <div class="dv-bubble dv-out dv-r1"><span class="dv-quote">Easy one. <span class="q">$85 flat</span> for the couch + 2 boxes.</span><br>Tomorrow <strong>9–11 AM</strong> work? We'll text when we're 20 min out.<span class="dv-t">2:31 PM</span></div>
+            <div class="dv-bubble dv-in dv-r2">Perfect. Do I need to be home?<span class="dv-t">2:33 PM</span></div>
+            <div class="dv-bubble dv-out dv-r3">Nope — leave it curbside or in the garage. We send a photo when it's gone ✅<span class="dv-t">2:34 PM</span></div>
+            <div class="dv-typing" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <span class="dv-phone-tag">photo → quote</span>
         </div>
-
-        <AvailabilityRibbon />
       </div>
     </section>
+
+    <div class="dv-marquee" aria-hidden="true">
+      <div class="dv-marquee-track">
+        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Basements<span></span>Single items<span></span></span>
+        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Basements<span></span>Single items<span></span></span>
+      </div>
+    </div>
 
     <div class="band-wrap"><TrustBar aggregate={agg} verified={reviewsData.source === 'google'} /></div>
 
@@ -409,7 +432,7 @@ const homepageSchema = {
       </div>
     </section>
 
-    <section class="section process">
+    <section class="section process" id="how">
       <p class="section-kicker">How it works</p>
       <h2>Three steps from clutter to clear.</h2>
       <div class="steps">
