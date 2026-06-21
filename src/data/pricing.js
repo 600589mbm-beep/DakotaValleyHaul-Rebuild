@@ -44,8 +44,8 @@ export const tiers = [
     price: 'up to $750',
     priceLow: 550,
     priceHigh: 750,
-    detail: 'a full trailer load',
-    blurb: 'A whole-house or large cleanout.',
+    detail: 'a full box-truck load',
+    blurb: 'Think 1–2 bedrooms or a whole garage.',
     examples: ['Full-house cleanout', 'Large estate', 'Garage + basement', 'Remodel debris'],
   },
 ];
