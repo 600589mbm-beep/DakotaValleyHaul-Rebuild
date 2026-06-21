@@ -30,18 +30,6 @@ const reviewsVerified = reviewsData.source === 'google';
 const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
 
 // Direct links from the homepage into high-intent city+service combo pages.
-const popularPickups = [
-  ['minneapolis', 'furniture-removal'],
-  ['st-paul', 'garage-cleanout'],
-  ['eagan', 'appliance-recycling'],
-  ['bloomington', 'mattress-removal'],
-  ['edina', 'estate-cleanout'],
-  ['maple-grove', 'hot-tub-removal'],
-  ['woodbury', 'basement-cleanout'],
-  ['lakeville', 'yard-debris'],
-  ['burnsville', 'junk-pickup'],
-  ['apple-valley', 'single-item-pickup'],
-].filter(([c, s]) => cities[c] && services[s]);
 const topServices = Object.entries(services).slice(0, 6);
 const restServices = Object.entries(services).slice(6);
 
@@ -317,20 +305,6 @@ const homepageSchema = {
           ))}
         </div>
       </details>
-    </section>
-
-    <section class="section city-locale" aria-label="Popular pickups">
-      <div class="section-head"><div>
-        <p class="section-kicker">Popular pickups</p>
-        <h2>Common jobs, straight to local pricing.</h2>
-      </div></div>
-      <div class="city-grid">
-        {popularPickups.map(([citySlug, serviceSlug]) => (
-          <a href={`/cities/${citySlug}/${serviceSlug}/`} class="city-link" data-track="combo_click">
-            {services[serviceSlug].name} in {cities[citySlug].name}
-          </a>
-        ))}
-      </div>
     </section>
 
     <PricingPreview />
