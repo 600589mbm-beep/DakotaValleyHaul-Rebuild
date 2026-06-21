@@ -141,7 +141,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does mattress removal cost in ${c.name}?`,
-        a: `A mattress plus box spring is $120 in ${c.name}, picked up curbside or from the garage. Single small mattresses (kids or crib sizes) fall under the $85 minimum. Multi-mattress bundles from move-outs are quoted from photos.`,
+        a: `A mattress is from $100 in ${c.name}, picked up curbside or from the garage — a flat per-item recycling rate with no load minimum. Multi-mattress bundles from move-outs are quoted from photos.`,
       }),
       (c) => ({
         q: `Are mattresses from ${c.name} actually recycled?`,
@@ -175,7 +175,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Is there a minimum for scrap metal pickup in ${c.name}?`,
-        a: `The standard $85 minimum applies, so a single treadmill or filing cabinet is $85. Bundling a metal pile with other junk in the same pickup is the most cost-effective way to clear it.`,
+        a: `A single treadmill or filing cabinet is $85 — the single-item load rate. Bundling a metal pile with other junk in the same pickup is the most cost-effective way to clear it.`,
       }),
     ],
   },
@@ -295,7 +295,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Is it worth booking a pickup for just one item in ${c.name}?`,
-        a: `That is exactly what the $85 minimum is for, and curbside or garage staging keeps it at the floor price. If you have a second item, add it — extra volume within the same tier does not change the price.`,
+        a: `That is exactly what the $85 single-item load rate is for, and curbside or garage staging keeps it at the floor price. If you have a second item, add it — extra volume within the same tier does not change the price.`,
       }),
     ],
   },
@@ -350,7 +350,7 @@ export function comboIntro(city, service, citySlug, serviceSlug) {
 
   const openers = [
     `Need ${svc} in ${city.name}? Dakota Valley Junk Removal runs ${city.county} routes six days a week, with regular pickups in ${n1}, ${n2}, and ${n3}.`,
-    `Dakota Valley Junk Removal handles ${svc} across ${city.name} — from ${n1} over to ${n2} — with curbside and garage pickup and an $85 minimum.`,
+    `Dakota Valley Junk Removal handles ${svc} across ${city.name} — from ${n1} over to ${n2} — with curbside and garage pickup and an loads from $85.`,
     `${city.name} homeowners call us for ${svc} covering everything from ${item} to full cleanout loads, in every neighborhood from ${n1} to ${n3}.`,
     `From ${landmark} to the streets of ${n1}, our Isuzu NPR box trucks cover all of ${city.name} for ${svc}.`,
   ];
@@ -480,13 +480,13 @@ export function quoteContent(city, citySlug) {
   ];
   const descriptions = [
     `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it in hours. From $85, no estimate visit, no phone call.`,
-    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. $85 minimum.`,
+    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. loads from $85.`,
     `Fast ${city.name} junk removal quote: photos by text, firm price back in hours, calendar booking. From $85 across ${n1} and ${n2}. No phone call required.`,
   ];
   const heroCopies = [
-    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, usually within hours. $85 minimum, no phone call required.`,
-    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a calendar window come back fast — typically the same day you text. $85 minimum, no call needed.`,
-    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back in hours, and a booking link. No walkthrough appointment, no phone tag. $85 minimum.`,
+    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, usually within hours. loads from $85, no phone call required.`,
+    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a calendar window come back fast — typically the same day you text. loads from $85, no call needed.`,
+    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back in hours, and a booking link. No walkthrough appointment, no phone tag. loads from $85.`,
   ];
   const routeCopies = [
     `Because we schedule by route through ${city.county}, ${city.name} pickups stay efficient — which keeps your price down. We regularly serve ${n1}, ${n2}, ${n3} and the rest of ${city.name}.`,

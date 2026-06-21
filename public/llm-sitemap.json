@@ -1,10 +1,10 @@
 {
   "name": "Dakota Valley Junk Removal",
-  "description": "Affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, calendar booking, $85 minimum, donation-first disposal.",
+  "description": "Affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, calendar booking, loads from $85 plus flat per-item recyclable rates, donation-first disposal.",
   "url": "https://dakotavalleyjunkremovalservice.com",
   "telephone": "+1-952-232-5107",
   "email": "info@dakotavalleyjunkremovalservice.com",
-  "priceRange": "From $85",
+  "priceRange": "$30 – $750",
   "foundingDate": "2023",
   "address": "1964 Rahncliff Ct, Ste 200, #22342, Eagan, MN 55122",
   "hours": "Open 7 days a week, 08:00-21:00",
@@ -13,8 +13,8 @@
   "llmsTxt": "https://dakotavalleyjunkremovalservice.com/llms.txt",
   "sitemap": "https://dakotavalleyjunkremovalservice.com/sitemap-index.xml",
   "sections": [
-    { "url": "https://dakotavalleyjunkremovalservice.com/", "section": "Home", "priority": 1.0, "focus": "Curbside and garage junk pickup across Minnesota, $85 minimum, text-first photo quotes" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/pricing/", "section": "Pricing", "priority": 0.9, "focus": "Volume-based tiers: single item $85, small $120-185, medium $220-320, large $380-520, full truck $580-750" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/", "section": "Home", "priority": 1.0, "focus": "Curbside and garage junk pickup across Minnesota, loads from $85, text-first photo quotes" },
+    { "url": "https://dakotavalleyjunkremovalservice.com/pricing/", "section": "Pricing", "priority": 0.9, "focus": "Loads from $85: single item $85, pickup-bed $85-170, van load $255-550, full box-truck up to $750; plus flat per-item recyclable rates (mattress/fridge from $100, freezer $60, mini fridge $45, TV $50, tires $30) with no load minimum" },
     { "url": "https://dakotavalleyjunkremovalservice.com/services/junk-pickup/", "section": "Service: Junk pickup", "priority": 0.8, "focus": "Curbside and garage junk pickup, single items to garage cleanouts" },
     { "url": "https://dakotavalleyjunkremovalservice.com/services/furniture-removal/", "section": "Service: Furniture removal", "priority": 0.8, "focus": "Sofas, sectionals, beds, mattresses, dressers, office furniture" },
     { "url": "https://dakotavalleyjunkremovalservice.com/services/appliance-recycling/", "section": "Service: Appliance recycling", "priority": 0.8, "focus": "Fridges, washers, dryers, stoves; EPA-certified refrigerant recovery" },

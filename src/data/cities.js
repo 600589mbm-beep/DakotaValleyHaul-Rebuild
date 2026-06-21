@@ -1875,7 +1875,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Brooklyn Park, MN. Whether you are clearing out a garage near Edinburgh USA Golf Course or need same-day furniture removal in Edinburgh or Champlin Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Brooklyn Park area.',
     metaTitle: 'Junk Removal Brooklyn Park MN | Hennepin County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Brooklyn Park, MN. Serving all Brooklyn Park neighborhoods across Hennepin County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Brooklyn Park, MN. Serving all Brooklyn Park neighborhoods across Hennepin County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Edinburgh',
       'Champlin Park',
@@ -1913,7 +1913,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Blaine, MN. Whether you are clearing out a garage near National Sports Center or need same-day furniture removal in Northtown or Lexington, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Blaine area.',
     metaTitle: 'Junk Removal Blaine MN | Anoka County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Blaine, MN. Serving all Blaine neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Blaine, MN. Serving all Blaine neighborhoods across Anoka County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Northtown',
       'Lexington',
@@ -1945,7 +1945,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Coon Rapids, MN. Whether you are clearing out a garage near Bunker Hills Regional Park or need same-day furniture removal in Riverdale or Sand Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Coon Rapids area.',
     metaTitle: 'Junk Removal Coon Rapids MN | Anoka County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Coon Rapids, MN. Serving all Coon Rapids neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Coon Rapids, MN. Serving all Coon Rapids neighborhoods across Anoka County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Riverdale',
       'Sand Creek',
@@ -1979,7 +1979,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Shakopee, MN. Whether you are clearing out a garage near Valleyfair or need same-day furniture removal in Downtown Shakopee or Westwood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Shakopee area.',
     metaTitle: 'Junk Removal Shakopee MN | Scott County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Shakopee, MN. Serving all Shakopee neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Shakopee, MN. Serving all Shakopee neighborhoods across Scott County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Shakopee',
       'Westwood',
@@ -2011,7 +2011,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Cottage Grove, MN. Whether you are clearing out a garage near Cottage Grove Ravine Regional Park or need same-day furniture removal in Hamlet or Pine Coulee, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Cottage Grove area.',
     metaTitle: 'Junk Removal Cottage Grove MN | Washington County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Cottage Grove, MN. Serving all Cottage Grove neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Cottage Grove, MN. Serving all Cottage Grove neighborhoods across Washington County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Hamlet',
       'Pine Coulee',
@@ -2042,7 +2042,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Andover, MN. Whether you are clearing out a garage near Bunker Hills Regional Park or need same-day furniture removal in Hidden Creek or Woodland Estates, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Andover area.',
     metaTitle: 'Junk Removal Andover MN | Anoka County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Andover, MN. Serving all Andover neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Andover, MN. Serving all Andover neighborhoods across Anoka County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Hidden Creek',
       'Woodland Estates',
@@ -2072,7 +2072,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Savage, MN. Whether you are clearing out a garage near Hidden Valley Sports Complex or need same-day furniture removal in Glendale or Hamilton, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Savage area.',
     metaTitle: 'Junk Removal Savage MN | Scott County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Savage, MN. Serving all Savage neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Savage, MN. Serving all Savage neighborhoods across Scott County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Glendale',
       'Hamilton',
@@ -2103,7 +2103,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Prior Lake, MN. Whether you are clearing out a garage near Lower Prior Lake or need same-day furniture removal in Downtown Prior Lake or Wilds, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Prior Lake area.',
     metaTitle: 'Junk Removal Prior Lake MN | Scott County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Prior Lake, MN. Serving all Prior Lake neighborhoods across Scott County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Prior Lake, MN. Serving all Prior Lake neighborhoods across Scott County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Prior Lake',
       'Wilds',
@@ -2134,7 +2134,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Chaska, MN. Whether you are clearing out a garage near Chaska Town Course or need same-day furniture removal in Downtown Chaska or Jonathan, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chaska area.',
     metaTitle: 'Junk Removal Chaska MN | Carver County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Chaska, MN. Serving all Chaska neighborhoods across Carver County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Chaska, MN. Serving all Chaska neighborhoods across Carver County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Chaska',
       'Jonathan',
@@ -2164,7 +2164,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Oakdale, MN. Whether you are clearing out a garage near Tartan Park or need same-day furniture removal in Oakdale Estates or Linwood Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Oakdale area.',
     metaTitle: 'Junk Removal Oakdale MN | Washington County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Oakdale, MN. Serving all Oakdale neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Oakdale, MN. Serving all Oakdale neighborhoods across Washington County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Oakdale Estates',
       'Linwood Park',
@@ -2194,7 +2194,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Chanhassen, MN. Whether you are clearing out a garage near Chanhassen Dinner Theatres or need same-day furniture removal in Downtown Chanhassen or Lake Lucy, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chanhassen area.',
     metaTitle: 'Junk Removal Chanhassen MN | Carver County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Chanhassen, MN. Serving all Chanhassen neighborhoods across Carver County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Chanhassen, MN. Serving all Chanhassen neighborhoods across Carver County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Chanhassen',
       'Lake Lucy',
@@ -2225,7 +2225,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Elk River, MN. Whether you are clearing out a garage near Elk River Energy Resource Center or need same-day furniture removal in Downtown Elk River or Lakeland, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Sherburne County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Elk River area.',
     metaTitle: 'Junk Removal Elk River MN | Sherburne County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Elk River, MN. Serving all Elk River neighborhoods across Sherburne County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Elk River, MN. Serving all Elk River neighborhoods across Sherburne County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Elk River',
       'Lakeland',
@@ -2255,7 +2255,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Champlin, MN. Whether you are clearing out a garage near Mississippi Point Park or need same-day furniture removal in Mississippi Crossings or Champlin Mill Pond, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Champlin area.',
     metaTitle: 'Junk Removal Champlin MN | Hennepin County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Champlin, MN. Serving all Champlin neighborhoods across Hennepin County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Champlin, MN. Serving all Champlin neighborhoods across Hennepin County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Mississippi Crossings',
       'Champlin Mill Pond',
@@ -2284,7 +2284,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Lino Lakes, MN. Whether you are clearing out a garage near Rice Creek Chain of Lakes Park Reserve or need same-day furniture removal in Birch Lake or Centerville Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Lino Lakes area.',
     metaTitle: 'Junk Removal Lino Lakes MN | Anoka County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Lino Lakes, MN. Serving all Lino Lakes neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Lino Lakes, MN. Serving all Lino Lakes neighborhoods across Anoka County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Birch Lake',
       'Centerville Lake',
@@ -2314,7 +2314,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Forest Lake, MN. Whether you are clearing out a garage near Forest Lake (the actual lake) or need same-day furniture removal in Downtown Forest Lake or Castlewood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Forest Lake area.',
     metaTitle: 'Junk Removal Forest Lake MN | Washington County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Forest Lake, MN. Serving all Forest Lake neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Forest Lake, MN. Serving all Forest Lake neighborhoods across Washington County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Forest Lake',
       'Castlewood',
@@ -2343,7 +2343,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Stillwater, MN. Whether you are clearing out a garage near Stillwater Lift Bridge or need same-day furniture removal in Historic Downtown Stillwater or Liberty, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Stillwater area.',
     metaTitle: 'Junk Removal Stillwater MN | Washington County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Stillwater, MN. Serving all Stillwater neighborhoods across Washington County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Stillwater, MN. Serving all Stillwater neighborhoods across Washington County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Historic Downtown Stillwater',
       'Liberty',
@@ -2374,7 +2374,7 @@ export const cities = {
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Anoka, MN. Whether you are clearing out a garage near Anoka County Historical Society or need same-day furniture removal in Downtown Anoka or Riverside Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Anoka area.',
     metaTitle: 'Junk Removal Anoka MN | Anoka County | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk removal in Anoka, MN. Serving all Anoka neighborhoods across Anoka County. $85 minimum, photo quote, same-day available.',
+      'Curbside and garage junk removal in Anoka, MN. Serving all Anoka neighborhoods across Anoka County. loads from $85, photo quote, same-day available.',
     neighborhoods: [
       'Downtown Anoka',
       'Riverside Park',

@@ -10,16 +10,16 @@ export const guides = {
     title: 'What does junk removal cost in Minnesota? (2026 guide)',
     metaTitle: 'Junk Removal Cost in Minnesota 2026 | Real Price Tiers | Dakota Valley',
     metaDescription:
-      'What junk removal actually costs in Minnesota: $85 single items, $120–$185 small loads, up to $580–$750 full truckloads. How volume pricing works and how to pay less.',
+      'What junk removal actually costs in Minnesota: loads from $85 (single item) up to $750 (a full box-truck load), plus flat per-item rates on recyclables. How volume pricing works and how to pay less.',
     datePublished: '2026-06-11',
     intro:
-      'Most Minnesota junk removal companies price by volume — how much space your items take up in the truck — not by the hour. That makes prices predictable once you know the tiers, and it means a few small decisions (curbside staging, bundling items) can meaningfully cut your bill. Here is how the pricing actually works, using our own published rates as the worked example.',
+      'Most Minnesota junk removal companies price junk and cleanout loads by volume — roughly how much of the truck a load fills — not by the hour, while common recyclables (appliances, mattresses, electronics, tires) carry flat per-item rates. That makes prices predictable once you know the structure, and a few small decisions (curbside staging, bundling items) can meaningfully cut your bill. Here is how the pricing actually works, using our own published rates as the worked example.',
     sections: [
       {
         h2: 'The volume tiers, in real numbers',
         body: [
-          'Dakota Valley prices on five tiers, and most Twin Cities companies use a similar ladder. A single small item — small sofa, kids mattress, mini fridge, small dresser — is $85 flat. A small load (roughly 1/8 to 1/4 of the truck: a few large items or appliances) runs $120–$185. A medium load (1/4 to 1/2 truck: a living room set, a half-garage cleanout, an apartment move-out) is $220–$320. Large loads (1/2 to 3/4 truck: a full garage, most estate cleanouts, hot tub removal) run $380–$520. A full truckload — whole-house cleanouts, big remodel debris — tops out at $580–$750.',
-          'Two common items have set prices worth knowing: a refrigerator is $120 (the price includes EPA-certified refrigerant recovery, which is why fridges cost more than their size suggests), and a mattress plus box spring set is also $120, which covers certified recycling rather than landfilling.',
+          'Dakota Valley prices loads in four relatable sizes. A single bulky item — a couch, dresser, or table — is $85, curbside or from the garage. A pickup-bed load (a few items that fit in a 5-ft truck bed) runs $85–$170. A van load — about the size of a delivery van, so a room or two or roughly half a garage — is $255–$550. And a full load — a packed box-truck, about 1–2 bedrooms or a full garage cleanout — runs up to $750.',
+          'Some items have flat per-piece rates with no load minimum, because they need certified recycling: a refrigerator is from $100 (the price includes EPA-certified refrigerant recovery, which is why fridges cost more than their size suggests), a mattress is from $100, a freezer from $60, a mini fridge $45, a TV from $50, and tires $30 each. These are recycled, not dumped.',
         ],
       },
       {
@@ -84,7 +84,7 @@ export const guides = {
       {
         h2: 'Option 5: pickup with certified recycling',
         body: [
-          'Full-service pickup is the no-vehicle, no-schedule-juggling option. Dakota Valley picks up a mattress plus box spring set for $120 across the Twin Cities metro — curbside or from the garage, with the set routed to certified Minnesota recycling facilities where up to 80% of the components are recovered. Single small mattresses (kids and crib sizes) fall under the $85 minimum. Text a photo to (952) 232-5107 and the quote and pickup window come back the same day.',
+          'Full-service pickup is the no-vehicle, no-schedule-juggling option. Dakota Valley picks up a mattress from $100 across the Twin Cities metro — a flat per-item rate with no load minimum — curbside or from the garage, with it routed to certified Minnesota recycling facilities where up to 80% of the components are recovered (recycled, not dumped). Text a photo to (952) 232-5107 and the quote and pickup window come back the same day.',
         ],
       },
     ],
