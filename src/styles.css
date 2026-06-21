@@ -1577,3 +1577,32 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   .dv-bubble,.dv-photo,.dv-typing{opacity:1;transform:none;animation:none}
   .dv-marquee-track,.dv-dot,.dv-typing i{animation:none}
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   UNIVERSAL PHONE-FIT HARDENING — make the site fit any screen width with
+   no horizontal scrollbar, from ~320px up. Defensive + additive.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* iOS: don't auto-inflate text; respect our sizes */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Media never wider than its container */
+img, video, canvas { max-width: 100%; height: auto; }
+
+/* Long words / URLs / emails wrap instead of pushing the page wide */
+body { overflow-wrap: break-word; }
+.site-footer a, .footer a, .site-footer-actions a, a[href^="mailto:"] { overflow-wrap: anywhere; }
+
+/* Let grid/flex children shrink below their content size instead of overflowing
+   (default min-width:auto is the #1 cause of mystery horizontal scroll). */
+.dv-hero-grid, .dv-hero-copy, .dv-phone, .booking-grid, .about-grid,
+.section-head, .nav, .quote-card { min-width: 0; }
+
+/* Final backstop at every phone width (the page has no sticky desktop element
+   below this breakpoint, so clipping x-overflow is safe). */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  .dv-hero-grid > *, .dv-hero-copy > * { max-width: 100%; }
+  /* very small phones (~320px): keep the marquee + buttons inside the frame */
+  .dv-btn { font-size: .95rem; padding: 13px 18px; }
+}
