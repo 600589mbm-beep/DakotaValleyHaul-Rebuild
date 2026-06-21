@@ -1,29 +1,35 @@
 ---
-// Homepage pricing snapshot — same five tiers as the booking form and /pricing/.
+// Homepage pricing snapshot. Two DISTINCT groups so it's obvious LOADS start at
+// $85 but named items are flat-rate with no minimum. Copy mirrors /pricing/.
 import { Icon } from 'astro-icon/components';
-import { tiers, priceFactors, itemPrices } from '../data/pricing.js';
+import {
+  tiers, itemPrices, priceFactors,
+  PRICING_HEADING, PRICING_INTRO, LOADS_TITLE, ITEMS_TITLE, ITEMS_SUBLINE,
+} from '../data/pricing.js';
 ---
 <section class="section pricing-preview" id="pricing-preview" aria-label="Pricing snapshot">
   <div class="section-head"><div>
-    <p class="section-kicker">What it costs</p>
-    <h2>Straightforward, volume-based pricing.</h2>
+    <p class="section-kicker">{PRICING_HEADING}</p>
+    <h2>Straightforward, two-part pricing.</h2>
   </div>
-    <p class="section-copy">$85 minimum. You only pay for the truck space you fill. Text photos for a firm number.</p>
+    <p class="section-copy">{PRICING_INTRO}</p>
   </div>
 
+  {/* Group A — volume-based loads */}
+  <p class="price-group-title">{LOADS_TITLE}</p>
   <div class="pricing-cards">
     {tiers.map((t) => (
       <a class="pricing-card" href="/pricing/" data-track="pricing_view">
         <span class="pricing-card-label">{t.label}</span>
         <span class="pricing-card-price">{t.price}</span>
-        <span class="pricing-card-detail">{t.detail}</span>
-        <span class="pricing-card-blurb">{t.blurb}</span>
+        <span class="pricing-card-blurb">{t.desc}</span>
       </a>
     ))}
   </div>
 
+  {/* Group B — flat per-item rates, no load minimum */}
   <div class="item-prices">
-    <p class="item-prices-head">Common single items <small>— $85 minimum per pickup; appliances, electronics &amp; tires recycled, never landfilled.</small></p>
+    <p class="item-prices-head">{ITEMS_TITLE}<small>{ITEMS_SUBLINE}</small></p>
     <ul class="item-prices-list">
       {itemPrices.map((it) => (
         <li><span class="item-prices-name">{it.item}{it.recycled && <Icon name="lucide:recycle" size={13} />}</span><span class="item-prices-price">{it.price}</span></li>

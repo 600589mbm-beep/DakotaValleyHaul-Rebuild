@@ -31,8 +31,9 @@ export function iconForService(slug) {
   return serviceIcons[slug] || FALLBACK_ICON;
 }
 
-// "Starting from" price shown on service cards. All jobs honor the $85 minimum;
-// larger cleanouts start higher because they fill more of the truck. These are
+// "Starting from" price shown on service cards. Loads start at $85 (the minimum
+// applies to loads only, not flat-rate recyclable items); larger cleanouts start
+// higher. These are
 // honest entry points, not quotes — final price is volume-based.
 export const serviceStartingPrice = {
   'junk-pickup':         'From $85',

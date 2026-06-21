@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR } from '../data/booking.js';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { tiers as tierData, itemPrices } from '../data/pricing.js';
+import { tiers as tierData, itemPrices, LOADS_TITLE, ITEMS_TITLE, ITEMS_SUBLINE, PRICING_INTRO } from '../data/pricing.js';
 import { businessNode, BUSINESS_ID } from '../data/schemaBusiness.js';
 
 const phoneDisplay = '(952) 232-5107';
@@ -30,7 +30,7 @@ const schema = {
       itemListElement: tierData.map((t) => ({
         '@type': 'Offer',
         name: `${t.label} — ${t.price}`,
-        description: `${t.detail}. ${t.blurb}`,
+        description: t.desc,
         offeredBy: { '@id': BUSINESS_ID },
         itemOffered: { '@type': 'Service', name: `Junk removal — ${t.label.toLowerCase()}` },
         ...(t.priceLow === t.priceHigh
@@ -55,7 +55,7 @@ const surcharges = [
 ---
 <Layout
   title="Junk Removal Pricing Minnesota | Transparent Tiers | Dakota Valley"
-  description="Transparent junk removal pricing across Minnesota. $85 minimum, volume-based tiers, no hidden fees. Text photos for a precise quote."
+  description="Junk removal pricing across Minnesota: volume-based loads from $85, plus flat rates on common recyclables (mattresses, appliances, TVs, tires). No hidden fees. Text photos for a precise quote."
   canonical={canonical}
   schema={schema}
 >
@@ -66,7 +66,7 @@ const surcharges = [
       <div class="city-hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Pricing</span></p>
         <h1><span class="city-accent">Transparent</span> junk removal pricing.</h1>
-        <p class="hero-copy">$85 minimum. Volume-based tiers. Text photos for a precise quote. No hidden fees — surcharges shown below for items that require certified recycling.</p>
+        <p class="hero-copy">{PRICING_INTRO} Loads start at $85; named recyclables are flat-rate with no load minimum.</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a precise quote</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -77,8 +77,8 @@ const surcharges = [
 
     <section class="section">
       <div class="section-head"><div>
-        <p class="section-kicker">Volume tiers</p>
-        <h2>You pay for the space your stuff takes up.</h2>
+        <p class="section-kicker">Loads</p>
+        <h2>{LOADS_TITLE}</h2>
       </div></div>
       <div class="city-service-grid">
         {tiers.map((tier) => (
@@ -86,10 +86,7 @@ const surcharges = [
             <span class="city-service-icon"><Icon name="lucide:truck" size={20} /></span>
             <h3>{tier.label}</h3>
             <p style="font-size: 22px; font-weight: 900; color: var(--blue); margin: 4px 0">{tier.price}</p>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px">{tier.detail}</p>
-            <ul style="padding-left: 18px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7">
-              {tier.examples.map((ex) => <li>{ex}</li>)}
-            </ul>
+            <p style="font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6">{tier.desc}</p>
           </article>
         ))}
       </div>
@@ -98,9 +95,9 @@ const surcharges = [
     <section class="section">
       <div class="section-head"><div>
         <p class="section-kicker">Common items</p>
-        <h2>Starting prices for the items we move most.</h2>
+        <h2>{ITEMS_TITLE}</h2>
       </div>
-        <p class="hero-copy" style="max-width:680px">$85 minimum per pickup. Prices below are per item when added to a load or picked up together. Appliances, electronics, and tires are <strong>recycled, never landfilled</strong>.</p>
+        <p class="hero-copy" style="max-width:680px">{ITEMS_SUBLINE} Each is a flat per-piece rate — no load minimum.</p>
       </div>
       <div class="city-service-grid">
         {itemPrices.map((it) => (
@@ -108,7 +105,7 @@ const surcharges = [
             <h3>{it.item}</h3>
             <p style="font-size: 22px; font-weight: 900; color: var(--blue); margin: 4px 0">{it.price}</p>
             {it.recycled && (
-              <p style="font-size: 13px; color: #1E6B52; margin: 0; display: flex; align-items: center; gap: 5px"><Icon name="lucide:recycle" size={14} /> Recycled, never landfilled</p>
+              <p style="font-size: 13px; color: #1E6B52; margin: 0; display: flex; align-items: center; gap: 5px"><Icon name="lucide:recycle" size={14} /> Recycled, not dumped</p>
             )}
           </article>
         ))}

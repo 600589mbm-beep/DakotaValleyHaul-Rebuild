@@ -71,7 +71,7 @@ const offerCatalog = {
   itemListElement: tiers.map((t) => ({
     '@type': 'Offer',
     name: t.label,
-    description: t.blurb,
+    description: t.desc,
     priceCurrency: 'USD',
     ...(t.priceLow === t.priceHigh
       ? { price: String(t.priceLow) }
@@ -121,7 +121,7 @@ const homepageSchema = {
       url: site,
       telephone: '+1-952-232-5107',
       email,
-      priceRange: 'From $85',
+      priceRange: '$30 – $750',
       image: `${site}/og-card.png`,
       address: {
         '@type': 'PostalAddress',
@@ -186,7 +186,7 @@ const homepageSchema = {
 ---
 <Layout
   title="Junk Removal Minnesota | From $85 by Text | Dakota Valley"
-  description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, $85 minimum, photo quotes in hours, licensed & insured, donation-first since 2023."
+  description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, loads from $85, flat rates on appliances, electronics & tires. Photo quotes in hours, licensed & insured, donation-first since 2023."
   canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
 >
@@ -216,7 +216,7 @@ const homepageSchema = {
           <div class="dv-actions">
             <a class="dv-btn dv-btn-amber" href={smsLink} data-track="sms_click"><Icon name="lucide:camera" size={19} /> Text a photo for a quote</a>
             <a class="dv-btn dv-btn-ghost" href="#how">See how it works</a>
-            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> From <strong>$85</strong> minimum</span>
+            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> Loads from <strong>$85</strong></span>
           </div>
 
           <div class="dv-trust">

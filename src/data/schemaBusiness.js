@@ -19,7 +19,7 @@ export const businessNode = {
   url: SITE,
   telephone: '+1-952-232-5107',
   email: 'info@dakotavalleyjunkremovalservice.com',
-  priceRange: 'From $85',
+  priceRange: '$30 – $750',
   image: `${SITE}/og-card.png`,
   address: {
     '@type': 'PostalAddress',

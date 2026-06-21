@@ -1293,6 +1293,9 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
 .pricing-factor strong { color: var(--ink); }
 .pricing-factor span { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
+/* Pricing group titles (loads vs flat items) */
+.price-group-title { font-weight: 900; font-size: 14px; letter-spacing: .02em; color: var(--ink); margin: 6px 0 12px; }
+
 /* Common-item price strip */
 .item-prices { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 16px 18px; }
 .item-prices-head { margin: 0 0 12px; font-weight: 900; color: var(--ink); font-size: 14px; }

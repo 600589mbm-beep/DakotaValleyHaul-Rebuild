@@ -9,7 +9,7 @@
 
 export const WORKER_URL = 'https://dakota-valley-telegram-bridge.dakota-valley-haul-600589.workers.dev';
 
-export const PRICE_FLOOR = '$85 minimum';
+export const PRICE_FLOOR = 'Loads from $85';
 export const PRICE_FLOOR_DETAIL = 'Curbside pickups start at $85. Final price based on volume.';
 
 // The per-city `testimonial` entries in cities.js are PLACEHOLDER copy, not real

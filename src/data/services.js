@@ -7,10 +7,10 @@ export const services = {
     icon: 'Truck',
     headline: 'Affordable curbside and garage junk pickup across Minnesota',
     intro:
-      'Same-day eligible curbside and garage junk pickup. $85 minimum, text-first photo quotes, and calendar booking. No call required — text photos and the crew sends a quote.',
+      'Same-day eligible curbside and garage junk pickup. loads from $85, text-first photo quotes, and calendar booking. No call required — text photos and the crew sends a quote.',
     metaTitle: 'Junk Pickup Minnesota | Curbside & Garage Removal | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk pickup across Minnesota. Single items to garage cleanouts. $85 minimum, text photos for a quote, calendar booking.',
+      'Curbside and garage junk pickup across Minnesota. Single items to garage cleanouts. loads from $85, text photos for a quote, calendar booking.',
     services: [
       'Single-item pickup',
       'Multi-item bundles',
@@ -31,10 +31,10 @@ export const services = {
     icon: 'Sofa',
     headline: 'Furniture removal — sofas, beds, dressers, sectionals, office',
     intro:
-      'Curbside or garage furniture removal across Minnesota. Sofas, sectionals, beds and mattresses, dressers, dining sets, desks, and office furniture. $85 minimum, $0 hidden fees.',
+      'Curbside or garage furniture removal across Minnesota. Sofas, sectionals, beds and mattresses, dressers, dining sets, desks, and office furniture. loads from $85, $0 hidden fees.',
     metaTitle: 'Furniture Removal Minnesota | Sofa, Bed, Dresser Pickup | Dakota Valley',
     metaDescription:
-      'Furniture removal across Minnesota: sofas, sectionals, mattresses, dressers, dining sets, office furniture. Curbside or garage pickup. $85 minimum.',
+      'Furniture removal across Minnesota: sofas, sectionals, mattresses, dressers, dining sets, office furniture. Curbside or garage pickup. loads from $85.',
     services: [
       'Sofa and sectional removal',
       'Mattress and box spring recycling',
@@ -82,7 +82,7 @@ export const services = {
       'Garage-staged cleanouts. Boxes, clutter, old paint cans (empty only), furniture, sports equipment, holiday decorations, and the years of accumulated stuff that piled up. Stage everything, the crew loads.',
     metaTitle: 'Garage Cleanout Pickup Minnesota | Fast Curbside Load | Dakota Valley',
     metaDescription:
-      'Garage cleanout pickup across Minnesota. Stage items in the garage, the crew loads. $85 minimum, photo quote, calendar booking.',
+      'Garage cleanout pickup across Minnesota. Stage items in the garage, the crew loads. loads from $85, photo quote, calendar booking.',
     services: [
       'Full garage cleanout',
       'Half-garage downsize',
@@ -151,7 +151,7 @@ export const services = {
     icon: 'Sofa',
     headline: "Mattress and box spring removal with certified recycling",
     intro:
-      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80% of components (steel coils, foam, fiber, fabric) are recovered. $85 minimum, no hidden disposal fees.",
+      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80% of components (steel coils, foam, fiber, fabric) are recovered. loads from $85, no hidden disposal fees.",
     metaTitle: "Mattress removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
       "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80...",
@@ -391,7 +391,7 @@ export const services = {
     icon: 'Truck',
     headline: "Single-item pickup \u2014 from $85",
     intro:
-      "Single-item pickup across Minnesota. Small items start low — $85 minimum per pickup; mini fridge $45, TV from $50. Refrigerators and mattresses start at $100 each. Curbside or garage staging keeps the price down.",
+      "Single-item pickup across Minnesota. Flat per-item rates with no load minimum — mini fridge $45, TV from $50, tires $30; refrigerators and mattresses from $100. Bulky single items like a couch or dresser start at $85. Curbside or garage staging keeps it simple.",
     metaTitle: "Single-item pickup Minnesota | Dakota Valley Junk Removal",
     metaDescription:
       "Single-item pickup across Minnesota. Small items from $85; mini fridge $45, TV from $50, refrigerators and mattresses from $100. Curbside or garage staging keeps the price low.",
