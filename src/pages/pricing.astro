@@ -42,16 +42,6 @@ const schema = {
 };
 
 const tiers = tierData;
-const surcharges = [
-  { item: 'Refrigerator / freezer', surcharge: '+ $60 (refrigerant recovery)' },
-  { item: 'Mattress', surcharge: '+ $60 (recycling fee)' },
-  { item: 'Box spring', surcharge: '+ $60 (recycling fee)' },
-  { item: 'Couch / sofa', surcharge: '+ $60 (recycling fee)' },
-  { item: 'Appliance', surcharge: '+ $60 – $80 each' },
-  { item: 'Tires (per tire)', surcharge: '+ $30' },
-  { item: 'CRT TV / monitor', surcharge: '+ $25 (e-waste)' },
-  { item: 'Hot tub disassembly', surcharge: 'Quoted separately' },
-];
 ---
 <Layout
   title="Junk Removal Pricing Minnesota | Transparent Tiers | Dakota Valley"
@@ -107,22 +97,6 @@ const surcharges = [
             {it.recycled && (
               <p style="font-size: 13px; color: #1E6B52; margin: 0; display: flex; align-items: center; gap: 5px"><Icon name="lucide:recycle" size={14} /> Recycled, not dumped</p>
             )}
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><div>
-        <p class="section-kicker">Surcharges (full disclosure)</p>
-        <h2>Items that require certified recycling.</h2>
-      </div></div>
-      <div class="city-service-grid">
-        {surcharges.map((s) => (
-          <article class="city-service-card">
-            <span class="city-service-icon"><Icon name="lucide:check-circle-2" size={20} /></span>
-            <h3>{s.item}</h3>
-            <p>{s.surcharge}</p>
           </article>
         ))}
       </div>
