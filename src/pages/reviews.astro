@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { PRICE_FLOOR } from '../data/booking.js';
+import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../data/booking.js';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { cities } from '../data/cities.js';
@@ -60,7 +60,7 @@ const schema = {
 ---
 <Layout
   title="Reviews from Across Minnesota | Dakota Valley Junk Removal"
-  description={`Customer reviews from across the ${allReviews.length} Minnesota cities Dakota Valley serves. Real testimonials from real Minnesota neighborhoods.`}
+  description={`Dakota Valley Junk Removal serves dozens of Minnesota cities by text. Verified Google reviews coming soon — we only show reviews once they're real.`}
   canonical={canonical}
   schema={schema}
 >
@@ -71,7 +71,7 @@ const schema = {
       <div class="city-hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Reviews</span></p>
         <h1>What <span class="city-accent">Minnesotans</span> are saying.</h1>
-        <p class="hero-copy">Real reviews from real Minnesota neighborhoods. Click into any city for that city's full landing page.</p>
+        <p class="hero-copy">We're a locally owned crew serving Minnesota since 2023. We're gathering verified Google reviews now — and we'd love yours to be one of the first.</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a quote</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -80,27 +80,37 @@ const schema = {
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-head"><div>
-        <p class="section-kicker">{allReviews.length} reviews across Minnesota</p>
-        <h2>From {allReviews[0]?.city} to {allReviews[allReviews.length - 1]?.city}.</h2>
-      </div></div>
-      <div class="city-service-grid">
-        {allReviews.map((r) => (
-          <article class="city-service-card">
-            <div style="display: flex; gap: 2px; margin-bottom: 10px; color: #f5b401">★★★★★</div>
-            <p style="font-size: 15px; line-height: 1.5; color: var(--ink); margin-bottom: 14px">&ldquo;{r.text}&rdquo;</p>
-            <div>
-              <strong style="display: block; color: var(--ink)">{r.name}</strong>
-              <span style="color: var(--muted); font-size: 13px">{r.location}</span>
-            </div>
-            <a href={`/cities/${r.slug}/`} style="display: inline-block; margin-top: 10px; color: var(--blue); font-size: 13px; font-weight: 800; text-decoration: none">
-              {r.city} pickup details →
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
+    {CITY_TESTIMONIALS_ENABLED ? (
+      <section class="section">
+        <div class="section-head"><div>
+          <p class="section-kicker">{allReviews.length} reviews across Minnesota</p>
+          <h2>From {allReviews[0]?.city} to {allReviews[allReviews.length - 1]?.city}.</h2>
+        </div></div>
+        <div class="city-service-grid">
+          {allReviews.map((r) => (
+            <article class="city-service-card">
+              <div style="display: flex; gap: 2px; margin-bottom: 10px; color: #f5b401">★★★★★</div>
+              <p style="font-size: 15px; line-height: 1.5; color: var(--ink); margin-bottom: 14px">&ldquo;{r.text}&rdquo;</p>
+              <div>
+                <strong style="display: block; color: var(--ink)">{r.name}</strong>
+                <span style="color: var(--muted); font-size: 13px">{r.location}</span>
+              </div>
+              <a href={`/cities/${r.slug}/`} style="display: inline-block; margin-top: 10px; color: var(--blue); font-size: 13px; font-weight: 800; text-decoration: none">
+                {r.city} pickup details →
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <section class="section">
+        <div class="section-head"><div>
+          <p class="section-kicker">Reviews</p>
+          <h2>Verified reviews coming soon.</h2>
+        </div></div>
+        <p class="hero-copy" style="max-width:640px">We only publish reviews once they're verified through Google, so anything you read here is always real. We launched in 2023 and our first verified reviews are on the way — text a photo for a quote and experience it for yourself.</p>
+      </section>
+    )}
 
     <section class="section city-cta">
       <div>

@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { PRICE_FLOOR } from '../../../data/booking.js';
+import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../../../data/booking.js';
 import Layout from '../../../layouts/Layout.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../../data/cities.js';
@@ -187,7 +187,7 @@ const schema = {
       </div>
     </section>
 
-    {city.testimonial && (
+    {CITY_TESTIMONIALS_ENABLED && city.testimonial && (
       <section class="section city-testimonial">
         <blockquote>
           <p>&ldquo;{city.testimonial.text}&rdquo;</p>

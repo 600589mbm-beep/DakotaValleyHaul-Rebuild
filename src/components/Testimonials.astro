@@ -2,9 +2,13 @@
 // Server-rendered (crawlable) reviews carousel. Reads reviews.json; shows a
 // geographically spread subset so the homepage isn't all one metro. Scroll-snap
 // carousel — no JS framework, works without hydration.
+// Reviews + rating render ONLY when reviews come from a verified source (Google,
+// via scripts/fetch-reviews.mjs). Until then we never show invented ratings or
+// named testimonials — just an honest "coming soon" state.
 import reviewsData from '../data/reviews.json';
 
 const { count = 9 } = Astro.props;
+const verified = reviewsData.source === 'google';
 const all = reviewsData.reviews || [];
 // Even spread across the list rather than the first N (which are alphabetical).
 const step = Math.max(1, Math.floor(all.length / count));
@@ -13,25 +17,36 @@ for (let i = 0; i < all.length && shown.length < count; i += step) shown.push(al
 const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: all.length };
 ---
 <section class="section testimonials" id="reviews" aria-label="Customer reviews">
-  <div class="section-head"><div>
-    <p class="section-kicker">Reviews</p>
-    <h2>{agg.ratingValue.toFixed(1)}★ across {agg.reviewCount} Minnesota neighborhoods.</h2>
-  </div>
-    <p class="section-copy">Real reviews from the cities we serve — Minneapolis and St. Paul to the lake towns.</p>
-  </div>
+  {verified ? (
+    <Fragment>
+      <div class="section-head"><div>
+        <p class="section-kicker">Reviews</p>
+        <h2>{agg.ratingValue.toFixed(1)}★ across {agg.reviewCount} Minnesota neighborhoods.</h2>
+      </div>
+        <p class="section-copy">Real reviews from the cities we serve — Minneapolis and St. Paul to the lake towns.</p>
+      </div>
 
-  <div class="testimonial-track" role="list">
-    {shown.map((r) => (
-      <article class="testimonial-card" role="listitem">
-        <div class="testimonial-stars" aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}</div>
-        <p class="testimonial-text">&ldquo;{r.text}&rdquo;</p>
-        <div class="testimonial-who">
-          <strong>{r.author}</strong>
-          {r.location && <span>{r.location}</span>}
-        </div>
-        {r.citySlug && <a class="testimonial-link" href={`/cities/${r.citySlug}/`} data-track="city_click">See {r.location?.split(',').pop()?.trim() || 'city'} →</a>}
-      </article>
-    ))}
-  </div>
-  <p class="testimonials-all"><a href="/reviews/" data-track="reviews_click">Read all {agg.reviewCount} reviews →</a></p>
+      <div class="testimonial-track" role="list">
+        {shown.map((r) => (
+          <article class="testimonial-card" role="listitem">
+            <div class="testimonial-stars" aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}</div>
+            <p class="testimonial-text">&ldquo;{r.text}&rdquo;</p>
+            <div class="testimonial-who">
+              <strong>{r.author}</strong>
+              {r.location && <span>{r.location}</span>}
+            </div>
+            {r.citySlug && <a class="testimonial-link" href={`/cities/${r.citySlug}/`} data-track="city_click">See {r.location?.split(',').pop()?.trim() || 'city'} →</a>}
+          </article>
+        ))}
+      </div>
+      <p class="testimonials-all"><a href="/reviews/" data-track="reviews_click">Read all {agg.reviewCount} reviews →</a></p>
+    </Fragment>
+  ) : (
+    <div class="section-head"><div>
+      <p class="section-kicker">Reviews</p>
+      <h2>Verified reviews coming soon.</h2>
+    </div>
+      <p class="section-copy">We're a locally owned crew that started in 2023 and we're gathering verified Google reviews now. Want to be one of the first? Text a photo for a quote — we'll take great care of you.</p>
+    </div>
+  )}
 </section>

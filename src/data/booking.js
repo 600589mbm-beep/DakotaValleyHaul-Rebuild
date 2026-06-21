@@ -11,3 +11,9 @@ export const WORKER_URL = 'https://dakota-valley-telegram-bridge.dakota-valley-h
 
 export const PRICE_FLOOR = '$85 minimum';
 export const PRICE_FLOOR_DETAIL = 'Curbside pickups start at $85. Final price based on volume.';
+
+// The per-city `testimonial` entries in cities.js are PLACEHOLDER copy, not real
+// attributed customer reviews. Keep this false (no fabricated testimonials shown)
+// until they are replaced with real, verifiable reviews. Flipping it on without
+// real data is an FTC false-endorsement risk.
+export const CITY_TESTIMONIALS_ENABLED = false;

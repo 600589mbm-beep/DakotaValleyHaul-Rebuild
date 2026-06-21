@@ -25,6 +25,9 @@ const email = 'info@dakotavalleyjunkremovalservice.com';
 const site = 'https://dakotavalleyjunkremovalservice.com';
 
 const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: 0 };
+// Only show star rating / review count once reviews come from a verified source
+// (Google, via scripts/fetch-reviews.mjs). Until then we never display invented ratings.
+const reviewsVerified = reviewsData.source === 'google';
 
 const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
 
@@ -197,7 +200,7 @@ const homepageSchema = {
 ---
 <Layout
   title="Junk Removal Minnesota | From $85 by Text | Dakota Valley"
-  description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, $85 minimum, photo quotes in hours, 5.0★ rated, licensed & insured since 2023."
+  description="Minnesota junk removal done by text — no phone call. Curbside & garage pickup, $85 minimum, photo quotes in hours, licensed & insured, donation-first since 2023."
   canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
 >
@@ -223,11 +226,15 @@ const homepageSchema = {
         <h1>Minnesota junk removal — no phone call required.</h1>
 
         <div class="hero-rating" aria-label="Rating and credentials">
-          <span class="hero-stars" aria-hidden="true">★★★★★</span>
-          <strong>{agg.ratingValue.toFixed(1)}</strong>
-          <span class="hero-rating-sep">·</span>
-          <span>{agg.reviewCount} reviews</span>
-          <span class="hero-rating-sep">·</span>
+          {reviewsVerified && (
+            <Fragment>
+              <span class="hero-stars" aria-hidden="true">★★★★★</span>
+              <strong>{agg.ratingValue.toFixed(1)}</strong>
+              <span class="hero-rating-sep">·</span>
+              <span>{agg.reviewCount} reviews</span>
+              <span class="hero-rating-sep">·</span>
+            </Fragment>
+          )}
           <span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
           <span class="hero-rating-sep">·</span>
           <span>Since 2023</span>
