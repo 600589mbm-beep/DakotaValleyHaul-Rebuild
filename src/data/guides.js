@@ -33,7 +33,7 @@ export const guides = {
         h2: 'How to pay less, legitimately',
         body: [
           'Bundle everything into one pickup — within a tier, extra items that fit the same truck space often cost nothing more, so a second mattress alongside a garage load is usually free volume. Stage at the curb or in the garage before the crew arrives. Send clear photos so the quote is firm rather than padded. And separate donatable items: usable furniture routed to donation (we use Savers, Bridging, and Arc) is weight the disposal facility never charges for.',
-          'Compare against a dumpster honestly: a multi-day dumpster rental can win for DIY remodel debris, but for a one-day cleanout, a crew-loaded pickup at $220–$320 is often cheaper than a dumpster once your own loading labor and the rental window are counted.',
+          'Compare against a dumpster honestly: a multi-day dumpster rental can win for DIY remodel debris, but for a one-day cleanout, a crew-loaded van load ($255–$550) is often cheaper than a dumpster once your own loading labor and the rental window are counted.',
         ],
       },
     ],
@@ -44,7 +44,7 @@ export const guides = {
       },
       {
         q: 'Why do refrigerators cost more to haul than sofas?',
-        a: 'Federal law requires refrigerant to be recovered by certified technicians before a fridge can be scrapped. That recovery step is why a refrigerator is $120 while a similar-sized sofa can be $85.',
+        a: 'Federal law requires refrigerant to be recovered by certified technicians before a fridge can be scrapped. That recovery step is why a refrigerator is from $100 (a flat per-item rate) while a similar-sized sofa can be $85.',
       },
       {
         q: 'Is junk removal priced by weight or by volume in Minnesota?',
@@ -58,7 +58,7 @@ export const guides = {
     title: 'How to get rid of a mattress in Minnesota (all 5 options)',
     metaTitle: 'How to Get Rid of a Mattress in Minnesota | 5 Options Compared | Dakota Valley',
     metaDescription:
-      'Every way to dispose of a mattress in Minnesota: retailer take-back, donation rules, city cleanup days, recycling drop-off, and $120 pickup with certified recycling.',
+      'Every way to dispose of a mattress in Minnesota: retailer take-back, donation rules, city cleanup days, recycling drop-off, and flat-rate pickup from $100 with certified recycling.',
     datePublished: '2026-06-11',
     intro:
       'Mattresses are the single most awkward item in household disposal: garbage haulers refuse them or charge bulky-item fees, donation centers reject most of them, and they are too big for any car. Minnesota actually has good mattress-recycling infrastructure — certified facilities recover up to 80% of a mattress (steel coils, foam, fiber, fabric). Here are the five realistic ways to use it.',
@@ -99,7 +99,7 @@ export const guides = {
       },
       {
         q: 'How much does mattress pickup cost in the Twin Cities?',
-        a: 'A mattress plus box spring set is $120 with Dakota Valley, including the recycling fee — no hidden disposal charge on top. Multi-mattress bundles from move-outs are quoted from photos.',
+        a: 'A mattress is from $100 with Dakota Valley — a flat per-item rate that includes the recycling fee, with no load minimum and no hidden disposal charge on top. Multi-mattress bundles from move-outs are quoted from photos.',
       },
     ],
   },
@@ -109,7 +109,7 @@ export const guides = {
     title: 'How to get rid of old appliances in Minnesota',
     metaTitle: 'How to Get Rid of Old Appliances in Minnesota | Fridge, Washer, Stove | Dakota Valley',
     metaDescription:
-      'Appliance disposal in Minnesota: why fridges need certified refrigerant recovery, utility rebate programs, scrap value, and $120 pickup with EPA-certified recycling.',
+      'Appliance disposal in Minnesota: why fridges need certified refrigerant recovery, utility rebate programs, scrap value, and flat-rate pickup from $100 with EPA-certified recycling.',
     datePublished: '2026-06-11',
     intro:
       'Appliances are the most regulated item in household junk. Refrigerators, freezers, AC units, and dehumidifiers contain refrigerant that federal law says must be recovered by certified technicians before scrapping — which is why you cannot just leave a fridge in the alley. The good news: appliance metal is valuable, so the recycling chain is well developed in Minnesota and several disposal paths are cheap or free.',
@@ -129,7 +129,7 @@ export const guides = {
       {
         h2: 'Retailer haul-away and full-service pickup',
         body: [
-          'Buying a replacement? Delivery haul-away of the old unit is usually the cheapest path — ask when you order. For everything else, full-service pickup handles the regulated part for you: Dakota Valley takes a single refrigerator for $120 including EPA-certified refrigerant recovery, and two to three appliances together land in the $120–$185 small-load tier. Appliances can come from the basement or garage, not just the curb, and the metals are routed to certified Minnesota recyclers. Text a photo of the unit to (952) 232-5107 for a firm quote.',
+          'Buying a replacement? Delivery haul-away of the old unit is usually the cheapest path — ask when you order. For everything else, full-service pickup handles the regulated part for you: Dakota Valley takes a single refrigerator from $100 including EPA-certified refrigerant recovery — a flat per-item rate — and two to three appliances together fit a pickup-bed load ($85–$170). Appliances can come from the basement or garage, not just the curb, and the metals are routed to certified Minnesota recyclers. Text a photo of the unit to (952) 232-5107 for a firm quote.',
         ],
       },
     ],
@@ -144,7 +144,7 @@ export const guides = {
       },
       {
         q: 'What does appliance removal cost in the Twin Cities?',
-        a: 'With Dakota Valley: $120 for a refrigerator (including certified refrigerant recovery), and $120–$185 for a small load of two to three mixed appliances. Non-refrigerant appliances as single items start at $85.',
+        a: 'With Dakota Valley: from $100 for a refrigerator (a flat per-item rate including certified refrigerant recovery), and a pickup-bed load ($85–$170) for two to three mixed appliances. Non-refrigerant appliances as single items start at $85.',
       },
     ],
   },
@@ -175,7 +175,7 @@ export const guides = {
       {
         h2: 'What the haul costs and how to stage it',
         body: [
-          'In Dakota Valley\'s pricing — typical for the Twin Cities — a half-garage load runs $220–$320 and a full garage $380–$520. Empty paint cans are fine to include; full ones are not (county HHW takes those free). Stage the haul pile at the garage door or curb, keep donate items clearly separate, and the crew loads everything you flag, sweeps, and texts a completion photo. If you are doing the whole job in one weekend, the pickup goes Sunday afternoon and the garage is done by dinner.',
+          'In Dakota Valley\'s pricing — typical for the Twin Cities — a half-garage load is a van load ($255–$550), and a full single-car garage runs from a van load up to a full box-truck load (up to $750). Empty paint cans are fine to include; full ones are not (county HHW takes those free). Stage the haul pile at the garage door or curb, keep donate items clearly separate, and the crew loads everything you flag, sweeps, and texts a completion photo. If you are doing the whole job in one weekend, the pickup goes Sunday afternoon and the garage is done by dinner.',
         ],
       },
     ],
@@ -190,7 +190,7 @@ export const guides = {
       },
       {
         q: 'How much does a full garage cleanout cost?',
-        a: 'With staging at the garage door, a full single-car garage of mixed household junk typically lands at $380–$520 in the Twin Cities. A half-garage runs $220–$320. Photos get you a firm number before you commit.',
+        a: 'With staging at the garage door, a full single-car garage of mixed household junk typically lands between a van load and a full box-truck load ($255–$750) in the Twin Cities. A half-garage is a van load ($255–$550). Photos get you a firm number before you commit.',
       },
     ],
   },
@@ -215,7 +215,7 @@ export const guides = {
       {
         h2: 'The "yes, with handling" list',
         body: [
-          'Several items surprise people by being fine — they just route through special chains. Refrigerators, freezers, and AC units: yes, with EPA-certified refrigerant recovery ($120 for a fridge with Dakota Valley). CRT televisions and electronics: yes, routed to R2-certified e-waste recyclers, with hard-drive destruction available on request. Mattresses: yes, to certified recycling facilities. Empty paint cans: yes — it is the contents, not the can, that are hazardous. Water-damaged basement debris: yes. Loose insulation: yes, as long as it is not asbestos.',
+          'Several items surprise people by being fine — they just route through special chains. Refrigerators, freezers, and AC units: yes, with EPA-certified refrigerant recovery (from $100 for a fridge with Dakota Valley). CRT televisions and electronics: yes, routed to R2-certified e-waste recyclers, with hard-drive destruction available on request. Mattresses: yes, to certified recycling facilities. Empty paint cans: yes — it is the contents, not the can, that are hazardous. Water-damaged basement debris: yes. Loose insulation: yes, as long as it is not asbestos.',
         ],
       },
       {

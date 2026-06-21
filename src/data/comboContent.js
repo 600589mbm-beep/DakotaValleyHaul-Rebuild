@@ -81,7 +81,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does refrigerator removal cost in ${c.name}?`,
-        a: `A single refrigerator is $120 in ${c.name}, including EPA-certified refrigerant recovery. Two to three appliances together fall into the small-load tier at $120–$185, which is usually the better per-unit deal.`,
+        a: `A single refrigerator is from $100 in ${c.name} — a flat per-item rate including EPA-certified refrigerant recovery. Two or three appliances together fit a pickup-bed load ($85–$170), usually the better per-unit deal.`,
       }),
       (c) => ({
         q: `Do you take appliances with freon from ${c.name} homes?`,
@@ -96,7 +96,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does a garage cleanout cost in ${c.name}?`,
-        a: `A half-garage cleanout in ${c.name} typically lands in the medium tier at $220–$320; a full garage runs $380–$520. Text a photo of the garage with the door open and you will get a firm number before booking.`,
+        a: `A half-garage cleanout in ${c.name} is typically a van load ($255–$550); a full garage runs from a van load up to a full box-truck load (up to $750). Text a photo of the garage with the door open and you will get a firm number before booking.`,
       }),
       (c) => ({
         q: `Do I need to sort my garage before the crew arrives in ${c.name}?`,
@@ -111,7 +111,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you haul branches and brush piles in ${c.name}?`,
-        a: `Yes — brush, branches, storm debris, old fencing, and deck lumber are all standard ${c.name} pickups. A small yard-waste pile starts around $120–$185; bigger renovation piles are quoted from photos.`,
+        a: `Yes — brush, branches, storm debris, old fencing, and deck lumber are all standard ${c.name} pickups. A small yard-waste pile is a pickup-bed load ($85–$170); bigger renovation piles are quoted from photos.`,
       }),
       (c) => ({
         q: `Where does yard waste from ${c.name} go?`,
@@ -156,7 +156,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does hot tub removal cost in ${c.name}?`,
-        a: `Hot tub removal in ${c.name} starts in the large-load range, around $380–$520, with the exact price depending on size, location, and access path. Text photos of the tub, the deck, and the route to the street for a firm quote.`,
+        a: `Hot tub removal in ${c.name} is quoted from photos — the price depends on the tub's size, location, and the access path from the deck to the street. Text photos of the tub, the deck, and the route for a firm quote.`,
       }),
       (c) => ({
         q: `Can you remove a sunken or deck-mounted hot tub in ${c.name}?`,
@@ -216,7 +216,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How does an estate cleanout work in ${c.name}?`,
-        a: `The crew walks the property with you, helps flag valuables versus haul items, photo-documents before loading, and routes donatable goods to Bridging, Arc, or Savers with tax receipts. Most ${c.name} estates land in the large-load to full-truck range, $380–$750 per truck.`,
+        a: `The crew walks the property with you, helps flag valuables versus haul items, photo-documents before loading, and routes donatable goods to Bridging, Arc, or Savers with tax receipts. Most ${c.name} estates run from a van load to a full box-truck load — roughly $255–$750 per truck.`,
       }),
       (c) => ({
         q: `Can you work around family members sorting belongings in ${c.name}?`,
@@ -291,7 +291,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does single-item pickup cost in ${c.name}?`,
-        a: `Small items — small sofa, kids mattress, mini fridge, small dresser — are $85 flat in ${c.name}. A refrigerator or a mattress + box spring set is $120. Pianos and unusual items are quoted from photos.`,
+        a: `Small bulky items — a small sofa, a dresser, a single mattress — start at $85 flat in ${c.name}. Refrigerators and mattresses are flat per-item rates from $100. Pianos and unusual items are quoted from photos.`,
       }),
       (c) => ({
         q: `Is it worth booking a pickup for just one item in ${c.name}?`,
@@ -360,9 +360,9 @@ export function comboIntro(city, service, citySlug, serviceSlug) {
     `Most requests here start as ${scenario}. Photos by text get a real quote (not a range that changes on arrival), and booking is a calendar link, not phone tag.`,
   ];
   const closers = [
-    `Pricing is volume-based: single items from $85, full truckloads topping out at $580–$750. ${angle.disposal}`,
-    `${angle.disposal} Single items start at $85; a full truckload runs $580–$750, disclosed before the crew rolls.`,
-    `You pay for truck space, not time — $85 single items up to $580–$750 for a full truck. ${angle.disposal}`,
+    `Pricing is volume-based: single items from $85, up to $750 for a full box-truck load. ${angle.disposal}`,
+    `${angle.disposal} Single items start at $85; a full box-truck load runs up to $750, disclosed before the crew rolls.`,
+    `Loads are priced by volume, not by the hour — $85 single items up to $750 for a full box-truck load. ${angle.disposal}`,
   ];
   return `${at(seed, 5, openers)} ${at(seed, 6, middles)} ${at(seed, 7, closers)}`;
 }
@@ -403,7 +403,7 @@ function buildFaqs(city, svc, seed, serviceSlug) {
         `How much does ${svc} cost in ${city.name}, MN?`,
         `What does ${svc} cost in ${city.name}?`,
       ]),
-      a: `Single items start at $85 in ${city.name}. Small loads (about 1/8–1/4 truck) run $120–$185, medium loads $220–$320, large loads $380–$520, and a full truckload $580–$750. Text photos to (952) 232-5107 for a firm quote — the price is set before the crew arrives.`,
+      a: `Single items start at $85 in ${city.name}. A pickup-bed load runs $85–$170, a van load $255–$550, and a full box-truck load up to $750. Common recyclables — mattresses, fridges, TVs, tires — are flat per-item rates with no load minimum. Text photos to (952) 232-5107 for a firm quote — the price is set before the crew arrives.`,
     },
     {
       q: at(seed, 11, [
@@ -547,7 +547,7 @@ export function countyFaqs(county, slug) {
   const pool = [
     {
       q: `How much does junk removal cost in ${county.name}?`,
-      a: `The same volume pricing applies county-wide: single items from $85, small loads $120–$185, medium $220–$320, large $380–$520, and a full truckload $580–$750. Text photos to (952) 232-5107 for a firm quote anywhere in ${county.name}.`,
+      a: `The same pricing applies county-wide: single items from $85, pickup-bed loads $85–$170, van loads $255–$550, and a full box-truck load up to $750, plus flat per-item recyclable rates with no load minimum. Text photos to (952) 232-5107 for a firm quote anywhere in ${county.name}.`,
     },
     {
       q: `Which ${county.name} cities do you serve?`,
