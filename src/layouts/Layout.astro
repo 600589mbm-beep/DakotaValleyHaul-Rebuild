@@ -1,5 +1,6 @@
 ---
 import '../styles.css';
+import { META_PIXEL_ID } from '../data/tracking.js';
 
 export interface Props {
   title: string;
@@ -83,6 +84,32 @@ const {
     {schema && (
       <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
     )}
+
+    <!-- Meta Pixel -->
+    <script define:vars={{ metaPixelId: META_PIXEL_ID }}>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', metaPixelId);
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" alt="" src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`} />
+    </noscript>
+
       <!-- Google AdSense -->
     <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3232938629505810" crossorigin="anonymous"></script>
 </head>
@@ -95,11 +122,39 @@ const {
     <script is:inline>
       (function () {
         window.dataLayer = window.dataLayer || [];
+        function sendMetaEvent(event, props) {
+          if (!window.fbq) return;
+          var metaProps = Object.assign({}, props || {});
+          if (event === 'quote_form_submitted' && metaProps.step === 'full') {
+            window.fbq('track', 'Lead', Object.assign({ content_name: 'Full quote form' }, metaProps));
+            return;
+          }
+          if (event === 'quote_form_submitted' && metaProps.step === 'quick') {
+            window.fbq('trackCustom', 'QuickQuoteSubmitted', metaProps);
+            return;
+          }
+          if (event === 'quote_form_started') {
+            window.fbq('trackCustom', 'QuoteFormStarted', metaProps);
+            return;
+          }
+          if (event === 'pricing_view') {
+            window.fbq('trackCustom', 'PricingView', metaProps);
+            return;
+          }
+          if (event === 'sms_click') {
+            window.fbq('track', 'Contact', Object.assign({ contact_method: 'sms' }, metaProps));
+            return;
+          }
+          if (event === 'phone_click') {
+            window.fbq('track', 'Contact', Object.assign({ contact_method: 'phone' }, metaProps));
+          }
+        }
         window.dvTrack = function (event, props) {
           var payload = Object.assign({ event: 'dv_' + event }, props || {});
           window.dataLayer.push(payload);
           try { window.dispatchEvent(new CustomEvent('dv:' + event, { detail: props || {} })); } catch (e) {}
           if (window.gtag) window.gtag('event', event, props || {});
+          sendMetaEvent(event, props || {});
         };
         document.addEventListener('click', function (e) {
           var a = e.target.closest && e.target.closest('a[href], [data-track]');
