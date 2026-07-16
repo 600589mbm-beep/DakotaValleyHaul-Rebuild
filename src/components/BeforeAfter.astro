@@ -1,49 +1,82 @@
 ---
-// Before/after slider. Pure CSS + a tiny range input per pair — no framework.
-// Renders illustrations today (clearly labeled); swap to real photos via
-// src/data/beforeAfter.js. Below-the-fold, so images lazy-load.
+// Real job proof photos when available; falls back to the old illustration
+// slider only when no real Apple Valley/Dakota County photos are present.
 import { beforeAfter } from '../data/beforeAfter.js';
+import { buildAlt, pickRealJobPhotos } from '../data/photos.js';
+
+const proofPhotos = pickRealJobPhotos('apple-valley', 20)
+  .filter((photo) => photo.category !== 'fleet')
+  .slice(0, 12);
 const anyIllustration = beforeAfter.some((p) => p.illustration);
 ---
-<section class="section beforeafter" aria-label="Before and after results">
-  <div class="section-head"><div>
-    <p class="section-kicker">Before &amp; after</p>
-    <h2>From buried to broom-clean.</h2>
-  </div>
-    <p class="section-copy">
-      Drag the slider on each job to see the difference.
-      {anyIllustration && <span class="ba-note"> (Illustrated previews — real job photos coming soon.)</span>}
-    </p>
-  </div>
+{proofPhotos.length > 0 ? (
+  <section class="section beforeafter" aria-label="Real Apple Valley and Dakota County job photos">
+    <div class="section-head"><div>
+      <p class="section-kicker">Real job photos</p>
+      <h2>Actual Apple Valley loads.</h2>
+    </div>
+        <p class="section-copy">Furniture, appliances, garage piles, yard debris, and curbside loads quoted from photos and routed through Dakota County.</p>
+    </div>
 
-  <div class="ba-grid">
-    {beforeAfter.map((pair, i) => (
-      <figure class="ba-item">
-        <div class="ba-stage" style={`--pos:50%`}>
-          <img class="ba-after" src={pair.after.src} alt={pair.after.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="ba-before-wrap" id={`ba-clip-${i}`}>
-            <img class="ba-before" src={pair.before.src} alt={pair.before.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
+    <div class="city-gallery-grid job-proof-grid">
+      {proofPhotos.map((photo) => (
+        <figure>
+          <img
+            src={photo.src}
+            alt={buildAlt(photo.desc, 'Apple Valley')}
+            width={photo.width}
+            height={photo.height}
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+          <figcaption>{photo.desc}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+) : (
+  <section class="section beforeafter" aria-label="Before and after results">
+    <div class="section-head"><div>
+      <p class="section-kicker">Before &amp; after</p>
+      <h2>From buried to broom-clean.</h2>
+    </div>
+      <p class="section-copy">
+        Drag the slider on each job to see the difference.
+        {anyIllustration && <span class="ba-note"> (Illustrated previews - real job photos coming soon.)</span>}
+      </p>
+    </div>
+
+    <div class="ba-grid">
+      {beforeAfter.map((pair, i) => (
+        <figure class="ba-item">
+          <div class="ba-stage" style={`--pos:50%`}>
+            <img class="ba-after" src={pair.after.src} alt={pair.after.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
+            <div class="ba-before-wrap" id={`ba-clip-${i}`}>
+              <img class="ba-before" src={pair.before.src} alt={pair.before.alt} width="1200" height="800" loading="lazy" decoding="async" fetchpriority="low" />
+            </div>
+            <span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-tag ba-tag-after">After</span>
+            <input class="ba-range" type="range" min="0" max="100" value="50"
+              aria-label={`${pair.title}: reveal before and after`} data-ba-target={`ba-clip-${i}`} />
+            <span class="ba-handle" aria-hidden="true" id={`ba-handle-${i}`}></span>
           </div>
-          <span class="ba-tag ba-tag-before">Before</span>
-          <span class="ba-tag ba-tag-after">After</span>
-          <input class="ba-range" type="range" min="0" max="100" value="50"
-            aria-label={`${pair.title}: reveal before and after`} data-ba-target={`ba-clip-${i}`} />
-          <span class="ba-handle" aria-hidden="true" id={`ba-handle-${i}`}></span>
-        </div>
-        <figcaption>{pair.title}</figcaption>
-      </figure>
-    ))}
-  </div>
-</section>
+          <figcaption>{pair.title}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}
 
 <script>
   document.querySelectorAll('.ba-range').forEach((range) => {
-    const clip = document.getElementById(range.dataset.baTarget);
-    const handle = document.getElementById(range.dataset.baTarget.replace('clip', 'handle'));
+    const target = range instanceof HTMLElement ? range.dataset.baTarget : '';
+    const clip = target ? document.getElementById(target) : null;
+    const handle = target ? document.getElementById(target.replace('clip', 'handle')) : null;
     const apply = () => {
-      const v = range.value + '%';
-      if (clip) clip.style.width = v;
-      if (handle) handle.style.left = v;
+      const value = range instanceof HTMLInputElement ? `${range.value}%` : '50%';
+      if (clip) clip.style.width = value;
+      if (handle) handle.style.left = value;
     };
     range.addEventListener('input', apply);
     apply();

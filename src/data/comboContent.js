@@ -448,20 +448,48 @@ export function faqSchema(faqs) {
 
 // --- seeded title / meta description --------------------------------------
 
+const serviceMetaLabels = {
+  'appliance-recycling': 'Appliance Removal',
+  'dumpster-rental': 'Dumpster Rental',
+  'electronics-removal': 'Electronics Pickup',
+  'furniture-removal': 'Furniture Removal',
+  'garage-cleanout': 'Garage Cleanout',
+  'hoarder-cleanout': 'Hoarder Cleanout',
+  'hot-tub-removal': 'Hot Tub Removal',
+  'junk-pickup': 'Junk Pickup',
+  'mattress-removal': 'Mattress Removal',
+  'scrap-metal-removal': 'Scrap Metal Pickup',
+  'single-item-pickup': 'Single-Item Pickup',
+  'yard-debris': 'Yard Debris Pickup',
+  demolition: 'Light Demolition',
+};
+
+function compactMetaDescription(value, max = 155) {
+  if (value.length <= max) return value;
+  return `${value.slice(0, max - 3).replace(/\s+\S*$/, '')}...`;
+}
+
+function compactMetaTitle(serviceLabel, cityName) {
+  const candidates = [
+    `${cityName} ${serviceLabel} | From $85 | DV Junk`,
+    `${serviceLabel} in ${cityName} MN | Dakota Valley`,
+    `${serviceLabel} ${cityName} MN`,
+  ];
+  return candidates.find((title) => title.length <= 60) || candidates[candidates.length - 1];
+}
+
 export function comboMeta(city, service, citySlug, serviceSlug) {
   const seed = hashSeed(`meta:${citySlug}/${serviceSlug}`);
-  const [n1, n2] = sample(seed, city.neighborhoods, 2, 4);
-  const titles = [
-    `${service.name} in ${city.name}, MN | From $85, Same-Day | Dakota Valley`,
-    `${city.name} ${service.name} | Text-a-Photo Quotes from $85 | Dakota Valley`,
-    `${service.name} ${city.name} MN — From $85, Book by Text | Dakota Valley`,
+  const serviceLabel = serviceMetaLabels[serviceSlug] || service.name;
+  const compactDescriptions = [
+    `${serviceLabel} in ${city.name}, MN from $85. Text photos for a firm written quote. Dakota Valley covers ${city.county} routes with curbside or garage pickup.`,
+    `Book ${city.name} ${serviceLabel} by text. Send photos, get a written price, and pick a window. From $85 on ${city.county} routes.`,
+    `${city.name} ${serviceLabel}: no call center and no on-site surprise quote. Text photos for a firm price from $85 and Dakota Valley handles loading.`,
   ];
-  const descriptions = [
-    `${service.name} in ${city.name}, MN from $85. Serving ${n1}, ${n2} and all of ${city.county}. Text photos to (952) 232-5107 for a firm quote and same-day eligible pickup.`,
-    `Need ${service.name.toLowerCase()} in ${city.name}? Curbside & garage pickup from $85 across ${n1}, ${n2} and ${city.county}. Firm quotes by text, calendar booking, no estimate visit.`,
-    `${city.name} ${service.name.toLowerCase()} from $85 — ${n1} to ${n2}. Text photos for a firm quote, book a window, crew handles loading. Same-day eligible on ${city.county} routes.`,
-  ];
-  return { title: at(seed, 5, titles), description: at(seed, 6, descriptions) };
+  return {
+    title: compactMetaTitle(serviceLabel, city.name),
+    description: compactMetaDescription(at(seed, 6, compactDescriptions)),
+  };
 }
 
 // --- quote pages (/quote/[city]) — seeded differentiation ------------------
@@ -473,15 +501,10 @@ export function quoteContent(city, citySlug) {
   const [n1, n2, n3] = sample(seed, city.neighborhoods, 3, 1);
   const landmark = at(seed, 2, city.landmarks);
 
-  const titles = [
-    `Junk Removal Quote ${city.name} MN | Firm Price by Text | Dakota Valley`,
-    `Get a ${city.name} Junk Removal Quote | Photos In, Price Out | Dakota Valley`,
-    `${city.name} Junk Removal Quote in Hours | $85 Min | Dakota Valley`,
-  ];
-  const descriptions = [
-    `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it in hours. From $85, no estimate visit, no phone call.`,
-    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. loads from $85.`,
-    `Fast ${city.name} junk removal quote: photos by text, firm price back in hours, calendar booking. From $85 across ${n1} and ${n2}. No phone call required.`,
+  const compactQuoteDescriptions = [
+    `${city.name} junk removal quotes by text. Send photos, get a firm written price, and book a pickup window. From $85 on ${city.county} routes.`,
+    `Get a ${city.name} junk removal quote without a phone call. Text photos, receive a firm price, and pick a window. From $85.`,
+    `${city.name} photo quotes from $85: text the pile, get the price in writing, and book curbside or garage pickup.`,
   ];
   const heroCopies = [
     `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, usually within hours. loads from $85, no phone call required.`,
@@ -530,8 +553,8 @@ export function quoteContent(city, citySlug) {
   ];
 
   return {
-    title: at(seed, 5, titles),
-    description: at(seed, 6, descriptions),
+    title: compactMetaTitle('Junk Removal Quote', city.name),
+    description: compactMetaDescription(at(seed, 6, compactQuoteDescriptions)),
     heroCopy: at(seed, 7, heroCopies),
     routeCopy: at(seed, 8, routeCopies),
     disposalCopy: at(seed, 9, disposalCopies),

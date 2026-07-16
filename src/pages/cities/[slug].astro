@@ -6,7 +6,7 @@ import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
 import { BUSINESS_ID, SAME_AS } from '../../data/schemaBusiness.js';
 import { services } from '../../data/services.js';
-import { pickPhotos, buildAlt } from '../../data/photos.js';
+import { pickPhotos, pickRealJobPhotos, pickFleetPhotos, buildAlt } from '../../data/photos.js';
 import { iconForService } from '../../data/serviceIcons.js';
 import { cityFaqs, faqSchema } from '../../data/comboContent.js';
 
@@ -18,15 +18,35 @@ export function getStaticPaths() {
 }
 
 const { city, slug } = Astro.props;
-const cityPhotos = pickPhotos(slug, 3);
-const heroPhoto = cityPhotos[0];
-const galleryPhotos = cityPhotos.slice(1);
+const isAppleValley = slug === 'apple-valley';
+const fleetPhotos = pickFleetPhotos(slug, isAppleValley ? 2 : 1);
+const realProofPhotos = pickRealJobPhotos(slug, isAppleValley ? 20 : 4).filter((photo) => photo.category !== 'fleet');
+const fallbackPhotos = isAppleValley ? fleetPhotos : pickPhotos(slug, 3);
+const heroPhoto = fleetPhotos[0] ?? realProofPhotos[0] ?? fallbackPhotos[0];
+const galleryPhotos = realProofPhotos.length
+  ? [...fleetPhotos.slice(1), ...realProofPhotos]
+  : fallbackPhotos.slice(heroPhoto === fallbackPhotos[0] ? 1 : 0);
+const cityPhotos = heroPhoto ? [heroPhoto, ...galleryPhotos] : [];
+const hasRealProofPhotos = cityPhotos.some((p) => p.real);
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
 const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${slug}/`;
 const citySms = `${smsLink}?&body=${encodeURIComponent(`Junk removal quote for ${city.name}, MN.\nPlease send photos and item details.`)}`;
 const faqs = cityFaqs(city, slug);
+const heroTitle = isAppleValley
+  ? 'Apple Valley Junk Removal From $85. Text Photos, Get a Firm Quote.'
+  : `Junk Removal in ${city.name}, MN`;
+const heroIntro = isAppleValley
+  ? 'Skip the call center and the driveway estimate. Text photos of the pile, garage, sofa, or appliance and Dakota Valley sends the price in writing before you book.'
+  : city.intro;
+const routeMeta = isAppleValley
+  ? 'Dakota County route coverage: Downtown Apple Valley, Cobblestone Lake, Palomino Hills, Greenleaf, Galaxie, Southcross, Pennock, and the Minnesota Zoo area.'
+  : `${city.county} - Loads from $85 - Curbside and garage pickup`;
+const pageTitle = isAppleValley ? city.metaTitle : `${city.name} Junk Removal | From $85 | Dakota Valley`;
+const pageDescription = isAppleValley
+  ? city.metaDescription
+  : `${city.name} junk removal from $85. Text photos for a firm written quote. Curbside and garage pickup across ${city.county}.`;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -92,8 +112,8 @@ const schema = {
 };
 ---
 <Layout
-  title={city.metaTitle}
-  description={city.metaDescription}
+  title={pageTitle}
+  description={pageDescription}
   canonical={canonical}
   schema={schema}
 >
@@ -115,30 +135,46 @@ const schema = {
           <span aria-hidden="true"> / </span>
           <span>{city.name}</span>
         </p>
-        <h1>Junk Removal in <span class="city-accent">{city.name}, MN</span></h1>
-        <p class="hero-copy">{city.intro}</p>
+        <h1>{heroTitle}</h1>
+        <p class="hero-copy">{heroIntro}</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
+        {isAppleValley && (
+          <div class="city-proof-strip" aria-label="Apple Valley quote proof points">
+            <span><Icon name="lucide:tag" size={16} /> From $85</span>
+            <span><Icon name="lucide:message-square-text" size={16} /> Quote by text</span>
+            <span><Icon name="lucide:shield-check" size={16} /> Licensed and insured</span>
+            <span><Icon name="lucide:route" size={16} /> Dakota County routes</span>
+          </div>
+        )}
         <p class="hero-meta">
-          <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; Loads from $85 &middot; Curbside and garage pickup
+          <Icon name="lucide:map-pin" size={15} /> {routeMeta}
         </p>
+            {isAppleValley && (
+              <aside class="city-comparison-card" aria-label="Why Dakota Valley is different">
+                <strong>No call center. No on-site surprise quote. Text photos, get the price in writing.</strong>
+                <span>Then choose a pickup window that fits the Dakota County route.</span>
+              </aside>
+            )}
       </div>
     </section>
 
-    <figure class="city-hero-image">
-      <img
-        src={heroPhoto.src}
-        width={heroPhoto.width}
-        height={heroPhoto.height}
-        alt={buildAlt(heroPhoto.desc, city.name)}
-        loading="eager"
-        fetchpriority="high"
-      />
-      <figcaption>{buildAlt(heroPhoto.desc, city.name)}</figcaption>
-    </figure>
+    {heroPhoto && (
+      <figure class="city-hero-image">
+        <img
+          src={heroPhoto.src}
+          width={heroPhoto.width}
+          height={heroPhoto.height}
+          alt={buildAlt(heroPhoto.desc, city.name)}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <figcaption>{buildAlt(heroPhoto.desc, city.name)}</figcaption>
+      </figure>
+    )}
 
     <section class="section city-services">
       <div class="section-head">
@@ -199,27 +235,29 @@ const schema = {
       </section>
     )}
 
-    <section class="section city-gallery">
-      <div class="section-head">
-        <div>
-          <p class="section-kicker">{city.name} job photos</p>
-          <h2>Real loads, real curbs.</h2>
+    {galleryPhotos.length > 0 && (
+      <section class="section city-gallery">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">{city.name} job photos</p>
+            <h2>{hasRealProofPhotos ? 'Real loads, real curbs.' : 'Route-ready pickup examples.'}</h2>
+          </div>
         </div>
-      </div>
-      <div class="city-gallery-grid">
-        {galleryPhotos.map((p) => (
-          <figure>
-            <img
-              src={p.src}
-              width={p.width}
-              height={p.height}
-              alt={buildAlt(p.desc, city.name)}
-              loading="lazy"
-            />
-          </figure>
-        ))}
-      </div>
-    </section>
+        <div class="city-gallery-grid">
+          {galleryPhotos.map((p) => (
+            <figure>
+              <img
+                src={p.src}
+                width={p.width}
+                height={p.height}
+                alt={buildAlt(p.desc, city.name)}
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
 
     <section class="section city-locale">
       <div class="section-head">

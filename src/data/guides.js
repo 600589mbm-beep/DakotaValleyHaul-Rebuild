@@ -8,9 +8,9 @@ export const guides = {
   'junk-removal-cost-minnesota': {
     shortTitle: 'Junk removal cost guide',
     title: 'What does junk removal cost in Minnesota? (2026 guide)',
-    metaTitle: 'Junk Removal Cost in Minnesota 2026 | Real Price Tiers | Dakota Valley',
+    metaTitle: 'Minnesota Junk Removal Cost 2026 | Dakota Valley',
     metaDescription:
-      'What junk removal actually costs in Minnesota: loads from $85 (single item) up to $750 (a full box-truck load), plus flat per-item rates on recyclables. How volume pricing works and how to pay less.',
+      'Minnesota junk removal costs in 2026: load tiers from $85, flat recycling rates, curbside savings, and photo quotes with no arrival-day surprise.',
     datePublished: '2026-06-11',
     intro:
       'Most Minnesota junk removal companies price junk and cleanout loads by volume — roughly how much of the truck a load fills — not by the hour, while common recyclables (appliances, mattresses, electronics, tires) carry flat per-item rates. That makes prices predictable once you know the structure, and a few small decisions (curbside staging, bundling items) can meaningfully cut your bill. Here is how the pricing actually works, using our own published rates as the worked example.',
@@ -56,9 +56,9 @@ export const guides = {
   'get-rid-of-mattress-minnesota': {
     shortTitle: 'Mattress disposal guide',
     title: 'How to get rid of a mattress in Minnesota (all 5 options)',
-    metaTitle: 'How to Get Rid of a Mattress in Minnesota | 5 Options Compared | Dakota Valley',
+    metaTitle: 'Mattress Disposal Minnesota | 5 Pickup Options | DV Junk',
     metaDescription:
-      'Every way to dispose of a mattress in Minnesota: retailer take-back, donation rules, city cleanup days, recycling drop-off, and flat-rate pickup from $100 with certified recycling.',
+      'Five Minnesota mattress disposal options: retailer haul-away, donation, cleanup days, recycling drop-off, and pickup from $100.',
     datePublished: '2026-06-11',
     intro:
       'Mattresses are the single most awkward item in household disposal: garbage haulers refuse them or charge bulky-item fees, donation centers reject most of them, and they are too big for any car. Minnesota actually has good mattress-recycling infrastructure — certified facilities recover up to 80% of a mattress (steel coils, foam, fiber, fabric). Here are the five realistic ways to use it.',
@@ -107,9 +107,9 @@ export const guides = {
   'get-rid-of-old-appliances-minnesota': {
     shortTitle: 'Appliance disposal guide',
     title: 'How to get rid of old appliances in Minnesota',
-    metaTitle: 'How to Get Rid of Old Appliances in Minnesota | Fridge, Washer, Stove | Dakota Valley',
+    metaTitle: 'Appliance Disposal Minnesota | Fridge Pickup | Dakota Valley',
     metaDescription:
-      'Appliance disposal in Minnesota: why fridges need certified refrigerant recovery, utility rebate programs, scrap value, and flat-rate pickup from $100 with EPA-certified recycling.',
+      'Minnesota appliance disposal guide: fridge refrigerant rules, utility rebates, scrap value, and pickup from $100 with certified recycling.',
     datePublished: '2026-06-11',
     intro:
       'Appliances are the most regulated item in household junk. Refrigerators, freezers, AC units, and dehumidifiers contain refrigerant that federal law says must be recovered by certified technicians before scrapping — which is why you cannot just leave a fridge in the alley. The good news: appliance metal is valuable, so the recycling chain is well developed in Minnesota and several disposal paths are cheap or free.',
@@ -152,9 +152,11 @@ export const guides = {
   'garage-cleanout-checklist': {
     shortTitle: 'Garage cleanout checklist',
     title: 'The Minnesota garage cleanout checklist (one weekend, start to done)',
-    metaTitle: 'Garage Cleanout Checklist | One-Weekend Plan + Real Costs | Dakota Valley',
+    metaTitle: 'Garage Cleanout Checklist | Weekend Plan | Dakota Valley',
     metaDescription:
       'A practical garage cleanout plan: the four-pile sort, what counts as hazardous waste in Minnesota, donation routing, and what a half or full garage costs to haul ($220–$520).',
+    metaDescription:
+      'A weekend garage cleanout plan: four-pile sorting, Minnesota hazardous waste rules, donation routing, and realistic hauling costs.',
     datePublished: '2026-06-11',
     intro:
       'A garage cleanout fails when it turns into archaeology — every box opened, every item debated, momentum gone by noon. The version that works is mechanical: four piles, hard rules, and the haul scheduled before you start so there is a deadline. Here is the plan, plus what the haul itself costs.',
@@ -198,7 +200,7 @@ export const guides = {
   'what-junk-removal-wont-take': {
     shortTitle: 'What haulers won\'t take',
     title: 'What junk removal companies won\'t take (and where it goes instead)',
-    metaTitle: 'What Junk Removal Companies Won\'t Take in Minnesota | Dakota Valley',
+    metaTitle: 'What Junk Haulers Won\'t Take in MN | Dakota Valley',
     metaDescription:
       'Items junk haulers must refuse — paint, chemicals, asbestos, propane — and the Minnesota disposal route for each. Plus surprising things crews WILL take.',
     datePublished: '2026-06-11',

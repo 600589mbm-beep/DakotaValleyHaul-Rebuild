@@ -677,6 +677,41 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   font-weight: 700;
   margin-top: 22px;
 }
+.city-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 20px;
+}
+.city-proof-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+}
+.city-proof-strip svg { color: #8cc4ff; }
+.city-comparison-card {
+  display: grid;
+  gap: 4px;
+  max-width: 620px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+.city-comparison-card strong { font-size: 17px; }
+.city-comparison-card span {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.45;
+}
 .breadcrumb {
   color: rgba(255, 255, 255, 0.65);
   font-size: 14px;
@@ -1039,6 +1074,15 @@ details p { color: var(--muted); line-height: 1.65; margin: 0; padding: 0 20px 2
   max-height: 380px;
   object-fit: cover;
   display: block;
+}
+.city-gallery-grid figcaption {
+  padding: 10px 12px 12px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.job-proof-grid img {
+  aspect-ratio: 4 / 3;
 }
 @media (max-width: 560px) {
   .city-hero-image img { max-height: 360px; }

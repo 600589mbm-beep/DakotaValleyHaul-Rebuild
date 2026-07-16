@@ -1,36 +1,52 @@
-# Photo shot list — Dakota Valley Junk Removal
+# Photo shot list - Dakota Valley Junk Removal
 
-**Why this exists:** the site currently ships brand-safe vector *illustrations*
-(`public/illustrations/*.svg`) as placeholders. The originals in this folder
-were removed on 2026-05-25 because they were **not real job photos** — they were
-screenshots of a competitor's booking app and CRM screens that exposed customer
-names, emails, home addresses and phone numbers. Do not re-add them.
+Use this folder for real job photos before launching city pages.
 
-In junk removal, **proof = trust**. Real photos will move conversion more than
-any copy change. Shoot these, then follow "How to swap in" below.
+## File naming
 
-## Priority shots (shoot first)
+- Use lowercase, hyphenated names.
+- Save final web images as `.webp`.
+- Keep originals elsewhere for backup.
+- Recommended export: 1600px wide, 75-82% quality.
 
-1. **Hero** — the branded truck loaded with junk, parked at a Twin Cities home,
-   landscape, shot slightly low so the truck looks big. Daylight. (LCP image.)
-2. **Before/after × 3 pairs** — same framing, two photos each:
-   - Garage cleanout (cluttered → empty/swept)
-   - Curbside furniture pile (pile → clean curb)
-   - Estate / full room (full → cleared)
-3. **Crew in action** — two people loading a sofa or fridge into the truck.
-4. **Truck close-up** — logo/wrap visible, clean.
-5. **Heavy/awkward items** — hot tub, piano, treadmill, shed, riding mower
-   (one each if you have them; these are the moat — competitors duck them).
+## Apple Valley proof set
 
-## How to swap in
-1. Optimize: max 1600px wide, ~80% quality JPEG/WebP. Drop into
-   `public/attached_assets/`.
-2. Edit `src/data/photos.js` — replace `src`/`width`/`height`/`desc` and set
-   `illustration: false`. Write `desc` describing what's literally in the frame.
-3. Before/after pairs go in `src/data/beforeAfter.js`.
-4. `npm run build` — alt text + `image-sitemap.xml` regenerate across all pages.
+The Apple Valley page and homepage proof gallery now use this 14-photo local proof set when the files exist. The fleet shots carry the above-the-fold trust signal; the job photos carry the before/after proof grid.
 
-## Alt-text rule
-Describe what's IN the frame: truck model if visible, the items (sofa, fridge,
-branches), the setting (curbside, garage, driveway), the crew action (loading,
-sweeping). Wrong alt text is worse than none.
+- `public/photos/dakota-county/dakota-valley-pickup-truck-apple-valley.webp`
+- `public/photos/dakota-county/dakota-valley-dump-truck-dakota-county.webp`
+- `public/photos/dakota-county/apple-valley-driveway-junk-load.webp`
+- `public/photos/dakota-county/apple-valley-storage-cleanout.webp`
+- `public/photos/dakota-county/apple-valley-storage-unit-cleanout.webp`
+- `public/photos/dakota-county/apple-valley-furniture-pickup.webp`
+- `public/photos/dakota-county/apple-valley-appliance-removal.webp`
+- `public/photos/dakota-county/apple-valley-curbside-small-load.webp`
+- `public/photos/dakota-county/apple-valley-kids-toys-garage-cleanout.webp`
+- `public/photos/dakota-county/apple-valley-yard-toys-garage-cleanout.webp`
+- `public/photos/dakota-county/apple-valley-garage-furniture-cleanout.webp`
+- `public/photos/dakota-county/apple-valley-patio-debris-removal.webp`
+- `public/photos/dakota-county/apple-valley-recliner-sofa-removal.webp`
+- `public/photos/dakota-county/dakota-county-van-loading.webp`
+
+## Priority shots to add next
+
+1. Matching before and after pairs from the same Apple Valley job.
+2. More loaded truck/trailer shots on Dakota County routes.
+3. Furniture removal: couch, recliner, mattress, dresser.
+4. Garage or storage unit cleanout with clear pile size.
+5. Curbside small-load pickup showing the exact item count.
+6. Appliance removal where the item and path are visible.
+
+## Alt text pattern
+
+Write alt text like:
+
+- `Apple Valley couch removal before pickup by Dakota Valley Haul`
+- `Dakota County storage unit cleanout load before removal`
+- `Apple Valley curbside junk pickup with firm text quote`
+
+Avoid:
+
+- Stock-photo language
+- Generic filler like `junk removal image`
+- Unsupported location claims unless the job photo is actually from that city

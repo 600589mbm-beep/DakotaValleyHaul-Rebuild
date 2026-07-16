@@ -6,7 +6,7 @@ import SiteFooter from '../../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../../data/cities.js';
 import { services, getServiceSlugs } from '../../../data/services.js';
 import { businessNode } from '../../../data/schemaBusiness.js';
-import { pickPhotos, buildAlt } from '../../../data/photos.js';
+import { pickPhotos, pickRealJobPhotos, pickFleetPhotos, buildAlt } from '../../../data/photos.js';
 import {
   comboIntro,
   comboLocalNotes,
@@ -42,9 +42,12 @@ const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request f
 const otherServices = Object.entries(services).filter(([sl]) => sl !== serviceSlug);
 const otherCities = nearestCities(citySlug, 12).map((sl) => [sl, cities[sl]]);
 
-// Same photos as the city page, but with combo-specific alt text
-const comboPhotos = pickPhotos(citySlug, 2);
-const heroPhoto = comboPhotos[0];
+// Use truck photos above the fold for local route proof, then keep job proof focused on real haul photos.
+const fleetPhotos = pickFleetPhotos(citySlug, 1);
+const realComboPhotos = pickRealJobPhotos(citySlug, citySlug === 'apple-valley' ? 20 : 3).filter((photo) => photo.category !== 'fleet');
+const comboFallbackPhotos = pickPhotos(citySlug, 2);
+const comboPhotos = realComboPhotos.length ? realComboPhotos : comboFallbackPhotos;
+const heroPhoto = fleetPhotos[0] ?? comboPhotos[0];
 
 const schema = {
   '@context': 'https://schema.org',

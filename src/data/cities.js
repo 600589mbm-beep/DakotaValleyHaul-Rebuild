@@ -9,9 +9,9 @@ export const cities = {
     county: 'Dakota County',
     intro:
       'Dakota Valley Junk Removal provides full-service junk hauling and property cleanouts across Apple Valley, MN. Whether you are clearing out a garage near Minnesota Zoo or need same-day furniture removal in Downtown Apple Valley or Cobblestone Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Apple Valley area.',
-    metaTitle: 'Curbside & Garage Junk Removal Apple Valley MN | Same-Day Pickup',
+    metaTitle: 'Apple Valley Junk Removal From $85 | Dakota Valley',
     metaDescription:
-      'Professional junk removal in Apple Valley, MN near Minnesota Zoo. Serving all Apple Valley neighborhoods. Same-day pickup available. Call (952) 232-5107.',
+      'Apple Valley junk removal from $85. Text photos for a firm written quote. Licensed, insured Dakota County routes with curbside or garage pickup.',
     neighborhoods: [
       'Downtown Apple Valley',
       'Cobblestone Lake',

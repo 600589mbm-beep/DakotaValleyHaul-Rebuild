@@ -4,15 +4,18 @@
 // replace the illustrations in photos.js, this regenerates automatically.
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const SITE = 'https://dakotavalleyjunkremovalservice.com';
 
-const { cities, getCitySlugs } = await import(join(root, 'src/data/cities.js'));
-const { services } = await import(join(root, 'src/data/services.js'));
-const { pickPhotos, buildAlt } = await import(join(root, 'src/data/photos.js'));
+const moduleUrl = (path) => pathToFileURL(path).href;
+
+const { cities, getCitySlugs } = await import(moduleUrl(join(root, 'src/data/cities.js')));
+const { services } = await import(moduleUrl(join(root, 'src/data/services.js')));
+const { pickPhotos, pickRealJobPhotos, pickFleetPhotos, buildAlt } = await import(moduleUrl(join(root, 'src/data/photos.js')));
 
 const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -33,7 +36,12 @@ for (const [slug, s] of Object.entries(services)) {
 // City pages
 for (const slug of getCitySlugs()) {
   const c = cities[slug];
-  const ps = pickPhotos(slug, 2);
+  const fleetPhotos = pickFleetPhotos(slug, slug === 'apple-valley' ? 2 : 1);
+  const realPhotos = pickRealJobPhotos(slug, slug === 'apple-valley' ? 20 : 4)
+    .filter((photo) => photo.category !== 'fleet');
+  const ps = realPhotos.length
+    ? [...fleetPhotos, ...realPhotos].slice(0, slug === 'apple-valley' ? 14 : 5)
+    : (fleetPhotos.length ? fleetPhotos : pickPhotos(slug, 2));
   entries.push({ loc: `${SITE}/cities/${slug}/`, images: ps.map((p) => ({ url: `${SITE}${p.src}`, title: buildAlt(p.desc, c.name) })) });
 }
 

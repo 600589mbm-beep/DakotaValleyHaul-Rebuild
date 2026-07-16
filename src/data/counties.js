@@ -21,7 +21,7 @@ export const counties = {
     intro:
       'Ramsey County serves the eastern Twin Cities metro. Curbside and garage junk pickup throughout St. Paul, Roseville, Maplewood, White Bear Lake, Shoreview, and surrounding cities.',
     cities: ['St. Paul', 'Roseville', 'Maplewood', 'White Bear Lake', 'Shoreview'],
-    metaTitle: 'Junk Removal Ramsey County MN | St. Paul + Suburbs | Dakota Valley',
+    metaTitle: 'Junk Removal Ramsey County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Ramsey County — St. Paul, Roseville, Maplewood, White Bear Lake, Shoreview. loads from $85, photo quotes.',
   },
   'dakota-county': {
@@ -32,8 +32,8 @@ export const counties = {
     intro:
       'Dakota County is Dakota Valley\'s home county. The densest route coverage we have. Same-day eligible curbside and garage junk pickup throughout Apple Valley, Eagan, Burnsville, Lakeville, Rosemount, Farmington, Hastings, Inver Grove Heights, and surrounding cities.',
     cities: ['Apple Valley', 'Eagan', 'Burnsville', 'Lakeville', 'Rosemount', 'Farmington', 'Hastings', 'Inver Grove Heights'],
-    metaTitle: 'Junk Removal Dakota County MN | Same-Day Pickup | Dakota Valley',
-    metaDescription: 'Curbside and garage junk removal across Dakota County — Apple Valley, Eagan, Burnsville, Lakeville, Rosemount, Farmington, Hastings. Same-day available. Loads from $85.',
+    metaTitle: 'Junk Removal Dakota County MN | Dakota Valley',
+    metaDescription: 'Dakota County junk removal from $85. Text photos for a firm quote across Apple Valley, Eagan, Burnsville, Lakeville, Rosemount, and Hastings.',
   },
   'anoka-county': {
     name: 'Anoka County',
@@ -54,7 +54,7 @@ export const counties = {
     intro:
       'Washington County serves the east metro and the St. Croix Valley. Curbside and garage junk pickup throughout Woodbury, Cottage Grove, Stillwater, Oakdale, Forest Lake, and surrounding cities.',
     cities: ['Woodbury', 'Cottage Grove', 'Stillwater', 'Oakdale', 'Forest Lake'],
-    metaTitle: 'Junk Removal Washington County MN | East Metro | Dakota Valley',
+    metaTitle: 'Junk Removal Washington County MN | East Metro | DV Junk',
     metaDescription: 'Curbside and garage junk removal across Washington County — Woodbury, Cottage Grove, Stillwater, Oakdale. loads from $85, photo quotes.',
   },
   'scott-county': {
@@ -76,7 +76,7 @@ export const counties = {
     intro:
       'Carver County serves the west metro along the Minnesota River. Curbside and garage junk pickup throughout Chaska, Chanhassen, Victoria, Waconia, and surrounding cities.',
     cities: ['Chaska', 'Chanhassen', 'Victoria', 'Waconia'],
-    metaTitle: 'Junk Removal Carver County MN | Chaska/Chanhassen | Dakota Valley',
+    metaTitle: 'Junk Removal Carver County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Carver County — Chaska, Chanhassen, Victoria, Waconia. loads from $85, photo quotes.',
   },
   'olmsted-county': {
@@ -87,7 +87,7 @@ export const counties = {
     intro:
       'Olmsted County is southeast Minnesota\'s main population center, anchored by Rochester and the Mayo Clinic. Curbside and garage junk pickup throughout Rochester, Byron, Stewartville, and surrounding communities.',
     cities: ['Rochester', 'Byron', 'Stewartville'],
-    metaTitle: 'Junk Removal Olmsted County MN | Rochester Area | Dakota Valley',
+    metaTitle: 'Junk Removal Olmsted County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Olmsted County — Rochester, Byron, Stewartville. loads from $85, photo quotes.',
   },
   'st-louis-county': {
@@ -98,7 +98,7 @@ export const counties = {
     intro:
       'St. Louis County covers Duluth, the Iron Range, and a huge expanse of northeastern Minnesota. Curbside and garage junk pickup throughout Duluth, Hibbing, Virginia, Hermantown, and surrounding cities.',
     cities: ['Duluth', 'Hibbing', 'Virginia', 'Hermantown'],
-    metaTitle: 'Junk Removal St. Louis County MN | Duluth Area | Dakota Valley',
+    metaTitle: 'Junk Removal St. Louis County MN | Duluth Area | DV Junk',
     metaDescription: 'Curbside and garage junk removal across St. Louis County — Duluth, Hibbing, Virginia, Hermantown. loads from $85, photo quotes.',
   },
   'stearns-county': {
@@ -109,7 +109,7 @@ export const counties = {
     intro:
       'Stearns County is central Minnesota\'s main hub, anchored by St. Cloud. Curbside and garage junk pickup throughout St. Cloud, Sartell, Sauk Centre, and surrounding cities.',
     cities: ['St. Cloud', 'Sartell', 'Sauk Centre', 'Waite Park'],
-    metaTitle: 'Junk Removal Stearns County MN | St. Cloud Area | Dakota Valley',
+    metaTitle: 'Junk Removal Stearns County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Stearns County — St. Cloud, Sartell, Sauk Centre. loads from $85, photo quotes.',
   },
   'wright-county': {
@@ -120,7 +120,7 @@ export const counties = {
     intro:
       'Wright County serves the northwest metro and central Minnesota. Curbside and garage junk pickup throughout Buffalo, Monticello, St. Michael, Albertville, and surrounding cities.',
     cities: ['Buffalo', 'Monticello', 'St. Michael', 'Albertville'],
-    metaTitle: 'Junk Removal Wright County MN | Buffalo/Monticello | Dakota Valley',
+    metaTitle: 'Junk Removal Wright County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Wright County — Buffalo, Monticello, St. Michael, Albertville. loads from $85, photo quotes.',
   },
   'sherburne-county': {
@@ -131,7 +131,7 @@ export const counties = {
     intro:
       'Sherburne County serves the I-94 corridor between the Twin Cities and St. Cloud. Curbside and garage junk pickup throughout Elk River, Big Lake, Becker, Princeton, and surrounding cities.',
     cities: ['Elk River', 'Big Lake', 'Becker', 'Princeton'],
-    metaTitle: 'Junk Removal Sherburne County MN | Elk River Area | Dakota Valley',
+    metaTitle: 'Junk Removal Sherburne County MN | Dakota Valley',
     metaDescription: 'Curbside and garage junk removal across Sherburne County — Elk River, Big Lake, Becker, Princeton. loads from $85, photo quotes.',
   },
 };
