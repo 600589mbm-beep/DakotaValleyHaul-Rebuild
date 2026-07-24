@@ -33,18 +33,27 @@ const { city, service, citySlug, serviceSlug } = Astro.props;
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${citySlug}/${serviceSlug}/`;
-const { title, description } = comboMeta(city, service, citySlug, serviceSlug);
-const intro = comboIntro(city, service, citySlug, serviceSlug);
+const isJunkRemoval = serviceSlug === 'junk-pickup';
+const displayServiceName = isJunkRemoval ? 'Junk removal' : service.name;
+const baseMeta = comboMeta(city, service, citySlug, serviceSlug);
+const title = isJunkRemoval
+  ? `Junk Removal ${city.name}, MN | $85 Minimum & Photo Quotes | Dakota Valley`
+  : baseMeta.title;
+const description = isJunkRemoval
+  ? `Local junk removal in ${city.name}, MN and ${city.county}. Text photos for a written quote before booking. Furniture, appliances, garage clutter and cleanouts with an $85 pickup minimum.`
+  : baseMeta.description;
+const intro = isJunkRemoval
+  ? `Need junk removal in ${city.name}? Dakota Valley serves homes, apartments, businesses and property managers across ${city.county}. Text clear photos of the items, receive the total in writing and choose an available pickup window—without an estimate visit or call-center sales pitch.`
+  : comboIntro(city, service, citySlug, serviceSlug);
 const localNotes = comboLocalNotes(city, service, citySlug, serviceSlug);
 const faqs = comboFaqs(city, service, citySlug, serviceSlug);
-const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request for ${city.name}, MN.\nPlease send photos and item details.`)}`;
+const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${displayServiceName} request for ${city.name}, MN.\nPlease send photos and item details.`)}`;
 
-const otherServices = Object.entries(services).filter(([sl]) => sl !== serviceSlug);
-const otherCities = nearestCities(citySlug, 12).map((sl) => [sl, cities[sl]]);
-
-// Same photos as the city page, but with combo-specific alt text
+const otherServices = Object.entries(services).filter(([slug]) => slug !== serviceSlug);
+const otherCities = nearestCities(citySlug, 12).map((slug) => [slug, cities[slug]]);
 const comboPhotos = pickPhotos(citySlug, 2);
 const heroPhoto = comboPhotos[0];
+const serviceLabel = (slug, item) => slug === 'junk-pickup' ? 'Junk removal' : item.name;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -55,12 +64,12 @@ const schema = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
         { '@type': 'ListItem', position: 2, name: `${city.name}, MN`, item: `https://dakotavalleyjunkremovalservice.com/cities/${citySlug}/` },
-        { '@type': 'ListItem', position: 3, name: service.name },
+        { '@type': 'ListItem', position: 3, name: displayServiceName },
       ],
     },
     {
       '@type': 'Service',
-      name: `${service.name} in ${city.name}, MN`,
+      name: `${displayServiceName} in ${city.name}, MN`,
       provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
       areaServed: {
         '@type': 'City',
@@ -68,13 +77,13 @@ const schema = {
         containedIn: { '@type': 'AdministrativeArea', name: city.county },
       },
       description,
-      serviceType: service.name,
+      serviceType: displayServiceName,
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: `${service.name} options in ${city.name}`,
-        itemListElement: service.services.map((s) => ({
+        name: `${displayServiceName} options in ${city.name}`,
+        itemListElement: service.services.map((includedService) => ({
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: s },
+          itemOffered: { '@type': 'Service', name: includedService },
         })),
       },
     },
@@ -90,7 +99,7 @@ const schema = {
           <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
           <span>Dakota Valley</span>
         </a>
-        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <a class="nav-call" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
       </nav>
 
       <div class="city-hero-content">
@@ -99,19 +108,19 @@ const schema = {
           <span aria-hidden="true"> / </span>
           <a href={`/cities/${citySlug}/`}>{city.name}, MN</a>
           <span aria-hidden="true"> / </span>
-          <span>{service.name}</span>
+          <span>{displayServiceName}</span>
         </p>
         <h1>
-          <span class="city-accent">{service.name}</span> in {city.name}, MN
+          <span class="city-accent">{displayServiceName}</span> in {city.name}, MN
         </h1>
         <p class="hero-copy">{intro}</p>
         <div class="hero-actions">
-          <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
+          <a class="button primary" href={ctaSms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
           <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
         </div>
         <p class="hero-meta">
-          <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; Loads from $85 &middot; Curbside and garage pickup
+          <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; Pickup minimum $85 &middot; Written photo quote
         </p>
       </div>
     </section>
@@ -121,25 +130,25 @@ const schema = {
         src={heroPhoto.src}
         width={heroPhoto.width}
         height={heroPhoto.height}
-        alt={buildAlt(heroPhoto.desc, city.name, service.name)}
+        alt={buildAlt(heroPhoto.desc, city.name, displayServiceName)}
         loading="eager"
         fetchpriority="high"
       />
-      <figcaption>{buildAlt(heroPhoto.desc, city.name, service.name)}</figcaption>
+      <figcaption>{buildAlt(heroPhoto.desc, city.name, displayServiceName)}</figcaption>
     </figure>
 
     <section class="section city-services">
       <div class="section-head">
         <div>
-          <p class="section-kicker">{service.name} in {city.name}</p>
+          <p class="section-kicker">{displayServiceName} in {city.name}</p>
           <h2>What we include</h2>
         </div>
       </div>
       <div class="city-service-grid">
-        {service.services.map((s) => (
+        {service.services.map((includedService) => (
           <article class="city-service-card">
             <span class="city-service-icon"><Icon name="lucide:check-circle-2" size={20} /></span>
-            <h3>{s}</h3>
+            <h3>{includedService}</h3>
           </article>
         ))}
       </div>
@@ -153,10 +162,10 @@ const schema = {
         </div>
       </div>
       <div class="city-service-grid">
-        {service.process.map((step, i) => (
+        {service.process.map((step, index) => (
           <article class="city-service-card">
-            <span class="city-service-icon">{i + 1}</span>
-            <h3>Step {i + 1}</h3>
+            <span class="city-service-icon">{index + 1}</span>
+            <h3>Step {index + 1}</h3>
             <p>{step}</p>
           </article>
         ))}
@@ -175,13 +184,13 @@ const schema = {
         <div>
           <h3 class="city-list-title">{city.name} neighborhoods we serve</h3>
           <ul class="city-list">
-            {city.neighborhoods.map((n) => <li><Icon name="lucide:check" size={14} /> {n}</li>)}
+            {city.neighborhoods.map((neighborhood) => <li><Icon name="lucide:check" size={14} /> {neighborhood}</li>)}
           </ul>
         </div>
         <div>
           <h3 class="city-list-title">Nearby landmarks</h3>
           <ul class="city-list">
-            {city.landmarks.map((l) => <li><Icon name="lucide:map-pin" size={14} /> {l}</li>)}
+            {city.landmarks.map((landmark) => <li><Icon name="lucide:map-pin" size={14} /> {landmark}</li>)}
           </ul>
         </div>
       </div>
@@ -202,7 +211,7 @@ const schema = {
     <section class="section">
       <div class="section-head">
         <div>
-          <p class="section-kicker">{service.name} FAQ</p>
+          <p class="section-kicker">{displayServiceName} FAQ</p>
           <h2>{city.name} questions, answered.</h2>
         </div>
       </div>
@@ -224,8 +233,8 @@ const schema = {
         </div>
       </div>
       <div class="city-grid">
-        {otherServices.map(([sl, s]) => (
-          <a href={`/cities/${citySlug}/${sl}/`} class="city-link">{s.name}</a>
+        {otherServices.map(([slug, otherService]) => (
+          <a href={`/cities/${citySlug}/${slug}/`} class="city-link">{serviceLabel(slug, otherService)}</a>
         ))}
         <a href={`/cities/${citySlug}/`} class="city-link">All services in {city.name}</a>
       </div>
@@ -234,13 +243,13 @@ const schema = {
     <section class="section city-locale">
       <div class="section-head">
         <div>
-          <p class="section-kicker">{service.name} in other cities</p>
+          <p class="section-kicker">{displayServiceName} in other cities</p>
           <h2>We also serve…</h2>
         </div>
       </div>
       <div class="city-grid">
-        {otherCities.map(([sl, c]) => (
-          <a href={`/cities/${sl}/${serviceSlug}/`} class="city-link">{c.name}</a>
+        {otherCities.map(([slug, otherCity]) => (
+          <a href={`/cities/${slug}/${serviceSlug}/`} class="city-link">{otherCity.name}</a>
         ))}
         <a href={`/services/${serviceSlug}/`} class="city-link">See all cities</a>
       </div>
@@ -248,12 +257,12 @@ const schema = {
 
     <section class="section city-cta">
       <div>
-        <h2>Need {service.name.toLowerCase()} in {city.name}?</h2>
-        <p>Text photos, item details, and a preferred calendar window. Crew confirms within a few hours.</p>
+        <h2>Need {displayServiceName.toLowerCase()} in {city.name}?</h2>
+        <p>Text photos and item details for a written quote, then choose an available pickup window.</p>
       </div>
       <div class="hero-actions">
-        <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+        <a class="button primary" href={ctaSms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
+        <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>
@@ -261,7 +270,7 @@ const schema = {
     <SiteFooter />
 
     <div class="mobile-cta" aria-label="Mobile contact actions">
-      <a class="button primary" href={ctaSms}>Text</a>
+      <a class="button primary" href={ctaSms} data-track="sms_click">Text</a>
       <a class="button secondary" href="/#quote">Book</a>
     </div>
   </main>
