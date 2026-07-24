@@ -1,0 +1,75 @@
+/* Dakota Valley header logo treatment.
+   Loaded after the main stylesheet so the uploaded brand mark replaces the
+   temporary truck icon + text without changing each page template. */
+.brand {
+  position: relative;
+  flex: 0 0 auto;
+  width: 285px;
+  height: 72px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 12px;
+  background-color: #ffffff;
+  background-image: url('/dakota-valley-logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(100% - 24px) auto;
+  box-shadow: 0 10px 26px rgba(0, 22, 52, 0.24);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.brand:hover,
+.brand:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 13px 30px rgba(0, 22, 52, 0.3);
+}
+
+/* Keep the original text available to assistive technology while removing the
+   temporary icon and wordmark from the visual layout. */
+.brand > * {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 1080px) {
+  .brand {
+    width: 245px;
+    height: 66px;
+  }
+}
+
+@media (max-width: 760px) {
+  .brand {
+    width: 205px;
+    height: 58px;
+    padding: 7px 10px;
+    background-size: calc(100% - 18px) auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav {
+    gap: 8px;
+  }
+
+  .brand {
+    width: 172px;
+    height: 50px;
+    border-radius: 9px;
+  }
+
+  .nav-call {
+    gap: 5px;
+    padding: 9px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
