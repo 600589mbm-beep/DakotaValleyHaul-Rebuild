@@ -5,6 +5,7 @@
 //   B) ITEMS — flat per-piece recyclable rates, NO load minimum (some < $85).
 // Do not reintroduce a blanket "$85 minimum" or "only pay for the space you
 // fill" — both are false against the flat item rates / recycling fees.
+// Owner-approved load pricing reconfirmed July 23, 2026.
 
 export { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from './booking.js';
 
