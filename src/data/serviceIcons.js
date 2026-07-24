@@ -31,31 +31,8 @@ export function iconForService(slug) {
   return serviceIcons[slug] || FALLBACK_ICON;
 }
 
-// "Starting from" price shown on service cards. Loads start at $85 (the minimum
-// applies to loads only, not flat-rate recyclable items); larger cleanouts start
-// higher. These are
-// honest entry points, not quotes — final price is volume-based.
-export const serviceStartingPrice = {
-  'junk-pickup':         'From $85',
-  'furniture-removal':   'From $85',
-  'appliance-recycling': 'From $85',
-  'garage-cleanout':     'From $255',
-  'yard-debris':         'From $85',
-  'dumpster-rental':     'By quote',
-  'mattress-removal':    'From $100',
-  'hot-tub-removal':     'By quote',
-  'scrap-metal-removal': 'From $85',
-  'electronics-removal': 'From $85',
-  'hoarder-cleanout':    'By quote',
-  'estate-cleanout':     'From $255',
-  'attic-cleanout':      'From $85',
-  'basement-cleanout':   'From $255',
-  'fence-removal':       'From $85',
-  'shed-removal':        'By quote',
-  'single-item-pickup':  'From $85',
-  'demolition':          'By quote',
-};
-
-export function startingPriceForService(slug) {
-  return serviceStartingPrice[slug] || 'From $85';
+// Keep detailed prices off service cards. The homepage and pricing page show only
+// the $85 pickup minimum; every actual job is quoted from customer photos.
+export function startingPriceForService() {
+  return 'Photo quote';
 }

@@ -1,47 +1,50 @@
 ---
-// Homepage pricing snapshot. Two DISTINCT groups so it's obvious LOADS start at
-// $85 but named items are flat-rate with no minimum. Copy mirrors /pricing/.
 import { Icon } from 'astro-icon/components';
-import {
-  tiers, itemPrices, priceFactors,
-  PRICING_HEADING, PRICING_INTRO, LOADS_TITLE, ITEMS_TITLE, ITEMS_SUBLINE,
-} from '../data/pricing.js';
+
+const smsLink = 'sms:+19522325107';
+const quoteFactors = [
+  { label: 'How much there is', detail: 'Photos help us see the true volume instead of guessing from a phone description.' },
+  { label: 'Weight and material', detail: 'Dense debris and specialty items can carry different disposal requirements.' },
+  { label: 'Access and labor', detail: 'Curbside and garage-staged items are usually faster than stairs, long carries, or tight access.' },
+  { label: 'Donation and recycling', detail: 'Reusable and recyclable items are routed responsibly whenever practical.' },
+];
 ---
-<section class="section pricing-preview" id="pricing-preview" aria-label="Pricing snapshot">
+<section class="section pricing-preview" id="pricing-preview" aria-label="Junk removal pricing">
   <div class="section-head"><div>
-    <p class="section-kicker">{PRICING_HEADING}</p>
-    <h2>Straightforward, two-part pricing.</h2>
+    <p class="section-kicker">Simple pricing</p>
+    <h2>$85 minimum. Exact quote before you book.</h2>
   </div>
-    <p class="section-copy">{PRICING_INTRO}</p>
+    <p class="section-copy">Instead of publishing a truck-load chart that may not match your job, we price what is actually in your photos. You receive the total in writing before choosing a pickup window.</p>
   </div>
 
-  {/* Group A — volume-based loads */}
-  <p class="price-group-title">{LOADS_TITLE}</p>
   <div class="pricing-cards">
-    {tiers.map((t) => (
-      <a class="pricing-card" href="/pricing/" data-track="pricing_view">
-        <span class="pricing-card-label">{t.label}</span>
-        <span class="pricing-card-price">{t.price}</span>
-        <span class="pricing-card-blurb">{t.desc}</span>
-      </a>
-    ))}
+    <a class="pricing-card" href={smsLink} data-track="sms_click">
+      <span class="pricing-card-label">Eligible curbside or garage pickup</span>
+      <span class="pricing-card-price">$85 minimum</span>
+      <span class="pricing-card-blurb">The only public price we show. Your final quote reflects the actual items, access, weight, and disposal needs.</span>
+    </a>
+    <div class="pricing-card">
+      <span class="pricing-card-label">No bait-and-switch estimate</span>
+      <span class="pricing-card-price"><Icon name="lucide:badge-check" size={28} /> Written quote</span>
+      <span class="pricing-card-blurb">Know the quoted total before the crew arrives—without an on-site sales pitch.</span>
+    </div>
+    <div class="pricing-card">
+      <span class="pricing-card-label">A better way to compare</span>
+      <span class="pricing-card-price"><Icon name="lucide:scale" size={28} /> Compare the total</span>
+      <span class="pricing-card-blurb">Compare what is included, not just a competitor's lowest advertised starting number.</span>
+    </div>
   </div>
 
-  {/* Group B — flat per-item rates, no load minimum */}
-  <div class="item-prices">
-    <p class="item-prices-head">{ITEMS_TITLE}<small>{ITEMS_SUBLINE}</small></p>
-    <ul class="item-prices-list">
-      {itemPrices.map((it) => (
-        <li><span class="item-prices-name">{it.item}{it.recycled && <Icon name="lucide:recycle" size={13} />}</span><span class="item-prices-price">{it.price}</span></li>
-      ))}
-    </ul>
+  <div class="hero-actions" style="margin-top: 22px">
+    <a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:camera" size={18} /> Text photos for your exact quote</a>
+    <a class="button secondary" href="/pricing/" data-track="pricing_view">How our quote works</a>
   </div>
 
   <details class="pricing-explainer">
-    <summary><Icon name="lucide:help-circle" size={18} /> What changes the price?</summary>
+    <summary><Icon name="lucide:help-circle" size={18} /> What determines the final quote?</summary>
     <div class="pricing-factors">
-      {priceFactors.map((f) => (
-        <div class="pricing-factor"><strong>{f.label}</strong><span>{f.detail}</span></div>
+      {quoteFactors.map((factor) => (
+        <div class="pricing-factor"><strong>{factor.label}</strong><span>{factor.detail}</span></div>
       ))}
     </div>
   </details>
