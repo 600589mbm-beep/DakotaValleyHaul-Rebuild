@@ -82,6 +82,28 @@ const {
     <meta name="geo.position" content="44.97;-93.27" />
     <meta name="ICBM" content="44.97, -93.27" />
 
+    <!-- Start ordinary page visits at the top. Preserve intentional section links such as /#quote. -->
+    <script is:inline>
+      (function () {
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
+        }
+
+        function startAtTop() {
+          if (window.location.hash) return;
+          window.scrollTo(0, 0);
+          window.requestAnimationFrame(function () {
+            window.scrollTo(0, 0);
+          });
+        }
+
+        startAtTop();
+        document.addEventListener('DOMContentLoaded', startAtTop, { once: true });
+        window.addEventListener('load', startAtTop, { once: true });
+        window.addEventListener('pageshow', startAtTop);
+      })();
+    </script>
+
     {schema && (
       <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
     )}
@@ -114,7 +136,7 @@ const {
       <!-- Google AdSense -->
     <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3232938629505810" crossorigin="anonymous"></script>
 </head>
-  <body>
+  <body id="top">
     <slot />
 
     <!-- Lightweight analytics dispatcher. Vendor-agnostic: pushes to
