@@ -1,16 +1,10 @@
 #!/usr/bin/env node
-// Refresh src/data/reviews.json from the Google Places API so on-site reviews
-// stay current. Run weekly (cron / GitHub Action) or before a build:
+// Refresh Google reviews while preserving verified reviews from other platforms.
+// Run weekly (cron / GitHub Action) or before a build:
 //
 //   GOOGLE_PLACES_API_KEY=xxx GOOGLE_PLACE_ID=yyy node scripts/fetch-reviews.mjs
 //
-// Behavior:
-//   - With both env vars set: pulls the latest reviews + rating and writes them
-//     with source:'google'. Only 'google' reviews are emitted as Review JSON-LD.
-//   - Without them: leaves reviews.json untouched and exits 0 (build-safe), so
-//     deploys never fail just because the key isn't wired yet.
-//
-// Get a Place ID: https://developers.google.com/maps/documentation/places/web-service/place-id
+// Without both environment variables, the current verified review file is kept.
 import { writeFileSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -33,26 +27,42 @@ try {
   if (!res.ok) throw new Error(`Places API ${res.status}: ${await res.text()}`);
   const json = await res.json();
 
-  const reviews = (json.reviews || []).map((r) => ({
+  const googleReviews = (json.reviews || []).map((r) => ({
     author: r.authorAttribution?.displayName || 'Google reviewer',
     location: '',
     rating: r.rating || 5,
+    platform: 'Google',
     text: (r.text?.text || r.originalText?.text || '').trim(),
     publishedAt: r.publishTime || null,
   })).filter((r) => r.text);
 
   const existing = JSON.parse(readFileSync(OUT, 'utf8'));
+  const otherVerifiedReviews = (existing.reviews || []).filter(
+    (review) => String(review.platform || '').toLowerCase() !== 'google',
+  );
+  const preservedGoogleReviews = (existing.reviews || []).filter(
+    (review) => String(review.platform || '').toLowerCase() === 'google',
+  );
+  const reviews = [...(googleReviews.length ? googleReviews : preservedGoogleReviews), ...otherVerifiedReviews];
+  const googleReviewCount = json.userRatingCount ?? googleReviews.length ?? preservedGoogleReviews.length;
+  const yelpReviewCount = otherVerifiedReviews.filter(
+    (review) => String(review.platform || '').toLowerCase() === 'yelp',
+  ).length;
+
   const data = {
-    source: 'google',
+    source: 'verified-third-party',
     updated: new Date().toISOString().slice(0, 10),
     aggregate: {
       ratingValue: json.rating ?? existing.aggregate?.ratingValue ?? 5.0,
-      reviewCount: json.userRatingCount ?? reviews.length,
+      reviewCount: googleReviewCount,
+      googleReviewCount,
+      yelpReviewCount,
+      totalVerifiedCount: googleReviewCount + otherVerifiedReviews.length,
     },
-    reviews: reviews.length ? reviews : existing.reviews,
+    reviews,
   };
   writeFileSync(OUT, JSON.stringify(data, null, 2));
-  console.log(`[fetch-reviews] wrote ${reviews.length} Google reviews · rating ${data.aggregate.ratingValue} · count ${data.aggregate.reviewCount}`);
+  console.log(`[fetch-reviews] wrote ${googleReviews.length} Google reviews, preserved ${otherVerifiedReviews.length} other verified review(s), rating ${data.aggregate.ratingValue}`);
 } catch (err) {
   console.error('[fetch-reviews] failed, keeping existing reviews.json:', err.message);
   process.exit(0); // never break the build
