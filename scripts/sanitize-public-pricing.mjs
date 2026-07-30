@@ -14,8 +14,9 @@ function sanitizePricing(content) {
     // Replace non-minimum starting, approximate, and maximum prices with the
     // photo-quote message customers should act on.
     .replace(/\b(?:from|starting(?:\s+at)?|starts?(?:\s+at)?|around|roughly|up\s+to)\s+\$(?!85\b)\d+(?:\.\d+)?/gi, 'quoted from photos')
-    // Catch remaining individual prices while leaving $85 untouched.
-    .replace(/\$(?!85\b)\d+(?:\.\d+)?(?:\s*(?:each|per\s+(?:item|piece|truck|load)))?/gi, 'photo quote')
+    // Catch remaining individual prices while leaving the $85 minimum and the
+    // exact "$25 off with review" promotion untouched.
+    .replace(/\$(?!85\b|25\s+off\s+with\s+review\b)\d+(?:\.\d+)?(?:\s*(?:each|per\s+(?:item|piece|truck|load)))?/gi, 'photo quote')
     // Smooth out a few combinations produced when legacy copy contains both a
     // range and a qualifier.
     .replace(/(?:photo quote|quoted from photos)\s*(?:–|—|-)\s*(?:photo quote|quoted from photos)/gi, 'photo quote')
