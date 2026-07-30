@@ -1,16 +1,13 @@
 #!/usr/bin/env node
-// Refresh src/data/reviews.json from the Google Places API so on-site reviews
-// stay current. Run weekly (cron / GitHub Action) or before a build:
+// Refresh verified Google reviews without deleting manually verified reviews
+// from other platforms. Run weekly or before a build:
 //
 //   GOOGLE_PLACES_API_KEY=xxx GOOGLE_PLACE_ID=yyy node scripts/fetch-reviews.mjs
 //
-// Behavior:
-//   - With both env vars set: pulls the latest reviews + rating and writes them
-//     with source:'google'. Only 'google' reviews are emitted as Review JSON-LD.
-//   - Without them: leaves reviews.json untouched and exits 0 (build-safe), so
-//     deploys never fail just because the key isn't wired yet.
-//
-// Get a Place ID: https://developers.google.com/maps/documentation/places/web-service/place-id
+// Without both environment variables, reviews.json is left untouched so builds
+// remain safe. Google Places may return fewer review bodies than the public
+// review count, so fetched reviews are merged with existing verified Google
+// records instead of replacing the complete set.
 import { writeFileSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -28,32 +25,49 @@ if (!KEY || !PLACE_ID) {
 
 const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=rating,userRatingCount,reviews&key=${KEY}`;
 
+function reviewKey(review) {
+  const author = String(review.author || '').trim().toLowerCase();
+  const text = String(review.text || '').trim().toLowerCase().slice(0, 100);
+  return `${author}|${text}`;
+}
+
 try {
   const res = await fetch(url, { headers: { 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' } });
   if (!res.ok) throw new Error(`Places API ${res.status}: ${await res.text()}`);
   const json = await res.json();
 
-  const reviews = (json.reviews || []).map((r) => ({
-    author: r.authorAttribution?.displayName || 'Google reviewer',
-    location: '',
-    rating: r.rating || 5,
-    text: (r.text?.text || r.originalText?.text || '').trim(),
-    publishedAt: r.publishTime || null,
-  })).filter((r) => r.text);
+  const fetchedGoogle = (json.reviews || []).map((review) => ({
+    platform: 'google',
+    author: review.authorAttribution?.displayName || 'Google reviewer',
+    rating: review.rating || 5,
+    text: (review.text?.text || review.originalText?.text || '').trim(),
+    publishedAt: review.publishTime || null,
+  })).filter((review) => review.text);
 
   const existing = JSON.parse(readFileSync(OUT, 'utf8'));
+  const existingReviews = existing.reviews || [];
+  const existingGoogle = existingReviews.filter((review) => review.platform === 'google');
+  const nonGoogle = existingReviews.filter((review) => review.platform && review.platform !== 'google');
+
+  const mergedGoogle = new Map(existingGoogle.map((review) => [reviewKey(review), review]));
+  for (const review of fetchedGoogle) mergedGoogle.set(reviewKey(review), review);
+  const googleReviews = [...mergedGoogle.values()];
+
+  const googleReviewCount = json.userRatingCount ?? existing.aggregate?.reviewCount ?? googleReviews.length;
   const data = {
-    source: 'google',
+    source: 'verified-third-party',
     updated: new Date().toISOString().slice(0, 10),
     aggregate: {
       ratingValue: json.rating ?? existing.aggregate?.ratingValue ?? 5.0,
-      reviewCount: json.userRatingCount ?? reviews.length,
+      reviewCount: googleReviewCount,
+      totalVerifiedReviewCount: googleReviewCount + nonGoogle.length,
     },
-    reviews: reviews.length ? reviews : existing.reviews,
+    reviews: [...googleReviews, ...nonGoogle],
   };
+
   writeFileSync(OUT, JSON.stringify(data, null, 2));
-  console.log(`[fetch-reviews] wrote ${reviews.length} Google reviews · rating ${data.aggregate.ratingValue} · count ${data.aggregate.reviewCount}`);
-} catch (err) {
-  console.error('[fetch-reviews] failed, keeping existing reviews.json:', err.message);
-  process.exit(0); // never break the build
+  console.log(`[fetch-reviews] kept ${googleReviews.length} Google review records and ${nonGoogle.length} other verified review(s) · Google rating ${data.aggregate.ratingValue} · public Google count ${data.aggregate.reviewCount}`);
+} catch (error) {
+  console.error('[fetch-reviews] failed, keeping existing reviews.json:', error.message);
+  process.exit(0);
 }
