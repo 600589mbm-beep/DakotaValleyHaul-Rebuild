@@ -86,7 +86,7 @@ const schema = {
             <p style="font-size:15px;line-height:1.6;color:var(--ink);margin-bottom:14px">&ldquo;{r.text}&rdquo;</p>
             <div>
               <strong style="display:block;color:var(--ink)">{r.author}</strong>
-              <span style="color:var(--muted);font-size:13px">{[r.location, r.platform, r.publishedAt].filter(Boolean).join(' · ')}</span>
+              <span style="color:var(--muted);font-size:13px">{[r.location, r.platform, r.publishedLabel].filter(Boolean).join(' · ')}</span>
             </div>
             {r.reviewUrl && (
               <a href={r.reviewUrl} rel="nofollow noopener" target="_blank" style="display:inline-block;margin-top:10px;color:var(--blue);font-size:13px;font-weight:800;text-decoration:none">
