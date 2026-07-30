@@ -43,8 +43,9 @@ try {
   const preservedGoogleReviews = (existing.reviews || []).filter(
     (review) => String(review.platform || '').toLowerCase() === 'google',
   );
-  const reviews = [...(googleReviews.length ? googleReviews : preservedGoogleReviews), ...otherVerifiedReviews];
-  const googleReviewCount = json.userRatingCount ?? googleReviews.length ?? preservedGoogleReviews.length;
+  const currentGoogleReviews = googleReviews.length ? googleReviews : preservedGoogleReviews;
+  const reviews = [...currentGoogleReviews, ...otherVerifiedReviews];
+  const googleReviewCount = json.userRatingCount ?? currentGoogleReviews.length;
   const yelpReviewCount = otherVerifiedReviews.filter(
     (review) => String(review.platform || '').toLowerCase() === 'yelp',
   ).length;
