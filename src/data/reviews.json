@@ -14,6 +14,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "1 week ago",
       "text": "We had just the BEST experience with Dakota Valley Junk Removal! We have had a deep freezer we have been wanting to get rid of and I texted them in the morning and they picked it up that same evening! They were great communicators and so nice to work with! Easy to spend my money with such hard workers!"
     },
     {
@@ -21,6 +22,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "4 months ago",
       "text": "Friendly fast service! My garage full of junk, gone in minutes. It was less expensive than doing it myself!"
     },
     {
@@ -28,6 +30,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "8 months ago",
       "text": "Easy, reasonably priced, and super nice service. We will most certainly be using them again."
     },
     {
@@ -35,6 +38,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "8 months ago",
       "text": "Great price. Great service. Not much more to say."
     },
     {
@@ -42,6 +46,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "3 years ago",
       "text": "Excellent customer service from first contact through pickup. Very personable and courteous. Seniors get a discount! Also, right now there is a promotion going on that is really a great deal. Will use them again if need arises."
     },
     {
@@ -49,6 +54,7 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
+      "publishedLabel": "2 years ago",
       "text": "Great professional service. They replied promptly to my questions. Very accommodating to my schedule and needs. Would definitely recommend them!"
     },
     {
@@ -56,7 +62,8 @@
       "location": "",
       "rating": 5,
       "platform": "Google",
-      "text": "Great Job! Went above and beyond any junk business nowadays. The others I called were overpriced, but this company was fair and did a great job! I will definitely call them again."
+      "publishedLabel": "3 years ago",
+      "text": "Great Job ! Went Above and beyond any junk business now days. The others I called were over priced but this company fair and did a great job ! I will definitely call them again 👍"
     },
     {
       "author": "J J.",
@@ -64,6 +71,7 @@
       "rating": null,
       "platform": "Yelp",
       "publishedAt": "2022-09-25",
+      "publishedLabel": "September 25, 2022",
       "text": "Quick work, reasonably priced compared to the \"big\" companies. Would definitely use again.",
       "reviewUrl": "https://www.yelp.com/biz/dakota-valley-junk-removal-saint-paul?hrid=_hmoQfdYaa-g-ZSO4Ybv1g",
       "reviewId": "_hmoQfdYaa-g-ZSO4Ybv1g"
