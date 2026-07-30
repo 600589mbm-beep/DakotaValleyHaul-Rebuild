@@ -18,7 +18,7 @@ const site = 'https://dakotavalleyjunkremovalservice.com';
 const canonical = `${site}/quote/${slug}/`;
 const phoneDisplay = '(952) 232-5107';
 const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: 0 };
-const verified = reviewsData.source === 'google';
+const verified = reviewsData.source === 'verified-third-party' || reviewsData.source === 'google';
 
 const smsBody = encodeURIComponent(`Hi Dakota Valley — I'd like a junk removal quote in ${city.name}, MN. Here are photos and item details:`);
 const citySms = `sms:+19522325107?&body=${smsBody}`;
@@ -69,7 +69,7 @@ const schema = {
           {verified && (
             <Fragment>
               <span class="hero-stars" aria-hidden="true">★★★★★</span><strong>{agg.ratingValue.toFixed(1)}</strong>
-              <span class="hero-rating-sep">·</span><span>{agg.reviewCount} reviews</span>
+              <span class="hero-rating-sep">·</span><span>{agg.reviewCount} Google reviews</span>
               <span class="hero-rating-sep">·</span>
             </Fragment>
           )}
