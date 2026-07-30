@@ -37,7 +37,7 @@ const totalVerified = agg.totalVerifiedCount || all.length;
             <p class="testimonial-text">&ldquo;{r.text}&rdquo;</p>
             <div class="testimonial-who">
               <strong>{r.author}</strong>
-              <span>{[r.location, r.platform].filter(Boolean).join(' · ')}</span>
+              <span>{[r.location, r.platform, r.publishedLabel].filter(Boolean).join(' · ')}</span>
             </div>
             {r.reviewUrl && (
               <a class="testimonial-link" href={r.reviewUrl} rel="nofollow noopener" target="_blank">Read on {r.platform} →</a>
