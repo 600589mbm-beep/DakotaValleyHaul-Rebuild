@@ -1,437 +1,72 @@
 {
-  "source": "site",
-  "updated": "2026-05-25",
+  "source": "verified-third-party",
+  "updated": "2026-07-29",
   "aggregate": {
     "ratingValue": 5,
-    "reviewCount": 61
+    "reviewCount": 7,
+    "totalVerifiedCount": 8,
+    "googleReviewCount": 7,
+    "yelpReviewCount": 1
   },
   "reviews": [
     {
-      "author": "Brian Nelson",
-      "location": "Cobblestone Lake, Apple Valley",
+      "author": "Maggie Hoppe",
+      "location": "",
       "rating": 5,
-      "text": "Great experience! They cleared out years of accumulated stuff from our garage. Professional and affordable.",
-      "citySlug": "apple-valley"
+      "platform": "Google",
+      "text": "We had just the BEST experience with Dakota Valley Junk Removal! We have had a deep freezer we have been wanting to get rid of and I texted them in the morning and they picked it up that same evening! They were great communicators and so nice to work with! Easy to spend my money with such hard workers!"
     },
     {
-      "author": "Larry Roper",
-      "location": "Fountain Lake, Albert Lea",
+      "author": "Bryan_Mark Nielsen",
+      "location": "",
       "rating": 5,
-      "text": "Big estate cleanout — they came same day and cleared everything. Couldn't be happier.",
-      "citySlug": "albert-lea"
+      "platform": "Google",
+      "text": "Friendly fast service! My garage full of junk, gone in minutes. It was less expensive than doing it myself!"
     },
     {
-      "author": "Bruce Lund",
-      "location": "Lake Carlos Area, Alexandria",
+      "author": "Audrey Neel",
+      "location": "",
       "rating": 5,
-      "text": "Cabin cleanout before selling — they took everything including old dock sections. Excellent.",
-      "citySlug": "alexandria-mn"
+      "platform": "Google",
+      "text": "Easy, reasonably priced, and super nice service. We will most certainly be using them again."
     },
     {
-      "author": "Joe Sykora",
-      "location": "North Side, Austin",
+      "author": "Scott Richmann",
+      "location": "",
       "rating": 5,
-      "text": "Full house cleanout before a sale. They were on time, professional, and affordable.",
-      "citySlug": "austin-mn"
+      "platform": "Google",
+      "text": "Great price. Great service. Not much more to say."
     },
     {
-      "author": "Dan Halverson",
-      "location": "Lake Bemidji, Bemidji",
+      "author": "Marian Luft",
+      "location": "",
       "rating": 5,
-      "text": "Cleaned out our family cabin before selling. They handled everything including old dock equipment.",
-      "citySlug": "bemidji"
+      "platform": "Google",
+      "text": "Excellent customer service from first contact through pickup. Very personable and courteous. Seniors get a discount! Also, right now there is a promotion going on that is really a great deal. Will use them again if need arises."
     },
     {
-      "author": "Karen Mitchell",
-      "location": "East Bloomington",
+      "author": "Susan Olson",
+      "location": "",
       "rating": 5,
-      "text": "They helped us clear out our garage near Mall of America. Fast, friendly, and fair pricing!",
-      "citySlug": "bloomington"
+      "platform": "Google",
+      "text": "Great professional service. They replied promptly to my questions. Very accommodating to my schedule and needs. Would definitely recommend them!"
     },
     {
-      "author": "Steve Paulson",
-      "location": "Gull Lake, Brainerd",
+      "author": "J Mc",
+      "location": "",
       "rating": 5,
-      "text": "They cleared out our cabin before we listed it for sale. Thorough job and reasonable price.",
-      "citySlug": "brainerd"
+      "platform": "Google",
+      "text": "Great Job! Went above and beyond any junk business nowadays. The others I called were overpriced, but this company was fair and did a great job! I will definitely call them again."
     },
     {
-      "author": "Lisa Anderson",
-      "location": "Crystal Lake, Burnsville",
-      "rating": 5,
-      "text": "They cleared out our basement after a flood. Fast response and very helpful during a stressful time.",
-      "citySlug": "burnsville"
-    },
-    {
-      "author": "Tom Hakala",
-      "location": "Kenwood, Duluth",
-      "rating": 5,
-      "text": "Cleaned out my parents' home near UMD. They were respectful and quick. Highly recommend.",
-      "citySlug": "duluth"
-    },
-    {
-      "author": "Tom Anderson",
-      "location": "Cedar Grove, Eagan",
-      "rating": 5,
-      "text": "Dakota Valley helped with our downsizing project. They were respectful of our belongings and very efficient. Great service!",
-      "citySlug": "eagan"
-    },
-    {
-      "author": "Steve Morrison",
-      "location": "Flying Cloud, Eden Prairie",
-      "rating": 5,
-      "text": "Excellent service! They cleared out our entire basement quickly and professionally. Great value.",
-      "citySlug": "eden-prairie"
-    },
-    {
-      "author": "Patricia Williams",
-      "location": "Country Club, Edina",
-      "rating": 5,
-      "text": "Excellent service for our estate cleanout. Professional, respectful, and efficient team.",
-      "citySlug": "edina"
-    },
-    {
-      "author": "Carol Beuning",
-      "location": "Cathedral Area, Faribault",
-      "rating": 5,
-      "text": "Moved out of a big house near the cathedral. They cleared everything in one trip. 5 stars.",
-      "citySlug": "faribault"
-    },
-    {
-      "author": "Ryan Thompson",
-      "location": "North Creek, Farmington",
-      "rating": 5,
-      "text": "Great small-town service! They helped us clean out our barn and were very professional.",
-      "citySlug": "farmington"
-    },
-    {
-      "author": "Al Swenson",
-      "location": "Otter Tail Lake, Fergus Falls",
-      "rating": 5,
-      "text": "They cleared out our lake cabin in one day. Efficient and great price.",
-      "citySlug": "fergus-falls"
-    },
-    {
-      "author": "John Peterson",
-      "location": "Historic District, Hastings",
-      "rating": 5,
-      "text": "They helped us clear out an old Victorian home downtown. Very careful with the historic property.",
-      "citySlug": "hastings"
-    },
-    {
-      "author": "Chris Martin",
-      "location": "Downtown Hopkins",
-      "rating": 5,
-      "text": "Amazing service! They cleared out our entire garage in just a couple hours.",
-      "citySlug": "hopkins"
-    },
-    {
-      "author": "Mark Forcier",
-      "location": "North Hutchinson",
-      "rating": 5,
-      "text": "Quick, affordable, and they took everything without question. Best junk removal I've used.",
-      "citySlug": "hutchinson-mn"
-    },
-    {
-      "author": "Patricia Brown",
-      "location": "Rich Valley, Inver Grove Heights",
-      "rating": 5,
-      "text": "Wonderful experience! They helped us clear out my parents' home with care and professionalism.",
-      "citySlug": "inver-grove-heights"
-    },
-    {
-      "author": "Andrew Wilson",
-      "location": "Crystal Lake, Lakeville",
-      "rating": 5,
-      "text": "Excellent service! They helped us clear out our entire garage in just a couple hours.",
-      "citySlug": "lakeville"
-    },
-    {
-      "author": "Jake Sorensen",
-      "location": "MSU Area, Mankato",
-      "rating": 5,
-      "text": "Moving out of a big off-campus house. They cleared four rooms in two hours. Amazing.",
-      "citySlug": "mankato"
-    },
-    {
-      "author": "Jennifer Adams",
-      "location": "Arbor Lakes, Maple Grove",
-      "rating": 5,
-      "text": "Amazing service! They cleared out our entire basement in just a few hours. Very professional.",
-      "citySlug": "maple-grove"
-    },
-    {
-      "author": "David Lee",
-      "location": "Gladstone, Maplewood",
-      "rating": 5,
-      "text": "Excellent basement cleanout service. Professional team and very efficient!",
-      "citySlug": "maplewood"
-    },
-    {
-      "author": "Bob Tauer",
-      "location": "North Marshall",
-      "rating": 5,
-      "text": "Full house cleanout before a sale. On time, professional, and affordable.",
-      "citySlug": "marshall-mn"
-    },
-    {
-      "author": "Jennifer Walsh",
-      "location": "Uptown, Minneapolis",
-      "rating": 5,
-      "text": "Amazing service! They helped clear out my garage in under an hour. Super professional and affordable.",
-      "citySlug": "minneapolis"
-    },
-    {
-      "author": "James Peterson",
-      "location": "Excelsior, Minnetonka",
-      "rating": 5,
-      "text": "Fantastic lakeside property cleanout service. They were careful with our property and very thorough.",
-      "citySlug": "minnetonka"
-    },
-    {
-      "author": "Kayla Svensson",
-      "location": "MSUM Area, Moorhead",
-      "rating": 5,
-      "text": "They came out right after finals week when I needed to vacate my apartment. Super fast and polite.",
-      "citySlug": "moorhead"
-    },
-    {
-      "author": "Gary Woelfel",
-      "location": "Hermann Heights, New Ulm",
-      "rating": 5,
-      "text": "Cleared out a big basement in one visit. Honest crew and fair pricing.",
-      "citySlug": "new-ulm-mn"
-    },
-    {
-      "author": "Emma Thorson",
-      "location": "Carleton Area, Northfield",
-      "rating": 5,
-      "text": "End of year cleanout — they cleared my whole dorm suite in no time. Friendly and efficient.",
-      "citySlug": "northfield"
-    },
-    {
-      "author": "Scott Fischbach",
-      "location": "North Owatonna",
-      "rating": 5,
-      "text": "Quick, professional, and cheaper than I expected. Cleared out a full basement in one shot.",
-      "citySlug": "owatonna"
-    },
-    {
-      "author": "David Wilson",
-      "location": "Parkers Lake, Plymouth",
-      "rating": 5,
-      "text": "Excellent basement cleanout service. They hauled everything away quickly and professionally.",
-      "citySlug": "plymouth"
-    },
-    {
-      "author": "Greg Warnes",
-      "location": "Downtown Red Wing",
-      "rating": 5,
-      "text": "Cleared a full basement in one visit. Great price, no hassle, very professional.",
-      "citySlug": "red-wing"
-    },
-    {
-      "author": "Robert Nelson",
-      "location": "Lyndale Avenue, Richfield",
-      "rating": 5,
-      "text": "Great service for our basement cleanout. Quick, professional, and affordable!",
-      "citySlug": "richfield"
-    },
-    {
-      "author": "Karen Olson",
-      "location": "Cascade Lake, Rochester",
-      "rating": 5,
-      "text": "Moved out of a big house near Mayo and they handled everything. Fast, professional, no stress.",
-      "citySlug": "rochester"
-    },
-    {
-      "author": "Kevin Schmidt",
-      "location": "Flint Hills, Rosemount",
-      "rating": 5,
-      "text": "Excellent service! They helped us clear out our garage before winter. Professional and on time.",
-      "citySlug": "rosemount"
-    },
-    {
-      "author": "Kevin O'Brien",
-      "location": "Central Roseville",
-      "rating": 5,
-      "text": "Great experience! They cleared out our basement efficiently and at a fair price.",
-      "citySlug": "roseville"
-    },
-    {
-      "author": "Brian Thompson",
-      "location": "Turtle Lake, Shoreview",
-      "rating": 5,
-      "text": "Outstanding service for our basement cleanout. Professional team and great pricing!",
-      "citySlug": "shoreview"
-    },
-    {
-      "author": "Ashley Berg",
-      "location": "SCSU Area, St. Cloud",
-      "rating": 5,
-      "text": "Moving out of my apartment near campus — they came same day and cleared everything. Lifesaver!",
-      "citySlug": "st-cloud"
-    },
-    {
-      "author": "Jennifer Adams",
-      "location": "Westwood Hills, St. Louis Park",
-      "rating": 5,
-      "text": "Excellent service! They helped us clear out our basement before renovation. Highly recommend!",
-      "citySlug": "st-louis-park"
-    },
-    {
-      "author": "Mark Johnson",
-      "location": "Highland Park, St. Paul",
-      "rating": 5,
-      "text": "Fantastic experience! They cleared our basement in just a couple hours. Very professional and reasonably priced.",
-      "citySlug": "st-paul"
-    },
-    {
-      "author": "John Peterson",
-      "location": "Downtown White Bear Lake",
-      "rating": 5,
-      "text": "Fantastic lakeside property cleanout. They were careful and professional throughout.",
-      "citySlug": "white-bear-lake"
-    },
-    {
-      "author": "Todd Hagen",
-      "location": "North Willmar",
-      "rating": 5,
-      "text": "Cleaned out a farmstead — furniture, equipment, everything. Great job at a fair price.",
-      "citySlug": "willmar"
-    },
-    {
-      "author": "Amber Kramer",
-      "location": "WSU Area, Winona",
-      "rating": 5,
-      "text": "End-of-semester cleanout — they took everything including my old mattress and futon. Easy.",
-      "citySlug": "winona"
-    },
-    {
-      "author": "Sarah Johnson",
-      "location": "Eagle Valley, Woodbury",
-      "rating": 5,
-      "text": "Fantastic service! They helped us clear out our garage before moving. Quick and professional.",
-      "citySlug": "woodbury"
-    },
-    {
-      "author": "Jennifer Carlson",
-      "location": "Edinburgh, Brooklyn Park",
-      "rating": 5,
-      "text": "Cleared out our garage in Edinburgh in one trip. Crew was efficient and friendly, and the price was fair.",
-      "citySlug": "brooklyn-park"
-    },
-    {
-      "author": "Mark Thompson",
-      "location": "Lakes at Blaine",
-      "rating": 5,
-      "text": "Old furniture from our basement, gone in 20 minutes. Very professional team.",
-      "citySlug": "blaine"
-    },
-    {
-      "author": "Susan Park",
-      "location": "Sand Creek, Coon Rapids",
-      "rating": 5,
-      "text": "Estate cleanout went smoothly. They donated what they could and recycled the rest. Highly recommend.",
-      "citySlug": "coon-rapids"
-    },
-    {
-      "author": "David Wright",
-      "location": "Southbridge, Shakopee",
-      "rating": 5,
-      "text": "Had a hot tub to dispose of — they handled the whole thing. Disassembly to disposal. Excellent.",
-      "citySlug": "shakopee"
-    },
-    {
-      "author": "Linda Olson",
-      "location": "Hamlet, Cottage Grove",
-      "rating": 5,
-      "text": "Yard waste pile from our spring renovation — done in one stop. Fast, easy quote.",
-      "citySlug": "cottage-grove"
-    },
-    {
-      "author": "Chris Anderson",
-      "location": "Hidden Creek, Andover",
-      "rating": 5,
-      "text": "Garage cleanout took half a day. They gave a fair quote and stuck to it.",
-      "citySlug": "andover"
-    },
-    {
-      "author": "Patricia Lee",
-      "location": "Glendale, Savage",
-      "rating": 5,
-      "text": "Multi-room cleanout before listing the house. They donated furniture and made the place show-ready.",
-      "citySlug": "savage"
-    },
-    {
-      "author": "James Reilly",
-      "location": "Spring Lake, Prior Lake",
-      "rating": 5,
-      "text": "Old dock sections and yard debris — gone same day. Saved us hauling it ourselves.",
-      "citySlug": "prior-lake"
-    },
-    {
-      "author": "Robert Yang",
-      "location": "Jonathan, Chaska",
-      "rating": 5,
-      "text": "Cleared out years of accumulated junk from our walkout basement. Very respectful crew.",
-      "citySlug": "chaska"
-    },
-    {
-      "author": "Karen Mitchell",
-      "location": "Oakdale Estates",
-      "rating": 5,
-      "text": "Fast quote by text, even faster pickup. Old appliances and a sofa, done.",
-      "citySlug": "oakdale"
-    },
-    {
-      "author": "Amanda Peterson",
-      "location": "Lake Susan, Chanhassen",
-      "rating": 5,
-      "text": "Full garage cleanout. They sorted donations for Savers and hauled the rest. Outstanding.",
-      "citySlug": "chanhassen"
-    },
-    {
-      "author": "Tom Becker",
-      "location": "Lakeland, Elk River",
-      "rating": 5,
-      "text": "Estate cleanout for my mother's house. They were patient, respectful, and fair on pricing.",
-      "citySlug": "elk-river"
-    },
-    {
-      "author": "Eric Larson",
-      "location": "Mississippi Crossings, Champlin",
-      "rating": 5,
-      "text": "Garage cleanout was easier than I expected. Photo quote, scheduled, done. Recommend.",
-      "citySlug": "champlin"
-    },
-    {
-      "author": "Michelle Berg",
-      "location": "Birch Lake, Lino Lakes",
-      "rating": 5,
-      "text": "Yard renovation debris and old fencing — they took it all in one trip. Quick and reasonable.",
-      "citySlug": "lino-lakes"
-    },
-    {
-      "author": "Bill Anderson",
-      "location": "Castlewood, Forest Lake",
-      "rating": 5,
-      "text": "Hot tub disposal — they disassembled and hauled. Wasn't cheap but the alternative was a nightmare.",
-      "citySlug": "forest-lake"
-    },
-    {
-      "author": "Karen O'Brien",
-      "location": "Croixwood, Stillwater",
-      "rating": 5,
-      "text": "Cleared out an old downtown apartment over the river. They navigated the narrow streets without issue.",
-      "citySlug": "stillwater"
-    },
-    {
-      "author": "Greg Henderson",
-      "location": "Riverside Park, Anoka",
-      "rating": 5,
-      "text": "Single-item pickup for an old fridge with refrigerant recovery. Done right.",
-      "citySlug": "anoka"
+      "author": "J J.",
+      "location": "Minneapolis, MN",
+      "rating": null,
+      "platform": "Yelp",
+      "publishedAt": "2022-09-25",
+      "text": "Quick work, reasonably priced compared to the \"big\" companies. Would definitely use again.",
+      "reviewUrl": "https://www.yelp.com/biz/dakota-valley-junk-removal-saint-paul?hrid=_hmoQfdYaa-g-ZSO4Ybv1g",
+      "reviewId": "_hmoQfdYaa-g-ZSO4Ybv1g"
     }
   ]
 }
