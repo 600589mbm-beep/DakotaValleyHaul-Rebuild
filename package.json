@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/fetch-reviews.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
+    "prebuild": "node scripts/validate-local-content.mjs && node scripts/fetch-reviews.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
     "build": "astro build && node scripts/sanitize-public-pricing.mjs",
     "preview": "astro preview",
     "reviews": "node scripts/fetch-reviews.mjs",
+    "validate-local-content": "node scripts/validate-local-content.mjs",
     "sanitize-pricing": "node scripts/sanitize-public-pricing.mjs",
     "astro": "astro"
   },
