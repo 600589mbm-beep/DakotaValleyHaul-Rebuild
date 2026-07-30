@@ -1,0 +1,61 @@
+name: Apply homepage review discount
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/apply-review-discount.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add review discount and preserve it during builds
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          homepage_path = Path('src/pages/index.astro')
+          homepage = homepage_path.read_text()
+          old_badge = '            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> Pickup minimum <strong>$85</strong></span>'
+          new_badge = '            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> Pickup minimum <strong>$85</strong> <span aria-hidden="true">•</span> <strong>$25 off with review</strong></span>'
+          if old_badge not in homepage:
+              raise SystemExit('Homepage pickup-minimum badge was not found exactly once.')
+          if homepage.count(old_badge) != 1:
+              raise SystemExit('Homepage pickup-minimum badge appeared more than once.')
+          homepage_path.write_text(homepage.replace(old_badge, new_badge, 1))
+
+          sanitizer_path = Path('scripts/sanitize-public-pricing.mjs')
+          sanitizer = sanitizer_path.read_text()
+          old_comment = '    // Catch remaining individual prices while leaving $85 untouched.\n'
+          new_comment = '    // Catch remaining individual prices while leaving the $85 minimum and the\n    // exact "$25 off with review" promotion untouched.\n'
+          old_rule = "    .replace(/\\$(?!85\\b)\\d+(?:\\.\\d+)?(?:\\s*(?:each|per\\s+(?:item|piece|truck|load)))?/gi, 'photo quote')"
+          new_rule = "    .replace(/\\$(?!85\\b|25\\s+off\\s+with\\s+review\\b)\\d+(?:\\.\\d+)?(?:\\s*(?:each|per\\s+(?:item|piece|truck|load)))?/gi, 'photo quote')"
+          if old_comment not in sanitizer or old_rule not in sanitizer:
+              raise SystemExit('Pricing sanitizer target was not found.')
+          sanitizer = sanitizer.replace(old_comment, new_comment, 1).replace(old_rule, new_rule, 1)
+          sanitizer_path.write_text(sanitizer)
+          PY
+
+      - name: Validate changes
+        run: |
+          grep -F '$25 off with review' src/pages/index.astro
+          grep -F '25\s+off\s+with\s+review' scripts/sanitize-public-pricing.mjs
+          node --check scripts/sanitize-public-pricing.mjs
+
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/pages/index.astro scripts/sanitize-public-pricing.mjs
+          git commit -m 'Add $25 review discount to homepage'
+          git push origin HEAD:main
