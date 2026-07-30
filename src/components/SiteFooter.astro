@@ -4,6 +4,7 @@ import { cities } from '../data/cities.js';
 import { services } from '../data/services.js';
 import { counties } from '../data/counties.js';
 import { guides } from '../data/allGuides.js';
+import { getPriorityLocalContent } from '../data/priorityLocalContent.js';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
@@ -12,6 +13,24 @@ const featuredGuides = Object.entries(guides)
   .sort(([, a], [, b]) => (b.priority || 0) - (a.priority || 0))
   .slice(0, 14);
 
+const pathParts = Astro.url.pathname.split('/').filter(Boolean);
+const citySlug = pathParts[0] === 'cities' ? pathParts[1] : null;
+const localCity = citySlug ? cities[citySlug] : null;
+const localContent = citySlug ? getPriorityLocalContent(citySlug) : null;
+const serviceAliases = {
+  'apartment-cleanout': 'junk-pickup',
+  'office-cleanout': 'furniture-removal',
+  'exercise-equipment-removal': 'scrap-metal-removal',
+  'construction-debris': 'demolition',
+};
+const popularServices = (localContent?.popularServices || [])
+  .map((requestedSlug) => {
+    const slug = services[requestedSlug] ? requestedSlug : serviceAliases[requestedSlug];
+    return slug && services[slug] ? { slug, service: services[slug] } : null;
+  })
+  .filter(Boolean)
+  .filter((item, index, list) => list.findIndex((candidate) => candidate.slug === item.slug) === index);
+
 const socialLinks = [
   { name: 'Google', url: 'https://www.google.com/search?q=dakota+valley+junk+removal+minnesota' },
   { name: 'Facebook', url: 'https://www.facebook.com/dakotavalleyjunkremoval' },
@@ -19,6 +38,77 @@ const socialLinks = [
 ];
 const year = new Date().getFullYear();
 ---
+{localContent && localCity && (
+  <section class="section city-locale priority-local-content" aria-labelledby={`local-proof-${citySlug}`}>
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">Local pickup planning</p>
+        <h2 id={`local-proof-${citySlug}`}>What customers in {localCity.name} should know before booking.</h2>
+      </div>
+    </div>
+
+    <p class="section-copy" style="margin-bottom: 24px">{localContent.intro}</p>
+
+    <div class="city-service-grid">
+      <article class="city-service-card">
+        <span class="city-service-icon"><Icon name="lucide:route" size={20} /></span>
+        <h3>{localContent.accessTitle}</h3>
+        <p>{localContent.accessText}</p>
+      </article>
+      <article class="city-service-card">
+        <span class="city-service-icon"><Icon name="lucide:calendar-clock" size={20} /></span>
+        <h3>{localContent.routeTitle}</h3>
+        <p>{localContent.routeText}</p>
+      </article>
+      <article class="city-service-card">
+        <span class="city-service-icon"><Icon name="lucide:recycle" size={20} /></span>
+        <h3>{localContent.disposalTitle}</h3>
+        <p>{localContent.disposalText}</p>
+      </article>
+    </div>
+
+    <div class="city-locale-grid" style="margin-top: 28px">
+      <div>
+        <h3 class="city-list-title">Send these details for a useful written quote</h3>
+        <ul class="city-list">
+          {localContent.quoteChecklist.map((item) => (
+            <li><Icon name="lucide:check" size={14} /> {item}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 class="city-list-title">Priority services for {localCity.name}</h3>
+        <div class="city-grid">
+          {popularServices.map(({ slug, service }) => (
+            <a href={`/cities/${citySlug}/${slug}/`} class="city-link">{service.name}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {localContent.officialResource && (
+      <aside class="city-service-card" style="margin-top: 28px">
+        <span class="city-service-icon"><Icon name="lucide:landmark" size={20} /></span>
+        <h3>Official local disposal resource</h3>
+        <p>{localContent.officialResource.summary}</p>
+        <p style="margin-top: 12px">
+          <a
+            href={localContent.officialResource.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="testimonial-link"
+          >
+            Open {localContent.officialResource.name} →
+          </a>
+        </p>
+        <p style="margin-top: 8px; font-size: 13px; color: var(--muted)">
+          Resource checked {localContent.officialResource.verifiedAsOf}. Facility rules, fees, and eligibility can change; confirm details with the public agency before self-hauling.
+        </p>
+      </aside>
+    )}
+  </section>
+)}
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <section class="site-footer-block">
