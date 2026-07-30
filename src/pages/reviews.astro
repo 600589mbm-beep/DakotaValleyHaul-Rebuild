@@ -1,9 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../data/booking.js';
+import { PRICE_FLOOR } from '../data/booking.js';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { cities } from '../data/cities.js';
 import { businessNode } from '../data/schemaBusiness.js';
 import reviewsData from '../data/reviews.json';
 
@@ -11,56 +10,44 @@ const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const site = 'https://dakotavalleyjunkremovalservice.com';
 const canonical = `${site}/reviews/`;
+const allReviews = reviewsData.reviews || [];
+const agg = reviewsData.aggregate || {
+  ratingValue: 5,
+  reviewCount: 0,
+  totalVerifiedCount: allReviews.length,
+  googleReviewCount: 0,
+  yelpReviewCount: 0,
+};
+const totalVerified = agg.totalVerifiedCount || allReviews.length;
 
-const allReviews = Object.entries(cities)
-  .filter(([, c]) => c.testimonial)
-  .map(([slug, c]) => ({ slug, city: c.name, ...c.testimonial }));
-
-// Same policy as the homepage: Review/AggregateRating markup ONLY when the
-// review source is verified (Google). Site-sourced testimonials render as
-// content but are never asserted as schema.org reviews.
-const verifiedReviewMarkup = reviewsData.source === 'google'
-  ? {
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: reviewsData.aggregate.ratingValue.toFixed(1),
-        reviewCount: String(reviewsData.aggregate.reviewCount),
-        bestRating: '5',
-      },
-      review: (reviewsData.reviews || []).slice(0, 12).map((r) => ({
-        '@type': 'Review',
-        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating || 5), bestRating: '5' },
-        author: { '@type': 'Person', name: r.author },
-        reviewBody: r.text,
-      })),
-    }
-  : {};
-
+// Reviews are displayed as visible customer proof. We intentionally do not add
+// Review or AggregateRating markup to Dakota Valley's own LocalBusiness entity.
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
-    { ...businessNode, ...verifiedReviewMarkup },
+    businessNode,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
-        { '@type': 'ListItem', position: 2, name: 'Reviews' },
+        { '@type': 'ListItem', position: 2, name: 'Customer reviews', item: canonical },
       ],
     },
     {
       '@type': 'CollectionPage',
       '@id': `${canonical}#page`,
       url: canonical,
-      name: 'Reviews from Across Minnesota',
-      description: `Customer testimonials from the ${allReviews.length} Minnesota cities Dakota Valley serves.`,
+      name: 'Customer Reviews for Dakota Valley Junk Removal',
+      description: `${totalVerified} verified third-party customer reviews for Dakota Valley Junk Removal, including ${agg.googleReviewCount || agg.reviewCount} Google reviews and ${agg.yelpReviewCount || 0} Yelp review.`,
       about: { '@id': businessNode['@id'] },
+      inLanguage: 'en-US',
     },
   ],
 };
 ---
 <Layout
-  title="Reviews from Across Minnesota | Dakota Valley Junk Removal"
-  description={`Dakota Valley Junk Removal serves dozens of Minnesota cities by text. Verified Google reviews coming soon — we only show reviews once they're real.`}
+  title="Customer Reviews | Dakota Valley Junk Removal"
+  description={`Read ${totalVerified} verified customer reviews for Dakota Valley Junk Removal. Rated ${agg.ratingValue.toFixed(1)} from ${agg.googleReviewCount || agg.reviewCount} Google reviews and also reviewed on Yelp.`}
   canonical={canonical}
   schema={schema}
 >
@@ -70,8 +57,8 @@ const schema = {
         <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a></nav>
       <div class="city-hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>Reviews</span></p>
-        <h1>What <span class="city-accent">Minnesotans</span> are saying.</h1>
-        <p class="hero-copy">We're a locally owned crew serving Minnesota since 2023. We're gathering verified Google reviews now — and we'd love yours to be one of the first.</p>
+        <h1>Real reviews from <span class="city-accent">real customers.</span></h1>
+        <p class="hero-copy">Dakota Valley Junk Removal is rated {agg.ratingValue.toFixed(1)} out of 5 from {agg.googleReviewCount || agg.reviewCount} Google reviews and is also reviewed on Yelp. Customers consistently mention fair pricing, fast pickups, friendly service, and clear communication.</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text for a quote</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -80,46 +67,45 @@ const schema = {
       </div>
     </section>
 
-    {CITY_TESTIMONIALS_ENABLED ? (
-      <section class="section">
-        <div class="section-head"><div>
-          <p class="section-kicker">{allReviews.length} reviews across Minnesota</p>
-          <h2>From {allReviews[0]?.city} to {allReviews[allReviews.length - 1]?.city}.</h2>
-        </div></div>
-        <div class="city-service-grid">
-          {allReviews.map((r) => (
-            <article class="city-service-card">
-              <div style="display: flex; gap: 2px; margin-bottom: 10px; color: #f5b401">★★★★★</div>
-              <p style="font-size: 15px; line-height: 1.5; color: var(--ink); margin-bottom: 14px">&ldquo;{r.text}&rdquo;</p>
-              <div>
-                <strong style="display: block; color: var(--ink)">{r.name}</strong>
-                <span style="color: var(--muted); font-size: 13px">{r.location}</span>
-              </div>
-              <a href={`/cities/${r.slug}/`} style="display: inline-block; margin-top: 10px; color: var(--blue); font-size: 13px; font-weight: 800; text-decoration: none">
-                {r.city} pickup details →
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">{totalVerified} verified third-party reviews</p>
+        <h2>{agg.ratingValue.toFixed(1)}★ on Google · Also reviewed on Yelp</h2>
+      </div>
+        <p class="section-copy">Only reviews supplied from verified Google and Yelp listings are shown here.</p>
+      </div>
+
+      <div class="city-service-grid">
+        {allReviews.map((r) => (
+          <article class="city-service-card">
+            {typeof r.rating === 'number' ? (
+              <div style="display:flex;gap:2px;margin-bottom:10px;color:#f5b401" aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}</div>
+            ) : (
+              <div style="margin-bottom:10px;color:#d32323;font-weight:800">Yelp review</div>
+            )}
+            <p style="font-size:15px;line-height:1.6;color:var(--ink);margin-bottom:14px">&ldquo;{r.text}&rdquo;</p>
+            <div>
+              <strong style="display:block;color:var(--ink)">{r.author}</strong>
+              <span style="color:var(--muted);font-size:13px">{[r.location, r.platform, r.publishedAt].filter(Boolean).join(' · ')}</span>
+            </div>
+            {r.reviewUrl && (
+              <a href={r.reviewUrl} rel="nofollow noopener" target="_blank" style="display:inline-block;margin-top:10px;color:var(--blue);font-size:13px;font-weight:800;text-decoration:none">
+                Read the original on {r.platform} →
               </a>
-            </article>
-          ))}
-        </div>
-      </section>
-    ) : (
-      <section class="section">
-        <div class="section-head"><div>
-          <p class="section-kicker">Reviews</p>
-          <h2>Verified reviews coming soon.</h2>
-        </div></div>
-        <p class="hero-copy" style="max-width:640px">We only publish reviews once they're verified through Google, so anything you read here is always real. We launched in 2023 and our first verified reviews are on the way — text a photo for a quote and experience it for yourself.</p>
-      </section>
-    )}
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
 
     <section class="section city-cta">
       <div>
-        <h2>Ready to add yours?</h2>
-        <p>Text photos for a quote. Once the job is done, the crew will share a link to leave a review.</p>
+        <h2>Ready for an easy pickup?</h2>
+        <p>Text photos for a written quote. Once the job is complete, we appreciate an honest Google or Yelp review.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+        <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
         <a class="button secondary" href="/#quote">Use the quote helper</a>
       </div>
     </section>
