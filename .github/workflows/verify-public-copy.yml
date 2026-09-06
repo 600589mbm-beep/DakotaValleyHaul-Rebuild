@@ -1,0 +1,28 @@
+name: Verify published service copy
+on:
+  push:
+    branches: [fix/service-promises-review-policy]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check public pages with direct read-only requests
+        run: |
+          python3 - <<'PY'
+          import urllib.request,re,json
+          base='https://dakotavalleyjunkremovalservice.com'
+          failures=[]
+          for path in ['/', '/cities/apple-valley/', '/services/estate-cleanout/', '/pricing/']:
+              req=urllib.request.Request(base+path,headers={'Cache-Control':'no-cache','User-Agent':'DakotaValleyDeploymentVerification/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as response:
+                  html=response.read().decode('utf-8')
+                  text=re.sub(r'<[^>]+>',' ',html)
+                  data={'url':response.url,'status':response.status,'title':re.search(r'<title>(.*?)</title>',html).group(1),'review_incentive_present':'$25 off with review' in html,'scope_present':'No inside-home pickup' in text,'minimum_present':'$85' in text,'headers':{k:response.headers.get(k) for k in ['Date','Last-Modified','ETag','Age','Cache-Control','CF-Cache-Status','Server']}}
+                  print(json.dumps(data))
+                  if data['review_incentive_present'] or not data['scope_present']: failures.append(path)
+                  if path=='/' and 'Request my written quote' not in text: failures.append('homepage quote button')
+          if failures: raise SystemExit('Public copy not yet verified: '+', '.join(failures))
+          print('PASS: public homepage, Apple Valley, estate cleanout and pricing pages contain the updated service copy; no review-linked discount. No form submissions were made.')
+          PY
