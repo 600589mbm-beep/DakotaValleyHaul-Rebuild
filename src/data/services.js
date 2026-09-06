@@ -7,10 +7,10 @@ export const services = {
     icon: 'Truck',
     headline: 'Affordable curbside and garage junk pickup across Minnesota',
     intro:
-      'Same-day eligible curbside and garage junk pickup. loads from $85, text-first photo quotes, and calendar booking. No call required — text photos and the crew sends a quote.',
+      "Curbside, driveway and accessible-garage junk pickup with an $85 minimum for eligible jobs. Text photos for the full price in writing, approve it and confirm an available pickup window with the crew. No inside-home pickup.",
     metaTitle: 'Junk Pickup Minnesota | Curbside & Garage Removal | Dakota Valley',
     metaDescription:
-      'Curbside and garage junk pickup across Minnesota. Single items to garage cleanouts. loads from $85, text photos for a quote, calendar booking.',
+      "Junk pickup in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       'Single-item pickup',
       'Multi-item bundles',
@@ -20,35 +20,35 @@ export const services = {
       'Move-out and apartment turnover loads',
     ],
     process: [
-      'Text photos of the items plus city or county.',
-      'Crew confirms the pickup window via text.',
-      'Items go curbside or in the garage before the appointment.',
-      'Crew arrives, loads, sweeps, and texts a completion photo.',
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'furniture-removal': {
     name: 'Furniture removal',
     icon: 'Sofa',
     headline: 'Furniture removal — sofas, beds, dressers, sectionals, office',
     intro:
-      'Curbside or garage furniture removal across Minnesota. Sofas, sectionals, beds and mattresses, dressers, dining sets, desks, and office furniture. loads from $85, $0 hidden fees.',
+      "Curbside, driveway and accessible-garage pickup for sofas, sectionals, dressers, beds, tables and office furniture. Eligible pickups have an $85 minimum; send photos for the complete written quote before booking. No inside-home carry-out.",
     metaTitle: 'Furniture Removal Minnesota | Sofa, Bed, Dresser Pickup | Dakota Valley',
     metaDescription:
-      'Furniture removal across Minnesota: sofas, sectionals, mattresses, dressers, dining sets, office furniture. Curbside or garage pickup. loads from $85.',
+      "Furniture removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
-      'Sofa and sectional removal',
-      'Mattress and box spring recycling',
-      'Bed frame and headboard breakdown',
-      'Dresser and wardrobe removal',
-      'Dining tables and chairs',
-      'Office desks, conference tables, filing cabinets',
-    ],
+  "Sofa and sectional pickup",
+  "Pre-staged mattresses and box springs",
+  "Disassembled bed frames and headboards",
+  "Dressers and wardrobes",
+  "Dining tables and chairs",
+  "Office desks and filing cabinets"
+],
     process: [
-      'Photo of each piece + dimensions if oversized.',
-      'Crew confirms quote and pickup window via text.',
-      'Items at the curb, in the driveway, or just inside the garage.',
-      'Donatable pieces routed to Bridging, Arc, or Savers.',
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'appliance-recycling': {
     name: 'Appliance recycling',
@@ -58,7 +58,7 @@ export const services = {
       'Curbside and garage appliance removal: refrigerators, washers, dryers, stoves, dishwashers, microwaves. EPA-certified refrigerant recovery for fridges and freezers. Metals routed to certified recyclers.',
     metaTitle: 'Appliance Removal & Recycling Minnesota | Fridge, Washer, Dryer | Dakota Valley',
     metaDescription:
-      'Curbside appliance removal across Minnesota. Refrigerator, washer, dryer, stove, dishwasher, microwave pickup with EPA-certified refrigerant handling.',
+      "Appliance recycling in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       'Refrigerator and freezer pickup (refrigerant recovered EPA-certified)',
       'Washer and dryer removal',
@@ -68,11 +68,11 @@ export const services = {
       'AC unit and dehumidifier removal',
     ],
     process: [
-      'Photo + brand/model if you have it.',
-      'Crew confirms appliance can be safely disconnected and removed.',
-      'Appliance staged in the garage, on the porch, or curbside.',
-      'Crew arrives, loads, and routes to certified recyclers.',
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'garage-cleanout': {
     name: 'Garage cleanout',
@@ -82,7 +82,7 @@ export const services = {
       'Garage-staged cleanouts. Boxes, clutter, old paint cans (empty only), furniture, sports equipment, holiday decorations, and the years of accumulated stuff that piled up. Stage everything, the crew loads.',
     metaTitle: 'Garage Cleanout Pickup Minnesota | Fast Curbside Load | Dakota Valley',
     metaDescription:
-      'Garage cleanout pickup across Minnesota. Stage items in the garage, the crew loads. loads from $85, photo quote, calendar booking.',
+      "Garage cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       'Full garage cleanout',
       'Half-garage downsize',
@@ -92,11 +92,11 @@ export const services = {
       'Shop tool and hardware purges',
     ],
     process: [
-      'Photo of the staged pile (or a video walk-through).',
-      'Crew confirms volume-based quote.',
-      'Pile stays in the garage until the appointment.',
-      'Crew loads, sweeps, donates/recycles where possible.',
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'yard-debris': {
     name: 'Yard and storm debris',
@@ -106,7 +106,7 @@ export const services = {
       'Curbside yard waste and storm debris removal. Brush, branches, fencing, deck debris, storm cleanup piles. Compostable material routed to certified compost facilities.',
     metaTitle: 'Yard Waste & Storm Debris Removal Minnesota | Dakota Valley',
     metaDescription:
-      'Yard waste, branches, storm debris, and fence removal across Minnesota. Curbside pickup, compostable material routed to certified facilities.',
+      "Yard and storm debris in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       'Brush and branch piles',
       'Storm debris cleanup',
@@ -116,11 +116,11 @@ export const services = {
       'Garden bed cleanouts',
     ],
     process: [
-      'Photo of the pile + rough volume.',
-      'Crew confirms quote and window via text.',
-      'Pile staged at curb or driveway.',
-      'Crew loads and routes compostables to certified facilities.',
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'dumpster-rental': {
     name: 'Dumpster and trailer rental',
@@ -130,7 +130,7 @@ export const services = {
       "Short-term drop options for remodels, cleanouts, and DIY loading. By request — text size and timeline. Best for jobs where you're loading over a few days and don't need full-service crew labor.",
     metaTitle: 'Dumpster & Trailer Rental Minnesota | Short-Term Drop | Dakota Valley',
     metaDescription:
-      'Short-term dumpster and trailer drop across Minnesota for remodels, DIY cleanouts, and renovation debris. By request — text size and timeline.',
+      "Dumpster and trailer rental requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work.",
     services: [
       'Driveway-friendly dumpster drop',
       'Trailer drop for DIY loading',
@@ -140,21 +140,21 @@ export const services = {
       'Material sorted at the transfer facility',
     ],
     process: [
-      'Text the project scope and target dates.',
-      'Crew confirms size + drop/pickup windows.',
-      'Drop happens curbside or driveway.',
-      'You load over the rental window; crew picks up on signal.',
-    ],
+  "Send photos of the full outdoor project and access, or describe the requested rental.",
+  "The crew reviews whether the project can be accepted and confirms the exact written scope and price.",
+  "Approve the quote and confirm an available appointment or rental window.",
+  "Only the work included in the agreed written scope is performed; no interior work."
+],
   },
   'mattress-removal': {
     name: 'Mattress removal',
     icon: 'Sofa',
     headline: "Mattress and box spring removal with certified recycling",
     intro:
-      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80% of components (steel coils, foam, fiber, fabric) are recovered. loads from $85, no hidden disposal fees.",
+      "Pickup of pre-staged mattresses, box springs and disassembled bed-frame pieces. Send photos showing size, quantity and condition. Eligible pickups have an $85 minimum; the written total includes the disposal requirements for your job. No bedroom or stair carry-out.",
     metaTitle: "Mattress removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Curbside mattress removal across Minnesota. Single, queen, king \u2014 and box springs. Mattresses are recycled at certified Minnesota facilities where up to 80...",
+      "Mattress removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       "Single mattress pickup",
       "Multi-mattress bundles (move-out, hotel turnover)",
@@ -164,11 +164,11 @@ export const services = {
       "Certified mattress recycling chain",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'hot-tub-removal': {
     name: 'Hot tub removal',
@@ -178,7 +178,7 @@ export const services = {
       "Hot tub removal from decks, backyards, patios, and below-grade installations. Crew handles disassembly, lifting, hauling, and disposal. Quoted by request \u2014 text photos of the tub, deck, and access path.",
     metaTitle: "Hot tub removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Hot tub removal from decks, backyards, patios, and below-grade installations. Crew handles disassembly, lifting, hauling, and disposal. Quoted by request \u2014...",
+      "Hot tub removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work.",
     services: [
       "Free-standing hot tub removal",
       "Sunken / below-grade tub removal",
@@ -188,11 +188,11 @@ export const services = {
       "Saunas (separate quote)",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Send photos of the full outdoor project and access, or describe the requested rental.",
+  "The crew reviews whether the project can be accepted and confirms the exact written scope and price.",
+  "Approve the quote and confirm an available appointment or rental window.",
+  "Only the work included in the agreed written scope is performed; no interior work."
+],
   },
   'scrap-metal-removal': {
     name: 'Scrap metal removal',
@@ -202,7 +202,7 @@ export const services = {
       "Scrap metal removal across Minnesota \u2014 appliances, exercise equipment, fencing, gutters, swing sets, file cabinets, and bulk metal piles. Routed to certified Minnesota metal recyclers, not landfill.",
     metaTitle: "Scrap metal removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Scrap metal removal across Minnesota \u2014 appliances, exercise equipment, fencing, gutters, swing sets, file cabinets, and bulk metal piles. Routed to certifi...",
+      "Scrap metal removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       "Appliance metal recovery",
       "Aluminum, copper, steel piles",
@@ -212,11 +212,11 @@ export const services = {
       "Exercise equipment",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'electronics-removal': {
     name: 'Electronics removal',
@@ -226,7 +226,7 @@ export const services = {
       "Electronics pickup across Minnesota \u2014 TVs (including old CRTs), computers, monitors, printers, gaming consoles, audio equipment. Routed to R2-certified e-waste recyclers. Hard drives wiped or physically destroyed on request.",
     metaTitle: "Electronics removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Electronics pickup across Minnesota \u2014 TVs (including old CRTs), computers, monitors, printers, gaming consoles, audio equipment. Routed to R2-certified e-w...",
+      "Electronics removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       "CRT and flat-panel TV pickup",
       "Computer towers and laptops",
@@ -236,71 +236,71 @@ export const services = {
       "Hard drive destruction (on request)",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'hoarder-cleanout': {
     name: 'Hoarder cleanout',
     icon: 'Home',
-    headline: "Compassionate, discreet hoarder cleanout services",
+    headline: "Judgment-free pickup of pre-staged cleanout items",
     intro:
-      "Hoarder cleanout across Minnesota. Discreet, judgment-free, thorough. Crew works at your pace, sorts donations vs trash on-site, and leaves the property clean. Quoted on-site for each job.",
+      "Discreet pickup of approved nonhazardous furniture, boxes and household items after safe curbside, driveway or garage staging. We do not enter living areas, sort rooms or handle hazardous cleanup. Send photos for a written quote and appointment confirmation.",
     metaTitle: "Hoarder cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Hoarder cleanout across Minnesota. Discreet, judgment-free, thorough. Crew works at your pace, sorts donations vs trash on-site, and leaves the property cl...",
+      "Hoarder cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
-      "Full-property hoarder cleanout",
-      "Partial-room cleanout",
-      "Sort-on-site donation routing",
-      "Biohazard-adjacent prep (defer hazmat to licensed)",
-      "Multi-day projects",
-      "Family/landlord coordination",
-    ],
+  "Pre-staged household furniture",
+  "Approved boxes and storage items",
+  "Separately staged donation candidates",
+  "Nonhazardous bulky household items",
+  "Multiple pickups by agreement",
+  "Family or property-manager coordination"
+],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'estate-cleanout': {
     name: 'Estate cleanout',
     icon: 'Home',
-    headline: "Estate cleanout services across Minnesota",
+    headline: "Estate cleanout pickup — pre-staged items only",
     intro:
-      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs trash, route donatable items to Bridging / Arc / Savers, and leave the property show-ready.",
+      "Estate cleanout pickup for approved furniture, boxes and household items that have already been safely staged at the curb, in the driveway or in an accessible garage. We do not sort or carry items from rooms inside the home. Text photos of everything to be collected for a written quote and a confirmed pickup window.",
     metaTitle: "Estate cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs tr...",
+      "Estate cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
-      "Full estate cleanout",
-      "Selective room cleanout",
-      "Donation pickup with tax receipts",
-      "Photo documentation before haul",
-      "Family coordination for valuables",
-      "Property show-prep cleaning",
-    ],
+  "Pre-selected furniture staged for pickup",
+  "Approved boxes and household items",
+  "Separately staged donation candidates",
+  "Photo details of the complete load",
+  "Family or property-manager coordination",
+  "Pickup windows confirmed in advance"
+],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'attic-cleanout': {
     name: 'Attic cleanout',
     icon: 'Home',
-    headline: "Attic cleanout and old storage haul-out",
+    headline: "Attic cleanout pickup — pre-staged items only",
     intro:
-      "Attic cleanout across Minnesota. Decades of boxes, old furniture, insulation debris, holiday decorations, and forgotten storage. Crew brings everything down, sorts donations, and hauls the rest.",
+      "Pickup of approved items from your attic cleanout after they are safely staged at the curb, in the driveway or in an accessible garage. We do not enter the attic or carry items on stairs. Text photos for a written quote and a pickup window confirmed by the crew.",
     metaTitle: "Attic cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Attic cleanout across Minnesota. Decades of boxes, old furniture, insulation debris, holiday decorations, and forgotten storage. Crew brings everything dow...",
+      "Attic cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
-      "Full attic cleanout",
+      "Pickup of pre-staged attic items",
       "Selective box removal",
       "Old furniture from attic",
       "Insulation debris (loose, not asbestos)",
@@ -308,23 +308,23 @@ export const services = {
       "Trunk and chest removal",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'basement-cleanout': {
     name: 'Basement cleanout',
     icon: 'Home',
-    headline: "Basement cleanout \u2014 furniture, storage, debris",
+    headline: "Basement cleanout pickup — pre-staged items only",
     intro:
-      "Basement cleanout across Minnesota. Old furniture, exercise equipment, paint cans (empty only), storage bins, water-damaged debris, and the basement-junk that builds up over decades. Crew handles stairs.",
+      "Pickup of approved items from your basement cleanout after they are safely staged at the curb, in the driveway or in an accessible garage. We do not enter the basement or carry items on stairs. Text photos for a written quote and a pickup window confirmed by the crew.",
     metaTitle: "Basement cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Basement cleanout across Minnesota. Old furniture, exercise equipment, paint cans (empty only), storage bins, water-damaged debris, and the basement-junk t...",
+      "Basement cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
-      "Full basement cleanout",
+      "Pickup of pre-staged basement items",
       "Old furniture from basement",
       "Exercise equipment",
       "Water-damaged debris",
@@ -332,11 +332,11 @@ export const services = {
       "Storage shelving breakdown",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'fence-removal': {
     name: 'Fence removal',
@@ -346,7 +346,7 @@ export const services = {
       "Fence removal \u2014 wood, chain-link, vinyl, wrought iron. Crew dismantles and hauls. Concrete footings broken up by request. Yard left clean and fillable.",
     metaTitle: "Fence removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Fence removal \u2014 wood, chain-link, vinyl, wrought iron. Crew dismantles and hauls. Concrete footings broken up by request. Yard left clean and fillable.",
+      "Fence removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work.",
     services: [
       "Wood fence removal",
       "Chain-link fence removal",
@@ -356,11 +356,11 @@ export const services = {
       "Gate hardware removal",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Send photos of the full outdoor project and access, or describe the requested rental.",
+  "The crew reviews whether the project can be accepted and confirms the exact written scope and price.",
+  "Approve the quote and confirm an available appointment or rental window.",
+  "Only the work included in the agreed written scope is performed; no interior work."
+],
   },
   'shed-removal': {
     name: 'Shed removal',
@@ -370,7 +370,7 @@ export const services = {
       "Shed removal \u2014 wood, metal, plastic, brick. Crew breaks down the shed, hauls debris, and leaves the slab/site clean. Concrete pad demo quoted separately.",
     metaTitle: "Shed removal Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Shed removal \u2014 wood, metal, plastic, brick. Crew breaks down the shed, hauls debris, and leaves the slab/site clean. Concrete pad demo quoted separately.",
+      "Shed removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work.",
     services: [
       "Wood shed dismantling + haul",
       "Metal shed (Tuff Shed etc.) breakdown",
@@ -380,21 +380,21 @@ export const services = {
       "Site cleanup + sweep",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Send photos of the full outdoor project and access, or describe the requested rental.",
+  "The crew reviews whether the project can be accepted and confirms the exact written scope and price.",
+  "Approve the quote and confirm an available appointment or rental window.",
+  "Only the work included in the agreed written scope is performed; no interior work."
+],
   },
   'single-item-pickup': {
     name: 'Single-item pickup',
     icon: 'Truck',
     headline: "Single-item pickup \u2014 from $85",
     intro:
-      "Single-item pickup across Minnesota. Flat per-item rates with no load minimum — mini fridge $45, TV from $50, tires $30; refrigerators and mattresses from $100. Bulky single items like a couch or dresser start at $85. Curbside or garage staging keeps it simple.",
+      "Need one bulky item gone? Send photos of the sofa, dresser, appliance or other item for a written quote. Eligible curbside, driveway and accessible-garage pickups have an $85 minimum, not a fixed price for every item. Your pickup window is confirmed with the crew.",
     metaTitle: "Single-item pickup Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Single-item pickup across Minnesota. Small items from $85; mini fridge $45, TV from $50, refrigerators and mattresses from $100. Curbside or garage staging keeps the price low.",
+      "Single-item pickup in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup.",
     services: [
       "Single sofa or sectional",
       "Single refrigerator",
@@ -404,35 +404,28 @@ export const services = {
       "Single bulky item (treadmill, etc.)",
     ],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Text photos of all items, the staging area and your pickup address.",
+  "Approve the written total and confirm an available appointment with the crew.",
+  "Have all approved items safely staged at the curb, in the driveway or in an accessible garage.",
+  "The crew loads the agreed items; any change to the scope needs your approval first."
+],
   },
   'demolition': {
     name: 'Light demolition',
     icon: 'Warehouse',
-    headline: "Light demolition \u2014 sheds, fences, decks, bathrooms",
+    headline: "Outdoor project requests and pre-staged renovation debris",
     intro:
-      "Light demolition across Minnesota. Sheds, fences, decks, interior bathroom and kitchen demo, light wall removal, hot tubs. Crew handles tear-down, hauling, and disposal. Quoted by job.",
+      "Outdoor light-demolition requests and pre-staged renovation debris are reviewed from photos. Accepted project scope, access, hauling and disposal are confirmed in writing before booking. No interior demolition or inside-home carry-out is offered.",
     metaTitle: "Light demolition Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Light demolition across Minnesota. Sheds, fences, decks, interior bathroom and kitchen demo, light wall removal, hot tubs. Crew handles tear-down, hauling,...",
-    services: [
-      "Deck demolition",
-      "Shed demolition",
-      "Fence demolition",
-      "Bathroom interior demo",
-      "Kitchen demo (cabinets, counters)",
-      "Hot tub + spa demolition",
-    ],
+      "Light demolition requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work.",
+    services: ["Outdoor shed requests, subject to written scope approval","Outdoor fence requests, subject to written scope approval","Outdoor deck requests, subject to written scope approval","Pre-staged bathroom renovation debris","Pre-staged kitchen cabinets and counters","Outdoor hot-tub requests, subject to written scope approval"],
     process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+  "Send photos of the full outdoor project and access, or describe the requested rental.",
+  "The crew reviews whether the project can be accepted and confirms the exact written scope and price.",
+  "Approve the quote and confirm an available appointment or rental window.",
+  "Only the work included in the agreed written scope is performed; no interior work."
+],
   },
 };
 

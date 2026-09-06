@@ -1,4 +1,6 @@
 ---
+import { SPECIALTY_POLICY } from '../../data/servicePolicy.js';
+import { SCHEDULING_POLICY, UNATTENDED_POLICY } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
@@ -32,7 +34,7 @@ const angle = serviceAngles[slug] || {};
 const faqs = [
   {
     q: `How much does ${lc} cost in Minnesota?`,
-    a: `Junk and cleanout loads for ${lc} are volume-based, from $85 — single item from $85 up to a full box-truck load around $750. Recyclable items like mattresses, appliances, TVs, and tires are flat per-piece rates with no load minimum. Text photos for a firm quote with no surprise on-site re-quote.`,
+    a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
   },
   {
     q: `How do I book ${lc}?`,
@@ -40,11 +42,11 @@ const faqs = [
   },
   {
     q: `How soon can you schedule ${lc}?`,
-    a: `Most pickups are scheduled about two business days out so the crew arrives with the right equipment. Same-day jobs are sometimes available based on crew capacity — text to check.`,
+    a: SCHEDULING_POLICY,
   },
   {
     q: `Do I need to be home for ${lc}?`,
-    a: `No — as long as the items are accessible at the curb or in the garage. The crew calls before arrival and sends a completion photo when the job is done.`,
+    a: UNATTENDED_POLICY,
   },
   {
     q: `Where do you offer ${lc}?`,
@@ -111,6 +113,8 @@ const schema = {
         <h1><span class="city-accent">{service.name}</span></h1>
         <p class="hero-copy">{service.headline}</p>
         <p class="hero-copy" style="margin-top: 0">{service.intro}</p>
+        <p class="hero-copy" data-service-scope>Standard junk pickup: curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
+        {['hot-tub-removal', 'fence-removal', 'shed-removal', 'demolition', 'dumpster-rental'].includes(slug) && <p class="hero-copy" data-specialty-scope>{SPECIALTY_POLICY}</p>}
         <div class="hero-actions">
           <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -192,7 +196,7 @@ const schema = {
     <section class="section city-cta">
       <div>
         <h2>Need {service.name.toLowerCase()}?</h2>
-        <p>Text photos, item details, and a preferred calendar window. The crew confirms and handles the rest.</p>
+        <p>Text photos, item details, and a preferred pickup window. The crew confirms and handles the rest.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>

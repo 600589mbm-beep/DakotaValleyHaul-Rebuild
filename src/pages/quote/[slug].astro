@@ -1,4 +1,5 @@
 ---
+import { PRICE_RANGE } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -41,9 +42,9 @@ const schema = {
       name: `Junk removal in ${city.name}, MN`,
       serviceType: 'Junk removal',
       areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'AdministrativeArea', name: county } },
-      provider: { '@type': 'LocalBusiness', name: 'Dakota Valley Junk Removal', telephone: '+1-952-232-5107', priceRange: '$30 – $750' },
+      provider: { '@type': 'LocalBusiness', name: 'Dakota Valley Junk Removal', telephone: '+1-952-232-5107', priceRange: PRICE_RANGE },
       url: canonical,
-      offers: { '@type': 'Offer', priceCurrency: 'USD', price: '85', description: 'Curbside or garage junk loads from $85; flat per-item recyclable rates with no load minimum' },
+      offers: { '@type': 'Offer', priceCurrency: 'USD', price: '85', description: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins." },
     },
     faqSchema(q.faqs),
   ],
@@ -76,6 +77,7 @@ const schema = {
           <span><Icon name="lucide:shield-check" size={15} /> Licensed &amp; insured</span>
         </div>
         <p class="hero-copy">{q.heroCopy}</p>
+        <p class="hero-copy" data-service-scope>Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos for a {city.name} quote</a>
           <a class="button secondary" href="/#quote"><Icon name="lucide:file-text" size={18} /> Use the booking form</a>

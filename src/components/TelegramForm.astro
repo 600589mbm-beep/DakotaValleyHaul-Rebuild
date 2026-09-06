@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { WORKER_URL } from '../data/booking.js';
 ---
 <form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
-  <p class="tg-form-lede">Four things get you a firm quote: your <strong>name</strong>, <strong>address</strong>, <strong>phone</strong>, and a few <strong>photos</strong>.</p>
+  <p class="tg-form-lede">Send your <strong>name</strong>, <strong>address</strong>, <strong>phone</strong>, <strong>item details</strong>, and <strong>photos</strong> for a written quote. Curbside, driveway and accessible-garage pickup only; no inside-home pickup. This request does not reserve an appointment.</p>
 
   <div class="tg-form-row">
     <label>
@@ -40,7 +40,7 @@ import { WORKER_URL } from '../data/booking.js';
   <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
 
   <button type="submit" class="button primary tg-form-submit">
-    <Icon name="lucide:send" size={18} /> Send booking to crew
+    <Icon name="lucide:send" size={18} /> Request my written quote
   </button>
 
   <p class="tg-form-status" id="tg-form-status" role="status" aria-live="polite"></p>
@@ -80,7 +80,7 @@ import { WORKER_URL } from '../data/booking.js';
         const json = await res.json().catch(() => ({}));
         if (json && json.success) {
           status.className = 'tg-form-status is-success';
-          status.textContent = '✓ Booking sent. The crew will text back within a few hours.';
+          status.textContent = 'Your quote request was received. The crew will text you with pricing and available pickup times. Your pickup is not booked until the price and window are confirmed with you.';
           track('quote_form_submitted', { step: 'full' });
           form.reset();
         } else {

@@ -1,6 +1,6 @@
 # LLM-Friendly Site Map (Dakota Valley Junk Removal)
 
-Astro-built, multi-page site for affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, calendar booking, $85 minimum, donation-first disposal.
+Astro-built, multi-page site for affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, booking confirmed by text, $85 minimum, donation-first disposal.
 
 Canonical domain: **https://dakotavalleyjunkremovalservice.com**
 Machine-readable companions: [`/llms.txt`](https://dakotavalleyjunkremovalservice.com/llms.txt) · [`/llm-sitemap.json`](https://dakotavalleyjunkremovalservice.com/llm-sitemap.json) · [`/sitemap-index.xml`](https://dakotavalleyjunkremovalservice.com/sitemap-index.xml)

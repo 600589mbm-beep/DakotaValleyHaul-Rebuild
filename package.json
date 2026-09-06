@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "astro dev",
     "prebuild": "node scripts/validate-local-content.mjs && node scripts/fetch-reviews.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
-    "build": "astro build && node scripts/sanitize-public-pricing.mjs",
+    "build": "astro build && node scripts/sanitize-public-pricing.mjs && node scripts/validate-service-promises.mjs",
     "preview": "astro preview",
     "reviews": "node scripts/fetch-reviews.mjs",
     "validate-local-content": "node scripts/validate-local-content.mjs",
     "sanitize-pricing": "node scripts/sanitize-public-pricing.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "test:service-promises": "node scripts/validate-service-promises.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.2",

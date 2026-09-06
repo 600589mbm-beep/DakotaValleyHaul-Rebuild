@@ -1,4 +1,5 @@
 ---
+import { PRICE_RANGE } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
@@ -64,7 +65,7 @@ const schema = {
       sameAs: SAME_AS,
       telephone: '+1-952-232-5107',
       email: 'info@dakotavalleyjunkremovalservice.com',
-      priceRange: '$30 – $750',
+      priceRange: PRICE_RANGE,
       address: {
         '@type': 'PostalAddress',
         streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
@@ -117,6 +118,7 @@ const schema = {
         </p>
         <h1>Junk Removal in <span class="city-accent">{city.name}, MN</span></h1>
         <p class="hero-copy">{city.intro}</p>
+        <p class="hero-copy" data-service-scope>Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -169,7 +171,7 @@ const schema = {
         </div>
       </div>
       <p class="section-copy" style="margin-bottom: 24px">
-        Routes cover every {city.name} neighborhood and the surrounding {city.county} grid. Same-day pickups are scheduled based on crew capacity along the route — text photos and a location to confirm a window.
+        Send your {city.name} address and photos to confirm service availability. Pickup is by appointment after you approve the written quote and the crew confirms an available window. Timing depends on your address, job size and route capacity. Same-day pickup may be available, but is not guaranteed.
       </p>
       <div class="city-locale-grid">
         <div>
@@ -248,7 +250,7 @@ const schema = {
         </div>
       </div>
       <p class="section-copy">
-        Pricing in {city.name} is two-part: junk and cleanout loads are volume-based from $85 — single item from $85, pickup-bed load $85–$170, van load $255–$550, and a full box-truck load up to $750. Common recyclables are flat per-piece rates with no load minimum — mattresses from $100, refrigerators from $100, TVs from $50, tires $30 each. Everything is quoted from photos before pickup. <a href="/pricing/">See the full pricing breakdown</a>.
+        Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins. <a href="/pricing/">How photo quotes work</a>.
       </p>
     </section>
 
@@ -260,7 +262,7 @@ const schema = {
         </div>
       </div>
       <p class="section-copy">
-        Most {city.name} appointments are scheduled within 2–3 business days. Same-day pickups are available based on crew capacity along the route — text photos and your zip to check current availability. The crew calls 30 minutes before arrival and sends a completion photo when the job is done.
+        Pickup is by appointment after you approve the written quote and the crew confirms an available window. Timing depends on your address, job size and route capacity. Same-day pickup may be available, but is not guaranteed.
       </p>
     </section>
 
@@ -284,7 +286,7 @@ const schema = {
     <section class="section city-cta">
       <div>
         <h2>Ready for pickup in {city.name}?</h2>
-        <p>Text photos, item details, and a preferred calendar window. The crew confirms and handles the rest.</p>
+        <p>Text photos, item details, and a preferred pickup window. The crew confirms and handles the rest.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={16} /> Text {phoneDisplay}</a>

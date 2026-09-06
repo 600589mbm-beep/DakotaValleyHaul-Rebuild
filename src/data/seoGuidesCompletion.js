@@ -1,3 +1,4 @@
+import { NO_INSIDE_PICKUP } from './servicePolicy.js';
 // Final coverage guides for the remaining distinct, service-relevant Google Business Profile searches.
 // Close variants and misspellings intentionally resolve to one authoritative page per intent.
 
@@ -46,7 +47,7 @@ export const seoGuidesCompletion = {
       {
         h2: 'Pickup for furniture, appliances and cleanouts',
         body: [
-          'Dakota Valley serves Apple Valley with written photo quotes for furniture, mattresses, appliances, electronics, garage clutter and property cleanouts. Pickup is useful when items are heavy, upstairs, difficult to transport or spread across several rooms.',
+          "Dakota Valley serves Apple Valley with written photo quotes for furniture, mattresses, appliances, electronics, garage clutter and property cleanouts. Pickup is for approved items already staged at the curb, in the driveway or in an accessible garage; no room-by-room carry-out.",
           'Text wide photos, close-ups of unusual items and the location of the material. Hazardous chemicals, medication, sharps and regulated waste must be separated for the appropriate county program.',
         ],
       },
@@ -103,7 +104,7 @@ export const seoGuidesCompletion = {
       { q: 'Is the Lakeville Recycling Zone Plus open?', a: 'No. Dakota County anticipates opening it in 2027. Verify the official county project page before visiting.' },
       { q: 'Where can Lakeville residents take hazardous waste now?', a: 'Use Dakota County’s existing Recycling Zone in Eagan for accepted household hazardous waste.' },
       { q: 'Does Lakeville offer food-scraps drop-off?', a: 'Yes. Lakeville identifies a registered Dakota County food-scraps drop-off at the Water Treatment Facility.' },
-      { q: 'Can Dakota Valley remove furniture in Lakeville?', a: 'Yes. Send photos and identify stairs, elevators or inside access for the written quote.' },
+      { q: 'Can Dakota Valley remove furniture in Lakeville?', a: "Yes, for approved items safely staged at the curb, in the driveway or in an accessible garage. Send photos for a written quote; no inside-home pickup or stair carry-out." },
     ],
     sources: [
       { label: 'City of Lakeville Recycling', url: lakevilleRecyclingUrl },
@@ -239,7 +240,7 @@ export const seoGuidesCompletion = {
         h2: 'Pickup for heavy TVs or larger electronics loads',
         body: [
           'Dakota Valley can quote heavy televisions, monitors, computers, printers and office electronics across Minnesota routes when service is available. Pickup is particularly useful for large CRT televisions, several devices or electronics combined with furniture.',
-          'Send photos showing device size, quantity, location and stairs. Identify data-bearing equipment and any batteries requiring special attention.',
+          "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
         ],
       },
     ],
@@ -380,8 +381,8 @@ export const seoGuidesCompletion = {
       {
         h2: 'Full-service appliance pickup',
         body: [
-          'Dakota Valley can quote refrigerators, freezers, window air conditioners and dehumidifiers from a garage, curb, basement or interior location when access is safe. Send photos of the unit and the entire path out.',
-          'Appliances should be empty and safely disconnected before removal unless the written scope states otherwise. Mention water lines, stairs, tight corners and unusually large commercial units.',
+          "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+          "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
         ],
       },
     ],
@@ -389,7 +390,7 @@ export const seoGuidesCompletion = {
       { q: 'Does the Eagan Recycling Zone accept refrigerators?', a: 'The general Recycling Zone is not the normal destination for major appliances. Use Dakota County’s Recycling Guide to find an approved current option.' },
       { q: 'Where can I dispose of a dehumidifier?', a: 'A dehumidifier contains refrigerant. Use a recycler or pickup service that confirms proper refrigerant handling.' },
       { q: 'Can I cut the refrigerant lines before scrap recycling?', a: 'No. Do not release refrigerant or dismantle the sealed system yourself.' },
-      { q: 'Can Dakota Valley remove a basement refrigerator?', a: 'Often, yes. Send photos of the appliance, stairs, doors and route out for confirmation and a written quote.' },
+      { q: 'Can Dakota Valley remove a basement refrigerator?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
     ],
     sources: [
       { label: 'Dakota County Recycling Guide', url: recyclingGuideUrl },
@@ -427,7 +428,7 @@ export const seoGuidesCompletion = {
       {
         h2: 'Bundle small appliances with a larger cleanup',
         body: [
-          'Dakota Valley can quote microwaves, vacuums, fans, kitchen appliances and electronics as part of a garage, basement, apartment or office cleanout. Combining several items can be more efficient than arranging separate trips.',
+          "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
           'Photograph every device and identify batteries, refrigerant, fluids or unusual weight. Loose household trash and food should be removed before pickup.',
         ],
       },

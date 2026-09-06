@@ -1,3 +1,4 @@
+import { NO_INSIDE_PICKUP } from './servicePolicy.js';
 // Second local SEO expansion based on uncovered Google Business Profile searches.
 // Each page owns a separate search intent and links to current government resources.
 
@@ -98,7 +99,7 @@ export const seoGuidesRoundTwo = {
     ],
     faqs: [
       { q: 'Can scrap metal go in my recycling cart?', a: 'Generally no. Dakota County says scrap metal and bulky metal items do not belong in normal household recycling carts. Use a scrap recycler or pickup service.' },
-      { q: 'Can Dakota Valley pick up a treadmill or metal bed frame?', a: 'Yes. Send photos, dimensions and the item’s location so weight, stairs and disassembly can be included in the quote.' },
+      { q: 'Can Dakota Valley pick up a treadmill or metal bed frame?', a: "Yes, for items safely staged at the curb, in the driveway or in an accessible garage. Send photos and dimensions for a written quote; no inside-home carry-out." },
       { q: 'Is free scrap-metal pickup always available?', a: 'No. Scrap value changes, and heavy labor, access, fuel, disposal and non-metal attachments affect the job. Get a written quote instead of assuming every metal item has enough value to cover pickup.' },
       { q: 'Can a refrigerator go directly to a scrap yard?', a: 'Only through a route that handles refrigerant properly. Verify acceptance before transporting a refrigerator, freezer, air conditioner or dehumidifier.' },
     ],
@@ -281,14 +282,14 @@ export const seoGuidesRoundTwo = {
       {
         h2: 'Preparing a water heater for pickup',
         body: [
-          'The unit should be safely disconnected from electricity, gas and water by a qualified person. Drain remaining water and mention basement stairs, narrow doors or tight mechanical rooms when requesting the quote.',
+          "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
           'Dakota Valley can quote a water heater alone or combine it with furnace parts, plumbing fixtures, appliances and non-hazardous remodeling debris. Photograph the tank and the full exit path.',
         ],
       },
     ],
     faqs: [
       { q: 'Does the Dakota County Recycling Zone accept water heaters?', a: 'No. Water heaters are currently listed among the materials not accepted at the Eagan Recycling Zone.' },
-      { q: 'Can Dakota Valley remove a water heater from a basement?', a: 'Often, yes, after it is safely disconnected and drained. Send photos of the unit, stairs and doorways for an accurate quote.' },
+      { q: 'Can Dakota Valley remove a water heater from a basement?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can a water heater be recycled as scrap metal?', a: 'Many tanks contain recyclable metal, but facilities set their own preparation and acceptance rules. Call before transporting it.' },
       { q: 'Will the pickup crew disconnect gas or water lines?', a: 'Do not assume disconnection is included. The unit should normally be safely disconnected before pickup unless the written scope specifically says otherwise.' },
     ],
@@ -334,7 +335,7 @@ export const seoGuidesRoundTwo = {
       },
     ],
     faqs: [
-      { q: 'Do you help seniors who cannot move items to the curb?', a: 'Inside removal can be quoted when access is safe. Send photos of the items, stairs, hallways and exits so labor requirements are clear.' },
+      { q: 'Do you help seniors who cannot move items to the curb?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can family coordinate a cleanout from another city?', a: 'Many pickups can be coordinated by text with clear authorization, photos, access instructions and a defined list of what may leave.' },
       { q: 'Will usable furniture be donated?', a: 'Donation routing is attempted when items are usable and accepted by a partner or facility. Acceptance is never guaranteed, so separate true keepsakes before the pickup.' },
       { q: 'Can medication and sharps be included?', a: 'No. Use Dakota County’s medication and sharps programs before the cleanout crew arrives.' },

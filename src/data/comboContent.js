@@ -1,3 +1,5 @@
+import { PRICE_FLOOR_DETAIL } from './servicePolicy.js';
+import { NO_INSIDE_PICKUP, QUOTE_POLICY, SCHEDULING_POLICY } from './servicePolicy.js';
 // Per-(city, service) unique content for the 1,098 combo pages.
 //
 // Every paragraph, FAQ set, title, and description is deterministically
@@ -51,11 +53,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What is the minimum charge for junk pickup in ${c.name}?`,
-        a: `$85. A single small item — small sofa, kids mattress, mini fridge, small dresser — is $85 flat in ${c.name}. Bundling more items into the same pickup is the cheapest way to use the minimum.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Can you pick up junk from my curb in ${c.name} without an appointment visit?`,
-        a: `Yes — there is no on-site estimate step. Text photos of the items with your ${c.name} address, get a firm quote back, and book a calendar window. Stage items curbside or in the garage and the crew handles the rest.`,
+        a: `Yes — there is no on-site estimate step. Text photos of the items with your ${c.name} address, get a firm quote back, and book a confirmed pickup window. Stage items curbside or in the garage and the crew handles the rest.`,
       }),
     ],
   },
@@ -81,7 +83,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does refrigerator removal cost in ${c.name}?`,
-        a: `A single refrigerator is from $100 in ${c.name} — a flat per-item rate including EPA-certified refrigerant recovery. Two or three appliances together fit a pickup-bed load ($85–$170), usually the better per-unit deal.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Do you take appliances with freon from ${c.name} homes?`,
@@ -96,7 +98,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does a garage cleanout cost in ${c.name}?`,
-        a: `A half-garage cleanout in ${c.name} is typically a van load ($255–$550); a full garage runs from a van load up to a full box-truck load (up to $750). Text a photo of the garage with the door open and you will get a firm number before booking.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Do I need to sort my garage before the crew arrives in ${c.name}?`,
@@ -111,7 +113,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you haul branches and brush piles in ${c.name}?`,
-        a: `Yes — brush, branches, storm debris, old fencing, and deck lumber are all standard ${c.name} pickups. A small yard-waste pile is a pickup-bed load ($85–$170); bigger renovation piles are quoted from photos.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Where does yard waste from ${c.name} go?`,
@@ -141,7 +143,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does mattress removal cost in ${c.name}?`,
-        a: `A mattress is from $100 in ${c.name}, picked up curbside or from the garage — a flat per-item recycling rate with no load minimum. Multi-mattress bundles from move-outs are quoted from photos.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Are mattresses from ${c.name} actually recycled?`,
@@ -175,7 +177,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Is there a minimum for scrap metal pickup in ${c.name}?`,
-        a: `A single treadmill or filing cabinet is $85 — the single-item load rate. Bundling a metal pile with other junk in the same pickup is the most cost-effective way to clear it.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
     ],
   },
@@ -210,13 +212,13 @@ export const serviceAngles = {
     ],
   },
   'estate-cleanout': {
-    items: ['full-house estate loads', 'selective room cleanouts', 'donation runs with tax receipts'],
+    items: ['full-house estate loads', 'pre-selected staged items', 'donation runs with tax receipts'],
     scenarios: ['settling a family estate', 'downsizing a parent into senior living', 'getting a property show-ready for sale'],
     disposal: 'Donation-first: usable items are routed to Bridging, Arc, or Savers with tax receipts available; the property is left show-ready.',
     faqs: [
       (c) => ({
         q: `How does an estate cleanout work in ${c.name}?`,
-        a: `The crew walks the property with you, helps flag valuables versus haul items, photo-documents before loading, and routes donatable goods to Bridging, Arc, or Savers with tax receipts. Most ${c.name} estates run from a van load to a full box-truck load — roughly $255–$750 per truck.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Can you work around family members sorting belongings in ${c.name}?`,
@@ -231,11 +233,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Does the crew carry everything down from the attic in ${c.name}?`,
-        a: `Yes — the crew brings boxes, furniture, and debris down the stairs or ladder themselves, sorts donations, and hauls the rest. You point at what goes; nobody asks you to stage an attic.`,
+        a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely.",
       }),
       (c) => ({
         q: `Can you remove old insulation debris from a ${c.name} attic?`,
-        a: `Loose insulation debris is fine and gets bagged for licensed disposal. Asbestos-containing material is the exception — that requires a licensed abatement contractor before the cleanout.`,
+        a: "Send photos of nonhazardous insulation debris that is already safely bagged and staged curbside, in the driveway or in an accessible garage for review. No attic entry, asbestos or hazardous-material removal is offered.",
       }),
     ],
   },
@@ -246,11 +248,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you carry items up basement stairs in ${c.name}?`,
-        a: `Yes — stairs are part of the job, including treadmills, sofas, and shelving units. The crew breaks down storage shelving and large pieces that will not turn the corner. Pricing stays volume-based; stairs are not a surcharge.`,
+        a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely.",
       }),
       (c) => ({
         q: `Can you haul water-damaged items from a ${c.name} basement?`,
-        a: `Yes. Water-damaged furniture, carpet, and debris are standard basement pickups and go to licensed disposal. Empty paint cans and clean materials can ride along; full paint and chemicals cannot.`,
+        a: "Send photos and describe any contamination before booking. Approved nonhazardous items must already be safely staged at the curb, in the driveway or in an accessible garage. No basement carry-out or hazardous-material pickup is offered.",
       }),
     ],
   },
@@ -291,22 +293,22 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does single-item pickup cost in ${c.name}?`,
-        a: `Small bulky items — a small sofa, a dresser, a single mattress — start at $85 flat in ${c.name}. Refrigerators and mattresses are flat per-item rates from $100. Pianos and unusual items are quoted from photos.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Is it worth booking a pickup for just one item in ${c.name}?`,
-        a: `That is exactly what the $85 single-item load rate is for, and curbside or garage staging keeps it at the floor price. If you have a second item, add it — extra volume within the same tier does not change the price.`,
+        a: PRICE_FLOOR_DETAIL,
       }),
     ],
   },
   'demolition': {
-    items: ['decks', 'sheds', 'fences', 'bathroom interiors', 'kitchen cabinets and counters'],
-    scenarios: ['a deck past its lifespan', 'a bathroom gut before remodel', 'a kitchen demo ahead of the contractor'],
+    items: ['decks', 'sheds', 'fences', "pre-staged bathroom renovation debris", 'kitchen cabinets and counters'],
+    scenarios: ['a deck past its lifespan', "a pre-staged bathroom renovation pile", "a pre-staged kitchen renovation pile"],
     disposal: 'Demo debris is hauled the same visit; metal is recycled and the rest goes to licensed disposal facilities.',
     faqs: [
       (c) => ({
         q: `What kind of demolition do you handle in ${c.name}?`,
-        a: `Light demolition: decks, sheds, fences, hot tubs, interior bathroom demo, and kitchen tear-outs (cabinets and counters). Each ${c.name} job is quoted individually from photos of the structure and access.`,
+        a: `Light demolition: decks, sheds, fences, hot tubs, pre-staged renovation debris; no interior demolition. Each ${c.name} job is quoted individually from photos of the structure and access.`,
       }),
       (c) => ({
         q: `Is hauling included in demolition jobs in ${c.name}?`,
@@ -349,20 +351,20 @@ export function comboIntro(city, service, citySlug, serviceSlug) {
   const scenario = at(seed, 4, angle.scenarios);
 
   const openers = [
-    `Need ${svc} in ${city.name}? Dakota Valley Junk Removal runs ${city.county} routes six days a week, with regular pickups in ${n1}, ${n2}, and ${n3}.`,
-    `Dakota Valley Junk Removal handles ${svc} across ${city.name} — from ${n1} over to ${n2} — with curbside and garage pickup and an loads from $85.`,
+    `Need ${svc} in ${city.name}? Dakota Valley Junk Removal plans pickups by confirmed route availability across ${city.county}, including ${n1}, ${n2}, and ${n3}.`,
+    `Dakota Valley Junk Removal handles ${svc} across ${city.name} — from ${n1} over to ${n2} — with curbside and garage pickup and an $85 pickup minimum.`,
     `${city.name} homeowners call us for ${svc} covering everything from ${item} to full cleanout loads, in every neighborhood from ${n1} to ${n3}.`,
     `From ${landmark} to the streets of ${n1}, our Isuzu NPR box trucks cover all of ${city.name} for ${svc}.`,
   ];
   const middles = [
     `The most common ${city.name} job is ${scenario}: text photos of the ${item} to (952) 232-5107 and a firm quote comes back by text — no estimate visit needed.`,
-    `Whether it's ${scenario} or just ${item} that has overstayed its welcome, you text photos, get a firm price, and book a calendar window without a phone call.`,
-    `Most requests here start as ${scenario}. Photos by text get a real quote (not a range that changes on arrival), and booking is a calendar link, not phone tag.`,
+    `Whether it's ${scenario} or just ${item} that has overstayed its welcome, you text photos, get a firm price, and book a confirmed pickup window without a phone call.`,
+    `Most requests here start as ${scenario}. Photos by text get a real quote (not a range that changes on arrival), and booking is confirmed with the crew after quote approval.`,
   ];
   const closers = [
-    `Pricing is volume-based: single items from $85, up to $750 for a full box-truck load. ${angle.disposal}`,
-    `${angle.disposal} Single items start at $85; a full box-truck load runs up to $750, disclosed before the crew rolls.`,
-    `Loads are priced by volume, not by the hour — $85 single items up to $750 for a full box-truck load. ${angle.disposal}`,
+    PRICE_FLOOR_DETAIL,
+    PRICE_FLOOR_DETAIL,
+    PRICE_FLOOR_DETAIL,
   ];
   return `${at(seed, 5, openers)} ${at(seed, 6, middles)} ${at(seed, 7, closers)}`;
 }
@@ -375,9 +377,9 @@ export function comboLocalNotes(city, service, citySlug, serviceSlug) {
   const landmark = at(seed, 1, city.landmarks);
   const [na, nb] = sample(seed, city.neighborhoods, 2, 2);
   const variants = [
-    `Crews stage ${svc} pickups along existing ${city.county} routes, so ${city.name} addresses near ${landmark} or in ${na} often qualify for same-day or next-day windows. The crew calls about 30 minutes before arrival and texts a completion photo when the load is gone.`,
-    `Because ${city.name} sits on our regular ${city.county} loop, ${svc} requests from ${na} and ${nb} are usually scheduled within 2–3 business days — sooner when a truck is already nearby. Expect a 30-minute heads-up call and a completion photo by text.`,
-    `Our trucks pass through ${city.name} on ${city.county} routes most working days, which keeps ${svc} scheduling tight for ${na}, ${nb}, and the blocks around ${landmark}. You get a 30-minute arrival call and a photo when the job is done.`,
+    SCHEDULING_POLICY,
+    SCHEDULING_POLICY,
+    SCHEDULING_POLICY,
   ];
   return at(seed, 3, variants);
 }
@@ -403,14 +405,14 @@ function buildFaqs(city, svc, seed, serviceSlug) {
         `How much does ${svc} cost in ${city.name}, MN?`,
         `What does ${svc} cost in ${city.name}?`,
       ]),
-      a: `Single items start at $85 in ${city.name}. A pickup-bed load runs $85–$170, a van load $255–$550, and a full box-truck load up to $750. Common recyclables — mattresses, fridges, TVs, tires — are flat per-item rates with no load minimum. Text photos to (952) 232-5107 for a firm quote — the price is set before the crew arrives.`,
+      a: PRICE_FLOOR_DETAIL,
     },
     {
       q: at(seed, 11, [
         `Is same-day ${svc} available in ${city.name}?`,
         `How fast can you get to ${city.name} for ${svc}?`,
       ]),
-      a: `${city.name} is on our regular ${city.county} routes, so most pickups are scheduled within 2–3 business days and same-day windows open when a truck is already nearby. Texting photos early in the day gives the best shot at same-day service.`,
+      a: SCHEDULING_POLICY,
     },
     {
       q: `What parts of ${city.name} do you serve for ${svc}?`,
@@ -419,13 +421,13 @@ function buildFaqs(city, svc, seed, serviceSlug) {
     {
       q: at(seed, 12, [
         `Do I need to be home for ${svc} in ${city.name}?`,
-        `Can you do the pickup while I'm at work in ${city.name}?`,
+        `Do I need to be home for ${svc} in ${city.name}?`,
       ]),
-      a: `No. Most ${city.name} pickups are curbside or garage-staged: leave the items out or tell the crew where they are, and they send a completion photo by text when the job is done.`,
+      a: "You do not have to be home when the crew has confirmed safe access to all approved items at the curb, in the driveway or in an accessible garage. Arrange access in advance; the crew does not enter living areas.",
     },
     {
       q: `How do I get a quote for ${svc} in ${city.name}?`,
-      a: `Text photos of the items to (952) 232-5107 with your ${city.name} address or neighborhood. Quotes come back by text — no on-site estimate visit — and you book a calendar window once the price works.`,
+      a: `Text photos of the items to (952) 232-5107 with your ${city.name} address or neighborhood. Quotes come back by text — no on-site estimate visit — and you book a confirmed pickup window once the price works.`,
     },
   ];
 
@@ -452,14 +454,14 @@ export function comboMeta(city, service, citySlug, serviceSlug) {
   const seed = hashSeed(`meta:${citySlug}/${serviceSlug}`);
   const [n1, n2] = sample(seed, city.neighborhoods, 2, 4);
   const titles = [
-    `${service.name} in ${city.name}, MN | From $85, Same-Day | Dakota Valley`,
+    `${service.name} in ${city.name}, MN | $85 Minimum, Photo Quotes | Dakota Valley`,
     `${city.name} ${service.name} | Text-a-Photo Quotes from $85 | Dakota Valley`,
     `${service.name} ${city.name} MN — From $85, Book by Text | Dakota Valley`,
   ];
   const descriptions = [
-    `${service.name} in ${city.name}, MN from $85. Serving ${n1}, ${n2} and all of ${city.county}. Text photos to (952) 232-5107 for a firm quote and same-day eligible pickup.`,
-    `Need ${service.name.toLowerCase()} in ${city.name}? Curbside & garage pickup from $85 across ${n1}, ${n2} and ${city.county}. Firm quotes by text, calendar booking, no estimate visit.`,
-    `${city.name} ${service.name.toLowerCase()} from $85 — ${n1} to ${n2}. Text photos for a firm quote, book a window, crew handles loading. Same-day eligible on ${city.county} routes.`,
+    `${service.name} in ${city.name}, MN from $85. Serving ${n1}, ${n2} and all of ${city.county}. Text photos to (952) 232-5107 for a firm quote and a pickup window confirmed by the crew.`,
+    `Need ${service.name.toLowerCase()} in ${city.name}? Curbside & garage pickup from $85 across ${n1}, ${n2} and ${city.county}. Firm quotes by text, booking confirmed by text, no estimate visit.`,
+    `${city.name} ${service.name.toLowerCase()} from $85 — ${n1} to ${n2}. Text photos for a firm quote, book a window, crew handles loading. Pickup timing depends on ${city.county} route availability.`,
   ];
   return { title: at(seed, 5, titles), description: at(seed, 6, descriptions) };
 }
@@ -476,17 +478,17 @@ export function quoteContent(city, citySlug) {
   const titles = [
     `Junk Removal Quote ${city.name} MN | Firm Price by Text | Dakota Valley`,
     `Get a ${city.name} Junk Removal Quote | Photos In, Price Out | Dakota Valley`,
-    `${city.name} Junk Removal Quote in Hours | $85 Min | Dakota Valley`,
+    `${city.name} Junk Removal Quote by Text | $85 Min | Dakota Valley`,
   ];
   const descriptions = [
-    `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it in hours. From $85, no estimate visit, no phone call.`,
-    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. loads from $85.`,
-    `Fast ${city.name} junk removal quote: photos by text, firm price back in hours, calendar booking. From $85 across ${n1} and ${n2}. No phone call required.`,
+    `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it after review. From $85, no estimate visit, no phone call.`,
+    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. an $85 pickup minimum.`,
+    `Fast ${city.name} junk removal quote: photos by text, firm price back after review, booking confirmed by text. From $85 across ${n1} and ${n2}. No phone call required.`,
   ];
   const heroCopies = [
-    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, usually within hours. loads from $85, no phone call required.`,
-    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a calendar window come back fast — typically the same day you text. loads from $85, no call needed.`,
-    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back in hours, and a booking link. No walkthrough appointment, no phone tag. loads from $85.`,
+    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, after review. an $85 pickup minimum, no phone call required.`,
+    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a confirmed pickup window come back fast — after the crew reviews your request. an $85 pickup minimum, no call needed.`,
+    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back after review, and a booking link. No walkthrough appointment, no phone tag. an $85 pickup minimum.`,
   ];
   const routeCopies = [
     `Because we schedule by route through ${city.county}, ${city.name} pickups stay efficient — which keeps your price down. We regularly serve ${n1}, ${n2}, ${n3} and the rest of ${city.name}.`,
@@ -506,26 +508,26 @@ export function quoteContent(city, citySlug) {
         `How fast do I get a junk removal quote in ${city.name}?`,
         `How long does a ${city.name} quote take?`,
       ]),
-      a: `Usually within hours. Crews respond to photo texts between 8 AM and 9 PM, seven days a week. Send photos of the items with your ${city.name} address or neighborhood and the quote comes back as a firm number with available pickup windows.`,
+      a: SCHEDULING_POLICY,
     },
     {
       q: `What photos should I text for a ${city.name} quote?`,
-      a: `One wide shot showing everything that needs to go, plus a close-up of anything bulky or unusual. Mention whether items are at the curb, in the garage, or up stairs — access affects the crew plan, and the photo set is what makes the price firm.`,
+      a: "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
     },
     {
       q: at(seed, 11, [
         `Is the ${city.name} quote a firm price or an estimate?`,
         `Can the price change after I get a ${city.name} quote?`,
       ]),
-      a: `Firm. The price is set from your photos before the crew rolls — it only changes if the load on the day is materially different from what was photographed. No arrival-day surprises, no hourly meter.`,
+      a: QUOTE_POLICY,
     },
     {
       q: `Do I have to call to book a pickup in ${city.name}?`,
-      a: `No — the whole flow is text-first. Photos in, quote back, calendar window booked by text. If you prefer the form, the booking form on the homepage feeds the same ${city.county} crew.`,
+      a: `No — the whole flow is text-first. Photos in, quote back, confirmed pickup window booked by text. If you prefer the form, the booking form on the homepage feeds the same ${city.county} crew.`,
     },
     {
       q: `What should I include with my ${city.name} quote request?`,
-      a: `The photos, your ${city.name} neighborhood (${n1}, ${n2}, etc.), where the items sit (curb, garage, basement), and your preferred pickup window. That's everything the crew needs to send a firm price.`,
+      a: "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking. Appliances must be safely disconnected by a qualified person before staging; do not cut refrigerant lines.",
     },
   ];
 
@@ -547,7 +549,7 @@ export function countyFaqs(county, slug) {
   const pool = [
     {
       q: `How much does junk removal cost in ${county.name}?`,
-      a: `The same pricing applies county-wide: single items from $85, pickup-bed loads $85–$170, van loads $255–$550, and a full box-truck load up to $750, plus flat per-item recyclable rates with no load minimum. Text photos to (952) 232-5107 for a firm quote anywhere in ${county.name}.`,
+      a: PRICE_FLOOR_DETAIL,
     },
     {
       q: `Which ${county.name} cities do you serve?`,
@@ -558,11 +560,11 @@ export function countyFaqs(county, slug) {
         `Is same-day junk removal available in ${county.name}?`,
         `How fast can you pick up in ${county.name}?`,
       ]),
-      a: `Most ${county.name} pickups are scheduled within 2–3 business days, and same-day windows open when a truck is already routing through the area around ${county.seat}. Texting photos early in the day gives the best odds.`,
+      a: SCHEDULING_POLICY,
     },
     {
       q: `How do I book a pickup in ${county.name}?`,
-      a: `Text photos of the items to (952) 232-5107 with your city or zip. A firm quote comes back by text — no estimate visit — and you pick a calendar window. The crew calls about 30 minutes before arrival.`,
+      a: "Text photos of the items to (952) 232-5107 with your city or zip. A firm quote comes back by text — no estimate visit — and you pick a confirmed pickup window. The crew calls about 30 minutes before arrival.",
     },
   ];
   return sample(seed, pool, 4, 13);
