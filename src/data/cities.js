@@ -8,7 +8,7 @@ export const cities = {
     name: 'Apple Valley',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Apple Valley, MN. Whether you are clearing out a garage near Minnesota Zoo or need furniture pickup in Downtown Apple Valley or Cobblestone Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Apple Valley area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Apple Valley, MN. Whether you are staging a garage cleanout near Minnesota Zoo or need furniture pickup in Downtown Apple Valley or Cobblestone Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Apple Valley area.",
     metaTitle: "Curbside & Garage Junk Removal Apple Valley MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Apple Valley, MN near Minnesota Zoo. Serving all Apple Valley neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -50,7 +50,7 @@ export const cities = {
     name: 'Albert Lea',
     county: 'Freeborn County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Albert Lea, MN. Whether you are clearing out a garage near Fountain Lake or need furniture pickup in Downtown Albert Lea or North Side, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Freeborn County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Albert Lea area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Albert Lea, MN. Whether you are staging a garage cleanout near Fountain Lake or need furniture pickup in Downtown Albert Lea or North Side, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Freeborn County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Albert Lea area.",
     metaTitle: 'Junk Removal Albert Lea MN | Freeborn County Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Albert Lea, MN. Serving Fountain Lake area, North & South Side & all Freeborn County. Estate cleanouts, appliances, furniture. Call now.',
@@ -92,7 +92,7 @@ export const cities = {
     name: 'Alexandria',
     county: 'Douglas County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Alexandria, MN. Whether you are clearing out a garage near Lake Carlos State Park or need furniture pickup in Downtown Alexandria or South Alexandria, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Douglas County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Alexandria area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Alexandria, MN. Whether you are staging a garage cleanout near Lake Carlos State Park or need furniture pickup in Downtown Alexandria or South Alexandria, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Douglas County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Alexandria area.",
     metaTitle: 'Junk Removal Alexandria MN | Lakes Region Hauling | Dakota Valley Haul',
     metaDescription:
       "Junk removal in Alexandria, MN. Specializing in lake cabin cleanouts, estate removal & outdoor debris across Douglas County. Pickup windows confirmed by the crew. Call now.",
@@ -134,7 +134,7 @@ export const cities = {
     name: 'Austin',
     county: 'Mower County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Austin, MN. Whether you are clearing out a garage near SPAM Museum or need furniture pickup in Downtown Austin or North Side, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Mower County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Austin area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Austin, MN. Whether you are staging a garage cleanout near SPAM Museum or need furniture pickup in Downtown Austin or North Side, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Mower County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Austin area.",
     metaTitle: 'Junk Removal Austin MN | Mower County Hauling | Dakota Valley Haul',
     metaDescription:
       'Reliable junk removal in Austin, MN. Serving North Side, Downtown, East & West Austin and all Mower County. Furniture, appliances, estate cleanouts. Call now.',
@@ -176,7 +176,7 @@ export const cities = {
     name: 'Bemidji',
     county: 'Beltrami County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Bemidji, MN. Whether you are clearing out a garage near Lake Bemidji or need furniture pickup in Downtown Bemidji or BSU Campus Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Beltrami County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Bemidji area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Bemidji, MN. Whether you are staging a garage cleanout near Lake Bemidji or need furniture pickup in Downtown Bemidji or BSU Campus Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Beltrami County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Bemidji area.",
     metaTitle: 'Junk Removal Bemidji MN | Northern Minnesota Hauling | Dakota Valley Haul',
     metaDescription:
       'Junk removal in Bemidji, MN. Serving BSU area, Lake Bemidji shores & all Beltrami County. Cabin cleanouts, estate removal, appliances. Call now.',
@@ -218,7 +218,7 @@ export const cities = {
     name: 'Bloomington',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Bloomington, MN. Whether you are clearing out a garage near Mall of America or need furniture pickup in East Bloomington or West Bloomington, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Bloomington area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Bloomington, MN. Whether you are staging a garage cleanout near Mall of America or need furniture pickup in East Bloomington or West Bloomington, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Bloomington area.",
     metaTitle: "Curbside & Garage Junk Removal Bloomington MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Bloomington, MN near Mall of America. Serving all Bloomington neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -260,7 +260,7 @@ export const cities = {
     name: 'Brainerd',
     county: 'Crow Wing County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Brainerd, MN. Whether you are clearing out a garage near Gull Lake or need furniture pickup in Downtown Brainerd or Baxter, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Crow Wing County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Brainerd area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Brainerd, MN. Whether you are staging a garage cleanout near Gull Lake or need furniture pickup in Downtown Brainerd or Baxter, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Crow Wing County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Brainerd area.",
     metaTitle: 'Junk Removal Brainerd MN | Cabin Cleanouts | Dakota Valley Haul',
     metaDescription:
       "Junk removal in Brainerd & Baxter, MN. Specializing in lake cabin cleanouts, estate removal & outdoor debris across Crow Wing County. Pickup windows confirmed by the crew. Call now.",
@@ -302,7 +302,7 @@ export const cities = {
     name: 'Burnsville',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Burnsville, MN. Whether you are clearing out a garage near Burnsville Center or need furniture pickup in Downtown Burnsville or Crystal Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Burnsville area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Burnsville, MN. Whether you are staging a garage cleanout near Burnsville Center or need furniture pickup in Downtown Burnsville or Crystal Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Burnsville area.",
     metaTitle: "Curbside & Garage Junk Removal Burnsville MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Burnsville, MN. Serving Crystal Lake, River Hills, Downtown and all Burnsville neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -344,7 +344,7 @@ export const cities = {
     name: 'Duluth',
     county: 'St. Louis County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Duluth, MN. Whether you are clearing out a garage near Aerial Lift Bridge or need furniture pickup in Canal Park or Downtown Duluth, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate St. Louis County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Duluth area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Duluth, MN. Whether you are staging a garage cleanout near Aerial Lift Bridge or need furniture pickup in Canal Park or Downtown Duluth, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate St. Louis County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Duluth area.",
     metaTitle: 'Junk Removal Duluth MN | Twin Ports Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Duluth, MN. Serving Canal Park, Kenwood, Lincoln Park & all St. Louis County neighborhoods. Estate cleanouts, appliances, furniture. Call now.',
@@ -386,7 +386,7 @@ export const cities = {
     name: 'Eagan',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Eagan, MN. Whether you are clearing out a garage near Twin Cities Premium Outlets or need furniture pickup in Cedar Grove or Pilot Knob, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Eagan area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Eagan, MN. Whether you are staging a garage cleanout near Twin Cities Premium Outlets or need furniture pickup in Cedar Grove or Pilot Knob, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Eagan area.",
     metaTitle: "Curbside & Garage Junk Removal Eagan MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Eagan, MN. Serving Cedar Grove, Town Centre, Pilot Knob and all Eagan neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -432,7 +432,7 @@ export const cities = {
     name: 'Eden Prairie',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Eden Prairie, MN. Whether you are clearing out a garage near Eden Prairie Center Mall or need furniture pickup in Eden Prairie Center or Flying Cloud, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Eden Prairie area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Eden Prairie, MN. Whether you are staging a garage cleanout near Eden Prairie Center Mall or need furniture pickup in Eden Prairie Center or Flying Cloud, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Eden Prairie area.",
     metaTitle: "Curbside & Garage Junk Removal Eden Prairie MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Eden Prairie, MN. Serving Flying Cloud, Bryant Lake, Purgatory Creek and all Eden Prairie neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -474,7 +474,7 @@ export const cities = {
     name: 'Edina',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Edina, MN. Whether you are clearing out a garage near Southdale Center or need furniture pickup in Country Club or Morningside, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Edina area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Edina, MN. Whether you are staging a garage cleanout near Southdale Center or need furniture pickup in Country Club or Morningside, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Edina area.",
     metaTitle: "Curbside & Garage Junk Removal Edina MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Edina, MN. Serving Country Club, Morningside, 50th & France and all Edina neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -516,7 +516,7 @@ export const cities = {
     name: 'Faribault',
     county: 'Rice County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Faribault, MN. Whether you are clearing out a garage near Shattuck-St. Mary\\ or need furniture pickup in Downtown Faribault or North Faribault, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Rice County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Faribault area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Faribault, MN. Whether you are staging a garage cleanout near Shattuck-St. Mary\\ or need furniture pickup in Downtown Faribault or North Faribault, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Rice County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Faribault area.",
     metaTitle: 'Junk Removal Faribault MN | Rice County Hauling | Dakota Valley Haul',
     metaDescription:
       "Reliable junk removal in Faribault, MN. Serving Downtown, North & South Faribault and all Rice County. Furniture, appliances, estate cleanouts. Pickup windows confirmed by the crew.",
@@ -558,7 +558,7 @@ export const cities = {
     name: 'Farmington',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Farmington, MN. Whether you are clearing out a garage near Downtown Historic District or need furniture pickup in Downtown Farmington or North Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Farmington area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Farmington, MN. Whether you are staging a garage cleanout near Downtown Historic District or need furniture pickup in Downtown Farmington or North Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Farmington area.",
     metaTitle: "Curbside & Garage Junk Removal Farmington MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Farmington, MN. Serving Downtown, North Creek, Rambling River and all Farmington neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -600,7 +600,7 @@ export const cities = {
     name: 'Fergus Falls',
     county: 'Otter Tail County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Fergus Falls, MN. Whether you are clearing out a garage near Otter Tail Lake or need furniture pickup in Downtown Fergus Falls or North Fergus Falls, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Otter Tail County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Fergus Falls area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Fergus Falls, MN. Whether you are staging a garage cleanout near Otter Tail Lake or need furniture pickup in Downtown Fergus Falls or North Fergus Falls, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Otter Tail County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Fergus Falls area.",
     metaTitle: 'Junk Removal Fergus Falls MN | Otter Tail County Hauling | Dakota Valley Haul',
     metaDescription:
       'Junk removal in Fergus Falls, MN. Serving Otter Tail Lake, Pebble Lake & all Otter Tail County. Cabin cleanouts, estate removal, appliances. Call now.',
@@ -642,7 +642,7 @@ export const cities = {
     name: 'Hastings',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hastings, MN. Whether you are clearing out a garage near Historic Downtown or need furniture pickup in Downtown Hastings or Rivertown, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hastings area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hastings, MN. Whether you are staging a garage cleanout near Historic Downtown or need furniture pickup in Downtown Hastings or Rivertown, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hastings area.",
     metaTitle: "Curbside & Garage Junk Removal Hastings MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Hastings, MN. Serving Historic Downtown, Rivertown and all Hastings neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -684,7 +684,7 @@ export const cities = {
     name: 'Hopkins',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hopkins, MN. Whether you are clearing out a garage near Downtown Hopkins or need furniture pickup in Downtown Hopkins or Mainstreet, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hopkins area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hopkins, MN. Whether you are staging a garage cleanout near Downtown Hopkins or need furniture pickup in Downtown Hopkins or Mainstreet, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hopkins area.",
     metaTitle: "Curbside & Garage Junk Removal Hopkins MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Hopkins, MN. Serving Downtown Hopkins, Interlachen, and all Hopkins neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -726,7 +726,7 @@ export const cities = {
     name: 'Hutchinson',
     county: 'McLeod County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hutchinson, MN. Whether you are clearing out a garage near Crow River or need furniture pickup in Downtown Hutchinson or North Hutchinson, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate McLeod County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hutchinson area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Hutchinson, MN. Whether you are staging a garage cleanout near Crow River or need furniture pickup in Downtown Hutchinson or North Hutchinson, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate McLeod County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Hutchinson area.",
     metaTitle: 'Junk Removal Hutchinson MN | McLeod County Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Hutchinson, MN. Serving Downtown, North & South Hutchinson and all McLeod County. Furniture, appliances, estate cleanouts. Call now.',
@@ -768,7 +768,7 @@ export const cities = {
     name: 'Inver Grove Heights',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Inver Grove Heights, MN. Whether you are clearing out a garage near Inver Grove Heights Community Center or need furniture pickup in North Inver Grove or South Inver Grove, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Inver Grove Heights area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Inver Grove Heights, MN. Whether you are staging a garage cleanout near Inver Grove Heights Community Center or need furniture pickup in North Inver Grove or South Inver Grove, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Inver Grove Heights area.",
     metaTitle: "Curbside & Garage Junk Removal Inver Grove Heights MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Inver Grove Heights, MN. Serving Rich Valley, North IGH, Cahill and all neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -810,7 +810,7 @@ export const cities = {
     name: 'Lakeville',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Lakeville, MN. Whether you are clearing out a garage near Lakeville Area Arts Center or need furniture pickup in Downtown Lakeville or Antlers Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Lakeville area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Lakeville, MN. Whether you are staging a garage cleanout near Lakeville Area Arts Center or need furniture pickup in Downtown Lakeville or Antlers Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Lakeville area.",
     metaTitle: "Curbside & Garage Junk Removal Lakeville MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Lakeville, MN. Serving Crystal Lake, Antlers Park, Downtown and all Lakeville neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -852,7 +852,7 @@ export const cities = {
     name: 'Mankato',
     county: 'Blue Earth County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Mankato, MN. Whether you are clearing out a garage near Minnesota State University Mankato or need furniture pickup in Downtown Mankato or North Mankato, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Blue Earth County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Mankato area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Mankato, MN. Whether you are staging a garage cleanout near Minnesota State University Mankato or need furniture pickup in Downtown Mankato or North Mankato, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Blue Earth County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Mankato area.",
     metaTitle: 'Junk Removal Mankato MN | Affordable Hauling | Dakota Valley Haul',
     metaDescription:
       "Reliable junk removal in Mankato, MN. Serving MSU area, North Mankato, Downtown & all Blue Earth County. Furniture, appliances, estate cleanouts. Pickup windows confirmed by the crew.",
@@ -894,7 +894,7 @@ export const cities = {
     name: 'Maple Grove',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Maple Grove, MN. Whether you are clearing out a garage near The Shoppes at Arbor Lakes or need furniture pickup in Arbor Lakes or Rush Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Maple Grove area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Maple Grove, MN. Whether you are staging a garage cleanout near The Shoppes at Arbor Lakes or need furniture pickup in Arbor Lakes or Rush Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Maple Grove area.",
     metaTitle: "Curbside & Garage Junk Removal Maple Grove MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Maple Grove, MN. Serving Arbor Lakes, Rush Creek, Weaver Lake and all Maple Grove neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -936,7 +936,7 @@ export const cities = {
     name: 'Maplewood',
     county: 'Ramsey County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Maplewood, MN. Whether you are clearing out a garage near Maplewood Mall or need furniture pickup in Maplewood Mall Area or Gladstone, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Maplewood area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Maplewood, MN. Whether you are staging a garage cleanout near Maplewood Mall or need furniture pickup in Maplewood Mall Area or Gladstone, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Maplewood area.",
     metaTitle: "Curbside & Garage Junk Removal Maplewood MN | Written Photo Quotes",
     metaDescription:
       'Professional junk removal in Maplewood, MN near Maplewood Mall. Serving Gladstone, Battle Creek, and all Maplewood neighborhoods. Call (952) 232-5107.',
@@ -978,7 +978,7 @@ export const cities = {
     name: 'Marshall',
     county: 'Lyon County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Marshall, MN. Whether you are clearing out a garage near Southwest Minnesota State University or need furniture pickup in Downtown Marshall or North Marshall, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Lyon County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Marshall area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Marshall, MN. Whether you are staging a garage cleanout near Southwest Minnesota State University or need furniture pickup in Downtown Marshall or North Marshall, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Lyon County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Marshall area.",
     metaTitle: 'Junk Removal Marshall MN | Lyon County Hauling | Dakota Valley Haul',
     metaDescription:
       'Reliable junk removal in Marshall, MN. Serving SMSU area, Downtown & all Lyon County. Student move-outs, estate cleanouts, farm debris removal. Call now.',
@@ -1020,7 +1020,7 @@ export const cities = {
     name: 'Minneapolis',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Minneapolis, MN. Whether you are clearing out a garage near Target Field or need furniture pickup in Downtown Minneapolis or Uptown, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Minneapolis area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Minneapolis, MN. Whether you are staging a garage cleanout near Target Field or need furniture pickup in Downtown Minneapolis or Uptown, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Minneapolis area.",
     metaTitle: "Curbside & Garage Junk Removal Minneapolis MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Minneapolis, MN. Serving Uptown, North Loop, Downtown and all Minneapolis neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1069,7 +1069,7 @@ export const cities = {
     name: 'Minnetonka',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Minnetonka, MN. Whether you are clearing out a garage near Lake Minnetonka or need furniture pickup in Deephaven or Excelsior, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Minnetonka area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Minnetonka, MN. Whether you are staging a garage cleanout near Lake Minnetonka or need furniture pickup in Deephaven or Excelsior, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Minnetonka area.",
     metaTitle: "Curbside & Garage Junk Removal Minnetonka MN | Written Photo Quotes",
     metaDescription:
       'Professional junk removal in Minnetonka, MN near Lake Minnetonka. Serving Excelsior, Wayzata, Deephaven and all Minnetonka neighborhoods. Call (952) 232-5107.',
@@ -1111,7 +1111,7 @@ export const cities = {
     name: 'Moorhead',
     county: 'Clay County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Moorhead, MN. Whether you are clearing out a garage near Minnesota State University Moorhead or need furniture pickup in Downtown Moorhead or South Moorhead, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Clay County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Moorhead area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Moorhead, MN. Whether you are staging a garage cleanout near Minnesota State University Moorhead or need furniture pickup in Downtown Moorhead or South Moorhead, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Clay County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Moorhead area.",
     metaTitle: 'Junk Removal Moorhead MN | Fargo-Moorhead Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Moorhead, MN. Serving MSUM, Concordia, South Moorhead & all Clay County. Furniture, flood debris, estate cleanouts. Call now.',
@@ -1153,7 +1153,7 @@ export const cities = {
     name: 'New Ulm',
     county: 'Minnesota',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across New Ulm, MN. Whether you are clearing out a garage near Hermann Monument or need furniture pickup in Downtown New Ulm or Hermann Heights, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the New Ulm area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across New Ulm, MN. Whether you are staging a garage cleanout near Hermann Monument or need furniture pickup in Downtown New Ulm or Hermann Heights, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the New Ulm area.",
     metaTitle: 'Junk Removal New Ulm MN | Brown County Hauling | Dakota Valley Haul',
     metaDescription:
       'Reliable junk removal in New Ulm, MN. Serving Downtown, Hermann Heights & all Brown County. Estate cleanouts, appliances, furniture removal. Call now.',
@@ -1195,7 +1195,7 @@ export const cities = {
     name: 'Northfield',
     county: 'Rice County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Northfield, MN. Whether you are clearing out a garage near Carleton College or need furniture pickup in Downtown Northfield or Carleton College Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Rice County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Northfield area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Northfield, MN. Whether you are staging a garage cleanout near Carleton College or need furniture pickup in Downtown Northfield or Carleton College Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Rice County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Northfield area.",
     metaTitle: 'Junk Removal Northfield MN | Carleton & St. Olaf Area | Dakota Valley Haul',
     metaDescription:
       'Junk removal in Northfield, MN. Serving Carleton College, St. Olaf, Downtown & all Rice County. Student move-outs, estate cleanouts, appliance removal. Call now.',
@@ -1237,7 +1237,7 @@ export const cities = {
     name: 'Owatonna',
     county: 'Steele County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Owatonna, MN. Whether you are clearing out a garage near Mineral Springs Park or need furniture pickup in Downtown Owatonna or North Owatonna, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Steele County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Owatonna area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Owatonna, MN. Whether you are staging a garage cleanout near Mineral Springs Park or need furniture pickup in Downtown Owatonna or North Owatonna, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Steele County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Owatonna area.",
     metaTitle: 'Junk Removal Owatonna MN | Steele County Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Owatonna, MN. Serving North, South & Downtown Owatonna and all Steele County. Estate cleanouts, appliances, furniture removal. Call now.',
@@ -1279,7 +1279,7 @@ export const cities = {
     name: 'Plymouth',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Plymouth, MN. Whether you are clearing out a garage near Plymouth Ice Center or need furniture pickup in Downtown Plymouth or Bass Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Plymouth area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Plymouth, MN. Whether you are staging a garage cleanout near Plymouth Ice Center or need furniture pickup in Downtown Plymouth or Bass Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Plymouth area.",
     metaTitle: "Curbside & Garage Junk Removal Plymouth MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Plymouth, MN. Serving Parkers Lake, Medicine Lake, Fernbrook and all Plymouth neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1321,7 +1321,7 @@ export const cities = {
     name: 'Red Wing',
     county: 'Goodhue County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Red Wing, MN. Whether you are clearing out a garage near Red Wing Shoe Company or need furniture pickup in Downtown Red Wing or Barn Bluff Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Goodhue County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Red Wing area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Red Wing, MN. Whether you are staging a garage cleanout near Red Wing Shoe Company or need furniture pickup in Downtown Red Wing or Barn Bluff Area, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Goodhue County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Red Wing area.",
     metaTitle: 'Junk Removal Red Wing MN | Goodhue County Hauling | Dakota Valley Haul',
     metaDescription:
       'Junk removal in Red Wing, MN. Serving Downtown, West End, Pottery District & all Goodhue County. Estate cleanouts, furniture, appliance removal. Call now.',
@@ -1363,7 +1363,7 @@ export const cities = {
     name: 'Richfield',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Richfield, MN. Whether you are clearing out a garage near Hub Shopping Center or need furniture pickup in Downtown Richfield or Lyndale Avenue, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Richfield area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Richfield, MN. Whether you are staging a garage cleanout near Hub Shopping Center or need furniture pickup in Downtown Richfield or Lyndale Avenue, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Richfield area.",
     metaTitle: "Curbside & Garage Junk Removal Richfield MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Richfield, MN near Wood Lake Nature Center. Serving all Richfield neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1405,7 +1405,7 @@ export const cities = {
     name: 'Rochester',
     county: 'Minnesota',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Rochester, MN. Whether you are clearing out a garage near Mayo Clinic Campus or need furniture pickup in Downtown Rochester or Cascade Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Rochester area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Rochester, MN. Whether you are staging a garage cleanout near Mayo Clinic Campus or need furniture pickup in Downtown Rochester or Cascade Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Rochester area.",
     metaTitle: "Junk Removal Rochester MN | Written Photo Quotes | Dakota Valley Haul",
     metaDescription:
       "Top-rated junk removal in Rochester, MN. Serving Mayo Clinic area, Cascade Lake, Elton Hills & all Olmsted County neighborhoods. Pickup windows confirmed by the crew. Call now.",
@@ -1447,7 +1447,7 @@ export const cities = {
     name: 'Rosemount',
     county: 'Dakota County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Rosemount, MN. Whether you are clearing out a garage near Steeple Center or need furniture pickup in Downtown Rosemount or Erickson, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Rosemount area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Rosemount, MN. Whether you are staging a garage cleanout near Steeple Center or need furniture pickup in Downtown Rosemount or Erickson, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Dakota County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Rosemount area.",
     metaTitle: "Curbside & Garage Junk Removal Rosemount MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Rosemount, MN. Serving all Rosemount neighborhoods including Flint Hills and Downtown. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1489,7 +1489,7 @@ export const cities = {
     name: 'Roseville',
     county: 'Ramsey County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Roseville, MN. Whether you are clearing out a garage near Rosedale Center or need furniture pickup in Central Roseville or Lexington Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Roseville area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Roseville, MN. Whether you are staging a garage cleanout near Rosedale Center or need furniture pickup in Central Roseville or Lexington Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Roseville area.",
     metaTitle: "Curbside & Garage Junk Removal Roseville MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Roseville, MN near Rosedale Center. Serving all Roseville neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1531,7 +1531,7 @@ export const cities = {
     name: 'Shoreview',
     county: 'Ramsey County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Shoreview, MN. Whether you are clearing out a garage near Shoreview Community Center or need furniture pickup in Turtle Lake or Island Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Shoreview area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Shoreview, MN. Whether you are staging a garage cleanout near Shoreview Community Center or need furniture pickup in Turtle Lake or Island Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Shoreview area.",
     metaTitle: "Curbside & Garage Junk Removal Shoreview MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Shoreview, MN. Serving Turtle Lake, Snail Lake, Island Lake and all Shoreview neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1573,7 +1573,7 @@ export const cities = {
     name: 'St. Cloud',
     county: 'Stearns County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Cloud, MN. Whether you are clearing out a garage near St. Cloud State University or need furniture pickup in Downtown St. Cloud or Southside, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Stearns County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Cloud area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Cloud, MN. Whether you are staging a garage cleanout near St. Cloud State University or need furniture pickup in Downtown St. Cloud or Southside, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Stearns County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Cloud area.",
     metaTitle: "Junk Removal St. Cloud MN | Written Photo Quotes | Dakota Valley Haul",
     metaDescription:
       'Professional junk removal in St. Cloud, MN. Serving SCSU area, Southside, Downtown & all Stearns County neighborhoods. Furniture, appliances, estate cleanouts. Call now.',
@@ -1615,7 +1615,7 @@ export const cities = {
     name: 'St. Louis Park',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Louis Park, MN. Whether you are clearing out a garage near The Shops at West End or need furniture pickup in Westwood Hills or Bronx Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Louis Park area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Louis Park, MN. Whether you are staging a garage cleanout near The Shops at West End or need furniture pickup in Westwood Hills or Bronx Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Louis Park area.",
     metaTitle: "Curbside & Garage Junk Removal St. Louis Park MN | Written Photo Quotes",
     metaDescription:
       'Professional junk removal in St. Louis Park, MN near West End. Serving Westwood Hills, Wolfe Park, and all SLP neighborhoods. Call (952) 232-5107.',
@@ -1657,7 +1657,7 @@ export const cities = {
     name: 'St. Paul',
     county: 'Ramsey County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Paul, MN. Whether you are clearing out a garage near State Capitol Building or need furniture pickup in Downtown St. Paul or Cathedral Hill, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Paul area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across St. Paul, MN. Whether you are staging a garage cleanout near State Capitol Building or need furniture pickup in Downtown St. Paul or Cathedral Hill, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the St. Paul area.",
     metaTitle: "Curbside & Garage Junk Removal St. Paul MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in St. Paul, MN. Serving Highland Park, Cathedral Hill, Como Park and all St. Paul neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1704,7 +1704,7 @@ export const cities = {
     name: 'White Bear Lake',
     county: 'Ramsey County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across White Bear Lake, MN. Whether you are clearing out a garage near White Bear Lake or need furniture pickup in Downtown White Bear Lake or Birch Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the White Bear Lake area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across White Bear Lake, MN. Whether you are staging a garage cleanout near White Bear Lake or need furniture pickup in Downtown White Bear Lake or Birch Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Ramsey County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the White Bear Lake area.",
     metaTitle: "Curbside & Garage Junk Removal White Bear Lake MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in White Bear Lake, MN. Serving Downtown, Birch Lake, and all White Bear Lake neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1746,7 +1746,7 @@ export const cities = {
     name: 'Willmar',
     county: 'Minnesota',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Willmar, MN. Whether you are clearing out a garage near Willmar Lakes Area or need furniture pickup in Downtown Willmar or North Willmar, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Willmar area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Willmar, MN. Whether you are staging a garage cleanout near Willmar Lakes Area or need furniture pickup in Downtown Willmar or North Willmar, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Minnesota streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Willmar area.",
     metaTitle: 'Junk Removal Willmar MN | Kandiyohi County Hauling | Dakota Valley Haul',
     metaDescription:
       'Affordable junk removal in Willmar, MN. Serving Downtown, North & South Willmar and all Kandiyohi County. Estate cleanouts, farm debris, appliances. Call now.',
@@ -1788,7 +1788,7 @@ export const cities = {
     name: 'Winona',
     county: 'Winona County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Winona, MN. Whether you are clearing out a garage near Winona State University or need furniture pickup in Downtown Winona or East End, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Winona County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Winona area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Winona, MN. Whether you are staging a garage cleanout near Winona State University or need furniture pickup in Downtown Winona or East End, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Winona County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Winona area.",
     metaTitle: 'Junk Removal Winona MN | Mississippi River Valley Hauling | Dakota Valley Haul',
     metaDescription:
       'Junk removal in Winona, MN. Serving WSU area, Goodview, East End & all Winona County. Furniture, appliances, estate & flood debris removal. Call now.',
@@ -1830,7 +1830,7 @@ export const cities = {
     name: 'Woodbury',
     county: 'Washington County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Woodbury, MN. Whether you are clearing out a garage near Woodbury Lakes or need furniture pickup in Central Woodbury or Eagle Valley, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Woodbury area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Woodbury, MN. Whether you are staging a garage cleanout near Woodbury Lakes or need furniture pickup in Central Woodbury or Eagle Valley, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Woodbury area.",
     metaTitle: "Curbside & Garage Junk Removal Woodbury MN | Written Photo Quotes",
     metaDescription:
       "Professional junk removal in Woodbury, MN. Serving Eagle Valley, Tamarack, Carver Lake and all Woodbury neighborhoods. Pickup windows confirmed by the crew. Call (952) 232-5107.",
@@ -1872,7 +1872,7 @@ export const cities = {
     name: 'Brooklyn Park',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Brooklyn Park, MN. Whether you are clearing out a garage near Edinburgh USA Golf Course or need furniture pickup in Edinburgh or Champlin Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Brooklyn Park area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Brooklyn Park, MN. Whether you are staging a garage cleanout near Edinburgh USA Golf Course or need furniture pickup in Edinburgh or Champlin Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Brooklyn Park area.",
     metaTitle: 'Junk Removal Brooklyn Park MN | Hennepin County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Brooklyn Park, MN. Serving all Brooklyn Park neighborhoods across Hennepin County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -1910,7 +1910,7 @@ export const cities = {
     name: 'Blaine',
     county: 'Anoka County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Blaine, MN. Whether you are clearing out a garage near National Sports Center or need furniture pickup in Northtown or Lexington, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Blaine area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Blaine, MN. Whether you are staging a garage cleanout near National Sports Center or need furniture pickup in Northtown or Lexington, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Blaine area.",
     metaTitle: 'Junk Removal Blaine MN | Anoka County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Blaine, MN. Serving all Blaine neighborhoods across Anoka County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -1942,7 +1942,7 @@ export const cities = {
     name: 'Coon Rapids',
     county: 'Anoka County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Coon Rapids, MN. Whether you are clearing out a garage near Bunker Hills Regional Park or need furniture pickup in Riverdale or Sand Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Coon Rapids area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Coon Rapids, MN. Whether you are staging a garage cleanout near Bunker Hills Regional Park or need furniture pickup in Riverdale or Sand Creek, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Coon Rapids area.",
     metaTitle: 'Junk Removal Coon Rapids MN | Anoka County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Coon Rapids, MN. Serving all Coon Rapids neighborhoods across Anoka County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -1976,7 +1976,7 @@ export const cities = {
     name: 'Shakopee',
     county: 'Scott County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Shakopee, MN. Whether you are clearing out a garage near Valleyfair or need furniture pickup in Downtown Shakopee or Westwood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Shakopee area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Shakopee, MN. Whether you are staging a garage cleanout near Valleyfair or need furniture pickup in Downtown Shakopee or Westwood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Shakopee area.",
     metaTitle: 'Junk Removal Shakopee MN | Scott County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Shakopee, MN. Serving all Shakopee neighborhoods across Scott County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2008,7 +2008,7 @@ export const cities = {
     name: 'Cottage Grove',
     county: 'Washington County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Cottage Grove, MN. Whether you are clearing out a garage near Cottage Grove Ravine Regional Park or need furniture pickup in Hamlet or Pine Coulee, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Cottage Grove area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Cottage Grove, MN. Whether you are staging a garage cleanout near Cottage Grove Ravine Regional Park or need furniture pickup in Hamlet or Pine Coulee, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Cottage Grove area.",
     metaTitle: 'Junk Removal Cottage Grove MN | Washington County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Cottage Grove, MN. Serving all Cottage Grove neighborhoods across Washington County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2039,7 +2039,7 @@ export const cities = {
     name: 'Andover',
     county: 'Anoka County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Andover, MN. Whether you are clearing out a garage near Bunker Hills Regional Park or need furniture pickup in Hidden Creek or Woodland Estates, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Andover area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Andover, MN. Whether you are staging a garage cleanout near Bunker Hills Regional Park or need furniture pickup in Hidden Creek or Woodland Estates, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Andover area.",
     metaTitle: 'Junk Removal Andover MN | Anoka County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Andover, MN. Serving all Andover neighborhoods across Anoka County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2069,7 +2069,7 @@ export const cities = {
     name: 'Savage',
     county: 'Scott County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Savage, MN. Whether you are clearing out a garage near Hidden Valley Sports Complex or need furniture pickup in Glendale or Hamilton, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Savage area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Savage, MN. Whether you are staging a garage cleanout near Hidden Valley Sports Complex or need furniture pickup in Glendale or Hamilton, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Savage area.",
     metaTitle: 'Junk Removal Savage MN | Scott County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Savage, MN. Serving all Savage neighborhoods across Scott County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2100,7 +2100,7 @@ export const cities = {
     name: 'Prior Lake',
     county: 'Scott County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Prior Lake, MN. Whether you are clearing out a garage near Lower Prior Lake or need furniture pickup in Downtown Prior Lake or Wilds, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Prior Lake area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Prior Lake, MN. Whether you are staging a garage cleanout near Lower Prior Lake or need furniture pickup in Downtown Prior Lake or Wilds, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Scott County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Prior Lake area.",
     metaTitle: 'Junk Removal Prior Lake MN | Scott County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Prior Lake, MN. Serving all Prior Lake neighborhoods across Scott County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2131,7 +2131,7 @@ export const cities = {
     name: 'Chaska',
     county: 'Carver County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Chaska, MN. Whether you are clearing out a garage near Chaska Town Course or need furniture pickup in Downtown Chaska or Jonathan, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chaska area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Chaska, MN. Whether you are staging a garage cleanout near Chaska Town Course or need furniture pickup in Downtown Chaska or Jonathan, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chaska area.",
     metaTitle: 'Junk Removal Chaska MN | Carver County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Chaska, MN. Serving all Chaska neighborhoods across Carver County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2161,7 +2161,7 @@ export const cities = {
     name: 'Oakdale',
     county: 'Washington County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Oakdale, MN. Whether you are clearing out a garage near Tartan Park or need furniture pickup in Oakdale Estates or Linwood Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Oakdale area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Oakdale, MN. Whether you are staging a garage cleanout near Tartan Park or need furniture pickup in Oakdale Estates or Linwood Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Oakdale area.",
     metaTitle: 'Junk Removal Oakdale MN | Washington County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Oakdale, MN. Serving all Oakdale neighborhoods across Washington County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2191,7 +2191,7 @@ export const cities = {
     name: 'Chanhassen',
     county: 'Carver County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Chanhassen, MN. Whether you are clearing out a garage near Chanhassen Dinner Theatres or need furniture pickup in Downtown Chanhassen or Lake Lucy, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chanhassen area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Chanhassen, MN. Whether you are staging a garage cleanout near Chanhassen Dinner Theatres or need furniture pickup in Downtown Chanhassen or Lake Lucy, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Carver County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Chanhassen area.",
     metaTitle: 'Junk Removal Chanhassen MN | Carver County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Chanhassen, MN. Serving all Chanhassen neighborhoods across Carver County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2222,7 +2222,7 @@ export const cities = {
     name: 'Elk River',
     county: 'Sherburne County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Elk River, MN. Whether you are clearing out a garage near Elk River Energy Resource Center or need furniture pickup in Downtown Elk River or Lakeland, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Sherburne County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Elk River area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Elk River, MN. Whether you are staging a garage cleanout near Elk River Energy Resource Center or need furniture pickup in Downtown Elk River or Lakeland, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Sherburne County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Elk River area.",
     metaTitle: 'Junk Removal Elk River MN | Sherburne County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Elk River, MN. Serving all Elk River neighborhoods across Sherburne County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2252,7 +2252,7 @@ export const cities = {
     name: 'Champlin',
     county: 'Hennepin County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Champlin, MN. Whether you are clearing out a garage near Mississippi Point Park or need furniture pickup in Mississippi Crossings or Champlin Mill Pond, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Champlin area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Champlin, MN. Whether you are staging a garage cleanout near Mississippi Point Park or need furniture pickup in Mississippi Crossings or Champlin Mill Pond, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Hennepin County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Champlin area.",
     metaTitle: 'Junk Removal Champlin MN | Hennepin County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Champlin, MN. Serving all Champlin neighborhoods across Hennepin County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2281,7 +2281,7 @@ export const cities = {
     name: 'Lino Lakes',
     county: 'Anoka County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Lino Lakes, MN. Whether you are clearing out a garage near Rice Creek Chain of Lakes Park Reserve or need furniture pickup in Birch Lake or Centerville Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Lino Lakes area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Lino Lakes, MN. Whether you are staging a garage cleanout near Rice Creek Chain of Lakes Park Reserve or need furniture pickup in Birch Lake or Centerville Lake, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Lino Lakes area.",
     metaTitle: 'Junk Removal Lino Lakes MN | Anoka County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Lino Lakes, MN. Serving all Lino Lakes neighborhoods across Anoka County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2311,7 +2311,7 @@ export const cities = {
     name: 'Forest Lake',
     county: 'Washington County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Forest Lake, MN. Whether you are clearing out a garage near Forest Lake (the actual lake) or need furniture pickup in Downtown Forest Lake or Castlewood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Forest Lake area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Forest Lake, MN. Whether you are staging a garage cleanout near Forest Lake (the actual lake) or need furniture pickup in Downtown Forest Lake or Castlewood, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Forest Lake area.",
     metaTitle: 'Junk Removal Forest Lake MN | Washington County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Forest Lake, MN. Serving all Forest Lake neighborhoods across Washington County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2340,7 +2340,7 @@ export const cities = {
     name: 'Stillwater',
     county: 'Washington County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Stillwater, MN. Whether you are clearing out a garage near Stillwater Lift Bridge or need furniture pickup in Historic Downtown Stillwater or Liberty, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Stillwater area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Stillwater, MN. Whether you are staging a garage cleanout near Stillwater Lift Bridge or need furniture pickup in Historic Downtown Stillwater or Liberty, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Washington County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Stillwater area.",
     metaTitle: 'Junk Removal Stillwater MN | Washington County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Stillwater, MN. Serving all Stillwater neighborhoods across Washington County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",
@@ -2371,7 +2371,7 @@ export const cities = {
     name: 'Anoka',
     county: 'Anoka County',
     intro:
-      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Anoka, MN. Whether you are clearing out a garage near Anoka County Historical Society or need furniture pickup in Downtown Anoka or Riverside Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Anoka area.",
+      "Dakota Valley Junk Removal provides curbside and garage-staged junk hauling and cleanout pickup across Anoka, MN. Whether you are staging a garage cleanout near Anoka County Historical Society or need furniture pickup in Downtown Anoka or Riverside Park, our crews handle the heavy lifting and disposal. Our Isuzu NPR gas cab over trucks navigate Anoka County streets efficiently, delivering fast, localized service for appliance disposal, yard waste, mattress recycling, and estate cleanouts in the Anoka area.",
     metaTitle: 'Junk Removal Anoka MN | Anoka County | Dakota Valley',
     metaDescription:
       "Curbside and garage junk removal in Anoka, MN. Serving all Anoka neighborhoods across Anoka County. an $85 pickup minimum, photo quote, pickup windows confirmed by the crew.",

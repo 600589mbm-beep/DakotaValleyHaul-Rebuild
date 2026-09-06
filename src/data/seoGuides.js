@@ -32,7 +32,7 @@ export const seoGuides = {
       {
         h2: 'Pickup service versus a public recycling center',
         body: [
-          'Choose pickup when the item is heavy, bulky, upstairs, difficult to transport or part of a larger cleanout. Dakota Valley’s eligible curbside and garage pickups have an $85 minimum, and the complete job quote is confirmed from photos before booking.',
+          'Choose Dakota Valley pickup for approved bulky items that can be safely staged at the curb, in the driveway or in an accessible garage. Dakota Valley’s eligible curbside and garage pickups have an $85 minimum, and the complete job quote is confirmed from photos before booking.',
           'Choose a public drop-off when you can safely transport the material yourself and know the facility accepts it. Dakota County operates the Recycling Zone in Eagan for household hazardous waste, electronics, small household appliances and common recyclables. Furniture, mattresses, yard waste and several other bulky materials are not accepted there, so check the county’s Recycling Guide before loading your vehicle.',
         ],
       },
@@ -80,7 +80,7 @@ export const seoGuides = {
         h2: 'Your three realistic mattress disposal options',
         body: [
           'When a new mattress is being delivered, ask the retailer whether it offers take-back of the old mattress. This is often the easiest self-service option because the delivery truck is already at the home. Confirm the rules before delivery day, especially for stained, damaged or infested mattresses.',
-          'A county-listed drop-off can work when you have a truck or trailer and can secure the mattress safely. Full-service pickup is usually the simplest choice when the mattress is upstairs, paired with a box spring or frame, or part of a move-out or bedroom cleanout.',
+          'A county-listed drop-off can work when you have a truck or trailer and can secure the mattress safely. For Dakota Valley pickup, the mattress and any approved box spring or frame must first be safely staged curbside, in the driveway or in an accessible garage; no upstairs carry-out is provided.',
         ],
       },
       {
@@ -93,7 +93,7 @@ export const seoGuides = {
     ],
     faqs: [
       { q: 'Where can I dispose of a mattress in Eagan?', a: 'The Dakota County Recycling Zone does not accept mattresses. Search the county Recycling Guide for current drop-off options, ask a mattress retailer about take-back or arrange full-service pickup.' },
-      { q: 'Does Dakota Valley pick up mattresses from inside the home?', a: NO_INSIDE_PICKUP },
+      { q: 'Does Dakota Valley pick up mattresses from inside the home?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can a box spring and metal bed frame go with the mattress?', a: 'Yes. Photograph all pieces together so the quote includes the mattress, box spring, frame and headboard rather than treating them as separate requests.' },
       { q: 'Is free mattress disposal available in Eagan?', a: 'Free options are limited and change. Retailer take-back or special community programs may occasionally help, but residents should verify current rules. Do not leave a mattress outside a facility or donation center without approval.' },
     ],
@@ -161,7 +161,7 @@ export const seoGuides = {
     metaDescription: 'Get rid of a couch, recliner, dresser or broken furniture in Dakota County. Compare donation, county-listed drop-off and full-service furniture pickup.',
     datePublished: '2026-07-24',
     dateModified: '2026-07-24',
-    intro: 'Furniture disposal is not one-size-fits-all. A clean couch may qualify for donation, a damaged dresser may need a transfer station, and a sectional in a basement may be best handled by a pickup crew. Dakota County residents should choose based on condition, transportation and access—not simply leave furniture beside a recycling container.',
+    intro: 'Furniture disposal is not one-size-fits-all. A clean couch may qualify for donation, a damaged dresser may need a transfer station, and a sectional in a basement needs suitable help with safe staging before a curbside pickup. Dakota County residents should choose based on condition, transportation and access—not simply leave furniture beside a recycling container.',
     sections: [
       {
         h2: 'Start with condition: donate, recycle or dispose',
@@ -180,7 +180,7 @@ export const seoGuides = {
       {
         h2: 'When furniture pickup makes sense',
         body: [
-          'Pickup is practical for heavy couches, reclining furniture, sectionals, sleeper sofas, dressers, desks and furniture located upstairs or in basements. It is also useful when several items need to leave together during a move, estate cleanout or remodel.',
+          'Dakota Valley collects approved furniture and cleanout items after they are safely staged at the curb, in the driveway or in an accessible garage. Arrange suitable help to move items out of living areas before pickup; room-by-room removal and stair carry-out are not included.',
           'For a Dakota Valley quote, send one wide photo of the full group and close-ups of oversized pieces. Mention floors, elevators, narrow doors and whether disassembly is required. The quote is confirmed in writing before booking.',
         ],
       },
@@ -188,7 +188,7 @@ export const seoGuides = {
     faqs: [
       { q: 'Where can I dispose of a couch in Dakota County?', a: 'A usable couch may qualify for donation. Otherwise use Dakota County’s Recycling Guide to locate a transfer station or disposal business, or schedule furniture pickup.' },
       { q: 'Does the Eagan Recycling Zone take couches or furniture?', a: 'No. Furniture is currently listed as not accepted at the Recycling Zone.' },
-      { q: 'Can Dakota Valley remove a couch from a basement or upstairs room?', a: NO_INSIDE_PICKUP },
+      { q: 'Can Dakota Valley remove a couch from a basement or upstairs room?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can I include a rug, bookcase and end tables with the couch?', a: 'Yes. Include every item in the original photo set so one written quote covers the complete furniture pickup.' },
     ],
     sources: [
@@ -236,7 +236,7 @@ export const seoGuides = {
     faqs: [
       { q: 'Where can I dispose of an appliance near Apple Valley?', a: 'Search the appliance in Dakota County’s Recycling Guide, ask the replacement retailer about take-back or arrange pickup. Acceptance differs for refrigerators, microwaves, washers and small appliances.' },
       { q: 'Does Dakota Valley pick up refrigerators and freezers?', a: 'Yes. Send photos, location and access details. Refrigerant appliances are routed through appropriate processing rather than handled like ordinary scrap.' },
-      { q: 'Can you remove a washer or dryer from a basement?', a: NO_INSIDE_PICKUP },
+      { q: 'Can you remove a washer or dryer from a basement?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Do appliances need to be disconnected before pickup?', a: 'They should be safely disconnected from electricity, water or gas before removal unless the written job scope says otherwise. Mention any connection that remains when requesting the quote.' },
     ],
     sources: [

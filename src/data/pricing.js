@@ -4,10 +4,9 @@
 export { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from './booking.js';
 
 export const PRICING_HEADING = 'What it costs';
-export const PRICING_INTRO =
-  'Volume-based pricing for junk and cleanouts, plus flat rates on common recyclables. Text photos for a firm number.';
-export const LOADS_TITLE = 'Junk & cleanout loads — from $85';
-export const ITEMS_TITLE = "Quoted from photos";
+export const PRICING_INTRO = "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking.";
+export const LOADS_TITLE = 'Eligible junk pickups — $85 minimum';
+export const ITEMS_TITLE = 'Common items — quoted from photos';
 export const ITEMS_SUBLINE = 'Appliances, electronics, and tires are recycled, not dumped.';
 
 // Load descriptions; the public minimum is maintained in servicePolicy.js.

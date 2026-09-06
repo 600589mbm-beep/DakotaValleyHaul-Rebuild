@@ -232,11 +232,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Does the crew carry everything down from the attic in ${c.name}?`,
-        a: NO_INSIDE_PICKUP,
+        a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely.",
       }),
       (c) => ({
         q: `Can you remove old insulation debris from a ${c.name} attic?`,
-        a: `Loose insulation debris is fine and gets bagged for licensed disposal. Asbestos-containing material is the exception — that requires a licensed abatement contractor before the cleanout.`,
+        a: "Send photos of nonhazardous insulation debris that is already safely bagged and staged curbside, in the driveway or in an accessible garage for review. No attic entry, asbestos or hazardous-material removal is offered.",
       }),
     ],
   },
@@ -247,11 +247,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you carry items up basement stairs in ${c.name}?`,
-        a: NO_INSIDE_PICKUP,
+        a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely.",
       }),
       (c) => ({
         q: `Can you haul water-damaged items from a ${c.name} basement?`,
-        a: `Yes. Water-damaged furniture, carpet, and debris are standard basement pickups and go to licensed disposal. Empty paint cans and clean materials can ride along; full paint and chemicals cannot.`,
+        a: "Send photos and describe any contamination before booking. Approved nonhazardous items must already be safely staged at the curb, in the driveway or in an accessible garage. No basement carry-out or hazardous-material pickup is offered.",
       }),
     ],
   },
@@ -420,9 +420,9 @@ function buildFaqs(city, svc, seed, serviceSlug) {
     {
       q: at(seed, 12, [
         `Do I need to be home for ${svc} in ${city.name}?`,
-        `Can you do the pickup while I'm at work in ${city.name}?`,
+        `Do I need to be home for ${svc} in ${city.name}?`,
       ]),
-      a: "Yes, when access has been agreed in advance. You do not have to be home when the crew has confirmed safe access to all approved items at the curb, in the driveway or in an accessible garage. Arrange access in advance; the crew does not enter living areas.",
+      a: "You do not have to be home when the crew has confirmed safe access to all approved items at the curb, in the driveway or in an accessible garage. Arrange access in advance; the crew does not enter living areas.",
     },
     {
       q: `How do I get a quote for ${svc} in ${city.name}?`,

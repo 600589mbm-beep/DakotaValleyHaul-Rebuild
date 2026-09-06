@@ -69,8 +69,8 @@ export const services = {
     ],
     process: [
       'Photo + brand/model if you have it.',
-      'Crew confirms appliance can be safely disconnected and removed.',
-      'Appliance staged in the garage, on the porch, or curbside.',
+      'Arrange safe disconnection by a qualified person before staging the appliance for pickup.',
+      'Appliance safely staged in an accessible garage, in the driveway or at the curb.',
       'Crew arrives, loads, and routes to certified recyclers.',
     ],
   },
@@ -269,9 +269,9 @@ export const services = {
   'estate-cleanout': {
     name: 'Estate cleanout',
     icon: 'Home',
-    headline: "Estate cleanout services across Minnesota",
+    headline: "Estate cleanout pickup — pre-staged items only",
     intro:
-      "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs trash, route donatable items to Bridging / Arc / Savers, and leave the property show-ready.",
+      "Estate cleanout pickup for approved furniture, boxes and household items that have already been safely staged at the curb, in the driveway or in an accessible garage. We do not sort or carry items from rooms inside the home. Text photos of everything to be collected for a written quote and a confirmed pickup window.",
     metaTitle: "Estate cleanout Minnesota | Dakota Valley Junk Removal",
     metaDescription:
       "Estate cleanout for families navigating loss, downsizing, or property sale. Respectful, thorough, donation-first approach. We help identify valuables vs tr...",
@@ -283,12 +283,7 @@ export const services = {
       "Family coordination for valuables",
       "Property show-prep cleaning",
     ],
-    process: [
-      "Text photos and a quick description.",
-      "Crew confirms quote and pickup window via text.",
-      "Items go curbside or in the garage (or as agreed).",
-      "Crew arrives, loads, and routes for donation or certified recycling.",
-    ],
+    process: ["Identify what stays and arrange safe staging of the items for pickup.","Text photos of the complete staged load and your pickup address.","Approve the written quote and confirm the appointment with the crew.","The crew loads the approved staged items and routes reusable materials where practical."],
   },
   'attic-cleanout': {
     name: 'Attic cleanout',
@@ -403,20 +398,13 @@ export const services = {
   'demolition': {
     name: 'Light demolition',
     icon: 'Warehouse',
-    headline: "Light demolition \u2014 sheds, fences, decks, bathrooms",
+    headline: "Outdoor project requests and pre-staged renovation debris",
     intro:
-      "Light demolition across Minnesota. Sheds, fences, decks, hot tubs. Crew handles tear-down, hauling, and disposal. Quoted by job.",
+      "Outdoor light-demolition requests and pre-staged renovation debris are reviewed from photos. Accepted project scope, access, hauling and disposal are confirmed in writing before booking. No interior demolition or inside-home carry-out is offered.",
     metaTitle: "Light demolition Minnesota | Dakota Valley Junk Removal",
     metaDescription:
-      "Light demolition across Minnesota. Sheds, fences, decks, hot tubs. Crew handles tear-down, hauling,...",
-    services: [
-      "Deck demolition",
-      "Shed demolition",
-      "Fence demolition",
-      "Pre-staged bathroom renovation debris",
-      "Kitchen demo (cabinets, counters)",
-      "Hot tub + spa demolition",
-    ],
+      "Request a photo review of an outdoor project or pre-staged renovation debris. Written scope and price before booking. No interior demolition or inside-home carry-out.",
+    services: ["Outdoor shed requests, subject to written scope approval","Outdoor fence requests, subject to written scope approval","Outdoor deck requests, subject to written scope approval","Pre-staged bathroom renovation debris","Pre-staged kitchen cabinets and counters","Outdoor hot-tub requests, subject to written scope approval"],
     process: [
       "Text photos and a quick description.",
       "Crew confirms quote and pickup window via text.",

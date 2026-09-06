@@ -289,7 +289,7 @@ export const seoGuidesRoundTwo = {
     ],
     faqs: [
       { q: 'Does the Dakota County Recycling Zone accept water heaters?', a: 'No. Water heaters are currently listed among the materials not accepted at the Eagan Recycling Zone.' },
-      { q: 'Can Dakota Valley remove a water heater from a basement?', a: NO_INSIDE_PICKUP },
+      { q: 'Can Dakota Valley remove a water heater from a basement?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can a water heater be recycled as scrap metal?', a: 'Many tanks contain recyclable metal, but facilities set their own preparation and acceptance rules. Call before transporting it.' },
       { q: 'Will the pickup crew disconnect gas or water lines?', a: 'Do not assume disconnection is included. The unit should normally be safely disconnected before pickup unless the written scope specifically says otherwise.' },
     ],
@@ -335,7 +335,7 @@ export const seoGuidesRoundTwo = {
       },
     ],
     faqs: [
-      { q: 'Do you help seniors who cannot move items to the curb?', a: NO_INSIDE_PICKUP },
+      { q: 'Do you help seniors who cannot move items to the curb?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
       { q: 'Can family coordinate a cleanout from another city?', a: 'Many pickups can be coordinated by text with clear authorization, photos, access instructions and a defined list of what may leave.' },
       { q: 'Will usable furniture be donated?', a: 'Donation routing is attempted when items are usable and accepted by a partner or facility. Acceptance is never guaranteed, so separate true keepsakes before the pickup.' },
       { q: 'Can medication and sharps be included?', a: 'No. Use Dakota County’s medication and sharps programs before the cleanout crew arrives.' },

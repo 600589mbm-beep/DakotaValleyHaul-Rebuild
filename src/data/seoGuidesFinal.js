@@ -89,7 +89,7 @@ export const seoGuidesFinal = {
       {
         h2: 'Full-service removal for difficult items',
         body: [
-          'A junk-removal crew is useful for sectionals, sleeper sofas, basement appliances, multiple mattresses, office furniture and complete room or garage cleanouts. Send photos of the items and the route out so stairs, disassembly and carrying distance are included in the written quote.',
+          'Dakota Valley can review photos of sectionals, sofas, disconnected appliances, mattresses and office furniture for pickup. All approved items must be safely staged at the curb, in the driveway or in an accessible garage. The written quote does not include indoor carry-out or stair work.',
           'Keep hazardous chemicals, medication, sharps, propane, asbestos and other prohibited materials separate. Bulky-item pickup does not override hazardous-waste laws or facility rules.',
         ],
       },

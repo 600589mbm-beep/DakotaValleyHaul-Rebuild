@@ -390,7 +390,7 @@ export const seoGuidesCompletion = {
       { q: 'Does the Eagan Recycling Zone accept refrigerators?', a: 'The general Recycling Zone is not the normal destination for major appliances. Use Dakota County’s Recycling Guide to find an approved current option.' },
       { q: 'Where can I dispose of a dehumidifier?', a: 'A dehumidifier contains refrigerant. Use a recycler or pickup service that confirms proper refrigerant handling.' },
       { q: 'Can I cut the refrigerant lines before scrap recycling?', a: 'No. Do not release refrigerant or dismantle the sealed system yourself.' },
-      { q: 'Can Dakota Valley remove a basement refrigerator?', a: NO_INSIDE_PICKUP },
+      { q: 'Can Dakota Valley remove a basement refrigerator?', a: "No. Dakota Valley does not provide inside-home pickup or carry items through living areas, basements or attics. Items must be safely staged at the curb, in the driveway or in an accessible garage before pickup. Arrange suitable help with staging rather than moving heavy items unsafely." },
     ],
     sources: [
       { label: 'Dakota County Recycling Guide', url: recyclingGuideUrl },
