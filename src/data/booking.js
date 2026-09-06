@@ -9,8 +9,7 @@
 
 export const WORKER_URL = 'https://dakota-valley-telegram-bridge.dakota-valley-haul-600589.workers.dev';
 
-export const PRICE_FLOOR = 'Pickup minimum $85';
-export const PRICE_FLOOR_DETAIL = 'Eligible curbside or garage pickups have an $85 minimum. Your exact total is quoted from photos and confirmed in writing before you book.';
+export { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from './servicePolicy.js';
 
 // The per-city `testimonial` entries in cities.js are PLACEHOLDER copy, not real
 // attributed customer reviews. Keep this false (no fabricated testimonials shown)

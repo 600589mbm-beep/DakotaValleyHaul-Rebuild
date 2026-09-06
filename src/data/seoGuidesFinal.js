@@ -1,3 +1,4 @@
+import { PICKUP_REQUIREMENTS } from './servicePolicy.js';
 // Final service-relevant SEO guide group based on the remaining Google Business Profile searches.
 // These pages consolidate close variants into one useful URL per search intent.
 
@@ -96,7 +97,7 @@ export const seoGuidesFinal = {
     faqs: [
       { q: 'How do I schedule bulk-waste pickup in Dakota County?', a: 'Ask your regular trash hauler about one-time large-item service, use a county-listed transfer station or arrange full-service junk removal.' },
       { q: 'Can a couch and mattress be picked up together?', a: 'Yes. Photograph both items and any frame, box spring or surrounding junk so the complete pickup can be quoted together.' },
-      { q: 'Do bulky items need to be at the curb?', a: 'Trash-hauler rules often require curbside staging. Full-service junk removal can quote inside, garage, basement or upstairs removal when access is safe.' },
+      { q: 'Do bulky items need to be at the curb?', a: PICKUP_REQUIREMENTS },
       { q: 'Can appliances be included?', a: 'Yes, but refrigerators, freezers, air conditioners and dehumidifiers require proper refrigerant handling. Identify every appliance in advance.' },
     ],
     sources: [

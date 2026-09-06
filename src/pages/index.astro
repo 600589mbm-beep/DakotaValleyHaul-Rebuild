@@ -1,4 +1,5 @@
 ---
+import { COVERAGE_POLICY, QUOTE_POLICY, SCHEDULING_POLICY, UNATTENDED_POLICY } from '../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -32,12 +33,12 @@ const cityGeo = Object.entries(cities)
   .map(([slug, city]) => ({ slug, name: city.name, lat: city.geo.latitude, lng: city.geo.longitude }));
 
 const faqs = [
-  { q: 'What is the minimum pickup price?', a: 'The pickup minimum is $85 for eligible curbside or garage jobs. Send photos for the exact total, which is confirmed in writing before you book.' },
+  { q: 'What is the minimum pickup price?', a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins." },
   { q: 'Why do you quote from photos?', a: 'Photos show the actual volume, item type, access, and disposal needs. That lets the crew give you a more accurate written quote without scheduling an on-site sales visit.' },
-  { q: 'Will the price change when the crew arrives?', a: 'The quote is based on the photos and details you provide. If the items match what was quoted, the quoted total is the amount you approved. Send clear photos of everything to avoid surprises.' },
-  { q: 'Do you serve my city or county?', a: 'Yes. Dakota Valley serves Minnesota cities and counties with route-aware scheduling based on your location.' },
-  { q: 'When is the soonest you can pick up?', a: 'Most pickups are scheduled about two business days out. Same-day jobs are sometimes available based on route and crew capacity—text to check.' },
-  { q: 'Do I need to be home during pickup?', a: 'Not always. If the items are accessible at the curb or in the garage, the crew can often complete the pickup and send a confirmation photo.' },
+  { q: 'Will the price change when the crew arrives?', a: QUOTE_POLICY },
+  { q: 'Do you serve my city or county?', a: COVERAGE_POLICY },
+  { q: 'When is the soonest you can pick up?', a: SCHEDULING_POLICY },
+  { q: 'Do I need to be home during pickup?', a: UNATTENDED_POLICY },
   { q: 'What items do you remove?', a: 'Furniture, appliances, mattresses, yard waste, construction debris, exercise equipment, office furniture, and general household items. Larger jobs such as hot tubs and estate cleanouts are quoted from photos.' },
   { q: 'What items do you not accept?', a: 'For safety and legal reasons, hazardous waste, medical waste, asbestos, biological waste, and explosives are not accepted. Text a photo first when you are unsure.' },
   { q: 'Do you recycle or donate items?', a: 'Yes. Usable furniture and household goods are routed to donation partners when practical, while electronics, mattresses, metal, and compostable material are sent to appropriate recycling or processing facilities.' },
@@ -197,12 +198,12 @@ const homepageSchema = {
         <div class="dv-hero-copy">
           <span class="dv-eyebrow"><span class="dv-dot"></span> Locally owned Twin Cities junk removal</span>
           <h1 class="dv-h1">Clear the clutter.<br><span class="amber">Keep your day.</span></h1>
-          <p class="dv-sub"><strong>Text photos and get the total in writing before you book.</strong> No estimate visit. No call center. No low-ball headline that changes when the truck arrives.</p>
+          <p class="dv-sub"><strong>Text photos and get the total in writing before you book.</strong> Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
 
           <div class="dv-actions">
             <a class="dv-btn dv-btn-amber" href={smsLink} data-track="sms_click"><Icon name="lucide:camera" size={19} /> Text photos for a quote</a>
             <a class="dv-btn dv-btn-ghost" href="#how">See how it works</a>
-            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> Pickup minimum <strong>$85</strong> <span aria-hidden="true">•</span> <strong>$25 off with review</strong></span>
+            <span class="dv-price-flag"><Icon name="lucide:tag" size={14} /> Pickup minimum <strong>$85</strong></span>
           </div>
 
           <div class="dv-trust">
@@ -217,7 +218,7 @@ const homepageSchema = {
           <div class="dv-thread">
             <div class="dv-thread-head">
               <span class="dv-av"><Icon name="lucide:truck" size={18} /></span>
-              <span class="dv-who">Dakota Valley Junk<small>● Texting now · replies in hours</small></span>
+              <span class="dv-who">Dakota Valley Junk<small>Example quote conversation</small></span>
             </div>
             <div class="dv-bubble dv-in">Can you take this couch and the boxes next to it in Eagan? 🛋️<span class="dv-t">2:14 PM</span></div>
             <div class="dv-photo" aria-hidden="true">
@@ -236,8 +237,8 @@ const homepageSchema = {
               </svg>
             </div>
             <div class="dv-bubble dv-out dv-r1"><span class="dv-quote">Yes. Pickup minimum is <span class="q">$85</span>. I’ll send the exact total in writing from these photos.</span><br>Which day works best?<span class="dv-t">2:31 PM</span></div>
-            <div class="dv-bubble dv-in dv-r2">Tomorrow morning. Do I need to be home?<span class="dv-t">2:33 PM</span></div>
-            <div class="dv-bubble dv-out dv-r3">Not if it is curbside or in the garage. We will text before arrival and send a completion photo ✅<span class="dv-t">2:34 PM</span></div>
+            <div class="dv-bubble dv-in dv-r2">Would tomorrow morning work? Do I need to be home?<span class="dv-t">2:33 PM</span></div>
+            <div class="dv-bubble dv-out dv-r3">We’ll confirm an available window. You can be away if we agree on safe curbside or garage access first ✅<span class="dv-t">2:34 PM</span></div>
             <div class="dv-typing" aria-hidden="true"><i></i><i></i><i></i></div>
           </div>
           <span class="dv-phone-tag">photo → written quote</span>
@@ -247,8 +248,8 @@ const homepageSchema = {
 
     <div class="dv-marquee" aria-hidden="true">
       <div class="dv-marquee-track">
-        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Basements<span></span>Single items<span></span></span>
-        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Basements<span></span>Single items<span></span></span>
+        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Staged cleanout items<span></span>Single items<span></span></span>
+        <span>Furniture<span></span>Appliances<span></span>Mattresses<span></span>Garage cleanouts<span></span>Hot tubs<span></span>Yard debris<span></span>Estate cleanouts<span></span>Staged cleanout items<span></span>Single items<span></span></span>
       </div>
     </div>
 
@@ -331,7 +332,7 @@ const homepageSchema = {
           <ul>
             <li><Icon name="lucide:camera" size={16} /> Text photos and skip the estimate visit</li>
             <li><Icon name="lucide:badge-check" size={16} /> Review the written quote before booking</li>
-            <li><Icon name="lucide:calendar-check" size={16} /> Choose a real pickup window that fits your day</li>
+            <li><Icon name="lucide:calendar-check" size={16} /> Confirm an available pickup window with the crew that fits your day</li>
             <li><Icon name="lucide:recycle" size={16} /> Route usable and recyclable items responsibly</li>
           </ul>
           <a class="button primary" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos now</a>

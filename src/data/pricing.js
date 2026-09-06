@@ -1,11 +1,5 @@
-// Shared pricing data — single source of truth for the homepage PricingPreview,
-// the /pricing/ page, the booking-form load-size select, and the OfferCatalog
-// JSON-LD. Two DISTINCT groups, kept separate on purpose:
-//   A) LOADS — volume-based, start at $85 (the minimum applies to LOADS ONLY).
-//   B) ITEMS — flat per-piece recyclable rates, NO load minimum (some < $85).
-// Do not reintroduce a blanket "$85 minimum" or "only pay for the space you
-// fill" — both are false against the flat item rates / recycling fees.
-// Owner-approved load pricing reconfirmed July 23, 2026.
+// Public pricing is photo-quote based. Historical numeric tier estimates below are not advertised rates.
+// The current minimum and customer promises come from servicePolicy.js.
 
 export { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from './booking.js';
 
@@ -13,10 +7,10 @@ export const PRICING_HEADING = 'What it costs';
 export const PRICING_INTRO =
   'Volume-based pricing for junk and cleanouts, plus flat rates on common recyclables. Text photos for a firm number.';
 export const LOADS_TITLE = 'Junk & cleanout loads — from $85';
-export const ITEMS_TITLE = 'Common items — flat rates, priced individually (no load minimum)';
+export const ITEMS_TITLE = "Quoted from photos";
 export const ITEMS_SUBLINE = 'Appliances, electronics, and tires are recycled, not dumped.';
 
-// Group A — volume-based loads (the $85 minimum applies to loads only).
+// Load descriptions; the public minimum is maintained in servicePolicy.js.
 export const tiers = [
   {
     slug: 'single-item',
@@ -29,7 +23,7 @@ export const tiers = [
   {
     slug: 'pickup-bed',
     label: 'Pickup-bed load',
-    price: '$85 – $170',
+    price: "Quoted from photos",
     priceLow: 85,
     priceHigh: 170,
     desc: 'a few items that fit in a 5-ft pickup bed.',
@@ -37,7 +31,7 @@ export const tiers = [
   {
     slug: 'van-load',
     label: 'Van load',
-    price: '$255 – $550',
+    price: "Quoted from photos",
     priceLow: 255,
     priceHigh: 550,
     desc: 'about the size of a delivery van — a room or two, or roughly half a garage.',
@@ -45,27 +39,27 @@ export const tiers = [
   {
     slug: 'full',
     label: 'Full load',
-    price: 'up to $750',
+    price: "Quoted from photos",
     priceLow: 550,
     priceHigh: 750,
     desc: 'a packed box-truck load: about 1–2 bedrooms or a full garage cleanout.',
   },
 ];
 
-// Group B — flat per-item recyclable rates. NO load minimum; priced individually.
+// Recyclable items are quoted from photos, including disposal requirements.
 export const itemPrices = [
-  { item: 'Mattress', price: 'from $100' },
-  { item: 'Refrigerator', price: 'from $100', recycled: true },
-  { item: 'Freezer', price: 'from $60', recycled: true },
-  { item: 'Mini fridge', price: '$45', recycled: true },
-  { item: 'TV', price: 'from $50', recycled: true },
-  { item: 'Tires', price: '$30 each', recycled: true },
+  { item: 'Mattress', price: "Quoted from photos" },
+  { item: 'Refrigerator', price: "Quoted from photos", recycled: true },
+  { item: 'Freezer', price: "Quoted from photos", recycled: true },
+  { item: 'Mini fridge', price: "Quoted from photos", recycled: true },
+  { item: 'TV', price: "Quoted from photos", recycled: true },
+  { item: 'Tires', price: "Quoted from photos", recycled: true },
 ];
 
 // What moves a quote up or down — used by the "What changes the price?" explainer.
 export const priceFactors = [
   { label: 'Volume', detail: 'How much of the truck a load fills is the biggest factor for loads.' },
   { label: 'Heavy materials', detail: 'Concrete, dirt, brick, and shingles are charged by weight and dump fees.' },
-  { label: 'Stairs & carry distance', detail: 'Long carries, tight access, and multiple flights add labor time.' },
+  { label: "Staging and truck access", detail: "Items must be safely staged at the curb, in the driveway or in an accessible garage. Show the path to truck parking." },
   { label: 'Specialty disposal', detail: 'Appliances with refrigerant, mattresses, and e-waste have certified recycling fees.' },
 ];

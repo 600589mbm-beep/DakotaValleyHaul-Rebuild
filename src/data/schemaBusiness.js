@@ -1,3 +1,4 @@
+import { PRICE_RANGE } from './servicePolicy.js';
 // Shared JSON-LD LocalBusiness node. Every page whose Service schema points at
 // provider {'@id': `${SITE}/#business`} must embed this node in its own @graph —
 // JSON-LD @id references don't resolve across pages, so without it the provider
@@ -19,7 +20,7 @@ export const businessNode = {
   url: SITE,
   telephone: '+1-952-232-5107',
   email: 'info@dakotavalleyjunkremovalservice.com',
-  priceRange: '$30 – $750',
+  priceRange: PRICE_RANGE,
   image: `${SITE}/og-card.png`,
   address: {
     '@type': 'PostalAddress',
