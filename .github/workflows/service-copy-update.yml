@@ -13,38 +13,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: fix/service-promises-review-policy
+          ref: ${{ github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inventory customer-facing claims
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-          patterns = re.compile(r'inside|indoor|interior|stairs|stairwell|basement|attic|hallway|carry.out|same.day|next.day|business days|six days|calendar|\$25|no load minimum|flat|priceRange', re.I)
-          for p in sorted(Path('src').rglob('*')):
-              if not p.is_file() or p.suffix not in ['.js', '.astro', '.jsx'] or 'reviews' in p.name.lower(): continue
-              for i,line in enumerate(p.read_text().splitlines(),1):
-                  if patterns.search(line): print(f'{p}:{i}: {line.strip()}')
-          PY
       - name: Install dependencies
         run: npm ci
       - name: Apply source corrections
         run: |
-          if test -f scripts/apply-service-copy-update.mjs; then node scripts/apply-service-copy-update.mjs; fi
+          node scripts/apply-service-copy-update.mjs
+          node scripts/finish-service-copy.mjs
       - name: Build and validate
         run: |
-          npm run build > /tmp/site-build.log 2>&1 || { tail -80 /tmp/site-build.log; exit 1; }
-          tail -5 /tmp/site-build.log
-          if test -f scripts/validate-service-promises.mjs; then node scripts/validate-service-promises.mjs; fi
+          npm run build > /tmp/site-build.log 2>&1 || { tail -70 /tmp/site-build.log; exit 1; }
+          tail -8 /tmp/site-build.log
+          node scripts/validate-service-promises.mjs
+          git diff --check
+      - name: Report changed source and remaining access references
+        run: |
+          git diff --stat
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          pattern=re.compile(r'inside removal|indoor carry.out|Crew handles stairs|crew brings everything|calendar link|no load minimum|\$25 off with review')
+          for p in Path('src').rglob('*'):
+              if p.suffix not in ['.js','.astro'] or p.name=='servicePolicy.js': continue
+              for i,line in enumerate(p.read_text().splitlines(),1):
+                  if pattern.search(line): print(f'REVIEW {p}:{i}: {line.strip()}')
+          PY
       - name: Commit validated source corrections
         run: |
-          if test -f scripts/apply-service-copy-update.mjs; then
-            git config user.name 'Dakota Valley site maintenance'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add src scripts public/llms.txt public/llm-sitemap.json docs/LLM-Sitemap.md package.json
-            git diff --cached --stat
-            git diff --cached --quiet || git commit -m 'Align public service scope, pricing, and pickup promises; remove review incentive'
-            git push origin HEAD:fix/service-promises-review-policy
-          fi
+          git config user.name 'Dakota Valley site maintenance'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src scripts public/llms.txt public/llm-sitemap.json docs/LLM-Sitemap.md package.json
+          git diff --cached --quiet || git commit -m 'Align public service scope, pricing, and pickup promises; remove review incentive'
+          git push origin HEAD:fix/service-promises-review-policy
