@@ -20,7 +20,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Polish approved source copy
-        run: node scripts/polish-service-copy.mjs
+        run: |
+          node scripts/polish-service-copy.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('src/data/comboContent.js')
+          s=p.read_text().replace('selective room cleanouts','pre-selected staged items')
+          p.write_text(s)
+          PY
       - name: Build and validate all pages
         run: |
           npm run build > /tmp/site-build.log 2>&1 || { tail -65 /tmp/site-build.log; exit 1; }
