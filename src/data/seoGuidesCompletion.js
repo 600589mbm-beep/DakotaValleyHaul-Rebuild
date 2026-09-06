@@ -104,7 +104,7 @@ export const seoGuidesCompletion = {
       { q: 'Is the Lakeville Recycling Zone Plus open?', a: 'No. Dakota County anticipates opening it in 2027. Verify the official county project page before visiting.' },
       { q: 'Where can Lakeville residents take hazardous waste now?', a: 'Use Dakota County’s existing Recycling Zone in Eagan for accepted household hazardous waste.' },
       { q: 'Does Lakeville offer food-scraps drop-off?', a: 'Yes. Lakeville identifies a registered Dakota County food-scraps drop-off at the Water Treatment Facility.' },
-      { q: 'Can Dakota Valley remove furniture in Lakeville?', a: NO_INSIDE_PICKUP },
+      { q: 'Can Dakota Valley remove furniture in Lakeville?', a: "Yes, for approved items safely staged at the curb, in the driveway or in an accessible garage. Send photos for a written quote; no inside-home pickup or stair carry-out." },
     ],
     sources: [
       { label: 'City of Lakeville Recycling', url: lakevilleRecyclingUrl },

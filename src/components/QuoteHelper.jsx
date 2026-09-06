@@ -49,7 +49,7 @@ export default function QuoteHelper({ context = '' }) {
         <h3>Quote request sent ✓</h3>
         <p>
           Thanks. The crew will text back within a few hours with a firm
-          quote and a calendar window. For faster confirmation, you can
+          quote and an available pickup window confirmed with the crew. For faster confirmation, you can
           also text (952) 232-5107 directly.
         </p>
         <button

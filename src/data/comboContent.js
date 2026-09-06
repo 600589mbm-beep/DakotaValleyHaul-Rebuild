@@ -1,3 +1,4 @@
+import { PRICE_FLOOR_DETAIL } from './servicePolicy.js';
 import { NO_INSIDE_PICKUP, QUOTE_POLICY, SCHEDULING_POLICY } from './servicePolicy.js';
 // Per-(city, service) unique content for the 1,098 combo pages.
 //
@@ -52,7 +53,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What is the minimum charge for junk pickup in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Can you pick up junk from my curb in ${c.name} without an appointment visit?`,
@@ -82,7 +83,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does refrigerator removal cost in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Do you take appliances with freon from ${c.name} homes?`,
@@ -97,7 +98,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does a garage cleanout cost in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Do I need to sort my garage before the crew arrives in ${c.name}?`,
@@ -112,7 +113,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you haul branches and brush piles in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Where does yard waste from ${c.name} go?`,
@@ -142,7 +143,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How much does mattress removal cost in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Are mattresses from ${c.name} actually recycled?`,
@@ -176,7 +177,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Is there a minimum for scrap metal pickup in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
     ],
   },
@@ -211,13 +212,13 @@ export const serviceAngles = {
     ],
   },
   'estate-cleanout': {
-    items: ['full-house estate loads', 'selective room cleanouts', 'donation runs with tax receipts'],
+    items: ['full-house estate loads', 'pre-selected staged items', 'donation runs with tax receipts'],
     scenarios: ['settling a family estate', 'downsizing a parent into senior living', 'getting a property show-ready for sale'],
     disposal: 'Donation-first: usable items are routed to Bridging, Arc, or Savers with tax receipts available; the property is left show-ready.',
     faqs: [
       (c) => ({
         q: `How does an estate cleanout work in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Can you work around family members sorting belongings in ${c.name}?`,
@@ -292,11 +293,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `What does single-item pickup cost in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
       (c) => ({
         q: `Is it worth booking a pickup for just one item in ${c.name}?`,
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       }),
     ],
   },
@@ -361,9 +362,9 @@ export function comboIntro(city, service, citySlug, serviceSlug) {
     `Most requests here start as ${scenario}. Photos by text get a real quote (not a range that changes on arrival), and booking is confirmed with the crew after quote approval.`,
   ];
   const closers = [
-    "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-    "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-    "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+    PRICE_FLOOR_DETAIL,
+    PRICE_FLOOR_DETAIL,
+    PRICE_FLOOR_DETAIL,
   ];
   return `${at(seed, 5, openers)} ${at(seed, 6, middles)} ${at(seed, 7, closers)}`;
 }
@@ -404,7 +405,7 @@ function buildFaqs(city, svc, seed, serviceSlug) {
         `How much does ${svc} cost in ${city.name}, MN?`,
         `What does ${svc} cost in ${city.name}?`,
       ]),
-      a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      a: PRICE_FLOOR_DETAIL,
     },
     {
       q: at(seed, 11, [
@@ -548,7 +549,7 @@ export function countyFaqs(county, slug) {
   const pool = [
     {
       q: `How much does junk removal cost in ${county.name}?`,
-      a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      a: PRICE_FLOOR_DETAIL,
     },
     {
       q: `Which ${county.name} cities do you serve?`,

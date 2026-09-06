@@ -1,3 +1,4 @@
+import { PRICE_FLOOR_DETAIL } from './servicePolicy.js';
 // Informational guides at /guides/:slug — top-of-funnel content targeting
 // "how much / how to" queries before someone is ready to book.
 // Every price and process claim comes from pricing.js / booking.js /
@@ -8,49 +9,49 @@ export const guides = {
   'junk-removal-cost-minnesota': {
     shortTitle: 'Junk removal cost guide',
     title: 'What does junk removal cost in Minnesota? (2026 guide)',
-    metaTitle: 'Junk Removal Cost in Minnesota 2026 | Real Price Tiers | Dakota Valley',
+    metaTitle: "Junk Removal Cost in Minnesota | $85 Minimum & Photo Quotes | Dakota Valley",
     metaDescription:
-      "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      "Understand Dakota Valley junk-removal pricing: an $85 minimum for eligible pickups, written photo quotes, staging requirements and the factors that affect your total.",
     datePublished: '2026-06-11',
     intro:
-      'Most Minnesota junk removal companies price junk and cleanout loads by volume — roughly how much of the truck a load fills — not by the hour, while common recyclables (appliances, mattresses, electronics, tires) carry flat per-item rates. That makes prices predictable once you know the structure, and a few small decisions (curbside staging, bundling items) can meaningfully cut your bill. Here is how the pricing actually works, using our own published rates as the worked example.',
+      "The useful number is the complete price for your actual load, not a truck-size example that may not match it. Dakota Valley uses photos and item details to confirm your total in writing before you book. Eligible curbside, driveway and accessible-garage pickups have an $85 minimum; that is not a flat price for every item.",
     sections: [
-      {
-        h2: 'The volume tiers, in real numbers',
-        body: [
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-        ],
-      },
-      {
-        h2: 'What moves the price up or down',
-        body: [
-          'Volume dominates, but three other factors matter. First, staging: items already at the curb or in the garage load fastest, which is what makes the $85 floor possible — a crew carrying furniture down from a third-floor walk-up is a different job. Second, material: clean, dense loads like yard waste or scrap metal are cheaper to dispose of than mixed household junk, and some companies pass that through. Third, special handling: refrigerant appliances, CRT televisions, and pianos carry disclosed surcharges because their disposal chains cost more.',
-          'What should not move the price: the day of the week, your neighborhood, or the crew "re-quoting" on arrival. A photo-based quote should be firm. If a company gives you a wide range and finalizes only on-site, you are absorbing their uncertainty.',
-        ],
-      },
-      {
-        h2: 'How to pay less, legitimately',
-        body: [
-          'Bundle everything into one pickup — within a tier, extra items that fit the same truck space often cost nothing more, so a second mattress alongside a garage load is usually free volume. Stage at the curb or in the garage before the crew arrives. Send clear photos so the quote is firm rather than padded. And separate donatable items: usable furniture routed to donation (we use Savers, Bridging, and Arc) is weight the disposal facility never charges for.',
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-        ],
-      },
-    ],
+  {
+    "h2": "What the $85 minimum means",
+    "body": [
+      "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking.",
+      "Photograph every item to include. A large sectional, dense debris or items with special disposal requirements can cost more than the minimum. The written quote states what is included; a list of old example prices is not a booking quote."
+    ]
+  },
+  {
+    "h2": "What affects your written quote",
+    "body": [
+      "The crew reviews the amount to load, weight, material type, disposal requirements and access between the staged items and truck parking. Appliances must be safely disconnected before staging. Standard pickup does not include indoor carrying or stairs.",
+      "The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins."
+    ]
+  },
+  {
+    "h2": "Plan an efficient pickup",
+    "body": [
+      "Send one complete photo set for the whole job, identify items that stay and keep the loading path clear. Ask for a combined quote rather than assuming extra items are free. Donation or recycling depends on condition and acceptance; it does not create an automatic discount.",
+      "Compare providers using the complete written scope, not just an advertised starting price. Consider whether you need an approved drop-off, a rental or collection of pre-staged items. Your price and appointment must both be confirmed before pickup."
+    ]
+  }
+],
     faqs: [
-      {
-        q: 'What is the cheapest way to get rid of one piece of furniture in Minnesota?',
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-      },
-      {
-        q: 'Why do refrigerators cost more to haul than sofas?',
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
-      },
-      {
-        q: 'Is junk removal priced by weight or by volume in Minnesota?',
-        a: 'Almost always by volume — the share of the truck your items fill. Weight only enters the picture for dense material like concrete, dirt, or roofing, which many full-service haulers price separately or decline.',
-      },
-    ],
+  {
+    "q": "What is the minimum Dakota Valley pickup price?",
+    "a": "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking."
+  },
+  {
+    "q": "Why can an appliance quote differ from a furniture quote?",
+    "a": "Weight, size, access and disposal requirements differ. Include the appliance type and condition in your photos so those requirements are included in the written total."
+  },
+  {
+    "q": "Will the quoted total change on arrival?",
+    "a": "The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins."
+  }
+],
   },
 
   'get-rid-of-mattress-minnesota': {
@@ -58,7 +59,7 @@ export const guides = {
     title: 'How to get rid of a mattress in Minnesota (all 5 options)',
     metaTitle: 'How to Get Rid of a Mattress in Minnesota | 5 Options Compared | Dakota Valley',
     metaDescription:
-      "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      "Compare Minnesota mattress disposal options, including retailer take-back, donation, drop-off and pickup of pre-staged items with a written photo quote.",
     datePublished: '2026-06-11',
     intro:
       'Mattresses are the single most awkward item in household disposal: garbage haulers refuse them or charge bulky-item fees, donation centers reject most of them, and they are too big for any car. Minnesota actually has good mattress-recycling infrastructure — certified facilities recover up to 80% of a mattress (steel coils, foam, fiber, fabric). Here are the five realistic ways to use it.',
@@ -82,9 +83,9 @@ export const guides = {
         ],
       },
       {
-        h2: 'Option 5: pickup with certified recycling',
+        h2: 'Option 5: pickup of a pre-staged mattress',
         body: [
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+          PRICE_FLOOR_DETAIL,
         ],
       },
     ],
@@ -99,7 +100,7 @@ export const guides = {
       },
       {
         q: 'How much does mattress pickup cost in the Twin Cities?',
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       },
     ],
   },
@@ -109,7 +110,7 @@ export const guides = {
     title: 'How to get rid of old appliances in Minnesota',
     metaTitle: 'How to Get Rid of Old Appliances in Minnesota | Fridge, Washer, Stove | Dakota Valley',
     metaDescription:
-      "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      "Compare old-appliance disposal options in Minnesota. Learn how to prepare an appliance and request a written quote for curbside or garage pickup.",
     datePublished: '2026-06-11',
     intro:
       'Appliances are the most regulated item in household junk. Refrigerators, freezers, AC units, and dehumidifiers contain refrigerant that federal law says must be recovered by certified technicians before scrapping — which is why you cannot just leave a fridge in the alley. The good news: appliance metal is valuable, so the recycling chain is well developed in Minnesota and several disposal paths are cheap or free.',
@@ -127,9 +128,9 @@ export const guides = {
         ],
       },
       {
-        h2: 'Retailer haul-away and full-service pickup',
+        h2: 'Retailer haul-away and pre-staged pickup',
         body: [
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+          PRICE_FLOOR_DETAIL,
         ],
       },
     ],
@@ -140,11 +141,11 @@ export const guides = {
       },
       {
         q: 'Do I need to empty or unplug the appliance before pickup?',
-        a: 'Empty it, yes — food and contents add weight and mess. Unplug a fridge or freezer the night before so it defrosts. You do not need to drain refrigerant or disconnect water/gas lines beyond normal shutoff; mention any hookup still connected when you text photos.',
+        a: "Empty the appliance and arrange safe disconnection from power, water and gas by a qualified person before staging. Never cut refrigerant lines. Show the appliance and its curbside, driveway or garage pickup location in your photos.",
       },
       {
         q: 'What does appliance removal cost in the Twin Cities?',
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       },
     ],
   },
@@ -152,17 +153,17 @@ export const guides = {
   'garage-cleanout-checklist': {
     shortTitle: 'Garage cleanout checklist',
     title: 'The Minnesota garage cleanout checklist (one weekend, start to done)',
-    metaTitle: 'Garage Cleanout Checklist | One-Weekend Plan + Real Costs | Dakota Valley',
+    metaTitle: "Garage Cleanout Checklist | Staging & Written Photo Quotes | Dakota Valley",
     metaDescription:
-      "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+      "Plan a garage cleanout, separate items, prepare a safe loading area and request a written photo quote. Pickup requires an appointment confirmed by the crew.",
     datePublished: '2026-06-11',
     intro:
       'A garage cleanout fails when it turns into archaeology — every box opened, every item debated, momentum gone by noon. The version that works is mechanical: four piles, hard rules, and the haul scheduled before you start so there is a deadline. Here is the plan, plus what the haul itself costs.',
     sections: [
       {
-        h2: 'Before you start: book the endpoint',
+        h2: 'Before you start: plan pickup and safe staging',
         body: [
-          'Schedule the junk pickup first, for the end of your cleanout weekend. A booked pickup window converts "someday" into a deadline, and it means the discard pile leaves before you can second-guess it. Photo-quoted services make this easy: text a photo of the garage as-is, get a firm price for the likely volume, and adjust the morning of if the pile came out bigger or smaller.',
+          'Plan the items to remove and send clear photos of the complete load. Approve the written total and confirm an available pickup window with the crew before treating it as booked. When the load changes, send updated photos and approve any revised quote before work begins.',
         ],
       },
       {
@@ -175,7 +176,7 @@ export const guides = {
       {
         h2: 'What the haul costs and how to stage it',
         body: [
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+          PRICE_FLOOR_DETAIL,
         ],
       },
     ],
@@ -190,7 +191,7 @@ export const guides = {
       },
       {
         q: 'How much does a full garage cleanout cost?',
-        a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+        a: PRICE_FLOOR_DETAIL,
       },
     ],
   },
@@ -215,7 +216,7 @@ export const guides = {
       {
         h2: 'The "yes, with handling" list',
         body: [
-          "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+          PRICE_FLOOR_DETAIL,
         ],
       },
       {

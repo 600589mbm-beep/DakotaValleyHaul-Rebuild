@@ -8,6 +8,8 @@ import { counties } from '../src/data/counties.js';
 
 const failures=[];
 const badCopy=[
+  /Quoted on-site for each job/i,
+  /Full-property hoarder cleanout|Selective room cleanout|Property show-prep cleaning/i,
   /\$25\s+off\s+with\s+review/i,
   /no load minimum/i,
   /(?:crew|crews) (?:handles? stairs|brings everything down)/i,
@@ -27,6 +29,7 @@ function inspectFaqs(list,label) {
   for(const {q,a} of list) {
     if(/^Do I need to be home/i.test(q) && /^Yes\b/i.test(a)) failures.push(`${label}: contradictory home-presence FAQ: ${q} / ${a}`);
     if(/^Can you do the pickup while/i.test(q) && /^No\b/i.test(a)) failures.push(`${label}: contradictory unattended-pickup FAQ: ${q} / ${a}`);
+    if (/Can Dakota Valley remove furniture in Lakeville/.test(q) && /^No\b/.test(a)) failures.push(`${label}: furniture availability answer incorrectly rejects staged pickup`);
     inspectText(a,label);
   }
 }

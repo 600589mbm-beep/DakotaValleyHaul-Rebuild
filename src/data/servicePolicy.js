@@ -11,3 +11,4 @@ export const SCHEDULING_POLICY = "Pickup is by appointment after you approve the
 export const COVERAGE_POLICY = "Send your pickup address to confirm service and route availability before booking. A listed city or county is not a guarantee of an available pickup time.";
 export const UNATTENDED_POLICY = "You do not have to be home when the crew has confirmed safe access to all approved items at the curb, in the driveway or in an accessible garage. Arrange access in advance; the crew does not enter living areas.";
 export const QUOTE_SUCCESS = "Your quote request was received. The crew will text you with pricing and available pickup times. Your pickup is not booked until the price and window are confirmed with you.";
+export const SPECIALTY_POLICY = "Outdoor specialty projects and rental requests are assessed separately from photos. Acceptance, scope, price and access must be confirmed in writing; the standard pickup minimum is not a project quote.";
