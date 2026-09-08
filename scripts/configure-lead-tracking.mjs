@@ -69,9 +69,17 @@ try {
   } else if (mode === 'register') {
     await assertWebhookAvailable();
     let health;
-    try { health = await fetch(WORKER_URL, { signal: AbortSignal.timeout(20000) }).then(response => response.json()); }
-    catch { throw new Error('Cannot verify deployed Worker health. Webhook registration skipped.'); }
-    if (!health.configured || !health.attributionStorage || !health.crewStatusTracking) throw new Error('Deployed Worker is not ready for stored lead status reporting.');
+    // A successful upload can precede propagation to the workers.dev endpoint.
+    // Keep webhook registration gated on actual readiness, with a bounded retry.
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      try {
+        const response = await fetch(`${WORKER_URL}/?readiness=${Date.now()}`, { headers: { 'Cache-Control': 'no-cache' }, signal: AbortSignal.timeout(5000) });
+        health = response.ok ? await response.json() : null;
+      } catch { health = null; }
+      if (health?.configured && health?.attributionStorage && health?.crewStatusTracking) break;
+      if (attempt < 11) await new Promise(resolve => setTimeout(resolve, 3000));
+    }
+    if (!health?.configured || !health?.attributionStorage || !health?.crewStatusTracking) throw new Error('Deployed Worker did not become ready for stored lead status reporting. Webhook registration skipped.');
     await telegram('setWebhook', { url: target, secret_token: webhookSecret, allowed_updates: ['message', 'callback_query'], max_connections: 1, drop_pending_updates: false });
     const result = await telegram('getWebhookInfo');
     if (result.url !== target) throw new Error('Telegram webhook verification failed.');
