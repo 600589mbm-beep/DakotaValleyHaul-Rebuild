@@ -1,4 +1,6 @@
 ---
+import SiteNav from '../components/SiteNav.astro';
+import ServiceAreaFinder from '../components/ServiceAreaFinder.astro';
 import { COVERAGE_POLICY, QUOTE_POLICY, SCHEDULING_POLICY, UNATTENDED_POLICY } from '../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
@@ -24,13 +26,8 @@ const email = 'info@dakotavalleyjunkremovalservice.com';
 const site = 'https://dakotavalleyjunkremovalservice.com';
 
 const agg = reviewsData.aggregate || { ratingValue: 5.0, reviewCount: 0 };
-const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
 const topServices = Object.entries(services).slice(0, 6);
 const restServices = Object.entries(services).slice(6);
-
-const cityGeo = Object.entries(cities)
-  .filter(([, city]) => city.geo)
-  .map(([slug, city]) => ({ slug, name: city.name, lat: city.geo.latitude, lng: city.geo.longitude }));
 
 const faqs = [
   { q: 'What is the minimum pickup price?', a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins." },
@@ -179,20 +176,7 @@ const homepageSchema = {
 >
   <main>
     <section class="hero" id="top">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="#top">
-          <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
-          <span>Dakota Valley</span>
-        </a>
-        <div class="nav-links">
-          <a href="#services">Services</a>
-          <a href="/pricing/">Pricing</a>
-          <a href="#areas">Service area</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <a class="nav-call" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-      </nav>
+      <SiteNav />
 
       <div class="dv-hero-grid">
         <div class="dv-hero-copy">
@@ -343,48 +327,7 @@ const homepageSchema = {
     <ImpactChart />
     <HeavyItems />
 
-    <section class="areas-v2" id="areas">
-      <header class="areas-head">
-        <p class="section-kicker">Service areas</p>
-        <h2>Minnesota coverage with routes that make sense.</h2>
-        <p class="section-copy">Dakota Valley serves cities and counties across Minnesota with route-aware scheduling and practical curbside or garage pickup.</p>
-      </header>
-
-      <div class="city-finder">
-        <button type="button" class="button secondary" id="city-finder-btn"><Icon name="lucide:locate-fixed" size={18} /> Find my city</button>
-        <p class="city-finder-result" id="city-finder-result" role="status" aria-live="polite"></p>
-      </div>
-
-      <div class="areas-search">
-        <label for="areas-search-input" class="sr-only">Search Minnesota cities</label>
-        <input id="areas-search-input" type="search" class="areas-search-input" placeholder="Search your city" aria-controls="areas-cities-list" />
-        <button type="button" class="areas-search-clear" id="areas-search-clear" aria-label="Clear search" style="display: none">×</button>
-      </div>
-
-      <div class="areas-featured" role="group" aria-label="Featured Minnesota cities">
-        {featuredCitySlugs.map((slug) => cities[slug] && (
-          <a href={`/quote/${slug}/`} class="areas-pill" data-track="city_click" data-astro-prefetch>{cities[slug].name}</a>
-        ))}
-        <button type="button" class="areas-pill areas-pill-allmn" id="areas-allmn-button">All Minnesota</button>
-      </div>
-
-      <div aria-live="polite" class="sr-only" id="areas-filter-announce"></div>
-
-      <details class="areas-accordion" id="areas-cities-details">
-        <summary><h3>View all {Object.keys(cities).length} Minnesota cities</h3></summary>
-        <div class="areas-link-grid" id="areas-cities-list">
-          {Object.entries(cities).map(([slug, city]) => (
-            <a href={`/cities/${slug}/`} class="areas-link" data-areas-name={city.name.toLowerCase()} data-track="city_click">{city.name}</a>
-          ))}
-        </div>
-      </details>
-
-      <div class="areas-featured" role="group" aria-label="Browse by county" style="margin-top: 18px">
-        {Object.entries(counties).map(([slug, county]) => (
-          <a href={`/counties/${slug}/`} class="areas-pill" data-track="county_click">{county.name}</a>
-        ))}
-      </div>
-    </section>
+    <ServiceAreaFinder heading="Minnesota coverage with routes that make sense." />
 
     <section class="section process" id="how">
       <p class="section-kicker">How it works</p>
@@ -449,71 +392,8 @@ const homepageSchema = {
 
     <div class="mobile-cta" aria-label="Quick actions">
       <a class="button primary" href={smsLink} data-track="sms_click">Text</a>
-      <a class="button secondary" href="#quote">Book</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
     </div>
   </main>
 
-  <script define:vars={{ cityGeo }}>
-    (function () {
-      const input = document.getElementById('areas-search-input');
-      const clearBtn = document.getElementById('areas-search-clear');
-      const citiesDetails = document.getElementById('areas-cities-details');
-      const allMnBtn = document.getElementById('areas-allmn-button');
-      const announce = document.getElementById('areas-filter-announce');
-
-      if (input) {
-        const cityLinks = document.querySelectorAll('#areas-cities-list [data-areas-name]');
-        let timeout;
-        function filter() {
-          const query = input.value.trim().toLowerCase();
-          let count = 0;
-          cityLinks.forEach((element) => {
-            const match = !query || element.dataset.areasName.includes(query);
-            element.style.display = match ? '' : 'none';
-            if (match) count++;
-          });
-          if (query) citiesDetails.open = true;
-          clearBtn.style.display = query ? 'grid' : 'none';
-          if (announce) announce.textContent = query ? (count === 0 ? 'No matches' : `Showing ${count} cities`) : '';
-        }
-        input.addEventListener('input', () => { clearTimeout(timeout); timeout = setTimeout(filter, 100); });
-        clearBtn.addEventListener('click', () => { input.value = ''; filter(); input.focus(); });
-        allMnBtn.addEventListener('click', () => { citiesDetails.open = true; citiesDetails.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-      }
-
-      const finderButton = document.getElementById('city-finder-btn');
-      const result = document.getElementById('city-finder-result');
-      if (finderButton && result && navigator.geolocation) {
-        finderButton.addEventListener('click', () => {
-          result.textContent = 'Locating…';
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const { latitude, longitude } = position.coords;
-              let best = null;
-              let bestDistance = Infinity;
-              cityGeo.forEach((city) => {
-                const latitudeDifference = city.lat - latitude;
-                const longitudeDifference = city.lng - longitude;
-                const distance = latitudeDifference * latitudeDifference + longitudeDifference * longitudeDifference;
-                if (distance < bestDistance) {
-                  bestDistance = distance;
-                  best = city;
-                }
-              });
-              if (best) {
-                result.innerHTML = `We serve <strong>${best.name}</strong>. <a href="/cities/${best.slug}/" data-track="city_click">See ${best.name} pickup details →</a>`;
-                window.dvTrack && window.dvTrack('city_click', { source: 'finder', city: best.slug });
-              } else {
-                result.textContent = 'Use the search box below to find your city.';
-              }
-            },
-            () => { result.textContent = 'No problem—search your city below.'; },
-            { timeout: 8000 }
-          );
-        });
-      } else if (finderButton) {
-        finderButton.style.display = 'none';
-      }
-    })();
-  </script>
 </Layout>

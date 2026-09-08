@@ -30,7 +30,7 @@ jobs:
       - name: Build
         # prebuild (reviews refresh + image-sitemap + og-card) runs automatically.
         # Review keys are optional — fetch-reviews skips cleanly when unset.
-        run: npm run build
+        run: npm run build && npm test
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
           GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}

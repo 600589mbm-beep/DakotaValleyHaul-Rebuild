@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import TelegramForm from '../../components/TelegramForm.astro';
+import { businessNode, BUSINESS_ID, SITE } from '../../data/schemaBusiness.js';
+import { PICKUP_SCOPE, QUOTE_POLICY } from '../../data/servicePolicy.js';
+
+const canonical = `${SITE}/quote/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    businessNode,
+    {
+      '@type': 'ContactPage',
+      '@id': `${canonical}#page`,
+      name: 'Get a Junk Removal Quote',
+      url: canonical,
+      mainEntity: { '@id': BUSINESS_ID },
+      description: 'Send item photos and pickup details for a written junk removal quote. Approve the total before confirming a pickup window.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Get a Quote', item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Layout
+  title="Get a Junk Removal Quote Minnesota | Dakota Valley"
+  description="Send photos and pickup details for a written junk removal quote in Minnesota. Eligible pickups have an $85 minimum. Approve the price before confirming pickup."
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="city-hero quote-hero">
+      <SiteNav />
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><span>Get a Quote</span></p>
+        <h1>Get a written junk removal quote.</h1>
+        <p class="hero-copy">Send photos and pickup details below. Eligible pickups have an <strong>$85 minimum</strong>; your exact total depends on the items, volume, weight, access and disposal needs.</p>
+        <p class="hero-copy" data-service-scope>{PICKUP_SCOPE}</p>
+      </div>
+    </section>
+
+    <section class="section quote-page" id="quote" aria-labelledby="quote-form-heading">
+      <div class="quote-page-form">
+        <p class="section-kicker">Start with your photos</p>
+        <h2 id="quote-form-heading">Tell us what needs to go.</h2>
+        <p class="quote-intro">Submitting this form requests a price. <strong>You approve the written total before confirming a pickup appointment.</strong></p>
+        <TelegramForm />
+      </div>
+      <aside class="quote-page-help" aria-labelledby="quote-next-heading">
+        <h2 id="quote-next-heading">What happens next?</h2>
+        <ol class="quote-next-steps">
+          <li><strong>Send your request.</strong><span>The crew reviews your photos, items, address and access details.</span></li>
+          <li><strong>Approve the written total.</strong><span>Review the full price for the agreed items before deciding to proceed.</span></li>
+          <li><strong>Confirm your pickup window.</strong><span>The crew confirms an available time with you. Your request alone does not reserve an appointment.</span></li>
+        </ol>
+        <h3>Helpful photos</h3>
+        <p>Show the whole pile, larger items from two or three angles, and the clear path to truck parking. Include dimensions for bulky items and mention anything that is not visible.</p>
+        <h3>Before pickup</h3>
+        <p>Have all approved items safely staged at the curb, in the driveway or in an accessible garage. Arrange suitable help with moving heavy items; the crew does not carry items out of living areas or on stairs.</p>
+        <p><a href="/pricing/">How pricing works</a> · <a href="/faq/">Pickup questions</a></p>
+      </aside>
+    </section>
+
+    <section class="section quote-policy" aria-labelledby="quote-policy-heading">
+      <h2 id="quote-policy-heading">Your quote covers the agreed job.</h2>
+      <p class="section-copy">{QUOTE_POLICY}</p>
+      <p><a href="/services/">See removal services</a> · <a href="/service-areas/">Check your service area</a></p>
+    </section>
+    <SiteFooter />
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href="sms:+19522325107">Text Photos</a>
+      <a class="button secondary" href="#quote">Get a Quote</a>
+    </div>
+  </main>
+</Layout>
+<style>
+  .quote-hero .city-hero-content { padding-top: 32px; padding-bottom: 36px; }
+  .quote-hero h1 { font-size: clamp(34px, 5vw, 54px); }
+  .quote-hero .hero-copy { max-width: 850px; }
+  .quote-page { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 38px; align-items: start; scroll-margin-top: 24px; }
+  .quote-page-form { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: var(--shadow); }
+  .quote-page-form h2 { font-size: clamp(26px, 4vw, 36px); }
+  .quote-intro { color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .quote-page-help { padding: 14px 0; }
+  .quote-page-help h2 { font-size: 28px; }
+  .quote-page-help h3 { margin: 28px 0 8px; }
+  .quote-page-help p { color: var(--muted); line-height: 1.7; }
+  .quote-next-steps { padding-left: 24px; display: grid; gap: 22px; }
+  .quote-next-steps li { padding-left: 5px; line-height: 1.6; }
+  .quote-next-steps li::marker { color: var(--blue); font-weight: 900; }
+  .quote-next-steps strong, .quote-next-steps span { display: block; }
+  .quote-next-steps span { color: var(--muted); }
+  .quote-page-help a, .quote-policy a { color: var(--blue); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 780px) {
+    .quote-page { grid-template-columns: 1fr; gap: 22px; }
+    .quote-page-form { padding: 22px 18px; }
+  }
+</style>

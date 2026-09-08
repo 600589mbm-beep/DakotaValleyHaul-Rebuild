@@ -1,4 +1,5 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
 import { PRICE_RANGE } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../../data/booking.js';
@@ -100,13 +101,7 @@ const schema = {
 >
   <main>
     <section class="city-hero">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/" aria-label="Dakota Valley home">
-          <span class="brand-mark"><Icon name="lucide:truck" size={22} /></span>
-          <span>Dakota Valley</span>
-        </a>
-        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={16} /> Text {phoneDisplay}</a>
-      </nav>
+      <SiteNav />
 
       <div class="city-hero-content">
         <p class="breadcrumb">
@@ -122,7 +117,7 @@ const schema = {
         <div class="hero-actions">
           <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
+          <a class="button secondary" href="/quote/"><Icon name="lucide:camera" size={18} /> Get a Quote</a>
         </div>
         <p class="hero-meta">
           <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; Loads from $85 &middot; Curbside and garage pickup
@@ -291,7 +286,7 @@ const schema = {
       <div class="hero-actions">
         <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={16} /> Text {phoneDisplay}</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-        <a class="button secondary" href="/#quote">Use the quote helper</a>
+        <a class="button secondary" href="/quote/">Get a Quote</a>
       </div>
     </section>
 
@@ -299,7 +294,7 @@ const schema = {
 
     <div class="mobile-cta" aria-label="Mobile contact actions">
       <a class="button primary" href={citySms}>Text</a>
-      <a class="button secondary" href="/#quote">Book</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
     </div>
   </main>
 </Layout>

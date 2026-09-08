@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ServiceAreaFinder from '../components/ServiceAreaFinder.astro';
+import { businessNode, BUSINESS_ID, SITE } from '../data/schemaBusiness.js';
+import { COVERAGE_POLICY, PICKUP_SCOPE } from '../data/servicePolicy.js';
+
+const canonical = `${SITE}/service-areas/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    businessNode,
+    {
+      '@type': 'CollectionPage',
+      '@id': `${canonical}#page`,
+      name: 'Minnesota Junk Removal Service Areas',
+      url: canonical,
+      about: { '@id': BUSINESS_ID },
+      description: 'Find city and county pickup information, search by city or ZIP code, and request confirmation for your address.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Service areas', item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Layout
+  title="Minnesota Junk Removal Service Areas | Dakota Valley"
+  description="Search Dakota Valley's Minnesota service areas by city or ZIP code. Read local pickup information and confirm route availability for your address."
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="city-hero">
+      <SiteNav />
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><span>Service areas</span></p>
+        <h1>Find junk removal near you in Minnesota.</h1>
+        <p class="hero-copy">Search your city or ZIP code to find local pickup information. From Apple Valley and Eagan to communities across Minnesota, availability depends on your address and the crew's route.</p>
+        <p class="hero-copy">{COVERAGE_POLICY}</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#areas">Find your city or ZIP</a>
+          <a class="button secondary" href="/quote/">Get a Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <ServiceAreaFinder />
+
+    <section class="section" aria-labelledby="address-check-title">
+      <div class="section-head"><div>
+        <p class="section-kicker">Plan your pickup</p>
+        <h2 id="address-check-title">Your address helps us confirm the details.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        <article class="city-service-card">
+          <h3>Send the pickup location</h3>
+          <p>Include the street address, city and ZIP code. A ZIP can cover more than one community, so the full address is needed to confirm service.</p>
+        </article>
+        <article class="city-service-card">
+          <h3>Show the items and access</h3>
+          <p>{PICKUP_SCOPE} Include photos of the items and the clear path to legal truck parking.</p>
+        </article>
+        <article class="city-service-card">
+          <h3>Approve the price, then the window</h3>
+          <p>Eligible pickups have an $85 minimum. Review the written total first, then confirm an available pickup window with the crew. Submitting a request does not reserve an appointment.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section city-cta">
+      <div>
+        <h2>Can't find your city?</h2>
+        <p>Send your address and item photos so the crew can check your location. A missing search result does not confirm or rule out service.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="/quote/">Get a Quote</a>
+        <a class="button secondary" href="sms:+19522325107">Text your address</a>
+      </div>
+    </section>
+    <SiteFooter />
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href="sms:+19522325107">Text Photos</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
+    </div>
+  </main>
+</Layout>

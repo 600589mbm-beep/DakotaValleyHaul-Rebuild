@@ -1,4 +1,5 @@
 ---
+import SiteNav from '../components/SiteNav.astro';
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -11,10 +12,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 >
   <main>
     <section class="city-hero">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
-        <a class="nav-call" href="sms:+19522325107"><Icon name="lucide:message-square-text" size={18} /> Text (952) 232-5107</a>
-      </nav>
+      <SiteNav />
       <div class="city-hero-content" style="text-align: center">
         <h1>Page not found</h1>
         <p class="hero-copy" style="margin: 0 auto 24px">

@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { businessNode, BUSINESS_ID, SITE } from '../data/schemaBusiness.js';
+import { PRICE_FLOOR_DETAIL, QUOTE_POLICY, SCHEDULING_POLICY, COVERAGE_POLICY, NO_INSIDE_PICKUP, PICKUP_REQUIREMENTS, UNATTENDED_POLICY, SPECIALTY_POLICY } from '../data/servicePolicy.js';
+
+const canonical = `${SITE}/faq/`;
+const groups = [
+  {
+    title: 'Quotes, pricing and pickup times',
+    questions: [
+      { q: 'What is the minimum pickup price?', a: PRICE_FLOOR_DETAIL },
+      { q: 'Does Get a Quote reserve an appointment?', a: 'No. The form sends your photos and details to the crew for review. You approve the written price first, then confirm an available pickup window with the crew. A quote request alone does not reserve a pickup.' },
+      { q: 'What should I include in my quote request?', a: 'Include your name, phone number, pickup address, city or ZIP code, an item list and clear photos. Show the whole pile, large items from more than one angle, and the loading path. Mention item condition and any access restrictions that could affect pickup.' },
+      { q: 'Will the quoted price change when the crew arrives?', a: QUOTE_POLICY },
+      { q: 'When is the soonest you can pick up?', a: SCHEDULING_POLICY },
+    ],
+  },
+  {
+    title: 'Service areas and preparing your items',
+    questions: [
+      { q: 'How do I check whether you serve my address?', a: `Search the service-area page by city or ZIP code, then send your full pickup address. ${COVERAGE_POLICY}` },
+      { q: 'Can the crew pick up items inside my home?', a: NO_INSIDE_PICKUP },
+      { q: 'How should I prepare for pickup?', a: PICKUP_REQUIREMENTS },
+      { q: 'Do I need to be home during pickup?', a: UNATTENDED_POLICY },
+      { q: 'Can you collect items from an estate, attic or basement cleanout?', a: 'Yes, approved nonhazardous items can be collected after they are safely staged at the curb, in the driveway or in an accessible garage. The crew does not sort rooms, enter living areas or carry items on stairs. Arrange suitable staging help before the confirmed pickup window.' },
+    ],
+  },
+  {
+    title: 'Accepted items and special projects',
+    questions: [
+      { q: 'What items can I request for removal?', a: 'You can request furniture, appliances, mattresses, electronics, scrap metal, yard debris and general household items. Send photos and details so the crew can confirm acceptance and the full price for your items.' },
+      { q: 'What items are not accepted?', a: 'Hazardous waste, medical waste, asbestos, biological waste and explosives are not accepted. If you are unsure about an item, describe it and send a photo before arranging pickup.' },
+      { q: 'Do you recycle or donate items?', a: 'Usable furniture and household goods are routed for donation when practical, and recyclable material is sent to appropriate facilities. Routing depends on item condition, material type and facility acceptance; donation cannot be promised for every item.' },
+      { q: 'How are hot tubs, sheds, fences and rentals priced?', a: `${SPECIALTY_POLICY} Include photos, dimensions, the pickup address and access details so the crew can assess what is needed.` },
+    ],
+  },
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    businessNode,
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#page`,
+      name: 'Dakota Valley Junk Removal Frequently Asked Questions',
+      url: canonical,
+      about: { '@id': BUSINESS_ID },
+      mainEntity: groups.flatMap((group) => group.questions).map(({ q, a }) => ({
+        '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'FAQ', item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Layout
+  title="Junk Removal FAQ: Quotes & Pickup | Dakota Valley"
+  description="Answers about Dakota Valley junk removal pricing, photo quotes, accepted items, service areas and safe curbside or garage pickup preparation."
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="city-hero">
+      <SiteNav />
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><span>FAQ</span></p>
+        <h1>Junk removal questions, answered.</h1>
+        <p class="hero-copy">Know what pickup includes, what to send for an accurate quote and how scheduling works before you make plans.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="/quote/">Get a Quote</a>
+          <a class="button secondary" href="/pricing/">See pricing details</a>
+        </div>
+      </div>
+    </section>
+    {groups.map((group, groupIndex) => (
+      <section class="section faq-group" aria-labelledby={`faq-group-${groupIndex}`}>
+        <div class="section-head"><h2 id={`faq-group-${groupIndex}`}>{group.title}</h2></div>
+        <div class="faq-list">
+          {group.questions.map(({ q, a }, index) => (
+            <details class="faq-card" open={groupIndex === 0 && index === 0}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+    <section class="section city-cta">
+      <div>
+        <h2>Have a question about your items?</h2>
+        <p>Send photos and explain what you need removed. The crew can review your specific items, address and access before you approve a price.</p>
+        <p><a class="help-link" href="/services/">Browse removal services</a> · <a class="help-link" href="/service-areas/">Check your service area</a></p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="/quote/">Get a Quote</a>
+        <a class="button secondary" href="sms:+19522325107">Text a question</a>
+      </div>
+    </section>
+    <SiteFooter />
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href="sms:+19522325107">Text Photos</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
+    </div>
+  </main>
+</Layout>
+<style>
+  .faq-group { max-width: 940px; }
+  .help-link { font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+</style>

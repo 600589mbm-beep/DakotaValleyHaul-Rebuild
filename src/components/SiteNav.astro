@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props { smsLink?: string; }
+const { smsLink = 'sms:+19522325107' } = Astro.props;
+const links = [
+  { href: '/services/', label: 'Services' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/service-areas/', label: 'Service Areas' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/quote/', label: 'Get a Quote' },
+];
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
+---
+<nav class="nav site-nav" aria-label="Primary navigation">
+  <a class="brand" href="/" aria-label="Dakota Valley Junk Removal home">
+    <span>Dakota Valley Junk Removal</span>
+  </a>
+  <div class="nav-links site-nav-desktop">
+    {links.map(({ href, label }) => <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>)}
+  </div>
+  <a class="nav-call site-nav-contact" href={smsLink} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text (952) 232-5107</a>
+  <details class="site-mobile-menu">
+    <summary aria-controls="site-mobile-links"><Icon name="lucide:menu" size={20} /><span>Menu</span><Icon name="lucide:chevron-down" size={16} class="menu-chevron" /></summary>
+    <div id="site-mobile-links" class="site-mobile-links">
+      {links.map(({ href, label }) => <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}<Icon name="lucide:arrow-up-right" size={16} /></a>)}
+      <a href={smsLink} data-track="sms_click"><span>Text (952) 232-5107</span><Icon name="lucide:message-square-text" size={18} /></a>
+    </div>
+  </details>
+</nav>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.site-mobile-menu').forEach((menu) => {
+    const summary = menu.querySelector('summary');
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary?.focus();
+      }
+    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { menu.open = false; }));
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    });
+    window.matchMedia('(min-width: 1101px)').addEventListener('change', (event) => {
+      if (event.matches) menu.open = false;
+    });
+  });
+</script>
+
+<style>
+  .site-nav { position: relative; align-items: center; gap: 16px; }
+  .site-nav-desktop { gap: 17px; font-size: 14px; white-space: nowrap; }
+  .site-nav-contact { font-size: 14px; white-space: nowrap; }
+  .site-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+  .site-nav a:focus-visible, .site-mobile-menu summary:focus-visible { outline: 3px solid #f4b22d; outline-offset: 4px; }
+  .site-mobile-menu { display: none; }
+  @media (max-width: 1100px) {
+    .site-nav { align-items: center; flex-wrap: wrap; gap: 0; }
+    .site-nav-desktop, .site-nav-contact { display: none; }
+    .site-mobile-menu { display: block; flex-basis: 100%; }
+    .site-mobile-menu summary {
+      position: absolute; top: 26px; right: 0; min-height: 44px; padding: 10px 12px;
+      display: flex; align-items: center; gap: 7px; list-style: none; cursor: pointer;
+      border: 1px solid rgba(255,255,255,.6); border-radius: 8px; color: #fff;
+      background: #0c2748; font-weight: 800; font-size: 15px;
+    }
+    .site-mobile-menu summary::-webkit-details-marker { display: none; }
+    .site-mobile-menu[open] .menu-chevron { transform: rotate(180deg); }
+    .site-mobile-links { margin-top: 16px; padding: 8px; border: 1px solid #dae3ee; border-radius: 12px; background: #fff; box-shadow: 0 12px 24px #00162c33; }
+    .site-mobile-links a { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 12px; border-radius: 6px; color: #0c2748; font-weight: 800; }
+    .site-mobile-links a:hover, .site-mobile-links a:focus-visible, .site-mobile-links a[aria-current="page"] { color: #0c2748; background: #edf4fb; }
+    .site-mobile-links a[href="/quote/"] { background: #f4b22d; }
+  }
+  @media (max-width: 760px) { .site-mobile-menu summary { top: 24px; } }
+  @media (max-width: 520px) { .site-mobile-menu summary { top: 21px; padding: 9px; gap: 5px; } }
+</style>

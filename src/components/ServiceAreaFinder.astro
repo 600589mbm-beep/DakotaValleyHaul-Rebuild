@@ -1,0 +1,150 @@
+---
+import { cities } from '../data/cities.js';
+import { counties } from '../data/counties.js';
+import { serviceAreaZips } from '../data/serviceAreaZips.js';
+
+interface Props {
+  id?: string;
+  heading?: string;
+  showHeading?: boolean;
+  expanded?: boolean;
+}
+
+const {
+  id = 'areas',
+  heading = 'Find junk removal in your Minnesota city.',
+  showHeading = true,
+  expanded = false,
+} = Astro.props;
+const featuredCitySlugs = ['minneapolis', 'st-paul', 'eagan', 'bloomington', 'edina', 'maple-grove', 'woodbury'];
+const cityEntries = Object.entries(cities).sort(([, a], [, b]) => a.name.localeCompare(b.name));
+const inputId = `${id}-search-input`;
+const listId = `${id}-cities-list`;
+const helpId = `${id}-search-help`;
+const statusId = `${id}-filter-announce`;
+---
+
+<section class="areas-v2 service-area-finder" id={id} aria-label="Find your service area" data-service-area-finder>
+  {showHeading && (
+    <header class="areas-head">
+      <p class="section-kicker">Service areas</p>
+      <h2>{heading}</h2>
+      <p class="section-copy">Find your city page, then send photos for a written quote. The crew confirms your pickup address and an available window before you schedule.</p>
+    </header>
+  )}
+
+  <form class="areas-search" role="search" aria-label="Search service areas" data-area-search-form>
+    <label for={inputId}>Search by city or ZIP code</label>
+    <div class="areas-input-wrap">
+      <input id={inputId} type="search" class="areas-search-input" placeholder="e.g. Apple Valley or 55124" aria-controls={listId} aria-describedby={`${helpId} ${statusId}`} autocomplete="off" spellcheck="false" data-area-search />
+      <button type="button" class="areas-search-clear" id={`${id}-search-clear`} aria-label="Clear city or ZIP search" data-area-clear hidden>×</button>
+    </div>
+    <p id={helpId} class="areas-search-help">ZIP codes may include more than one city. Choose the page for your pickup location.</p>
+  </form>
+
+  <div class="areas-featured" role="group" aria-label="Featured Minnesota cities">
+    {featuredCitySlugs.map((slug) => cities[slug] && (
+      <a href={`/quote/${slug}/`} class="areas-pill" data-track="city_click" data-astro-prefetch>{cities[slug].name}</a>
+    ))}
+    <button type="button" class="areas-pill areas-pill-allmn" id={`${id}-allmn-button`} aria-controls={listId} data-area-reset>All Minnesota</button>
+  </div>
+
+  <p class="areas-result-count" id={statusId} role="status" aria-live="polite" aria-atomic="true" data-area-status>Browse all {cityEntries.length} Minnesota cities.</p>
+  <div class="areas-empty-state" data-area-empty hidden>
+    <p>Try your city name or check your ZIP code. If your location is not listed, <a href="/quote/">get a quote and ask about your address</a>.</p>
+  </div>
+
+  <details class="areas-accordion" id={`${id}-cities-details`} data-area-details open={expanded}>
+    <summary><h3 data-area-summary>View all {cityEntries.length} Minnesota cities</h3></summary>
+    <div class="areas-link-grid" id={listId}>
+      {cityEntries.map(([slug, city]) => (
+        <a href={`/cities/${slug}/`} class="areas-link" data-areas-name={city.name} data-areas-slug={slug} data-areas-zips={(serviceAreaZips[slug] || []).join(',')} data-track="city_click">{city.name}</a>
+      ))}
+    </div>
+  </details>
+
+  <p class="areas-coverage-note">Search includes common ZIP codes for the cities below. A ZIP match helps you find a city page; pickup availability is confirmed with your quote.</p>
+  <div class="areas-featured areas-counties" role="group" aria-label="Browse by county">
+    {Object.entries(counties).map(([slug, county]) => (
+      <a href={`/counties/${slug}/`} class="areas-pill" data-track="county_click">{county.name}</a>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { searchServiceAreas, serviceAreaResultMessage } from '../lib/serviceAreaSearch.js';
+
+  function initializeAreaFinders() {
+    document.querySelectorAll<HTMLElement>('[data-service-area-finder]').forEach((finder) => {
+      if (finder.dataset.initialized === 'true') return;
+      finder.dataset.initialized = 'true';
+      const input = finder.querySelector<HTMLInputElement>('[data-area-search]')!;
+      const form = finder.querySelector<HTMLFormElement>('[data-area-search-form]')!;
+      const clear = finder.querySelector<HTMLButtonElement>('[data-area-clear]')!;
+      const reset = finder.querySelector<HTMLButtonElement>('[data-area-reset]')!;
+      const details = finder.querySelector<HTMLDetailsElement>('[data-area-details]')!;
+      const summary = finder.querySelector<HTMLElement>('[data-area-summary]')!;
+      const status = finder.querySelector<HTMLElement>('[data-area-status]')!;
+      const empty = finder.querySelector<HTMLElement>('[data-area-empty]')!;
+      const links = [...finder.querySelectorAll<HTMLAnchorElement>('[data-areas-slug]')];
+      const areas = links.map((link) => ({
+        slug: link.dataset.areasSlug!,
+        name: link.dataset.areasName!,
+        zipCodes: (link.dataset.areasZips || '').split(',').filter(Boolean),
+      }));
+
+      function filter() {
+        const result = searchServiceAreas(areas, input.value);
+        const matches = new Set(result.matches.map((area) => area.slug));
+        links.forEach((link) => { link.hidden = !matches.has(link.dataset.areasSlug!); });
+        clear.hidden = !input.value;
+        status.textContent = serviceAreaResultMessage(result);
+        empty.hidden = result.matches.length > 0 || result.kind === 'incomplete-zip';
+        summary.textContent = result.kind === 'all'
+          ? `View all ${areas.length} Minnesota cities`
+          : `${result.matches.length} matching ${result.matches.length === 1 ? 'city' : 'cities'}`;
+        if (result.kind !== 'all') details.open = true;
+      }
+
+      function clearSearch() {
+        input.value = '';
+        filter();
+        details.open = true;
+        input.focus();
+      }
+
+      input.addEventListener('input', filter);
+      form.addEventListener('submit', (event) => { event.preventDefault(); filter(); details.open = true; });
+      clear.addEventListener('click', clearSearch);
+      reset.addEventListener('click', clearSearch);
+      filter();
+    });
+  }
+
+  initializeAreaFinders();
+  document.addEventListener('astro:page-load', initializeAreaFinders);
+</script>
+
+<style>
+  .service-area-finder [hidden] { display: none !important; }
+  .areas-search { max-width: 520px; margin-bottom: 22px; }
+  .areas-search label { display: block; margin-bottom: 8px; color: var(--ink); font-weight: 700; }
+  .areas-input-wrap { position: relative; }
+  .areas-search-input { padding-right: 58px; }
+  .areas-search-clear { width: 40px; height: 40px; right: 5px; }
+  .areas-search-help, .areas-coverage-note { color: var(--muted); line-height: 1.6; font-size: 0.9375rem; }
+  .areas-search-help { margin: 10px 0 0; }
+  .areas-featured { margin-bottom: 24px; }
+  .areas-result-count { color: var(--ink); font-weight: 700; margin: 24px 0 12px; overflow-wrap: anywhere; }
+  .areas-empty-state { padding: 16px 20px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .areas-empty-state p { margin: 0; line-height: 1.6; }
+  .areas-empty-state a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+  .areas-link { padding: 10px 0; font-size: 1rem; min-height: 44px; }
+  .areas-coverage-note { margin: 8px 0 24px; }
+  .areas-counties { margin-top: 18px; }
+  @media (max-width: 420px) {
+    .areas-featured { gap: 8px; }
+    .areas-pill { padding: 11px 15px; }
+    .areas-link-grid { grid-template-columns: 1fr; }
+  }
+</style>

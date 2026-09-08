@@ -2,98 +2,96 @@
 import { Icon } from 'astro-icon/components';
 import { WORKER_URL } from '../data/booking.js';
 ---
-<form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} novalidate>
-  <p class="tg-form-lede">Send your <strong>name</strong>, <strong>address</strong>, <strong>phone</strong>, <strong>item details</strong>, and <strong>photos</strong> for a written quote. Curbside, driveway and accessible-garage pickup only; no inside-home pickup. This request does not reserve an appointment.</p>
+<form class="tg-form" id="tg-form" data-worker-url={WORKER_URL} action={WORKER_URL} method="post" enctype="multipart/form-data" aria-label="Get a Quote">
+  <p class="tg-form-lede">Send your details and photos for a written quote. Curbside, driveway and accessible-garage pickup only; no inside-home pickup. <strong>You approve the total price before confirming a pickup window.</strong> This request does not reserve an appointment.</p>
+  <p class="tg-required-note">All fields are required.</p>
 
   <div class="tg-form-row">
     <label>
-      <span>Name <em>*</em></span>
-      <input name="name" type="text" required autocomplete="name" />
+      <span>Name <em aria-hidden="true">*</em></span>
+      <input id="tg-name" name="name" type="text" required maxlength="80" autocomplete="name" aria-describedby="tg-name-error" />
+      <span class="tg-field-error" id="tg-name-error" hidden></span>
     </label>
     <label>
-      <span>Phone <em>*</em></span>
-      <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(xxx) xxx-xxxx" />
+      <span>Phone <em aria-hidden="true">*</em></span>
+      <input id="tg-phone" name="phone" type="tel" required maxlength="25" autocomplete="tel" inputmode="tel" placeholder="(952) 555-0123" aria-describedby="tg-phone-error" />
+      <span class="tg-field-error" id="tg-phone-error" hidden></span>
     </label>
   </div>
 
   <label class="tg-form-stack">
-    <span>Pickup address <em>*</em></span>
-    <input name="address" type="text" required placeholder="Street address" autocomplete="street-address" />
+    <span>Pickup address <em aria-hidden="true">*</em></span>
+    <input id="tg-address" name="address" type="text" required maxlength="160" placeholder="Street address" autocomplete="street-address" aria-describedby="tg-address-error" />
+    <span class="tg-field-error" id="tg-address-error" hidden></span>
   </label>
 
   <label class="tg-form-stack">
-    <span>City, county or ZIP <em>*</em></span>
-    <input name="city" type="text" required placeholder="e.g., Apple Valley or 55124" />
+    <span>City, county or ZIP <em aria-hidden="true">*</em></span>
+    <input id="tg-city" name="city" type="text" required maxlength="100" placeholder="e.g., Apple Valley or 55124" aria-describedby="tg-city-error" />
+    <span class="tg-field-error" id="tg-city-error" hidden></span>
   </label>
 
-  <label class="tg-form-stack tg-form-photos">
-    <span>Photos <em>*</em> <small>(phone camera is fine — snap 2–3 angles + a doorway or person for scale)</small></span>
-    <input name="photos" type="file" accept="image/*" capture="environment" multiple required />
-  </label>
+  <div class="tg-form-stack tg-form-photos">
+    <label for="tg-photos">
+      <span>Photos <em aria-hidden="true">*</em> <small>(2–3 angles help us see the size and amount)</small></span>
+      <input id="tg-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" multiple required aria-describedby="tg-photos-help tg-photos-count tg-photos-error" />
+    </label>
+    <p id="tg-photos-help" class="tg-photo-help">JPG, PNG, WebP or HEIC/HEIF. Up to <strong>6 photos, 10 MB each, 25 MB total.</strong> You can add photos in more than one selection.</p>
+    <span class="tg-field-error" id="tg-photos-error" hidden></span>
+    <p id="tg-photos-count" class="tg-photo-help" aria-live="polite" aria-atomic="true">No photos selected.</p>
+    <ul class="tg-photo-list" id="tg-photo-list" aria-label="Selected photos" hidden></ul>
+    <p id="tg-photos-notice" class="tg-photo-notice" role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
 
   <label class="tg-form-stack">
-    <span>What needs to go? <em>*</em></span>
-    <textarea name="details" rows="3" required placeholder="e.g., One sofa and two mattresses in the garage."></textarea>
+    <span>What needs to go? <em aria-hidden="true">*</em></span>
+    <textarea id="tg-details" name="details" rows="3" required maxlength="2000" placeholder="e.g., One sofa and two mattresses in the garage." aria-describedby="tg-details-error"></textarea>
+    <span class="tg-field-error" id="tg-details-error" hidden></span>
   </label>
 
   {/* Honeypot */}
   <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
 
   <button type="submit" class="button primary tg-form-submit">
-    <Icon name="lucide:send" size={18} /> Request my written quote
+    <Icon name="lucide:send" size={18} /> <span class="tg-submit-label">Request my written quote</span>
   </button>
 
-  <p class="tg-form-status" id="tg-form-status" role="status" aria-live="polite"></p>
+  <p class="tg-form-status" id="tg-form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
 
   <p class="tg-form-fallback">
     <Icon name="lucide:message-square-text" size={14} />
-    Prefer text? Send photos directly to <a href="sms:+19522325107">(952) 232-5107</a>.
+    <span>Prefer text? Send photos directly to <a href="sms:+19522325107">(952) 232-5107</a>.</span>
   </p>
+  <noscript><p>For photo previews and inline help, enable JavaScript. You can also text your details and photos to <a href="sms:+19522325107">(952) 232-5107</a>.</p></noscript>
 </form>
 
+<style>
+  .tg-form { min-width: 0; }
+  .tg-form-row > label { min-width: 0; }
+  .tg-form input, .tg-form textarea { min-width: 0; max-width: 100%; font-size: 16px; }
+  .tg-required-note, .tg-photo-help { margin: 0; color: var(--muted, #56616f); font-size: 13px; line-height: 1.5; }
+  .tg-form-photos { display: flex; flex-direction: column; gap: 6px; }
+  .tg-field-error { color: #a21919; font-size: 13px; font-weight: 700; line-height: 1.45; }
+  .tg-field-error[hidden] { display: none; }
+  .tg-form [aria-invalid="true"] { border: 2px solid #b81f1f; background: #fff8f8; }
+  .tg-photo-notice { margin: 0; color: #9a3412; font-size: 13px; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
+  .tg-photo-notice:empty { display: none; }
+  .tg-photo-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 4px 0; list-style: none; }
+  .tg-photo-list[hidden] { display: none; }
+  .tg-photo-list :global(.tg-photo-card) { min-width: 0; padding: 8px; border: 1px solid var(--line, #dce1e7); border-radius: 10px; background: #fff; }
+  .tg-photo-list :global(.tg-photo-preview) { width: 100%; height: 112px; object-fit: cover; border-radius: 6px; background: #f3f5f7; }
+  .tg-photo-list :global(.tg-photo-unavailable) { display: flex; align-items: center; justify-content: center; min-height: 112px; margin: 0; padding: 8px; border-radius: 6px; background: #f3f5f7; color: var(--muted, #56616f); font-size: 12px; text-align: center; }
+  .tg-photo-list :global([hidden]) { display: none; }
+  .tg-photo-list :global(.tg-photo-name) { margin: 6px 0 2px; overflow-wrap: anywhere; font-size: 12px; font-weight: 700; }
+  .tg-photo-list :global(.tg-photo-size) { margin: 0; font-size: 12px; color: var(--muted, #56616f); }
+  .tg-photo-list :global(.tg-photo-remove) { min-height: 44px; width: 100%; margin-top: 6px; padding: 8px; border: 1px solid var(--line, #dce1e7); border-radius: 6px; background: #f7f8fa; color: var(--ink, #1c2a3a); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .tg-photo-list :global(.tg-photo-remove:hover) { background: #edf1f5; }
+  .tg-photo-list :global(.tg-photo-remove:focus-visible) { outline: 2px solid var(--blue, #155bcc); outline-offset: 2px; }
+  .tg-form-status { overflow-wrap: anywhere; }
+  .tg-form-status:focus-visible { outline: 2px solid var(--blue, #155bcc); outline-offset: 4px; }
+</style>
+
 <script>
-  const form = document.getElementById('tg-form');
-  const status = document.getElementById('tg-form-status');
-  const submit = form?.querySelector('.tg-form-submit');
-  const workerUrl = form?.dataset.workerUrl;
-
-  const track = (e, p) => window.dvTrack && window.dvTrack(e, p);
-
-  if (form && status && submit && workerUrl) {
-    let started = false;
-    form.addEventListener('focusin', () => {
-      if (!started) { started = true; track('quote_form_started', { step: 'full' }); }
-    });
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      // honeypot
-      if (form.elements.botcheck && form.elements.botcheck.checked) return;
-
-      status.className = 'tg-form-status is-sending';
-      status.textContent = 'Sending to the crew…';
-      submit.disabled = true;
-
-      try {
-        const data = new FormData(form);
-        const res = await fetch(workerUrl, { method: 'POST', body: data });
-        const json = await res.json().catch(() => ({}));
-        if (json && json.success) {
-          status.className = 'tg-form-status is-success';
-          status.textContent = 'Your quote request was received. The crew will text you with pricing and available pickup times. Your pickup is not booked until the price and window are confirmed with you.';
-          track('quote_form_submitted', { step: 'full' });
-          form.reset();
-        } else {
-          const msg = (json && json.error) || 'Submission failed. Please text us at (952) 232-5107.';
-          status.className = 'tg-form-status is-error';
-          status.textContent = msg;
-        }
-      } catch (err) {
-        status.className = 'tg-form-status is-error';
-        status.textContent = 'Network error. Please text us at (952) 232-5107.';
-      } finally {
-        submit.disabled = false;
-      }
-    });
-  }
+  import { initQuoteForm } from '../lib/quote-form.js';
+  initQuoteForm();
 </script>
