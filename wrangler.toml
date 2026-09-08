@@ -7,3 +7,5 @@ workers_dev = true
 # TELEGRAM_BOT_TOKEN
 # TELEGRAM_CHAT_ID
 # TELEGRAM_THREAD_ID optional
+# LEAD_STORE and TELEGRAM_WEBHOOK_SECRET are prepared by the deployment workflow.
+# Generated namespace configuration is kept out of source control.

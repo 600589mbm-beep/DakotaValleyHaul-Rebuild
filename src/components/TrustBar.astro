@@ -6,7 +6,7 @@
 import { Icon } from 'astro-icon/components';
 const { aggregate = { ratingValue: 5.0, reviewCount: 0 }, compact = false, verified = false } = Astro.props;
 const rounded = Math.round(aggregate.ratingValue * 10) / 10;
-// Only name the platform ("on Google") once reviews are verified-sourced.
+// aggregate.reviewCount represents Google reviews; totalVerifiedReviewCount also includes Yelp.
 const ratingSuffix = verified ? ' on Google' : ' rating';
 const partners = ['Bridging', "Arc's Value Village", 'Savers', 'R2 Certified Recyclers'];
 ---

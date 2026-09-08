@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - telegram-worker.js
+      - worker/**
+      - src/lib/lead-attribution.js
+      - scripts/configure-lead-tracking.mjs
       - wrangler.toml
       - .github/workflows/deploy-worker.yml
   workflow_dispatch:
@@ -20,6 +23,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install test dependencies
+        run: npm ci
+      - name: Test Worker and attribution
+        run: node --test src/lib/lead-attribution.test.js worker/lead-tracking.test.js
+      - name: Prepare private lead reporting
+        run: node scripts/configure-lead-tracking.mjs prepare
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       - name: Ensure workers.dev subdomain
         shell: bash
         run: |
@@ -41,10 +58,15 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: deploy --config wrangler.generated.toml
           secrets: |
             TELEGRAM_BOT_TOKEN
             TELEGRAM_CHAT_ID
+            TELEGRAM_WEBHOOK_SECRET
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Enable private Telegram job status controls
+        run: node scripts/configure-lead-tracking.mjs register
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

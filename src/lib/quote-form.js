@@ -1,3 +1,5 @@
+import { attributionDetails, captureAttribution, cleanAttribution, clearPendingLead, hasPartialPendingLead, markPendingLeadPartial, pendingLeadId } from './lead-attribution.js';
+
 // Customer upload limits keep a photo quote practical on a mobile connection.
 // The existing Worker accepts the same repeated `photos` multipart field.
 export const PHOTO_LIMITS = Object.freeze({ count: 6, perFile: 10 * 1024 * 1024, total: 25 * 1024 * 1024 });
@@ -165,6 +167,35 @@ export function initQuoteForm(root = document) {
     });
   };
 
+  const startAnother = root.createElement('button');
+  startAnother.type = 'button';
+  startAnother.className = 'button secondary tg-start-another';
+  startAnother.textContent = 'Start another quote';
+  startAnother.setAttribute('aria-describedby', status.id);
+  const updateStartAnother = () => {
+    startAnother.hidden = !hasPartialPendingLead(view);
+    // Keep the hidden state authoritative over the shared button display rule.
+    startAnother.style.display = startAnother.hidden ? 'none' : '';
+  };
+  updateStartAnother();
+  status.after(startAnother);
+  if (!startAnother.hidden) {
+    setStatus('error', 'Your earlier quote details were received, but some photos did not arrive. Text missing photos to (952) 232-5107. For a separate pickup request, choose Start another quote.');
+  }
+  startAnother.addEventListener('click', () => {
+    if (sending) return;
+    clearPendingLead(view);
+    form.reset();
+    photos = [];
+    renderPhotos();
+    photoNotice.textContent = '';
+    fieldNames.forEach((name) => setFieldError(name, ''));
+    started = false;
+    updateStartAnother();
+    setStatus('success', 'A new quote form is ready for a separate pickup request. Your earlier quote details were already received; text any missing photos for that request to (952) 232-5107.');
+    field('name').focus();
+  });
+
   form.addEventListener('focusin', () => {
     if (!started) { started = true; track('quote_form_started', { step: 'full' }); }
   });
@@ -199,6 +230,13 @@ export function initQuoteForm(root = document) {
     data.delete('photos');
     photos.forEach((file) => data.append('photos', file, file.name));
     fieldNames.filter((name) => name !== 'photos').forEach((name) => data.set(name, field(name).value.trim()));
+    const attribution = cleanAttribution(captureAttribution(view));
+    const leadId = pendingLeadId(view);
+    data.set('leadId', leadId);
+    data.set('attribution', JSON.stringify(attribution));
+    // Older deployed bridges forward details unchanged, so source/reference
+    // remain useful even before the upgraded Worker reaches production.
+    data.set('details', `${field('details').value.trim()}\n\n${attributionDetails(attribution, leadId)}`);
     sending = true;
     form.setAttribute('aria-busy', 'true');
     const controls = Array.from(form.querySelectorAll('input, textarea, button'));
@@ -212,23 +250,29 @@ export function initQuoteForm(root = document) {
       const response = await view.fetch(workerUrl, { method: 'POST', body: data, signal: controller.signal });
       const result = await response.json().catch(() => ({}));
       if (response.ok && result?.success === true) {
+        clearPendingLead(view);
         form.reset();
         photos = [];
         renderPhotos();
         photoNotice.textContent = '';
         fieldNames.forEach((name) => setFieldError(name, ''));
         setStatus('success', 'Your quote request was received. We will text you the total price and available pickup windows. You approve the price before confirming pickup; this request does not reserve an appointment.');
-        track('quote_form_submitted', { step: 'full' });
+        track('quote_form_submitted', { step: 'full', delivery: 'received' });
       } else {
         setStatus('error', quoteFailureMessage(response.status, typeof result?.error === 'string' ? result.error : ''));
+        const partial = result?.received === true || /request was received.*not every photo/i.test(result?.error || '');
+        if (partial) markPendingLeadPartial(view);
+        track(partial ? 'quote_form_partial' : 'quote_form_failed', { step: 'full', delivery: partial ? 'partial' : 'failed' });
       }
     } catch {
       setStatus('error', quoteFailureMessage(0));
+      track('quote_form_failed', { step: 'full', delivery: 'failed' });
     } finally {
       view.clearTimeout(timeout);
       sending = false;
       form.removeAttribute('aria-busy');
       controls.forEach((control) => { control.disabled = false; });
+      updateStartAnother();
       submitLabel.textContent = 'Request my written quote';
       status.focus();
     }

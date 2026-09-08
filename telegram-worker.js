@@ -1,6 +1,8 @@
 // Free Telegram bridge for GitHub Pages.
 // Deploy this file as a Cloudflare Worker and set these Worker secrets:
 // TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, optional TELEGRAM_THREAD_ID.
+import { cleanAttribution, ID_PATTERN } from './src/lib/lead-attribution.js';
+import { handleTelegramWebhook, leadButtons, readLead, recordVisit, saveLead, trackingEnabled } from './worker/lead-tracking.js';
 
 const ALLOWED_ORIGINS = new Set([
   'https://dakotavalleyjunkremovalservice.com',
@@ -69,17 +71,25 @@ async function sendTelegramFile(apiBase, env, file, index, total, customerName) 
   photoForm.append('caption', caption);
   photoForm.append('photo', file, fileName);
   const photoResponse = await fetch(`${apiBase}/sendPhoto`, { method: 'POST', body: photoForm });
-  if (photoResponse.ok) return true;
+  const photoResult = await photoResponse.json().catch(() => ({}));
+  if (photoResponse.ok && photoResult.ok === true) return true;
 
   const documentForm = telegramForm(env);
   documentForm.append('caption', caption);
   documentForm.append('document', file, fileName);
   const documentResponse = await fetch(`${apiBase}/sendDocument`, { method: 'POST', body: documentForm });
-  return documentResponse.ok;
+  const documentResult = await documentResponse.json().catch(() => ({}));
+  return documentResponse.ok && documentResult.ok === true;
 }
 
 export default {
   async fetch(request, env) {
+    const path = new URL(request.url).pathname;
+    if (path === '/telegram-webhook') {
+      if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+      try { return await handleTelegramWebhook(request, env); }
+      catch { return new Response('Could not process update; Telegram may retry.', { status: 503 }); }
+    }
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(request) });
     }
@@ -92,12 +102,22 @@ export default {
         success: true,
         endpoint: 'dakota-valley-telegram-worker',
         configured: Boolean(token && chatId),
+        attributionStorage: Boolean(env.LEAD_STORE),
+        crewStatusTracking: trackingEnabled(env),
         needs: token && chatId ? [] : ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'].filter((key) => !clean(env[key])),
       });
     }
 
     if (request.method !== 'POST') {
       return json(request, { success: false, error: 'Method not allowed.' }, 405);
+    }
+
+    const origin = request.headers.get('Origin');
+    if (origin && !ALLOWED_ORIGINS.has(origin)) return json(request, { success: false, error: 'Origin not allowed.' }, 403);
+    if (path === '/events') {
+      if (!origin || !ALLOWED_ORIGINS.has(origin)) return json(request, { recorded: false }, 403);
+      try { return json(request, await recordVisit(request, env)); }
+      catch { return json(request, { recorded: false }, 400); }
     }
 
     if (!token || !chatId) {
@@ -134,13 +154,30 @@ export default {
         return json(request, { success: false, error: 'Please upload at least one photo.' }, 400);
       }
 
+      if (photos.length > 6 || photos.some((photo) => photo.size > 10 * 1024 * 1024) || photos.reduce((sum, photo) => sum + photo.size, 0) > 25 * 1024 * 1024) {
+        return json(request, { success: false, error: 'Use up to 6 photos, 10 MB each and 25 MB total.' }, 413);
+      }
+      const suppliedId = clean(formData.get('leadId'));
+      const leadId = ID_PATTERN.test(suppliedId) ? suppliedId : crypto.randomUUID();
+      let attribution = cleanAttribution();
+      try { attribution = cleanAttribution(JSON.parse(clean(formData.get('attribution')) || '{}')); } catch { /* optional attribution never blocks a quote */ }
+      let existing = null;
+      try { existing = await readLead(env, leadId); } catch { /* Telegram remains available if reporting storage is down */ }
+      if (existing) {
+        return json(request, existing.delivery === 'received'
+          ? { success: true, received: true, leadId, photos: existing.photos, duplicate: true }
+          : { success: false, received: true, leadId, error: 'The request was received, but not every photo reached Telegram. Please text the photos as a backup.' }, existing.delivery === 'received' ? 200 : 502);
+      }
+
       const apiBase = `https://api.telegram.org/bot${token}`;
       const estimate = payload.estimateMin && payload.estimateMax
         ? `$${payload.estimateMin} - $${payload.estimateMax}`
         : 'Not provided';
 
       const message = [
-        '<b>New Dakota Valley Booking Request</b>',
+        '<b>New Dakota Valley Quote Request</b>',
+        `<b>Lead ID:</b> ${leadId}`,
+        '<i>A quote request is not a confirmed pickup. Send the written price, obtain approval, then confirm a window.</i>',
         '',
         `<b>Name:</b> ${escapeHtml(payload.name)}`,
         `<b>Phone:</b> ${escapeHtml(payload.phone)}`,
@@ -167,23 +204,49 @@ export default {
         })),
       });
 
-      if (!messageResponse.ok) {
-        return json(request, { success: false, error: 'Telegram rejected the booking message.' }, 502);
+      const messageResult = await messageResponse.json().catch(() => ({}));
+      if (!messageResponse.ok || messageResult.ok !== true || !messageResult.result?.message_id) {
+        return json(request, { success: false, received: false, error: 'Telegram rejected the quote message.' }, 502);
       }
+
+      const lead = {
+        id: leadId, attribution, status: 'received', delivery: 'partial', photos: 0,
+        message_id: messageResult.result.message_id,
+        created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+      };
+      let trackingSaved = false;
+      try { trackingSaved = await saveLead(env, lead); } catch { /* a reporting outage must not lose the customer's request */ }
 
       let sentPhotos = 0;
       for (const [index, photo] of photos.entries()) {
-        const sent = await sendTelegramFile(apiBase, env, photo, index, photos.length, payload.name);
-        if (sent) sentPhotos += 1;
+        try {
+          const sent = await sendTelegramFile(apiBase, env, photo, index, photos.length, payload.name);
+          if (sent) sentPhotos += 1;
+        } catch { /* details were received; preserve the partial-delivery acknowledgement */ }
+      }
+
+      lead.photos = sentPhotos;
+      lead.delivery = sentPhotos === photos.length ? 'received' : 'partial';
+      lead.updated_at = new Date().toISOString();
+      try { trackingSaved = await saveLead(env, lead); } catch { /* Telegram message retains the lead reference */ }
+      // Show crew status controls only after delivery finishes, so a crew tap
+      // cannot be overwritten by the in-flight photo-delivery update.
+      if (trackingEnabled(env) && trackingSaved) {
+        try {
+          await fetch(`${apiBase}/editMessageReplyMarkup`, {
+            method: 'POST', headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, message_id: lead.message_id, reply_markup: leadButtons(leadId) }),
+          });
+        } catch { /* quote delivery is already acknowledged independently */ }
       }
 
       if (sentPhotos !== photos.length) {
-        return json(request, { success: false, error: 'The request was received, but not every photo reached Telegram. Please text the photos as a backup.' }, 502);
+        return json(request, { success: false, received: true, leadId, error: 'The request was received, but not every photo reached Telegram. Please text the photos as a backup.' }, 502);
       }
 
-      return json(request, { success: true, photos: sentPhotos });
+      return json(request, { success: true, received: true, leadId, photos: sentPhotos, trackingSaved });
     } catch (error) {
-      return json(request, { success: false, error: 'Could not send the booking request.' }, 500);
+      return json(request, { success: false, error: 'Could not send the quote request.' }, 500);
     }
   },
 };

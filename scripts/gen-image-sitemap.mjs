@@ -13,15 +13,17 @@ const SITE = 'https://dakotavalleyjunkremovalservice.com';
 const { cities, getCitySlugs } = await import(join(root, 'src/data/cities.js'));
 const { services } = await import(join(root, 'src/data/services.js'));
 const { pickPhotos, buildAlt } = await import(join(root, 'src/data/photos.js'));
+const { beforeAfter } = await import(join(root, 'src/data/beforeAfter.js'));
 
 const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const entries = [];
 
-// Homepage — the lead illustration + branded card
+// Homepage — the actual displayed illustrations and shared social card.
 entries.push({ loc: `${SITE}/`, images: [
-  { url: `${SITE}/illustrations/truck-load.svg`, title: 'Dakota Valley Junk Removal truck loaded with furniture and appliances' },
-  { url: `${SITE}/og-card.png`, title: 'Dakota Valley Junk Removal — curbside & garage pickup across Minnesota' },
+  ...Array.from(new Map(beforeAfter.flatMap(pair => [pair.before, pair.after]).map(image => [image.src, image])).values())
+    .map(image => ({ url: `${SITE}${image.src}`, title: image.alt })),
+  { url: `${SITE}/og-card.png`, title: 'Dakota Valley Junk Removal — written photo quotes for staged pickup' },
 ]});
 
 // Service pages

@@ -1,6 +1,7 @@
 ---
 import SiteNav from '../../components/SiteNav.astro';
-import { PRICE_RANGE } from '../../data/servicePolicy.js';
+import { PICKUP_REQUIREMENTS, QUOTE_POLICY, SCHEDULING_POLICY, SPECIALTY_POLICY } from '../../data/servicePolicy.js';
+import { businessNode, BUSINESS_ID } from '../../data/schemaBusiness.js';
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -30,6 +31,7 @@ const q = quoteContent(city, slug);
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
+    businessNode,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -43,9 +45,9 @@ const schema = {
       name: `Junk removal in ${city.name}, MN`,
       serviceType: 'Junk removal',
       areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'AdministrativeArea', name: county } },
-      provider: { '@type': 'LocalBusiness', name: 'Dakota Valley Junk Removal', telephone: '+1-952-232-5107', priceRange: PRICE_RANGE },
+      provider: { '@id': BUSINESS_ID },
       url: canonical,
-      offers: { '@type': 'Offer', priceCurrency: 'USD', price: '85', description: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins." },
+      description: q.description,
     },
     faqSchema(q.faqs),
   ],
@@ -61,7 +63,7 @@ const schema = {
     <section class="hero" id="top">
       <SiteNav smsLink={citySms} />
       <div class="hero-content">
-        <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>{city.name} quote</span></p>
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><a href="/quote/">Get a Quote</a><span aria-hidden="true"> / </span><span>{city.name} quote</span></p>
         <p class="eyebrow"><Icon name="lucide:map-pin" size={16} /> {city.name}, {county}</p>
         <h1>Get a junk removal quote in {city.name}.</h1>
         <div class="hero-rating" aria-label="Rating and credentials">
@@ -76,6 +78,7 @@ const schema = {
         </div>
         <p class="hero-copy">{q.heroCopy}</p>
         <p class="hero-copy" data-service-scope>Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
+        <p class="hero-copy">This is paid pickup at your address. You approve the written price before confirming pickup. Sending a quote request does not reserve an appointment.</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos for a {city.name} quote</a>
           <a class="button secondary" href={`/quote/?city=${encodeURIComponent(city.name)}`}><Icon name="lucide:file-text" size={18} /> Get a Quote</a>
@@ -85,6 +88,22 @@ const schema = {
     </section>
 
     <div class="band-wrap"><TrustBar aggregate={agg} verified={verified} /></div>
+
+    <section class="section">
+      <div class="section-head"><div>
+        <p class="section-kicker">Prepare your request</p>
+        <h2>What to send for your {city.name} photo quote.</h2>
+      </div></div>
+      <div class="city-service-grid">
+        <article class="city-service-card"><h3>Items and photos</h3><p>Send clear photos of every item, the approximate pile size and any heavy or bulky pieces. Furniture, mattresses, appliances and yard debris are assessed for acceptance from your photos.</p></article>
+        <article class="city-service-card"><h3>Address and access</h3><p>Include your {city.name} pickup address, where items will be staged, and a photo of the clear path to legal truck parking. Mention gates or other access restrictions.</p></article>
+        <article class="city-service-card"><h3>Approve, then schedule</h3><p>{SCHEDULING_POLICY}</p></article>
+      </div>
+      <p class="section-copy">{PICKUP_REQUIREMENTS}</p>
+      <p class="section-copy">{QUOTE_POLICY}</p>
+      <p class="section-copy">{SPECIALTY_POLICY}</p>
+      <p><a class="button primary" href={`/quote/?city=${encodeURIComponent(city.name)}`}>Get a Quote</a></p>
+    </section>
 
     <section class="section">
       <div class="section-head"><div>
@@ -109,7 +128,7 @@ const schema = {
     <section class="section">
       <div class="section-head"><div>
         <p class="section-kicker">Where it goes</p>
-        <h2>{city.name} junk, kept out of the landfill.</h2>
+        <h2>How we handle accepted items from {city.name}.</h2>
       </div></div>
       <p class="section-copy">{q.disposalCopy}</p>
       {CITY_TESTIMONIALS_ENABLED && city.testimonial && (

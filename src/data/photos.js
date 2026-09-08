@@ -78,9 +78,16 @@ export function pickPhotos(slug, count = 2) {
   return result;
 }
 
-// Build city-specific alt text. Pattern:
-// "{base desc} — Dakota Valley Junk Removal in {City}, MN"
+// Keep the image type explicit wherever this registry is reused, including
+// generated image-sitemap titles. A city page does not establish where an
+// image was taken; illustrations must never be presented as local job photos.
+export function describePhoto(photo) {
+  return `${photo.illustration ? 'Illustration: ' : ''}${photo.desc}`;
+}
+
 export function buildAlt(photoDesc, cityName, context = '') {
+  const photo = photos.find((entry) => entry.desc === photoDesc);
+  const description = photo ? describePhoto(photo) : photoDesc;
   const contextPart = context ? ` (${context})` : '';
-  return `${photoDesc}${contextPart} — Dakota Valley Junk Removal in ${cityName}, MN`;
+  return `${description}${contextPart} — pickup information for ${cityName}, MN`;
 }

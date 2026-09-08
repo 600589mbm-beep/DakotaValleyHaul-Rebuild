@@ -1,16 +1,16 @@
 ---
 // 3-field above-the-fold quick quote: ZIP, what's the junk, phone.
-// Low-commitment first step. On submit it prefills the full booking form
+// Low-commitment first step. On submit it prefills the full quote form
 // (#tg-form) as "step 2", scrolls to it, and fires analytics events.
 // Captures form-start on first interaction to drive the >=35% start-rate goal.
 import { Icon } from 'astro-icon/components';
 const smsLink = 'sms:+19522325107';
 ---
-<form class="quick-quote" id="quick-quote" novalidate aria-label="Get a fast quote">
+<form class="quick-quote" id="quick-quote" aria-label="Get a fast quote">
   <div class="quick-quote-fields">
     <label class="qq-field">
       <span class="sr-only">ZIP code</span>
-      <input name="zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="ZIP code" autocomplete="postal-code" required />
+      <input name="zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="ZIP code" autocomplete="postal-code" required />
     </label>
     <label class="qq-field qq-grow">
       <span class="sr-only">What needs to go?</span>
@@ -20,10 +20,10 @@ const smsLink = 'sms:+19522325107';
       <span class="sr-only">Mobile number</span>
       <input name="phone" type="tel" inputmode="tel" placeholder="Mobile number" autocomplete="tel" required />
     </label>
-    <button type="submit" class="button primary qq-submit"><Icon name="lucide:arrow-right" size={18} /> Get my quote</button>
+    <button type="submit" class="button primary qq-submit"><Icon name="lucide:arrow-right" size={18} /> Get a Quote</button>
   </div>
   <p class="quick-quote-sub">
-    Free, no obligation. Or <a href={smsLink} data-track="sms_click">text photos to (952)&nbsp;232-5107</a>.
+    Free photo quote, no obligation. Pickup is a paid service. Or <a href={smsLink} data-track="sms_click">text photos to (952)&nbsp;232-5107</a>.
   </p>
 </form>
 
@@ -41,9 +41,9 @@ const smsLink = 'sms:+19522325107';
     qq.addEventListener('submit', (event) => {
       event.preventDefault();
       const data = Object.fromEntries(new FormData(qq).entries());
-      track('quote_form_submitted', { step: 'quick' });
+      track('quote_helper_opened', { step: 'quick' });
 
-      // Prefill the full booking form (step 2) and reveal it.
+      // Prefill the full quote form (step 2) and reveal it.
       const full = document.getElementById('tg-form');
       if (full) {
         if (data.phone) full.elements.phone && (full.elements.phone.value = data.phone);

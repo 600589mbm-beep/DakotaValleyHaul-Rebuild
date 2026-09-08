@@ -1,15 +1,15 @@
 ---
 import SiteNav from '../../components/SiteNav.astro';
-import { SPECIALTY_POLICY } from '../../data/servicePolicy.js';
-import { SCHEDULING_POLICY, UNATTENDED_POLICY } from '../../data/servicePolicy.js';
+import { SPECIALTY_POLICY, PICKUP_REQUIREMENTS, QUOTE_POLICY } from '../../data/servicePolicy.js';
+import { SCHEDULING_POLICY, UNATTENDED_POLICY, COVERAGE_POLICY } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR, PRICE_FLOOR_DETAIL } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { services, getServiceSlugs } from '../../data/services.js';
+import { services, getServiceSlugs, isSpecialtyService } from '../../data/services.js';
 import { businessNode } from '../../data/schemaBusiness.js';
 import { cities } from '../../data/cities.js';
-import { pickPhotos, buildAlt } from '../../data/photos.js';
+import { pickPhotos, describePhoto } from '../../data/photos.js';
 import { serviceAngles, faqSchema } from '../../data/comboContent.js';
 
 export function getStaticPaths() {
@@ -26,6 +26,7 @@ const canonical = `https://dakotavalleyjunkremovalservice.com/services/${slug}/`
 const ctaSms = `${smsLink}?&body=${encodeURIComponent(`${service.name} request.\nPlease send photos and item details.`)}`;
 const popularCities = Object.entries(cities).slice(0, 12);
 const heroPhoto = pickPhotos(slug, 1)[0];
+const isSpecialty = isSpecialtyService(slug);
 
 // Per-service FAQ — statewide phrasing. Answers are sourced from booking.js
 // (price floor, scheduling) and comboContent.js serviceAngles (disposal chain),
@@ -35,11 +36,11 @@ const angle = serviceAngles[slug] || {};
 const faqs = [
   {
     q: `How much does ${lc} cost in Minnesota?`,
-    a: "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+    a: isSpecialty ? SPECIALTY_POLICY : `${PRICE_FLOOR_DETAIL} ${QUOTE_POLICY}`,
   },
   {
-    q: `How do I book ${lc}?`,
-    a: `Text photos of the items plus your city to (952) 232-5107, or use the photo-quote helper. The crew sends a firm quote and a pickup window — there is no on-site estimate visit.`,
+    q: `How do I get a quote for ${lc}?`,
+    a: `Text clear photos of the items or project plus your pickup address to (952) 232-5107, or use Get a Quote. The crew reviews acceptance, access and scope, then sends the total in writing. Approve the price before confirming an available pickup window. A request does not reserve an appointment.`,
   },
   {
     q: `How soon can you schedule ${lc}?`,
@@ -47,17 +48,17 @@ const faqs = [
   },
   {
     q: `Do I need to be home for ${lc}?`,
-    a: UNATTENDED_POLICY,
+    a: isSpecialty ? 'The crew confirms access requirements and whether you need to be present when reviewing the project. Agree on these details and the written price before confirming a time.' : UNATTENDED_POLICY,
   },
   {
     q: `Where do you offer ${lc}?`,
-    a: `Across all Minnesota cities and counties, with route-aware scheduling. Coverage is heaviest across the Twin Cities metro — Hennepin, Ramsey, Dakota, Anoka, Washington, Scott, and Carver counties.`,
+    a: `We review requests across Minnesota, including the Twin Cities metro. ${COVERAGE_POLICY}`,
   },
 ];
 if (angle.disposal) {
   faqs.push({
     q: `What happens to the items after ${lc}?`,
-    a: `Donation-first. ${angle.disposal}`,
+    a: `${angle.disposal}`,
   });
 }
 
@@ -69,7 +70,7 @@ const schema = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://dakotavalleyjunkremovalservice.com/#services' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://dakotavalleyjunkremovalservice.com/services/' },
         { '@type': 'ListItem', position: 3, name: service.name },
       ],
     },
@@ -105,17 +106,18 @@ const schema = {
       <div class="city-hero-content">
         <p class="breadcrumb">
           <a href="/">Home</a> <span aria-hidden="true"> / </span>
-          <a href="/#services">Services</a> <span aria-hidden="true"> / </span>
+          <a href="/services/">Services</a> <span aria-hidden="true"> / </span>
           <span>{service.name}</span>
         </p>
         <h1><span class="city-accent">{service.name}</span></h1>
         <p class="hero-copy">{service.headline}</p>
         <p class="hero-copy" style="margin-top: 0">{service.intro}</p>
         <p class="hero-copy" data-service-scope>Standard junk pickup: curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
-        {['hot-tub-removal', 'fence-removal', 'shed-removal', 'demolition', 'dumpster-rental'].includes(slug) && <p class="hero-copy" data-specialty-scope>{SPECIALTY_POLICY}</p>}
+        {isSpecialty && <p class="hero-copy" data-specialty-scope>{SPECIALTY_POLICY}</p>}
+        <p class="hero-copy">This is a paid service. Send photos for a written quote, approve the total, then confirm an available pickup window. A quote request does not reserve an appointment.</p>
         <div class="hero-actions">
           <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
-          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{isSpecialty ? 'Written project quote' : PRICE_FLOOR}</span>
           <a class="button secondary" href="/quote/"><Icon name="lucide:camera" size={18} /> Get a Quote</a>
         </div>
       </div>
@@ -126,10 +128,11 @@ const schema = {
         src={heroPhoto.src}
         width={heroPhoto.width}
         height={heroPhoto.height}
-        alt={`${heroPhoto.desc} — ${service.name} across Minnesota — Dakota Valley Junk Removal`}
+        alt={describePhoto(heroPhoto)}
         loading="eager"
         fetchpriority="high"
       />
+      <figcaption>{describePhoto(heroPhoto)}</figcaption>
     </figure>
 
     <section class="section city-services">
@@ -145,6 +148,7 @@ const schema = {
           </article>
         ))}
       </div>
+      <p class="section-copy">{isSpecialty ? SPECIALTY_POLICY : PICKUP_REQUIREMENTS}</p>
     </section>
 
     <section class="section">
@@ -166,13 +170,13 @@ const schema = {
     <section class="section city-locale">
       <div class="section-head"><div>
         <p class="section-kicker">{service.name} cities</p>
-        <h2>Available across Minnesota.</h2>
+        <h2>Explore local pickup details.</h2>
       </div></div>
       <div class="city-grid">
         {popularCities.map(([sl, c]) => (
           <a href={`/cities/${sl}/${slug}/`} class="city-link">{c.name}</a>
         ))}
-        <a href="/#areas" class="city-link">See all 61 cities</a>
+        <a href="/service-areas/" class="city-link">See all service areas</a>
       </div>
     </section>
 
@@ -194,11 +198,11 @@ const schema = {
     <section class="section city-cta">
       <div>
         <h2>Need {service.name.toLowerCase()}?</h2>
-        <p>Text photos, item details, and a preferred pickup window. The crew confirms and handles the rest.</p>
+        <p>Send photos for a written quote. Approve the total before confirming an available pickup window with the crew.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-          <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
+          <span class="price-floor"><Icon name="lucide:tag" size={14} />{isSpecialty ? 'Written project quote' : PRICE_FLOOR}</span>
         <a class="button secondary" href="/quote/">Get a Quote</a>
       </div>
     </section>

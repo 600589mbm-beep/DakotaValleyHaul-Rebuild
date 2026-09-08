@@ -19,9 +19,9 @@ export const beforeAfter = [
     illustration: true,
   },
   {
-    title: 'Estate cleanout',
-    before: { src: '/illustrations/estate.svg', alt: 'A room full of furniture, boxes and appliances before an estate cleanout' },
-    after: { src: '/illustrations/room-clean.svg', alt: 'The same room emptied and ready to list after the cleanout' },
+    title: 'Staged estate items',
+    before: { src: '/illustrations/curbside.svg', alt: 'Illustration of household items safely staged at the curb before pickup' },
+    after: { src: '/illustrations/curb-clean.svg', alt: 'Illustration of a clear curb after staged items are removed' },
     illustration: true,
   },
 ];
