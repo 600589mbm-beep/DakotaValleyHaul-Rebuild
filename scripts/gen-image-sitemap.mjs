@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generates public/image-sitemap.xml from the page+image registry so Google
-// Images can discover our imagery. Runs as a prebuild step. When real photos
-// replace the illustrations in photos.js, this regenerates automatically.
+// Images can discover the photographs actually displayed on each page.
+// Runs as a prebuild step when the photo registry changes.
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -10,33 +10,27 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const SITE = 'https://dakotavalleyjunkremovalservice.com';
 
-const { cities, getCitySlugs } = await import(join(root, 'src/data/cities.js'));
+const { getCitySlugs } = await import(join(root, 'src/data/cities.js'));
 const { services } = await import(join(root, 'src/data/services.js'));
-const { pickPhotos, buildAlt } = await import(join(root, 'src/data/photos.js'));
-const { beforeAfter } = await import(join(root, 'src/data/beforeAfter.js'));
+const { homepagePhotos, pickPhotos, describePhoto } = await import(join(root, 'src/data/photos.js'));
 
 const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const entries = [];
 
-// Homepage — the actual displayed illustrations and shared social card.
-entries.push({ loc: `${SITE}/`, images: [
-  ...Array.from(new Map(beforeAfter.flatMap(pair => [pair.before, pair.after]).map(image => [image.src, image])).values())
-    .map(image => ({ url: `${SITE}${image.src}`, title: image.alt })),
-  { url: `${SITE}/og-card.png`, title: 'Dakota Valley Junk Removal — written photo quotes for staged pickup' },
-]});
+// Homepage — the six photographs displayed by JobPhotos.astro.
+entries.push({ loc: `${SITE}/`, images: homepagePhotos.map((photo) => ({ url: `${SITE}${photo.src}`, title: describePhoto(photo) })) });
 
 // Service pages
-for (const [slug, s] of Object.entries(services)) {
+for (const slug of Object.keys(services)) {
   const p = pickPhotos(slug, 1)[0];
-  entries.push({ loc: `${SITE}/services/${slug}/`, images: [{ url: `${SITE}${p.src}`, title: `${s.name} — Dakota Valley Junk Removal` }] });
+  entries.push({ loc: `${SITE}/services/${slug}/`, images: [{ url: `${SITE}${p.src}`, title: describePhoto(p) }] });
 }
 
 // City pages
 for (const slug of getCitySlugs()) {
-  const c = cities[slug];
-  const ps = pickPhotos(slug, 2);
-  entries.push({ loc: `${SITE}/cities/${slug}/`, images: ps.map((p) => ({ url: `${SITE}${p.src}`, title: buildAlt(p.desc, c.name) })) });
+  const ps = pickPhotos(slug, 3);
+  entries.push({ loc: `${SITE}/cities/${slug}/`, images: ps.map((p) => ({ url: `${SITE}${p.src}`, title: describePhoto(p) })) });
 }
 
 const body = entries.map((e) => {

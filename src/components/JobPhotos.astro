@@ -1,0 +1,57 @@
+---
+import { homepagePhotos, describePhoto } from '../data/photos.js';
+---
+<section class="section job-photos" id="job-photos" aria-labelledby="job-photos-heading" data-authentic-photos>
+  <div class="section-head">
+    <div>
+      <p class="section-kicker">Real job photos</p>
+      <h2 id="job-photos-heading">See the jobs behind the quotes.</h2>
+    </div>
+    <p class="section-copy">Photos from Dakota Valley Junk Removal’s own jobs. Tap a photo for the full view.</p>
+  </div>
+
+  <div class="job-photo-grid">
+    {homepagePhotos.map((photo) => (
+      <figure class="job-photo-card">
+        <a class="job-photo-link" href={photo.src} aria-label={`View full photo: ${describePhoto(photo)}`}>
+          <img
+            src={photo.src}
+            width={photo.width}
+            height={photo.height}
+            alt={describePhoto(photo)}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="job-photo-view" aria-hidden="true">View full photo ↗</span>
+        </a>
+        <figcaption>{describePhoto(photo)}</figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <div class="job-photo-next">
+    <p>Have something similar? Send photos for a written quote. Stage approved items at the curb, driveway or accessible garage, and approve the price before confirming pickup. Specialty projects need a separate quote.</p>
+    <a class="button primary" href="/quote/">Get a Quote</a>
+  </div>
+</section>
+
+<style>
+  .job-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .job-photo-card { margin: 0; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
+  .job-photo-link { display: block; position: relative; background: var(--mist); }
+  .job-photo-link:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+  .job-photo-link img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+  .job-photo-view { position: absolute; right: 12px; bottom: 12px; padding: 7px 10px; border-radius: 7px; background: rgba(7, 17, 31, .9); color: white; font-size: 12px; font-weight: 700; }
+  .job-photo-card figcaption { padding: 16px 18px 18px; color: var(--ink); font-size: 15px; line-height: 1.55; }
+  .job-photo-next { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 24px; padding: 22px 24px; border-radius: 14px; background: var(--mist); }
+  .job-photo-next p { margin: 0; max-width: 780px; color: var(--muted); font-size: 16px; line-height: 1.65; }
+  .job-photo-next .button { flex-shrink: 0; }
+  @media (max-width: 980px) {
+    .job-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .job-photo-next { align-items: flex-start; flex-direction: column; gap: 16px; }
+  }
+  @media (max-width: 600px) {
+    .job-photo-grid { grid-template-columns: 1fr; gap: 18px; }
+    .job-photo-next { padding: 20px; }
+  }
+</style>

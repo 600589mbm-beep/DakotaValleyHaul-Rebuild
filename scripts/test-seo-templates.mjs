@@ -4,6 +4,7 @@ import { cities } from '../src/data/cities.js';
 import { counties } from '../src/data/counties.js';
 import { services, isSpecialtyService } from '../src/data/services.js';
 import { businessNode, BUSINESS_ID, SITE } from '../src/data/schemaBusiness.js';
+import { photos, homepagePhotos, pickPhotos, describePhoto } from '../src/data/photos.js';
 
 const page = (route) => readFile(`dist${route}index.html`, 'utf8');
 function graph(html) {
@@ -24,6 +25,28 @@ function checkIllustrations(html, route) {
     if (/src="\/illustrations\//.test(tag)) assert.match(tag, /alt="Illustration: /, `${route}: accurate illustration alt text`);
   }
 }
+const decode = (text) => text.replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const attribute = (tag, name) => decode(tag.match(new RegExp(`\\b${name}="([^"]*)"`))?.[1] || '');
+const photoRegistry = new Map(photos.map((photo) => [photo.src, photo]));
+const imageSitemap = await readFile('dist/image-sitemap.xml', 'utf8');
+const sitemapImages = new Map([...imageSitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, entry]) => [
+  decode(entry.match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || ''),
+  [...entry.matchAll(/<image:image><image:loc>([\s\S]*?)<\/image:loc><image:title>([\s\S]*?)<\/image:title><\/image:image>/g)]
+    .map(([, src, title]) => ({ src: decode(src), title: decode(title) })),
+]));
+function checkPhotos(html, route, expectedPhotos, includeSitemap = false) {
+  const photoTags = [...html.matchAll(/<img\b[^>]*>/g)].map(([tag]) => tag).filter((tag) => photoRegistry.has(attribute(tag, 'src')));
+  const renderedSources = photoTags.map((tag) => attribute(tag, 'src'));
+  assert.deepEqual(renderedSources, expectedPhotos.map((photo) => photo.src), `${route}: expected job photos are rendered`);
+  assert.equal(new Set(renderedSources).size, expectedPhotos.length, `${route}: no duplicate job photos`);
+  for (const tag of photoTags) {
+    const photo = photoRegistry.get(attribute(tag, 'src'));
+    assert.equal(attribute(tag, 'alt'), describePhoto(photo), `${route}: alt text describes the photo without invented city or service provenance`);
+    assert.equal(Number(attribute(tag, 'width')), photo.width, `${route}: intrinsic photo width`);
+    assert.equal(Number(attribute(tag, 'height')), photo.height, `${route}: intrinsic photo height`);
+  }
+  if (includeSitemap) assert.deepEqual(sitemapImages.get(`${SITE}${route}`), expectedPhotos.map((photo) => ({ src: `${SITE}${photo.src}`, title: describePhoto(photo) })), `${route}: image sitemap matches rendered photos and factual captions`);
+}
 function checkSpecialty(html, nodes, route) {
   const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1] || '';
   const description = html.match(/<meta\b[^>]*name="description"[^>]*content="([^"]*)"/)?.[1] || '';
@@ -39,6 +62,13 @@ function checkSpecialty(html, nodes, route) {
 
 let count = 0;
 let specialtyCount = 0;
+const homepage = await page('/');
+assert.equal(homepagePhotos.length, 6, 'Homepage has six selected job photos');
+assert.match(homepage, /id="job-photos"/, 'Homepage job photos have a direct section link');
+assert.match(homepage, /data-authentic-photos/, 'Homepage identifies the real job photo collection');
+assert.doesNotMatch(homepage, /data-ba-target|ba-range|real job photos coming soon/i, 'Homepage has no placeholder before/after slider or stale photo promise');
+checkPhotos(homepage, '/', homepagePhotos, true);
+for (const photo of homepagePhotos) assert.ok(homepage.includes(`href="${photo.src}"`), 'Homepage photos link to the full photograph');
 for (const [citySlug, city] of Object.entries(cities)) {
   const route = `/cities/${citySlug}/`;
   const html = await page(route);
@@ -47,8 +77,10 @@ for (const [citySlug, city] of Object.entries(cities)) {
   assert.equal(nodes.find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].item, `${SITE}/service-areas/`);
   assert.match(html, new RegExp(`href="/quote/${citySlug}/"`), `${route}: crawlable city quote preparation link`);
   assert.ok(html.includes(`href="/quote/?city=${encodeURIComponent(city.name)}"`), `${route}: quote CTA opens the prefilled form`);
-  assert.match(html, /data-illustration-disclosure/, `${route}: gallery discloses illustrations`);
-  assert.doesNotMatch(html, /Real loads, real curbs\.|job photos<\/p>/, `${route}: gallery does not claim completed local jobs`);
+  assert.match(html, /data-authentic-photos/, `${route}: gallery shows authentic job photos`);
+  assert.match(html, /data-photo-provenance/, `${route}: photo collection source is disclosed without assigning a capture location`);
+  assert.doesNotMatch(html, /data-illustration-disclosure|Pickup illustrations|Real loads, real curbs\./, `${route}: no stale gallery claims`);
+  checkPhotos(html, route, pickPhotos(citySlug, 3), true);
   checkIllustrations(html, route);
   count++;
 
@@ -64,6 +96,7 @@ for (const [citySlug, city] of Object.entries(cities)) {
     const comboRoute = `/cities/${citySlug}/${serviceSlug}/`;
     const comboHtml = await page(comboRoute);
     const comboNodes = checkBusiness(comboHtml, comboRoute);
+    checkPhotos(comboHtml, comboRoute, pickPhotos(serviceSlug, 1));
     checkIllustrations(comboHtml, comboRoute);
     if (isSpecialtyService(serviceSlug)) { checkSpecialty(comboHtml, comboNodes, comboRoute); specialtyCount++; }
     count++;
@@ -73,6 +106,7 @@ for (const serviceSlug of Object.keys(services)) {
   const route = `/services/${serviceSlug}/`;
   const html = await page(route);
   const nodes = checkBusiness(html, route);
+  checkPhotos(html, route, pickPhotos(serviceSlug, 1), true);
   assert.equal(nodes.find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].item, `${SITE}/services/`);
   checkIllustrations(html, route);
   if (isSpecialtyService(serviceSlug)) { checkSpecialty(html, nodes, route); specialtyCount++; }
@@ -84,4 +118,4 @@ for (const countySlug of Object.keys(counties)) {
   assert.equal(nodes.find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].item, `${SITE}/service-areas/`);
   count++;
 }
-console.log(`SEO templates passed: ${count} pages use the shared business entity, ${Object.keys(cities).length} city quote pages have incoming city links, galleries disclose illustrations, and ${specialtyCount} specialty pages use project pricing.`);
+console.log(`SEO templates passed: ${count} pages use the shared business entity, ${Object.keys(cities).length} city quote pages have incoming city links, authentic photo galleries and their sitemap agree, and ${specialtyCount} specialty pages use project pricing.`);

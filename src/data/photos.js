@@ -1,93 +1,66 @@
-// Production image registry for Dakota Valley Junk Removal.
-//
-// ─────────────────────────────────────────────────────────────────────────
-// IMPORTANT (2026-05-25): The previous entries here pointed at files that
-// were NOT real job photos — they were screenshots of a competitor's booking
-// app and CRM screens that exposed customer PII. Those files were removed
-// from the repo. Until the owner supplies real photography, this registry
-// serves brand-safe vector ILLUSTRATIONS so every page still has on-brand
-// imagery without misleading customers or leaking data.
-//
-// TO ADD REAL PHOTOS (see public/PHOTO-SHOT-LIST.md):
-//   1. Drop optimized images into public/attached_assets/ (or /photos/).
-//   2. Replace the `src`, `width`, `height`, and `desc` below.
-//   3. `npm run build` — alt text + image-sitemap rebuild across all pages.
-// Each entry: src, width/height (intrinsic — prevents layout shift),
-// desc (base alt text; city/service name is appended at render time),
-// illustration (true while these are vector placeholders).
-// ─────────────────────────────────────────────────────────────────────────
+// Authentic job photos supplied by the business owner on 2026-09-08.
+// Originals are copied unchanged to public/photos/jobs/. Capture dates and
+// individual job cities were not supplied, so captions do not invent them.
+const photo = (id, width, height, desc) => ({ id, src: `/photos/jobs/${id}.jpg`, width, height, desc, illustration: false });
 
 export const photos = [
-  {
-    src: '/illustrations/truck-load.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Dakota Valley Junk Removal truck loaded with furniture and appliances outside a home',
-    illustration: true,
-  },
-  {
-    src: '/illustrations/curbside.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Sofa, chairs and boxes staged at the curb for junk pickup',
-    illustration: true,
-  },
-  {
-    src: '/illustrations/garage.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Open garage stacked with boxes and items ready for a cleanout',
-    illustration: true,
-  },
-  {
-    src: '/illustrations/appliances.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Refrigerator, washer and stove lined up for appliance removal and recycling',
-    illustration: true,
-  },
-  {
-    src: '/illustrations/yard-debris.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Branches, fencing and yard debris piled for yard waste removal',
-    illustration: true,
-  },
-  {
-    src: '/illustrations/estate.svg',
-    width: 1200,
-    height: 800,
-    desc: 'Furniture, boxes and appliances from a full property cleanout',
-    illustration: true,
-  },
+  photo('garage-household-items', 384, 512, 'Mirrors, furniture parts and boxes gathered beside an open garage'),
+  photo('outdoor-lumber', 815, 1448, 'Detached weathered boards gathered outside beneath a deck'),
+  photo('stacked-garage-boards', 386, 512, 'Boards stacked together on a garage floor'),
+  photo('garage-mattress-box-springs', 480, 640, 'A mattress and box springs standing together in a garage'),
+  photo('garage-cardboard-furniture', 800, 600, 'Flattened cardboard, shelving and household items in an open garage'),
+  photo('garage-patio-furniture', 1536, 2048, 'Patio furniture, wooden pallets and worn cushions in a garage'),
+  photo('garage-mixed-items', 960, 1280, 'A mattress, televisions and furniture gathered in an open garage'),
+  photo('garage-mattresses', 1200, 1600, 'Several mattresses and box springs grouped together in a garage'),
+  photo('outdoor-wood-and-trim', 1600, 1200, 'Detached wood and trim gathered outside beside a porch'),
+  photo('garage-furniture-panels', 480, 640, 'Disassembled furniture panels leaning against a garage wall'),
 ];
 
-// Deterministic image selection per slug — same city always gets the same
-// images across builds, but different cities get different ones.
+const homepageIds = [
+  'garage-mixed-items', 'garage-mattresses', 'outdoor-wood-and-trim',
+  'garage-furniture-panels', 'garage-household-items', 'garage-patio-furniture',
+];
+export const homepagePhotos = homepageIds.map(id => photos.find(item => item.id === id));
+
+// Prefer relevant item photography where supplied. Other services show a
+// general staged-item example; captions describe only what is pictured.
+const preferredPhoto = {
+  'junk-pickup': 'garage-mixed-items',
+  'furniture-removal': 'garage-patio-furniture',
+  'garage-cleanout': 'garage-cardboard-furniture',
+  'yard-debris': 'outdoor-wood-and-trim',
+  'mattress-removal': 'garage-mattresses',
+  'electronics-removal': 'garage-mixed-items',
+  'estate-cleanout': 'garage-mixed-items',
+  'hoarder-cleanout': 'garage-cardboard-furniture',
+  'attic-cleanout': 'garage-mixed-items',
+  'basement-cleanout': 'garage-patio-furniture',
+  'fence-removal': 'outdoor-lumber',
+  'shed-removal': 'outdoor-wood-and-trim',
+  'demolition': 'outdoor-wood-and-trim',
+  'single-item-pickup': 'garage-mattresses',
+  'appliance-recycling': 'garage-mixed-items',
+  'scrap-metal-removal': 'garage-mixed-items',
+  'hot-tub-removal': 'garage-mixed-items',
+  'dumpster-rental': 'outdoor-wood-and-trim',
+};
+
 export function pickPhotos(slug, count = 2) {
-  const hash = [...slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-  const result = [];
-  const seen = new Set();
-  for (let i = 0; result.length < count && i < photos.length * 2; i++) {
-    const idx = (hash + i * 7) % photos.length;
-    if (!seen.has(idx)) {
-      seen.add(idx);
-      result.push(photos[idx]);
-    }
-  }
-  return result;
+  const hash = [...slug].reduce((total, character) => total + character.charCodeAt(0), 0);
+  const preferred = photos.find(item => item.id === preferredPhoto[slug]);
+  // Reserve larger originals for wide hero images; smaller originals still
+  // appear in gallery cards at a size suited to their supplied resolution.
+  const heroPhotos = photos.filter(item => item.width >= 800);
+  const start = photos.indexOf(preferred || heroPhotos[hash % heroPhotos.length]);
+  return Array.from({ length: Math.min(Math.max(0, count), photos.length) }, (_, i) => photos[(start + i) % photos.length]);
 }
 
-// Keep the image type explicit wherever this registry is reused, including
-// generated image-sitemap titles. A city page does not establish where an
-// image was taken; illustrations must never be presented as local job photos.
-export function describePhoto(photo) {
-  return `${photo.illustration ? 'Illustration: ' : ''}${photo.desc}`;
+export function describePhoto(item) {
+  return `${item.illustration ? 'Illustration: ' : ''}${item.desc}`;
 }
 
-export function buildAlt(photoDesc, cityName, context = '') {
-  const photo = photos.find((entry) => entry.desc === photoDesc);
-  const description = photo ? describePhoto(photo) : photoDesc;
-  const contextPart = context ? ` (${context})` : '';
-  return `${description}${contextPart} — pickup information for ${cityName}, MN`;
+// City/service context belongs to the page, not a claim about photo location.
+export function buildAlt(photoDesc, _cityName = '', _context = '') {
+  const item = photos.find(entry => entry.desc === photoDesc);
+  return item ? describePhoto(item) : photoDesc;
 }
