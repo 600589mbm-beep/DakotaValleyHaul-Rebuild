@@ -1,4 +1,5 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
 import { SPECIALTY_POLICY } from '../../data/servicePolicy.js';
 import { SCHEDULING_POLICY, UNATTENDED_POLICY } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
@@ -100,10 +101,7 @@ const schema = {
 <Layout title={service.metaTitle} description={service.metaDescription} canonical={canonical} schema={schema}>
   <main>
     <section class="city-hero">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-      </nav>
+      <SiteNav />
       <div class="city-hero-content">
         <p class="breadcrumb">
           <a href="/">Home</a> <span aria-hidden="true"> / </span>
@@ -118,7 +116,7 @@ const schema = {
         <div class="hero-actions">
           <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-          <a class="button secondary" href="/#quote"><Icon name="lucide:camera" size={18} /> Use the quote helper</a>
+          <a class="button secondary" href="/quote/"><Icon name="lucide:camera" size={18} /> Get a Quote</a>
         </div>
       </div>
     </section>
@@ -201,14 +199,14 @@ const schema = {
       <div class="hero-actions">
         <a class="button primary" href={ctaSms}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-        <a class="button secondary" href="/#quote">Use the quote helper</a>
+        <a class="button secondary" href="/quote/">Get a Quote</a>
       </div>
     </section>
 
     <SiteFooter />
     <div class="mobile-cta">
       <a class="button primary" href={ctaSms}>Text</a>
-      <a class="button secondary" href="/#quote">Book</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
     </div>
   </main>
 </Layout>

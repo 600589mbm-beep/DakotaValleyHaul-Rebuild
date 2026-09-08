@@ -11,7 +11,7 @@ The original full-stack source remains in `600589mbm-beep/DakotaValleyHaul`. Thi
 - Clearer hero offer and calls to action
 - Cleaner service-area presentation
 - Quote helper flow with lead-friendly summary
-- Telegram-ready booking form with address, phone, calendar date, details, and multiple photo uploads
+- Photo quote form with field validation, removable previews, upload limits, and recovery guidance
 - SEO basics: sitemap, robots.txt, metadata, and structured data
 
 ## Run locally
@@ -37,7 +37,7 @@ In GitHub, open the repo settings and set Pages to deploy from GitHub Actions. T
 dakotavalleyjunkremovalservice.com
 ```
 
-## Telegram booking form
+## Photo quote form
 
 GitHub Pages is static hosting, so it cannot safely store or use a Telegram bot token by itself. Do not put the bot token in the React app or in any public GitHub file.
 
@@ -47,7 +47,15 @@ Use `telegram-worker.js` as a tiny free Telegram bridge. Deploy it as a free Clo
 - `TELEGRAM_CHAT_ID`
 - `TELEGRAM_THREAD_ID` optional, only for Telegram forum topics
 
-The current form posts to `/api/telegram-quote`. If the site is served through Cloudflare, route `/api/telegram-quote` to the Worker and let all other traffic serve GitHub Pages.
+The form posts to the existing Worker URL configured in `src/data/booking.js`. The homepage and `/quote/` share the same form; `/quote/?city=Eagan` prefills the city. A request does not reserve a pickup: the customer approves the written total before confirming an available window.
+
+Customer uploads are limited to 6 photos, 10 MB each and 25 MB total. JPG, PNG, WebP and HEIC/HEIF are supported, including an original-file fallback when the browser cannot show a preview. Files and details stay in the page after a failed request.
+
+## Customer navigation and verification
+
+The shared mobile menu links to `/services/`, `/pricing/`, `/service-areas/`, `/reviews/`, `/faq/` and `/quote/`. Service-area search uses local city/ZIP hints in `src/data/serviceAreaZips.js`; these locate city pages, not guaranteed pickup boundaries.
+
+Run `npm run build && npm test` to verify generated destinations, metadata/sitemap coverage, ZIP search and reset behavior, menu keyboard behavior, and form validation/upload/recovery with mocked responses. Tests never send a lead to the crew.
 
 ## New Telegram bot setup
 

@@ -1,4 +1,5 @@
 ---
+import SiteNav from '../../components/SiteNav.astro';
 import { PRICE_RANGE } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
@@ -33,7 +34,7 @@ const schema = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
-        { '@type': 'ListItem', position: 2, name: 'Get a quote', item: `${site}/#quote` },
+        { '@type': 'ListItem', position: 2, name: 'Get a quote', item: `${site}/quote/` },
         { '@type': 'ListItem', position: 3, name: `${city.name} quote` },
       ],
     },
@@ -58,10 +59,7 @@ const schema = {
 >
   <main>
     <section class="hero" id="top">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="/"><span class="brand-mark"><Icon name="lucide:truck" size={22} /></span><span>Dakota Valley</span></a>
-        <a class="nav-call" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
-      </nav>
+      <SiteNav smsLink={citySms} />
       <div class="hero-content">
         <p class="breadcrumb"><a href="/">Home</a> <span> / </span><span>{city.name} quote</span></p>
         <p class="eyebrow"><Icon name="lucide:map-pin" size={16} /> {city.name}, {county}</p>
@@ -80,7 +78,7 @@ const schema = {
         <p class="hero-copy" data-service-scope>Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms} data-track="sms_click"><Icon name="lucide:message-square-text" size={18} /> Text photos for a {city.name} quote</a>
-          <a class="button secondary" href="/#quote"><Icon name="lucide:file-text" size={18} /> Use the booking form</a>
+          <a class="button secondary" href={`/quote/?city=${encodeURIComponent(city.name)}`}><Icon name="lucide:file-text" size={18} /> Get a Quote</a>
           <span class="price-chip"><Icon name="lucide:tag" size={14} /> {PRICE_FLOOR}</span>
         </div>
       </div>
@@ -142,7 +140,7 @@ const schema = {
     <SiteFooter />
     <div class="mobile-cta" aria-label="Quick actions">
       <a class="button primary" href={citySms} data-track="sms_click">Text</a>
-      <a class="button secondary" href="/#quote">Book</a>
+      <a class="button secondary" href={`/quote/?city=${encodeURIComponent(city.name)}`}>Get a Quote</a>
     </div>
   </main>
 </Layout>

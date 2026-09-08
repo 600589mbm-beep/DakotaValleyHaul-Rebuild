@@ -1,0 +1,144 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { services } from '../../data/services.js';
+import { iconForService } from '../../data/serviceIcons.js';
+import { businessNode, BUSINESS_ID, SITE } from '../../data/schemaBusiness.js';
+import { PICKUP_SCOPE, PICKUP_REQUIREMENTS, SPECIALTY_POLICY } from '../../data/servicePolicy.js';
+
+const canonical = `${SITE}/services/`;
+const groups = [
+  {
+    title: 'Furniture, appliances and everyday junk',
+    description: 'Choose the item you need removed to see what photos and preparation will help with your quote.',
+    items: [
+      ['junk-pickup', 'Mixed household items already staged at the curb, in the driveway or in an accessible garage.'],
+      ['single-item-pickup', 'One bulky item, with a written price based on its size, weight, access and disposal needs.'],
+      ['furniture-removal', 'Pre-staged sofas, sectionals, tables, dressers and office furniture.'],
+      ['mattress-removal', 'Mattresses, box springs and disassembled bed-frame pieces; include size, quantity and condition.'],
+      ['appliance-recycling', 'Appliances such as refrigerators, washers, dryers and stoves. Send the appliance type and access photos.'],
+      ['electronics-removal', 'TVs, monitors, computers and other electronics. Show the item type and quantity for disposal pricing.'],
+      ['scrap-metal-removal', 'Pre-staged metal items, exercise equipment and scrap piles. Include photos that show their size.'],
+      ['yard-debris', 'Brush, branches and storm-debris piles. Show the whole pile and separate materials in your photos.'],
+    ],
+  },
+  {
+    title: 'Pickup after a cleanout',
+    description: 'Cleanout services collect approved items after safe staging. The crew does not sort rooms or carry items through living areas or on stairs.',
+    items: [
+      ['garage-cleanout', 'Approved boxes, clutter and furniture grouped in an accessible garage with a clear loading path.'],
+      ['estate-cleanout', 'Furniture and household items from an estate, already staged outside or in an accessible garage.'],
+      ['basement-cleanout', 'Items from a basement cleanout after you arrange safe removal from the basement and stage them for pickup.'],
+      ['attic-cleanout', 'Items from an attic cleanout after safe staging at the curb, in the driveway or in an accessible garage.'],
+      ['hoarder-cleanout', 'Discreet pickup of pre-staged, approved nonhazardous items; no indoor sorting or hazardous cleanup.'],
+    ],
+  },
+  {
+    title: 'Outdoor projects and rental requests',
+    description: SPECIALTY_POLICY,
+    items: [
+      ['hot-tub-removal', 'Send photos of the tub, surrounding area and access path so the crew can assess the project.'],
+      ['fence-removal', 'Show the fence material, approximate length, posts and access. Confirm dismantling and disposal scope in writing.'],
+      ['shed-removal', 'Show the structure, contents and access. The accepted removal scope and any foundation work need a separate quote.'],
+      ['demolition', 'Outdoor light-demolition requests and pre-staged renovation debris, assessed from photos.'],
+      ['dumpster-rental', 'Request a dumpster or trailer option with your address, material type, loading timeline and available space.'],
+    ],
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    businessNode,
+    {
+      '@type': 'CollectionPage',
+      '@id': `${canonical}#page`,
+      url: canonical,
+      name: 'Junk Removal Services in Minnesota',
+      about: { '@id': BUSINESS_ID },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: groups.flatMap((group) => group.items).map(([slug], index) => ({
+          '@type': 'ListItem', position: index + 1,
+          name: services[slug].name, url: `${SITE}/services/${slug}/`,
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: canonical },
+      ],
+    },
+  ],
+};
+---
+<Layout
+  title="Junk Removal Services Minnesota | Dakota Valley"
+  description="Find furniture, appliance, mattress and staged cleanout pickup services in Minnesota. Review preparation details, then request a written photo quote."
+  canonical={canonical}
+  schema={schema}
+>
+  <main>
+    <section class="city-hero">
+      <SiteNav />
+      <div class="city-hero-content">
+        <p class="breadcrumb"><a href="/">Home</a> <span aria-hidden="true"> / </span><span>Services</span></p>
+        <h1>What do you need removed?</h1>
+        <p class="hero-copy">Explore our Minnesota junk removal services and see how to prepare your items. Eligible pickups have an $85 minimum; photos and job details determine your written total.</p>
+        <p class="hero-copy" data-service-scope>{PICKUP_SCOPE}</p>
+        <div class="hero-actions">
+          <a class="button primary" href="/quote/">Get a Quote</a>
+          <a class="button secondary" href="/pricing/">How pricing works</a>
+        </div>
+      </div>
+    </section>
+
+    {groups.map((group, index) => (
+      <section class="section" aria-labelledby={`service-group-${index}`}>
+        <div class="section-head"><div>
+          <p class="section-kicker">{index === 2 ? 'Quoted separately' : 'Prepare for pickup'}</p>
+          <h2 id={`service-group-${index}`}>{group.title}</h2>
+        </div></div>
+        <p class="section-copy group-intro">{group.description}</p>
+        <div class="city-service-grid">
+          {group.items.map(([slug, description]) => (
+            <a class="city-service-card service-option" href={`/services/${slug}/`}>
+              <span class="city-service-icon"><Icon name={iconForService(slug)} size={22} /></span>
+              <h3>{services[slug].name}</h3>
+              <p>{description}</p>
+              <span class="service-option-link">View service details <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="section city-cta">
+      <div>
+        <h2>Show us the items and the loading path.</h2>
+        <p>{PICKUP_REQUIREMENTS}</p>
+        <p>Send photos first, approve the written total, then confirm an available pickup window with the crew.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="/quote/">Get a Quote</a>
+        <a class="button secondary" href="/service-areas/">Check your service area</a>
+      </div>
+    </section>
+    <SiteFooter />
+    <div class="mobile-cta" aria-label="Quick actions">
+      <a class="button primary" href="sms:+19522325107">Text Photos</a>
+      <a class="button secondary" href="/quote/">Get a Quote</a>
+    </div>
+  </main>
+</Layout>
+<style>
+  .group-intro { margin-bottom: 26px; max-width: 850px; }
+  .service-option { display: flex; flex-direction: column; transition: border-color 150ms ease; }
+  .service-option:hover { border-color: var(--blue); }
+  .service-option:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+  .service-option-link { color: var(--blue); font-weight: 800; margin-top: auto; padding-top: 18px; }
+</style>

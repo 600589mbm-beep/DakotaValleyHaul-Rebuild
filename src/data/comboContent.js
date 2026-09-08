@@ -456,7 +456,7 @@ export function comboMeta(city, service, citySlug, serviceSlug) {
   const titles = [
     `${service.name} in ${city.name}, MN | $85 Minimum, Photo Quotes | Dakota Valley`,
     `${city.name} ${service.name} | Text-a-Photo Quotes from $85 | Dakota Valley`,
-    `${service.name} ${city.name} MN — From $85, Book by Text | Dakota Valley`,
+    `${service.name} ${city.name} MN — Get a Quote by Text | Dakota Valley`,
   ];
   const descriptions = [
     `${service.name} in ${city.name}, MN from $85. Serving ${n1}, ${n2} and all of ${city.county}. Text photos to (952) 232-5107 for a firm quote and a pickup window confirmed by the crew.`,
@@ -486,9 +486,9 @@ export function quoteContent(city, citySlug) {
     `Fast ${city.name} junk removal quote: photos by text, firm price back after review, booking confirmed by text. From $85 across ${n1} and ${n2}. No phone call required.`,
   ];
   const heroCopies = [
-    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, after review. an $85 pickup minimum, no phone call required.`,
-    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a confirmed pickup window come back fast — after the crew reviews your request. an $85 pickup minimum, no call needed.`,
-    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back after review, and a booking link. No walkthrough appointment, no phone tag. an $85 pickup minimum.`,
+    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, after review. Eligible staged pickups have an $85 minimum.`,
+    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a confirmed pickup window come back fast — after the crew reviews your request. Eligible staged pickups have an $85 minimum.`,
+    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back after review, and an available pickup window to confirm after you approve the total. Eligible staged pickups have an $85 minimum.`,
   ];
   const routeCopies = [
     `Because we schedule by route through ${city.county}, ${city.name} pickups stay efficient — which keeps your price down. We regularly serve ${n1}, ${n2}, ${n3} and the rest of ${city.name}.`,
@@ -508,7 +508,7 @@ export function quoteContent(city, citySlug) {
         `How fast do I get a junk removal quote in ${city.name}?`,
         `How long does a ${city.name} quote take?`,
       ]),
-      a: SCHEDULING_POLICY,
+      a: 'The crew reviews your photos and replies by text with a written total. Response time depends on current jobs and the details needed to price your load. Send all items, access details and your address together to reduce follow-up questions. Your pickup window is confirmed separately after you approve the quote.',
     },
     {
       q: `What photos should I text for a ${city.name} quote?`,
@@ -523,7 +523,7 @@ export function quoteContent(city, citySlug) {
     },
     {
       q: `Do I have to call to book a pickup in ${city.name}?`,
-      a: `No — the whole flow is text-first. Photos in, quote back, confirmed pickup window booked by text. If you prefer the form, the booking form on the homepage feeds the same ${city.county} crew.`,
+      a: `No — the whole flow is text-first. Photos in, quote back, confirmed pickup window booked by text. If you prefer the form, the quote form reaches the same crew serving ${city.county}. You approve the written total before confirming an available pickup window.`,
     },
     {
       q: `What should I include with my ${city.name} quote request?`,
