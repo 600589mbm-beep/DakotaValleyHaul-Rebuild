@@ -2,6 +2,7 @@
 import SiteNav from '../../components/SiteNav.astro';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR } from '../../data/booking.js';
+import { PICKUP_SCOPE, PICKUP_REQUIREMENTS, SCHEDULING_POLICY } from '../../data/servicePolicy.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { counties, getCountySlugs } from '../../data/counties.js';
@@ -36,7 +37,7 @@ const schema = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/#areas' },
+        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/service-areas/' },
         { '@type': 'ListItem', position: 3, name: county.name },
       ],
     },
@@ -47,7 +48,7 @@ const schema = {
       areaServed: {
         '@type': 'AdministrativeArea',
         name: county.name,
-        containedIn: { '@type': 'State', name: 'Minnesota' },
+        containedInPlace: { '@type': 'State', name: 'Minnesota' },
       },
       description: county.intro,
       serviceType: 'Curbside and garage junk pickup',
@@ -63,11 +64,13 @@ const schema = {
       <div class="city-hero-content">
         <p class="breadcrumb">
           <a href="/">Home</a> <span aria-hidden="true"> / </span>
-          <a href="/#areas">Service areas</a> <span aria-hidden="true"> / </span>
+          <a href="/service-areas/">Service areas</a> <span aria-hidden="true"> / </span>
           <span>{county.name}</span>
         </p>
         <h1>Junk Removal in <span class="city-accent">{county.name}, MN</span></h1>
         <p class="hero-copy">{county.intro}</p>
+        <p class="hero-copy" data-service-scope>{PICKUP_SCOPE}</p>
+        <p class="hero-copy">Paid pickup at your address. Send item photos for a written quote, approve the total, then confirm an available pickup window with the crew.</p>
         <div class="hero-actions">
           <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
@@ -94,13 +97,15 @@ const schema = {
     <section class="section city-locale">
       <div class="section-head"><div>
         <p class="section-kicker">Services in {county.name}</p>
-        <h2>All Dakota Valley services available.</h2>
+        <h2>Explore services and request availability.</h2>
       </div></div>
       <div class="city-grid">
         {Object.entries(services).map(([sl, s]) => (
           <a href={`/services/${sl}/`} class="city-link">{s.name}</a>
         ))}
       </div>
+      <p class="section-copy">{PICKUP_REQUIREMENTS}</p>
+      <p class="section-copy">{SCHEDULING_POLICY}</p>
     </section>
 
     <section class="section">
@@ -121,7 +126,7 @@ const schema = {
     <section class="section city-cta">
       <div>
         <h2>Ready for pickup in {county.name}?</h2>
-        <p>Text photos, item details, and a preferred pickup window. Crew confirms and routes around your county.</p>
+        <p>Send photos for a written quote, approve the total, then confirm an available pickup window. A quote request does not reserve an appointment.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={smsLink}><Icon name="lucide:message-square-text" size={18} /> Text {phoneDisplay}</a>

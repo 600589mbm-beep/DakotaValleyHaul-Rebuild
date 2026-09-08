@@ -1,0 +1,8 @@
+---
+import { WORKER_URL } from '../data/booking.js';
+---
+<span hidden id="dv-tracking-config" data-endpoint={WORKER_URL}></span>
+<script>
+  import { initLeadTracking } from '../lib/lead-tracking.js';
+  initLeadTracking(document);
+</script>

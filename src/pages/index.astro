@@ -19,6 +19,7 @@ import { guides } from '../data/guides.js';
 import { iconForService, startingPriceForService } from '../data/serviceIcons.js';
 import { PRICE_FLOOR_DETAIL } from '../data/pricing.js';
 import reviewsData from '../data/reviews.json';
+import { businessNode, SAME_AS } from '../data/schemaBusiness.js';
 
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
@@ -66,16 +67,6 @@ const minimumOffer = {
   offeredBy: { '@id': businessId },
 };
 
-const verifiedReviews = reviewsData.source === 'google'
-  ? (reviewsData.reviews || []).slice(0, 12).map((review) => ({
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: String(review.rating || 5), bestRating: '5' },
-      author: { '@type': 'Person', name: review.author },
-      reviewBody: review.text,
-      ...(review.publishedAt ? { datePublished: review.publishedAt } : {}),
-    }))
-  : [];
-
 const homepageSchema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -85,27 +76,11 @@ const homepageSchema = {
       name: 'Dakota Valley Junk Removal',
       url: site,
       logo: `${site}/favicon.svg`,
-      sameAs: ['https://www.facebook.com/dakotavalleyjunkremoval', 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan'],
+      sameAs: SAME_AS,
     },
     {
-      '@type': 'LocalBusiness',
-      '@id': businessId,
+      ...businessNode,
       parentOrganization: { '@id': `${site}/#organization` },
-      name: 'Dakota Valley Junk Removal',
-      url: site,
-      telephone: '+1-952-232-5107',
-      email,
-      priceRange: '$85+',
-      image: `${site}/og-card.png`,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
-        addressLocality: 'Eagan',
-        addressRegion: 'MN',
-        postalCode: '55122',
-        addressCountry: 'US',
-      },
-      geo: { '@type': 'GeoCoordinates', latitude: 44.8041, longitude: -93.1666 },
       areaServed: [
         { '@type': 'State', name: 'Minnesota' },
         { '@type': 'AdministrativeArea', name: 'Dakota County' },
@@ -113,40 +88,10 @@ const homepageSchema = {
         { '@type': 'AdministrativeArea', name: 'Ramsey County' },
       ],
       makesOffer: { '@id': `${site}/#minimum-pickup` },
-      foundingDate: '2023',
       knowsAbout: ['Junk removal', 'Furniture removal', 'Appliance recycling', 'Estate cleanout', 'Yard waste'],
-      sameAs: ['https://www.facebook.com/dakotavalleyjunkremoval', 'https://www.yelp.com/biz/dakota-valley-junk-removal-eagan'],
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '08:00',
-        closes: '21:00',
-      },
-      ...(reviewsData.source === 'google'
-        ? {
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: agg.ratingValue.toFixed(1),
-              reviewCount: String(agg.reviewCount),
-              bestRating: '5',
-              worstRating: '1',
-            },
-          }
-        : {}),
-      ...(verifiedReviews.length ? { review: verifiedReviews } : {}),
     },
     minimumOffer,
     ...serviceSchema,
-    {
-      '@type': 'BreadcrumbList',
-      '@id': `${site}/#breadcrumb`,
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${site}/#services` },
-        { '@type': 'ListItem', position: 3, name: 'Pricing', item: `${site}/pricing/` },
-        { '@type': 'ListItem', position: 4, name: 'Reviews', item: `${site}/reviews/` },
-      ],
-    },
     {
       '@type': 'WebSite',
       '@id': `${site}/#website`,
@@ -158,7 +103,6 @@ const homepageSchema = {
     {
       '@type': 'FAQPage',
       '@id': `${site}/#faq`,
-      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.faq-card summary', '.faq-card p'] },
       mainEntity: faqs.map((faq) => ({
         '@type': 'Question',
         name: faq.q,
@@ -169,8 +113,8 @@ const homepageSchema = {
 };
 ---
 <Layout
-  title="Junk Removal Minnesota | $85 Minimum & Photo Quotes | Dakota Valley"
-  description="Minnesota junk removal with an $85 pickup minimum and exact written photo quotes. Text pictures, approve the total, and choose a pickup window—local, licensed, insured, and donation-first."
+  title="Minnesota Junk Removal & Photo Quotes | Dakota Valley"
+  description="Get a written quote for curbside, driveway or garage junk pickup in Minnesota. Eligible pickups have an $85 minimum. Approve the price before confirming pickup."
   canonical="https://dakotavalleyjunkremovalservice.com/"
   schema={homepageSchema}
 >

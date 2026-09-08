@@ -1,45 +1,521 @@
 {
   "name": "Dakota Valley Junk Removal",
-  "description": "Affordable, full-service junk hauling and property cleanouts across Minnesota — Twin Cities metro and statewide. Text-first photo quotes, booking confirmed by text, loads from $85 plus flat per-item recyclable rates, donation-first disposal.",
   "url": "https://dakotavalleyjunkremovalservice.com",
   "telephone": "+1-952-232-5107",
   "email": "info@dakotavalleyjunkremovalservice.com",
-  "priceRange": "$85 minimum; exact written photo quote",
-  "foundingDate": "2023",
-  "address": "1964 Rahncliff Ct, Ste 200, #22342, Eagan, MN 55122",
-  "hours": "Open 7 days a week, 08:00-21:00",
-  "areaServed": ["Minnesota", "Twin Cities metro", "All Minnesota cities", "All Minnesota counties"],
-  "lastUpdated": "2026-06-15",
-  "llmsTxt": "https://dakotavalleyjunkremovalservice.com/llms.txt",
+  "description": "Paid junk pickup for approved items staged at the curb, in a driveway or in an accessible garage. Customers approve a written photo quote before confirming pickup.",
+  "basedIn": "Eagan, Minnesota",
+  "hours": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "08:00",
+    "closes": "21:00"
+  },
+  "policies": {
+    "pickupScope": "Curbside, driveway and accessible-garage pickup only. No inside-home pickup.",
+    "preparation": "Stage all approved items safely at the curb, in the driveway or in an accessible garage before the confirmed pickup window. The crew does not enter living areas or carry items out of basements, upstairs rooms or attics. Photograph the staged items and the clear path to legal truck parking.",
+    "pricing": "Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking.",
+    "writtenQuote": "The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins.",
+    "scheduling": "Pickup is by appointment after you approve the written quote and the crew confirms an available window. Timing depends on your address, job size and route capacity. Same-day pickup may be available, but is not guaranteed.",
+    "serviceArea": "Send your pickup address to confirm service and route availability before booking. A listed city or county is not a guarantee of an available pickup time.",
+    "specialtyProjects": "Outdoor specialty projects and rental requests are assessed separately from photos. Acceptance, scope, price and access must be confirmed in writing; the standard pickup minimum is not a project quote."
+  },
+  "exclusions": "No inside-home pickup. Hazardous waste, medical waste, asbestos, biological waste and explosives are not accepted. Ask about unknown materials before requesting pickup.",
+  "serviceModel": "Customers request paid pickup. This website does not offer a public drop-off site or represent a municipal recycling program.",
   "sitemap": "https://dakotavalleyjunkremovalservice.com/sitemap-index.xml",
   "sections": [
-    { "url": "https://dakotavalleyjunkremovalservice.com/", "section": "Home", "priority": 1.0, "focus": "Curbside and garage junk pickup across Minnesota, loads from $85, text-first photo quotes" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/pricing/", "section": "Pricing", "priority": 0.9, "focus": "Loads from $85: single item $85, pickup-bed $85-170, van load $255-550, full box-truck up to $750; plus flat per-item recyclable rates (mattress/fridge from $100, freezer $60, mini fridge $45, TV $50, tires $30) with exact total confirmed from photos" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/junk-pickup/", "section": "Service: Junk pickup", "priority": 0.8, "focus": "Curbside and garage junk pickup, single items to garage cleanouts" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/furniture-removal/", "section": "Service: Furniture removal", "priority": 0.8, "focus": "Sofas, sectionals, beds, mattresses, dressers, office furniture" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/appliance-recycling/", "section": "Service: Appliance recycling", "priority": 0.8, "focus": "Fridges, washers, dryers, stoves; EPA-certified refrigerant recovery" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/garage-cleanout/", "section": "Service: Garage cleanout", "priority": 0.8, "focus": "Stage items in garage, crew loads and sweeps" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/mattress-removal/", "section": "Service: Mattress removal", "priority": 0.7, "focus": "Single/queen/king and box springs, certified recycling, flat rate from $100" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/estate-cleanout/", "section": "Service: Estate cleanout", "priority": 0.7, "focus": "Donation-first full estate cleanouts, property show-ready" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/hoarder-cleanout/", "section": "Service: Hoarder cleanout", "priority": 0.7, "focus": "Discreet, judgment-free, sort-on-site donation routing" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/yard-debris/", "section": "Service: Yard and storm debris", "priority": 0.7, "focus": "Brush, branches, fencing, storm cleanup, compost routing" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/electronics-removal/", "section": "Service: Electronics removal", "priority": 0.7, "focus": "TVs, computers; R2-certified e-waste; hard-drive destruction" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/hot-tub-removal/", "section": "Service: Hot tub removal", "priority": 0.6, "focus": "Disassembly, lifting, hauling, disposal" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/services/demolition/", "section": "Service: Light demolition", "priority": 0.6, "focus": "Sheds, fences, decks, interior bath and kitchen demo" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/counties/hennepin-county/", "section": "Area: Hennepin County", "priority": 0.7, "focus": "Minneapolis, Bloomington, Edina, Eden Prairie, Plymouth, Maple Grove" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/counties/ramsey-county/", "section": "Area: Ramsey County", "priority": 0.7, "focus": "St. Paul, Roseville, Maplewood, White Bear Lake, Shoreview" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/counties/dakota-county/", "section": "Area: Dakota County", "priority": 0.7, "focus": "Eagan, Apple Valley, Burnsville, Lakeville, Hastings" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/guides/junk-removal-cost-minnesota/", "section": "Guide: Junk removal cost in Minnesota (2026)", "priority": 0.7, "focus": "How volume pricing works with real tiers" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/guides/get-rid-of-mattress-minnesota/", "section": "Guide: Get rid of a mattress in Minnesota", "priority": 0.6, "focus": "Mattress disposal and certified recycling options" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/guides/what-junk-removal-wont-take/", "section": "Guide: What junk removal won't take", "priority": 0.6, "focus": "Prohibited and hazardous items, alternatives" },
-    { "url": "https://dakotavalleyjunkremovalservice.com/reviews/", "section": "Reviews", "priority": 0.6, "focus": "Customer reviews and ratings" }
+    {
+      "name": "Home",
+      "url": "https://dakotavalleyjunkremovalservice.com/"
+    },
+    {
+      "name": "Services",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/"
+    },
+    {
+      "name": "Service areas",
+      "url": "https://dakotavalleyjunkremovalservice.com/service-areas/"
+    },
+    {
+      "name": "Pricing",
+      "url": "https://dakotavalleyjunkremovalservice.com/pricing/"
+    },
+    {
+      "name": "Get a Quote",
+      "url": "https://dakotavalleyjunkremovalservice.com/quote/"
+    },
+    {
+      "name": "FAQ",
+      "url": "https://dakotavalleyjunkremovalservice.com/faq/"
+    },
+    {
+      "name": "Reviews",
+      "url": "https://dakotavalleyjunkremovalservice.com/reviews/"
+    },
+    {
+      "name": "Local disposal guides",
+      "url": "https://dakotavalleyjunkremovalservice.com/guides/"
+    },
+    {
+      "name": "About",
+      "url": "https://dakotavalleyjunkremovalservice.com/about/"
+    }
   ],
-  "faq": [
-    { "q": "What is the minimum pickup price?", "a": "$85 for eligible curbside or garage pickup. Final pricing depends on volume, weight, dump fees, and specialty disposal." },
-    { "q": "Why text instead of calling?", "a": "A photo tells the crew more than a call. Text a few shots and get a firm quote and a pickup window." },
-    { "q": "Do you serve my city or county?", "a": "Yes — all Minnesota cities and counties, with route-aware scheduling." },
-    { "q": "When is the soonest you can pick up?", "a": "Most pickups are about two business days out; same-day is sometimes available based on crew capacity." },
-    { "q": "What items do you NOT accept?", "a": "Hazardous waste (paint, chemicals, pesticides, motor oil), medical waste, asbestos, biological waste, and explosives." },
-    { "q": "Do you recycle or donate items?", "a": "Yes — donation-first. Furniture to Bridging/Arc/Savers, electronics to R2-certified recyclers, mattresses to certified MN facilities." }
+  "services": [
+    {
+      "name": "Junk pickup",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/junk-pickup/",
+      "description": "Junk pickup in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Furniture removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/furniture-removal/",
+      "description": "Furniture removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Appliance recycling",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/appliance-recycling/",
+      "description": "Appliance recycling in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Garage cleanout",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/garage-cleanout/",
+      "description": "Garage cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Yard and storm debris",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/yard-debris/",
+      "description": "Paid yard waste removal in Minnesota. Brush, branches and staged storm debris reviewed from photos. Approve your written quote before confirming pickup."
+    },
+    {
+      "name": "Dumpster and trailer rental",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/dumpster-rental/",
+      "description": "Dumpster and trailer rental requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work."
+    },
+    {
+      "name": "Mattress removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/mattress-removal/",
+      "description": "Paid mattress disposal in Minnesota. Stage mattresses and box springs curbside or in a garage. Get a written photo quote before confirming pickup."
+    },
+    {
+      "name": "Hot tub removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/hot-tub-removal/",
+      "description": "Hot tub removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work."
+    },
+    {
+      "name": "Scrap metal removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/scrap-metal-removal/",
+      "description": "Scrap metal removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Electronics removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/electronics-removal/",
+      "description": "Electronics removal in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Hoarder cleanout",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/hoarder-cleanout/",
+      "description": "Hoarder cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Estate cleanout",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/estate-cleanout/",
+      "description": "Estate cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Attic cleanout",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/attic-cleanout/",
+      "description": "Attic cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Basement cleanout",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/basement-cleanout/",
+      "description": "Basement cleanout in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Fence removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/fence-removal/",
+      "description": "Fence removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work."
+    },
+    {
+      "name": "Shed removal",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/shed-removal/",
+      "description": "Shed removal requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work."
+    },
+    {
+      "name": "Single-item pickup",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/single-item-pickup/",
+      "description": "Single-item pickup in Minnesota. Text photos for a written quote and confirmed pickup window. Curbside or garage staging; no inside-home pickup."
+    },
+    {
+      "name": "Light demolition",
+      "url": "https://dakotavalleyjunkremovalservice.com/services/demolition/",
+      "description": "Light demolition requests in Minnesota. Send project and access photos. Scope, price and scheduling require written confirmation; no interior work."
+    }
+  ],
+  "cities": [
+    {
+      "name": "Apple Valley",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/apple-valley/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/apple-valley/"
+    },
+    {
+      "name": "Albert Lea",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/albert-lea/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/albert-lea/"
+    },
+    {
+      "name": "Alexandria",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/alexandria-mn/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/alexandria-mn/"
+    },
+    {
+      "name": "Austin",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/austin-mn/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/austin-mn/"
+    },
+    {
+      "name": "Bemidji",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/bemidji/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/bemidji/"
+    },
+    {
+      "name": "Bloomington",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/bloomington/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/bloomington/"
+    },
+    {
+      "name": "Brainerd",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/brainerd/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/brainerd/"
+    },
+    {
+      "name": "Burnsville",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/burnsville/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/burnsville/"
+    },
+    {
+      "name": "Duluth",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/duluth/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/duluth/"
+    },
+    {
+      "name": "Eagan",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/eagan/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/eagan/"
+    },
+    {
+      "name": "Eden Prairie",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/eden-prairie/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/eden-prairie/"
+    },
+    {
+      "name": "Edina",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/edina/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/edina/"
+    },
+    {
+      "name": "Faribault",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/faribault/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/faribault/"
+    },
+    {
+      "name": "Farmington",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/farmington/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/farmington/"
+    },
+    {
+      "name": "Fergus Falls",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/fergus-falls/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/fergus-falls/"
+    },
+    {
+      "name": "Hastings",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/hastings/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/hastings/"
+    },
+    {
+      "name": "Hopkins",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/hopkins/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/hopkins/"
+    },
+    {
+      "name": "Hutchinson",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/hutchinson-mn/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/hutchinson-mn/"
+    },
+    {
+      "name": "Inver Grove Heights",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/inver-grove-heights/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/inver-grove-heights/"
+    },
+    {
+      "name": "Lakeville",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/lakeville/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/lakeville/"
+    },
+    {
+      "name": "Mankato",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/mankato/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/mankato/"
+    },
+    {
+      "name": "Maple Grove",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/maple-grove/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/maple-grove/"
+    },
+    {
+      "name": "Maplewood",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/maplewood/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/maplewood/"
+    },
+    {
+      "name": "Marshall",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/marshall-mn/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/marshall-mn/"
+    },
+    {
+      "name": "Minneapolis",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/minneapolis/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/minneapolis/"
+    },
+    {
+      "name": "Minnetonka",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/minnetonka/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/minnetonka/"
+    },
+    {
+      "name": "Moorhead",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/moorhead/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/moorhead/"
+    },
+    {
+      "name": "New Ulm",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/new-ulm-mn/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/new-ulm-mn/"
+    },
+    {
+      "name": "Northfield",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/northfield/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/northfield/"
+    },
+    {
+      "name": "Owatonna",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/owatonna/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/owatonna/"
+    },
+    {
+      "name": "Plymouth",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/plymouth/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/plymouth/"
+    },
+    {
+      "name": "Red Wing",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/red-wing/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/red-wing/"
+    },
+    {
+      "name": "Richfield",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/richfield/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/richfield/"
+    },
+    {
+      "name": "Rochester",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/rochester/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/rochester/"
+    },
+    {
+      "name": "Rosemount",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/rosemount/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/rosemount/"
+    },
+    {
+      "name": "Roseville",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/roseville/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/roseville/"
+    },
+    {
+      "name": "Shoreview",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/shoreview/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/shoreview/"
+    },
+    {
+      "name": "St. Cloud",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/st-cloud/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/st-cloud/"
+    },
+    {
+      "name": "St. Louis Park",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/st-louis-park/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/st-louis-park/"
+    },
+    {
+      "name": "St. Paul",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/st-paul/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/st-paul/"
+    },
+    {
+      "name": "White Bear Lake",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/white-bear-lake/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/white-bear-lake/"
+    },
+    {
+      "name": "Willmar",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/willmar/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/willmar/"
+    },
+    {
+      "name": "Winona",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/winona/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/winona/"
+    },
+    {
+      "name": "Woodbury",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/woodbury/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/woodbury/"
+    },
+    {
+      "name": "Brooklyn Park",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/brooklyn-park/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/brooklyn-park/"
+    },
+    {
+      "name": "Blaine",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/blaine/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/blaine/"
+    },
+    {
+      "name": "Coon Rapids",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/coon-rapids/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/coon-rapids/"
+    },
+    {
+      "name": "Shakopee",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/shakopee/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/shakopee/"
+    },
+    {
+      "name": "Cottage Grove",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/cottage-grove/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/cottage-grove/"
+    },
+    {
+      "name": "Andover",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/andover/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/andover/"
+    },
+    {
+      "name": "Savage",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/savage/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/savage/"
+    },
+    {
+      "name": "Prior Lake",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/prior-lake/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/prior-lake/"
+    },
+    {
+      "name": "Chaska",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/chaska/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/chaska/"
+    },
+    {
+      "name": "Oakdale",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/oakdale/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/oakdale/"
+    },
+    {
+      "name": "Chanhassen",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/chanhassen/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/chanhassen/"
+    },
+    {
+      "name": "Elk River",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/elk-river/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/elk-river/"
+    },
+    {
+      "name": "Champlin",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/champlin/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/champlin/"
+    },
+    {
+      "name": "Lino Lakes",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/lino-lakes/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/lino-lakes/"
+    },
+    {
+      "name": "Forest Lake",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/forest-lake/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/forest-lake/"
+    },
+    {
+      "name": "Stillwater",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/stillwater/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/stillwater/"
+    },
+    {
+      "name": "Anoka",
+      "url": "https://dakotavalleyjunkremovalservice.com/cities/anoka/",
+      "quote": "https://dakotavalleyjunkremovalservice.com/quote/anoka/"
+    }
+  ],
+  "counties": [
+    {
+      "name": "Hennepin County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/hennepin-county/"
+    },
+    {
+      "name": "Ramsey County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/ramsey-county/"
+    },
+    {
+      "name": "Dakota County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/dakota-county/"
+    },
+    {
+      "name": "Anoka County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/anoka-county/"
+    },
+    {
+      "name": "Washington County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/washington-county/"
+    },
+    {
+      "name": "Scott County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/scott-county/"
+    },
+    {
+      "name": "Carver County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/carver-county/"
+    },
+    {
+      "name": "Olmsted County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/olmsted-county/"
+    },
+    {
+      "name": "St. Louis County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/st-louis-county/"
+    },
+    {
+      "name": "Stearns County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/stearns-county/"
+    },
+    {
+      "name": "Wright County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/wright-county/"
+    },
+    {
+      "name": "Sherburne County",
+      "url": "https://dakotavalleyjunkremovalservice.com/counties/sherburne-county/"
+    }
   ]
 }

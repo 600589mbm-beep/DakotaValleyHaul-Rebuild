@@ -9,9 +9,8 @@ export default defineConfig({
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   integrations: [
     react(),
-    // lastmod/changefreq tell crawlers the programmatic pages are fresh on
-    // every deploy — content actually changes per deploy (seeded copy, FAQs).
-    sitemap({ lastmod: new Date(), changefreq: 'weekly' }),
+    // Omit lastmod until it can reflect each page's significant content changes.
+    sitemap(),
     icon(),
   ],
   build: {

@@ -20,10 +20,10 @@
   <!-- proof chips -->
   <g font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#ffffff">
     <rect x="80" y="520" width="300" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
-    <text x="110" y="558">★★★★★ 5.0 rated</text>
+    <text x="110" y="558">Photo quotes</text>
     <rect x="400" y="520" width="270" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
-    <text x="430" y="558">$85 minimum</text>
+    <text x="430" y="558">You approve</text>
     <rect x="690" y="520" width="430" height="58" rx="29" fill="rgba(255,255,255,0.12)"/>
-    <text x="720" y="558">Licensed &amp; insured · Since 2009</text>
+    <text x="720" y="558">Pickup by appointment</text>
   </g>
 </svg>

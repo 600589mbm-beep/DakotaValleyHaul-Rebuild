@@ -1,13 +1,11 @@
-import { PRICE_FLOOR_DETAIL } from './servicePolicy.js';
-import { NO_INSIDE_PICKUP, QUOTE_POLICY, SCHEDULING_POLICY } from './servicePolicy.js';
+import { PRICE_FLOOR_DETAIL, NO_INSIDE_PICKUP, PICKUP_REQUIREMENTS, QUOTE_POLICY, SCHEDULING_POLICY, SPECIALTY_POLICY, UNATTENDED_POLICY } from './servicePolicy.js';
+import { isSpecialtyService, SERVICE_SEO_NAMES } from './services.js';
 // Per-(city, service) unique content for the 1,098 combo pages.
 //
-// Every paragraph, FAQ set, title, and description is deterministically
-// seeded from the citySlug+serviceSlug pair, so each combo page renders
-// structurally different copy instead of the city intro + service blocks
-// being reshuffled. All factual claims (prices, disposal routing, hours,
-// process) come from pricing.js / booking.js / services.js — do not add
-// claims here that those files can't back up.
+// Local names and service details come from the shared data. Seeded FAQ
+// ordering is for presentation only; it is not evidence of a local route,
+// completed job or distinctive service availability. Service promises must
+// agree with servicePolicy.js and services.js.
 
 import { cities } from './cities.js';
 
@@ -72,7 +70,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Can you break down bed frames and large furniture in ${c.name}?`,
-        a: `Yes. Bed frame and headboard breakdown is part of the service, and crews disassemble sectionals or wardrobes that will not move in one piece. It is included in the volume-based price, not billed separately.`,
+        a: `Send photos of each piece and any disassembly needed before moving it. Furniture must be safely staged at the curb, in the driveway or in an accessible garage. Arrange suitable help for disassembly and staging; the crew does not carry furniture out of rooms. The accepted items and work are confirmed in your written quote.`,
       }),
     ],
   },
@@ -87,7 +85,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Do you take appliances with freon from ${c.name} homes?`,
-        a: `Yes. Refrigerators, freezers, AC units, and dehumidifiers are accepted; refrigerant is recovered through an EPA-certified process before the metal is recycled. You do not need to drain or prep the unit.`,
+        a: `Send photos of refrigerators, freezers, AC units or dehumidifiers for acceptance and a written quote. Appliances must be safely disconnected by a qualified person and staged before pickup. Do not cut refrigerant lines; refrigerant handling is part of the recycling process.`,
       }),
     ],
   },
@@ -102,7 +100,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Do I need to sort my garage before the crew arrives in ${c.name}?`,
-        a: `No. Stage what you can or just point — the crew loads everything you flag. Empty paint cans are fine; full paint, chemicals, and other hazardous materials are the only things that cannot go on the truck.`,
+        a: `Yes. Select the items to remove, separate anything you are keeping and send photos of the complete load. Approved items need a clear loading path from an accessible garage, driveway or curb. The crew loads the agreed items; it does not sort your belongings or handle hazardous materials.`,
       }),
     ],
   },
@@ -113,7 +111,7 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you haul branches and brush piles in ${c.name}?`,
-        a: PRICE_FLOOR_DETAIL,
+        a: `Yes, send photos of your brush or branch pile, any mixed materials and the loading access. Acceptance and price depend on the material, volume and weight. Stage approved debris curbside, in the driveway or in an accessible garage before the confirmed pickup window.`,
       }),
       (c) => ({
         q: `Where does yard waste from ${c.name} go?`,
@@ -128,11 +126,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `How does a dumpster drop in ${c.name} compare to full-service pickup?`,
-        a: `A drop is best when you want to load over several days at your own pace; full-service is best when you want the crew to do the lifting. For most single-day ${c.name} jobs the crew-loaded option costs about the same once your labor is counted.`,
+        a: `With an approved rental, you load the container during the agreed rental period. With crew-loaded pickup, you safely stage the approved items at the curb, in the driveway or in an accessible garage and the crew loads them. Rental availability, container size, allowed materials, weight limits, dates and price are confirmed separately in writing.`,
       }),
       (c) => ({
         q: `How do I arrange a dumpster or trailer drop in ${c.name}?`,
-        a: `Text your project size and timeline to (952) 232-5107. Drops are by request — you get a driveway-friendly dumpster or trailer, a multi-day loading window, and pickup once you signal the load is complete.`,
+        a: `Send your ${c.name} address, access photos, materials, estimated load and preferred dates to (952) 232-5107. The crew checks whether a rental is available and sends the terms and total in writing. Approve them before confirming delivery and collection. Sending a request does not reserve a container.`,
       }),
     ],
   },
@@ -162,7 +160,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Can you remove a sunken or deck-mounted hot tub in ${c.name}?`,
-        a: `Yes. The crew handles disassembly, lifting, and hauling for free-standing, deck-mounted, and below-grade installations, including the cover, pump, and spa equipment. Saunas are quoted separately.`,
+        a: `Send photos of the tub, installation and full access path. Sunken, deck-mounted and below-grade projects need individual review. Acceptance, preparation, disassembly and hauling are included only when confirmed in the written scope and price. No indoor spa removal is offered.`,
       }),
     ],
   },
@@ -197,32 +195,32 @@ export const serviceAngles = {
     ],
   },
   'hoarder-cleanout': {
-    items: ['full-property cleanouts', 'single-room cleanouts', 'mixed donation and disposal loads'],
+    items: ['pre-staged household furniture', 'approved boxes and storage items', 'separately staged donation candidates'],
     scenarios: ['a family member who needs discreet help', 'a property that has to be cleared for sale', 'a multi-day project'],
-    disposal: 'The crew sorts donations versus trash on-site; donatable goods are routed through Savers and the rest to licensed disposal.',
+    disposal: 'Separate donation candidates from disposal items before pickup and show both in your photos. Acceptance depends on condition and disposal requirements; no room sorting or hazardous cleanup is offered.',
     faqs: [
       (c) => ({
         q: `Is hoarder cleanout in ${c.name} handled discreetly?`,
-        a: `Yes. Crews work judgment-free and at your pace, in unmarked staging where requested. Jobs in ${c.name} are quoted on-site rather than from photos, since volume is hard to judge remotely, and multi-day projects are normal.`,
+        a: `Yes. Send photos of the approved nonhazardous items and loading access for a written quote. We can coordinate with a family member or property manager. All items must be safely staged at the curb, in the driveway or in an accessible garage; no inside-home cleanout or hazardous cleanup is offered.`,
       }),
       (c) => ({
         q: `Do you sort what is worth keeping during a ${c.name} hoarder cleanout?`,
-        a: `The crew sorts donations versus trash on-site and coordinates with family or the landlord on anything that looks like it should stay. Biohazard situations are prepped around, with hazmat itself deferred to licensed specialists.`,
+        a: `No. You or your chosen helpers must decide what to keep, separate donation candidates and safely stage the approved pickup items. The crew loads only the items in your written quote and does not sort rooms, enter living areas or handle hazardous materials.`,
       }),
     ],
   },
   'estate-cleanout': {
-    items: ['full-house estate loads', 'pre-selected staged items', 'donation runs with tax receipts'],
+    items: ['pre-selected furniture staged for pickup', 'approved boxes and household items', 'separately staged donation candidates'],
     scenarios: ['settling a family estate', 'downsizing a parent into senior living', 'getting a property show-ready for sale'],
-    disposal: 'Donation-first: usable items are routed to Bridging, Arc, or Savers with tax receipts available; the property is left show-ready.',
+    disposal: 'Separate donation candidates from disposal items before staging and identify them in your photos. Usable items are considered for donation where accepted; indoor sorting and property cleaning are not included.',
     faqs: [
       (c) => ({
         q: `How does an estate cleanout work in ${c.name}?`,
-        a: PRICE_FLOOR_DETAIL,
+        a: `Choose the furniture and household items to remove, arrange safe staging at the curb, in the driveway or in an accessible garage, and send photos for a written quote. Approve the price before confirming an available pickup window. The crew does not enter rooms or decide which belongings to keep.`,
       }),
       (c) => ({
         q: `Can you work around family members sorting belongings in ${c.name}?`,
-        a: `Yes — selective room-by-room cleanouts are common, and the crew coordinates timing with family so nothing leaves before it has been reviewed. Donation receipts are provided for tax purposes.`,
+        a: `Yes, we can coordinate the pickup with a family member after sorting is complete. Your family chooses what leaves and safely stages those items before the confirmed window. No room-by-room sorting, inside-home carry-out or property cleaning is included.`,
       }),
     ],
   },
@@ -263,11 +261,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you tear out the fence or just haul it in ${c.name}?`,
-        a: `Both — the crew dismantles wood, chain-link, vinyl, or wrought iron fencing and hauls it the same visit. Concrete footings can be broken up by request, quoted from photos of the fence line.`,
+        a: `You can request outdoor dismantling and hauling or pickup of fence debris that is already staged. Send photos of the fence line, posts, footings and access. The crew confirms acceptance and exactly which work is included in your written project quote before you confirm an appointment.`,
       }),
       (c) => ({
         q: `What happens to the post holes after fence removal in ${c.name}?`,
-        a: `The yard is left clean and fillable — posts and footings out (footing breakup is quoted separately), debris swept, holes ready for fill or new posts. Gate hardware is removed as part of the job.`,
+        a: `Describe any footing removal, post holes or cleanup you need and include photos. Those details must be accepted in the written project scope. Do not assume footing breakup, backfilling or landscaping is included in a hauling quote.`,
       }),
     ],
   },
@@ -278,11 +276,11 @@ export const serviceAngles = {
     faqs: [
       (c) => ({
         q: `Do you demolish the shed or does it need to be taken down first in ${c.name}?`,
-        a: `The crew handles the full breakdown — wood, metal (Tuff Shed style), plastic, or brick — then hauls the debris and sweeps the site. Brick demolition and concrete pad demo are quoted separately from photos.`,
+        a: `Outdoor shed dismantling can be requested, subject to review of the structure, materials, condition and access. Send photos before taking anything apart. The written quote confirms any accepted dismantling, hauling, cleanup or foundation work; no work is included until you approve that scope.`,
       }),
       (c) => ({
         q: `Can the shed still be full when you remove it in ${c.name}?`,
-        a: `Yes — contents just become part of the volume quote. Text photos of the shed inside and out with your ${c.name} address and you will get one number covering contents, structure, and site cleanup.`,
+        a: `Show the contents as well as the structure in your photos and identify everything to keep. The crew must review and approve any contents removal in writing with the shed project. Hazardous materials are not accepted, and hidden contents or a changed scope need a revised quote you approve before work begins.`,
       }),
     ],
   },
@@ -312,7 +310,7 @@ export const serviceAngles = {
       }),
       (c) => ({
         q: `Is hauling included in demolition jobs in ${c.name}?`,
-        a: `Yes — tear-down, loading, hauling, and disposal are one quoted price, so there is no debris pile waiting for a second contractor. The site is swept before the crew leaves.`,
+        a: `The written project quote states which dismantling, loading, hauling, disposal and cleanup are included. Send photos of the full outdoor project and access so those details can be agreed in advance. Approve the price and scope before confirming an available appointment.`,
       }),
     ],
   },
@@ -345,28 +343,18 @@ export function comboIntro(city, service, citySlug, serviceSlug) {
   const seed = hashSeed(`${citySlug}/${serviceSlug}`);
   const angle = serviceAngles[serviceSlug];
   const svc = service.name.toLowerCase();
-  const [n1, n2, n3] = sample(seed, city.neighborhoods, 3, 1);
-  const landmark = at(seed, 2, city.landmarks);
-  const item = at(seed, 3, angle.items);
-  const scenario = at(seed, 4, angle.scenarios);
+  const items = sample(seed, angle.items, 3, 3).join(', ');
 
-  const openers = [
-    `Need ${svc} in ${city.name}? Dakota Valley Junk Removal plans pickups by confirmed route availability across ${city.county}, including ${n1}, ${n2}, and ${n3}.`,
-    `Dakota Valley Junk Removal handles ${svc} across ${city.name} — from ${n1} over to ${n2} — with curbside and garage pickup and an $85 pickup minimum.`,
-    `${city.name} homeowners call us for ${svc} covering everything from ${item} to full cleanout loads, in every neighborhood from ${n1} to ${n3}.`,
-    `From ${landmark} to the streets of ${n1}, our Isuzu NPR box trucks cover all of ${city.name} for ${svc}.`,
-  ];
-  const middles = [
-    `The most common ${city.name} job is ${scenario}: text photos of the ${item} to (952) 232-5107 and a firm quote comes back by text — no estimate visit needed.`,
-    `Whether it's ${scenario} or just ${item} that has overstayed its welcome, you text photos, get a firm price, and book a confirmed pickup window without a phone call.`,
-    `Most requests here start as ${scenario}. Photos by text get a real quote (not a range that changes on arrival), and booking is confirmed with the crew after quote approval.`,
-  ];
-  const closers = [
-    PRICE_FLOOR_DETAIL,
-    PRICE_FLOOR_DETAIL,
-    PRICE_FLOOR_DETAIL,
-  ];
-  return `${at(seed, 5, openers)} ${at(seed, 6, middles)} ${at(seed, 7, closers)}`;
+  if (serviceSlug === 'dumpster-rental') {
+    return `Request a dumpster or trailer rental in ${city.name}, ${city.county}, for DIY loading. Send your address, access photos, material list and preferred dates. Container availability, allowed materials, load limits, rental period and collection terms need written confirmation. Approve the price and terms before confirming delivery; a quote request does not reserve a container.`;
+  }
+  if (isSpecialtyService(serviceSlug)) {
+    return `Request ${svc} in ${city.name}, ${city.county}. Send photos of the full outdoor project, loading access and any debris you want removed. The crew reviews acceptance and provides a written scope and price. Approve those details before confirming an available appointment. ${SPECIALTY_POLICY} No interior demolition or inside-home carry-out is offered.`;
+  }
+  if (citySlug === 'eagan' && serviceSlug === 'mattress-removal') {
+    return `Need mattress disposal in Eagan? Dakota Valley offers paid pickup of pre-staged mattresses, box springs and disassembled bed-frame pieces. Send photos showing size, quantity, condition and access with your Eagan address. ${PRICE_FLOOR_DETAIL} Approve the written price before confirming an available pickup window. Items must be safely staged at the curb, in the driveway or in an accessible garage; there is no bedroom or stair carry-out.`;
+  }
+  return `Request paid ${svc} in ${city.name}, ${city.county}. Send photos of items such as ${items}, plus your pickup address and access, so the crew can confirm acceptance and the full written price. ${PRICE_FLOOR_DETAIL} Approve the price before confirming an available pickup window. All approved items must be safely staged at the curb, in the driveway or in an accessible garage; no inside-home pickup is offered.`;
 }
 
 // --- local notes paragraph ----------------------------------------------
@@ -398,6 +386,7 @@ export function cityFaqs(city, citySlug) {
 
 function buildFaqs(city, svc, seed, serviceSlug) {
   const hoods = sample(seed, city.neighborhoods, Math.min(4, city.neighborhoods.length), 9).join(', ');
+  const specialty = isSpecialtyService(serviceSlug);
 
   const generic = [
     {
@@ -405,7 +394,7 @@ function buildFaqs(city, svc, seed, serviceSlug) {
         `How much does ${svc} cost in ${city.name}, MN?`,
         `What does ${svc} cost in ${city.name}?`,
       ]),
-      a: PRICE_FLOOR_DETAIL,
+      a: specialty ? SPECIALTY_POLICY : PRICE_FLOOR_DETAIL,
     },
     {
       q: at(seed, 11, [
@@ -416,18 +405,18 @@ function buildFaqs(city, svc, seed, serviceSlug) {
     },
     {
       q: `What parts of ${city.name} do you serve for ${svc}?`,
-      a: `All of ${city.name}, including ${hoods}, plus the surrounding ${city.county} area. If you are just outside the city line, text your address — the route likely still covers you.`,
+      a: `Send your pickup address in ${city.name}, including areas such as ${hoods}, or the surrounding ${city.county} area. The crew confirms service and route availability before you agree to an appointment. A listed location does not guarantee an available window.`,
     },
     {
       q: at(seed, 12, [
         `Do I need to be home for ${svc} in ${city.name}?`,
         `Do I need to be home for ${svc} in ${city.name}?`,
       ]),
-      a: "You do not have to be home when the crew has confirmed safe access to all approved items at the curb, in the driveway or in an accessible garage. Arrange access in advance; the crew does not enter living areas.",
+      a: specialty ? 'The crew confirms access and whether someone needs to be present in the written project or rental agreement. Do not assume unattended access is possible before those details are agreed.' : UNATTENDED_POLICY,
     },
     {
       q: `How do I get a quote for ${svc} in ${city.name}?`,
-      a: `Text photos of the items to (952) 232-5107 with your ${city.name} address or neighborhood. Quotes come back by text — no on-site estimate visit — and you book a confirmed pickup window once the price works.`,
+      a: `Text photos of the items or outdoor project and loading access to (952) 232-5107 with your ${city.name} address. The crew reviews acceptance and sends a written quote. Approve the price and scope before confirming an available pickup, project or rental window. Sending a request does not reserve an appointment.`,
     },
   ];
 
@@ -451,49 +440,36 @@ export function faqSchema(faqs) {
 // --- seeded title / meta description --------------------------------------
 
 export function comboMeta(city, service, citySlug, serviceSlug) {
-  const seed = hashSeed(`meta:${citySlug}/${serviceSlug}`);
-  const [n1, n2] = sample(seed, city.neighborhoods, 2, 4);
-  const titles = [
-    `${service.name} in ${city.name}, MN | $85 Minimum, Photo Quotes | Dakota Valley`,
-    `${city.name} ${service.name} | Text-a-Photo Quotes from $85 | Dakota Valley`,
-    `${service.name} ${city.name} MN — Get a Quote by Text | Dakota Valley`,
-  ];
-  const descriptions = [
-    `${service.name} in ${city.name}, MN from $85. Serving ${n1}, ${n2} and all of ${city.county}. Text photos to (952) 232-5107 for a firm quote and a pickup window confirmed by the crew.`,
-    `Need ${service.name.toLowerCase()} in ${city.name}? Curbside & garage pickup from $85 across ${n1}, ${n2} and ${city.county}. Firm quotes by text, booking confirmed by text, no estimate visit.`,
-    `${city.name} ${service.name.toLowerCase()} from $85 — ${n1} to ${n2}. Text photos for a firm quote, book a window, crew handles loading. Pickup timing depends on ${city.county} route availability.`,
-  ];
-  return { title: at(seed, 5, titles), description: at(seed, 6, descriptions) };
+  const label = SERVICE_SEO_NAMES[serviceSlug] || service.name;
+  const title = `${label} ${city.name}, MN | Dakota Valley`;
+  let description = `Paid ${label.toLowerCase()} in ${city.name}, MN. Curbside or garage staging. Get a written photo quote before confirming pickup.`;
+  if (serviceSlug === 'dumpster-rental') {
+    description = `Request dumpster rental in ${city.name}, MN for DIY loading. Availability, load limits, dates and price confirmed in writing before rental confirmation.`;
+  } else if (isSpecialtyService(serviceSlug)) {
+    description = `Request ${label.toLowerCase()} in ${city.name}, MN. Send project and access photos; approve the written scope and price before confirming a time.`;
+  } else if (citySlug === 'eagan' && serviceSlug === 'mattress-removal') {
+    description = 'Mattress disposal in Eagan, MN. Paid pickup of staged mattresses and box springs. Get a written photo quote and approve the price before confirming pickup.';
+  }
+  return { title, description };
 }
 
-// --- quote pages (/quote/[city]) — seeded differentiation ------------------
-// These 61 pages were 91% identical; each now gets seeded copy + a
-// quote-intent FAQ set distinct from the city/combo FAQ pools.
+// --- quote pages (/quote/[city]) -----------------------------------------
+// Quote intent is distinct from the service information on city pages.
 
 export function quoteContent(city, citySlug) {
   const seed = hashSeed(`quote:${citySlug}`);
   const [n1, n2, n3] = sample(seed, city.neighborhoods, 3, 1);
-  const landmark = at(seed, 2, city.landmarks);
-
   const titles = [
-    `Junk Removal Quote ${city.name} MN | Firm Price by Text | Dakota Valley`,
-    `Get a ${city.name} Junk Removal Quote | Photos In, Price Out | Dakota Valley`,
-    `${city.name} Junk Removal Quote by Text | $85 Min | Dakota Valley`,
+    `${city.name} Junk Removal Quote | Dakota Valley`,
   ];
   const descriptions = [
-    `Get a firm junk removal quote in ${city.name}, MN: text photos to (952) 232-5107 and the ${city.county} crew prices it after review. From $85, no estimate visit, no phone call.`,
-    `Junk removal quote for ${city.name} — text photos, get a firm price and pickup window back. Serving ${n1}, ${n2} and all of ${city.county}. an $85 pickup minimum.`,
-    `Fast ${city.name} junk removal quote: photos by text, firm price back after review, booking confirmed by text. From $85 across ${n1} and ${n2}. No phone call required.`,
+    `Get a written junk removal quote in ${city.name}, MN. Send photos and access details for paid staged pickup. Approve the price before confirming a time.`,
   ];
   const heroCopies = [
-    `Text a few photos of what needs to go. The crew that routes through ${city.name} — ${n1}, ${n2}, ${n3} — prices it from the photos and texts back a firm quote and a pickup window, after review. Eligible staged pickups have an $85 minimum.`,
-    `Snap photos of the pile, the sofa, or the garage and text them over. ${city.name} sits on our regular ${city.county} loop, so a firm price and a confirmed pickup window come back fast — after the crew reviews your request. Eligible staged pickups have an $85 minimum.`,
-    `From ${n1} to ${n3}, ${city.name} quotes work the same way: photos by text, a firm number back after review, and an available pickup window to confirm after you approve the total. Eligible staged pickups have an $85 minimum.`,
+    `Send photos of everything you want collected, your ${city.name} address and the loading access. The crew reviews item acceptance and replies with a written total. Eligible curbside, driveway and accessible-garage pickups have an $85 minimum, not a flat price for every load. Approve the quote before confirming an available pickup window. Your request does not reserve an appointment.`,
   ];
   const routeCopies = [
-    `Because we schedule by route through ${city.county}, ${city.name} pickups stay efficient — which keeps your price down. We regularly serve ${n1}, ${n2}, ${n3} and the rest of ${city.name}.`,
-    `Trucks already pass near ${landmark} on ${city.county} routes most working days, so your ${city.name} pickup slots into an existing loop instead of a special trip — that efficiency is why the $85 floor holds.`,
-    `${city.name} quotes come back fast because the routing is already done: crews loop through ${city.county} daily, covering ${n1}, ${n2}, and the surrounding grid. Your pickup joins the loop.`,
+    `For requests in ${city.name}, including ${n1}, ${n2} and ${n3}, share your exact address rather than relying on the city name alone. Route availability depends on your address, job size and current capacity in ${city.county}. The crew confirms an available window after you approve the written quote; a listed city does not guarantee a daily route or same-day pickup.`,
   ];
 
   const disposalCopies = [
@@ -553,7 +529,7 @@ export function countyFaqs(county, slug) {
     },
     {
       q: `Which ${county.name} cities do you serve?`,
-      a: `${cityNames}, and the surrounding ${county.name} communities. If your town isn't listed, text your address — county routes usually cover the gaps between the bigger cities.`,
+      a: `Send your pickup address in ${cityNames} or the surrounding ${county.name} communities. The crew checks service and route availability before confirming a pickup window. A listed city or county does not guarantee an available appointment.`,
     },
     {
       q: at(seed, 11, [
@@ -564,7 +540,7 @@ export function countyFaqs(county, slug) {
     },
     {
       q: `How do I book a pickup in ${county.name}?`,
-      a: "Text photos of the items to (952) 232-5107 with your city or zip. A firm quote comes back by text — no estimate visit — and you pick a confirmed pickup window. The crew calls about 30 minutes before arrival.",
+      a: "Text photos of the items and loading access to (952) 232-5107 with your pickup address. The crew reviews acceptance and sends the full price in writing. Approve the price before confirming an available pickup window. A quote request does not reserve an appointment.",
     },
   ];
   return sample(seed, pool, 4, 13);

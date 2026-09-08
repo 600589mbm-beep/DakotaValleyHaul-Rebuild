@@ -15,6 +15,8 @@ function fixture(t, query = '') {
   window.URL.createObjectURL = () => `blob:quote-test-${++urlCount}`;
   window.URL.revokeObjectURL = (url) => revoked.push(url);
   const requests = [];
+  const events = [];
+  window.dvTrack = (event, props) => events.push({ event, props });
   window.fetch = async (...args) => {
     requests.push(args);
     return { ok: true, status: 200, json: async () => ({ success: true }) };
@@ -37,7 +39,7 @@ function fixture(t, query = '') {
     form.dispatchEvent(new window.Event('submit', { bubbles: true, cancelable: true }));
     await new Promise((resolve) => setImmediate(resolve));
   };
-  return { window, document: window.document, form, field, fill, file, select, submit, requests, revoked };
+  return { window, document: window.document, form, field, fill, file, select, submit, requests, revoked, events };
 }
 
 test('built form blocks blank fields and malformed phones before any request, focusing the first error', async (t) => {
@@ -105,6 +107,11 @@ test('network failures keep all details and photos, and a successful retry sends
   assert.deepEqual(payloads[1].getAll('photos').map((file) => file.name), ['chair.jpg']);
   assert.equal(payloads[1].get('city'), 'Apple Valley');
   assert.equal(payloads[1].get('phone'), '(952) 555-0123');
+  assert.equal(payloads[0].get('leadId'), payloads[1].get('leadId'));
+  assert.match(payloads[1].get('details'), /Website lead reference/);
+  assert.equal(f.events.filter(({ event }) => event === 'quote_form_submitted').length, 1);
+  assert.equal(f.events.filter(({ event }) => event === 'quote_form_failed').length, 1);
+  assert.doesNotMatch(JSON.stringify(f.events), /Jamie|555|Test Street|test sofa/);
   assert.equal(f.field('name').value, '');
   assert.equal(f.form.querySelectorAll('.tg-photo-card').length, 0);
   assert.equal(f.form.hasAttribute('aria-busy'), false);
@@ -121,6 +128,39 @@ test('partial delivery response preserves the form and directs customers to text
   assert.equal(f.field('name').value, 'Jamie Test');
   assert.equal(f.form.querySelectorAll('.tg-photo-card').length, 1);
   assert.match(f.document.getElementById('tg-form-status').textContent, /instead of resubmitting/);
+  assert.equal(f.events.filter(({ event }) => event === 'quote_form_submitted').length, 0);
+  assert.equal(f.events.filter(({ event }) => event === 'quote_form_partial').length, 1);
+});
+
+test('starting a separate quote after partial delivery clears the prior form and creates a new lead reference', async (t) => {
+  const f = fixture(t);
+  const button = f.form.querySelector('.tg-start-another');
+  assert.equal(button.hidden, true);
+  f.fill();
+  f.select([f.file('first-sofa.jpg')]);
+  const ids = [];
+  f.window.fetch = async (url, request) => {
+    ids.push(request.body.get('leadId'));
+    if (ids.length <= 2) return { ok: false, status: 502, json: async () => ({ success: false, received: true, error: 'The request was received, but not every photo reached Telegram.' }) };
+    return { ok: true, status: 200, json: async () => ({ success: true }) };
+  };
+  await f.submit();
+  assert.equal(button.hidden, false);
+  assert.equal(f.field('details').value, 'One test sofa in the garage.');
+  assert.equal(f.form.querySelectorAll('.tg-photo-card').length, 1);
+  await f.submit();
+  assert.equal(ids[0], ids[1]);
+  button.click();
+  assert.equal(button.hidden, true);
+  assert.equal(f.field('name').value, '');
+  assert.equal(f.field('details').value, '');
+  assert.equal(f.form.querySelectorAll('.tg-photo-card').length, 0);
+  assert.equal(f.document.activeElement, f.field('name'));
+  assert.match(f.document.getElementById('tg-form-status').textContent, /separate pickup request/);
+  f.fill();
+  f.select([f.file('new-chair.jpg')]);
+  await f.submit();
+  assert.notEqual(ids[2], ids[0]);
 });
 
 test('city query values prefill safely, are length-limited and never replace entered values', (t) => {

@@ -2,6 +2,7 @@
 import '../styles.css';
 import '../header-logo.css';
 import { META_PIXEL_ID } from '../data/tracking.js';
+import LeadTracking from '../components/LeadTracking.astro';
 
 export interface Props {
   title: string;
@@ -20,6 +21,9 @@ const {
   schema,
   noindex = false,
 } = Astro.props;
+const nodes = Array.isArray(schema) ? schema : (schema as any)?.['@graph'] || [schema];
+const article = nodes.find((node: any) => node?.['@type'] === 'Article');
+const imageAlt = 'Dakota Valley Junk Removal — written photo quotes for staged pickup';
 ---
 <!doctype html>
 <html lang="en">
@@ -32,7 +36,7 @@ const {
     {noindex
       ? <meta name="robots" content="noindex, nofollow" />
       : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
-    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -44,12 +48,14 @@ const {
     <!-- OpenGraph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    {article?.datePublished && <meta property="article:published_time" content={article.datePublished} />}
+    {article?.dateModified && <meta property="article:modified_time" content={article.dateModified} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Dakota Valley Junk Removal" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Dakota Valley Junk Removal — curbside & garage pickup across Minnesota, loads from $85" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
@@ -60,11 +66,11 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:url" content={canonical} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="Dakota Valley Junk Removal truck and crew" />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <meta name="twitter:label1" content="Pricing" />
-    <meta name="twitter:data1" content="From $85" />
+    <meta name="twitter:data1" content="Written photo quote" />
     <meta name="twitter:label2" content="Service area" />
-    <meta name="twitter:data2" content="Minnesota — Twin Cities metro & statewide" />
+    <meta name="twitter:data2" content="Minnesota — confirm availability for your address" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -79,8 +85,6 @@ const {
     <!-- Geo -->
     <meta name="geo.region" content="US-MN" />
     <meta name="geo.placename" content="Minnesota" />
-    <meta name="geo.position" content="44.97;-93.27" />
-    <meta name="ICBM" content="44.97, -93.27" />
 
     <!-- Start ordinary page visits at the top. Preserve intentional section links such as /#quote. -->
     <script is:inline>
@@ -139,66 +143,6 @@ const {
   <body id="top">
     <slot />
 
-    <!-- Lightweight analytics dispatcher. Vendor-agnostic: pushes to
-         window.dataLayer (GA/GTM), fires a CustomEvent, and is a no-op-safe
-         global. Wire GA4/Plausible later by reading dvq events or dataLayer. -->
-    <script is:inline>
-      (function () {
-        window.dataLayer = window.dataLayer || [];
-        function sendMetaEvent(event, props) {
-          if (!window.fbq) return;
-          var metaProps = Object.assign({}, props || {});
-          if (event === 'quote_form_submitted' && metaProps.step === 'full') {
-            window.fbq('track', 'Lead', Object.assign({ content_name: 'Full quote form' }, metaProps));
-            return;
-          }
-          if (event === 'quote_form_submitted' && metaProps.step === 'quick') {
-            window.fbq('trackCustom', 'QuickQuoteSubmitted', metaProps);
-            return;
-          }
-          if (event === 'quote_form_started') {
-            window.fbq('trackCustom', 'QuoteFormStarted', metaProps);
-            return;
-          }
-          if (event === 'pricing_view') {
-            window.fbq('trackCustom', 'PricingView', metaProps);
-            return;
-          }
-          if (event === 'sms_click') {
-            window.fbq('track', 'Contact', Object.assign({ contact_method: 'sms' }, metaProps));
-            return;
-          }
-          if (event === 'phone_click') {
-            window.fbq('track', 'Contact', Object.assign({ contact_method: 'phone' }, metaProps));
-          }
-        }
-        window.dvTrack = function (event, props) {
-          var payload = Object.assign({ event: 'dv_' + event }, props || {});
-          window.dataLayer.push(payload);
-          try { window.dispatchEvent(new CustomEvent('dv:' + event, { detail: props || {} })); } catch (e) {}
-          if (window.gtag) window.gtag('event', event, props || {});
-          sendMetaEvent(event, props || {});
-        };
-        document.addEventListener('click', function (e) {
-          var a = e.target.closest && e.target.closest('a[href], [data-track]');
-          if (!a) return;
-          var named = a.getAttribute('data-track');
-          if (named) { window.dvTrack(named, { href: a.getAttribute('href') || undefined }); return; }
-          var href = a.getAttribute('href') || '';
-          if (href.indexOf('sms:') === 0) window.dvTrack('sms_click', { href: href });
-          else if (href.indexOf('tel:') === 0) window.dvTrack('phone_click', { href: href });
-        }, true);
-        var pv = document.getElementById('pricing-preview');
-        if (pv && 'IntersectionObserver' in window) {
-          var seen = false;
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting && !seen) { seen = true; window.dvTrack('pricing_view', {}); io.disconnect(); }
-            });
-          }, { threshold: 0.4 });
-          io.observe(pv);
-        }
-      })();
-    </script>
+    <LeadTracking />
   </body>
 </html>

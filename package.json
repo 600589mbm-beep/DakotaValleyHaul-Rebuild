@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/validate-local-content.mjs && node scripts/fetch-reviews.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
+    "prebuild": "node scripts/validate-local-content.mjs && node scripts/fetch-reviews.mjs && node scripts/gen-machine-info.mjs && node scripts/gen-image-sitemap.mjs && node scripts/gen-og-card.mjs",
     "build": "astro build && node scripts/sanitize-public-pricing.mjs && node scripts/validate-service-promises.mjs",
     "preview": "astro preview",
     "reviews": "node scripts/fetch-reviews.mjs",
@@ -13,7 +13,7 @@
     "sanitize-pricing": "node scripts/sanitize-public-pricing.mjs",
     "astro": "astro",
     "test:service-promises": "node scripts/validate-service-promises.mjs",
-    "test": "node scripts/test-service-area-search.mjs && node --test src/lib/quote-form.test.js src/lib/quote-form.dom.test.js && node scripts/test-customer-pages.mjs"
+    "test": "node scripts/test-service-area-search.mjs && node --test src/lib/quote-form.test.js src/lib/quote-form.dom.test.js src/lib/lead-attribution.test.js worker/lead-tracking.test.js scripts/test-seo-content.mjs && node scripts/test-customer-pages.mjs && node scripts/test-seo-templates.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.2",

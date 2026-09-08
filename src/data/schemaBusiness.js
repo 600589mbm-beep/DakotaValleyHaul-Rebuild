@@ -1,9 +1,9 @@
 import { PRICE_RANGE } from './servicePolicy.js';
 // Shared JSON-LD LocalBusiness node. Every page whose Service schema points at
-// provider {'@id': `${SITE}/#business`} must embed this node in its own @graph —
-// JSON-LD @id references don't resolve across pages, so without it the provider
-// reference dangles for crawlers reading a city/service page in isolation.
+// provider {'@id': `${SITE}/#business`} embeds this node in its own @graph so
+// crawlers can read complete business details without fetching another page.
 // Single source of truth: edit NAP/hours/links here and every page updates.
+// City coordinates belong to a Service's areaServed, never this business node.
 
 export const SITE = 'https://dakotavalleyjunkremovalservice.com';
 export const BUSINESS_ID = `${SITE}/#business`;
@@ -35,7 +35,7 @@ export const businessNode = {
   sameAs: SAME_AS,
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    // All 7 days — confirmed by owner 2026-05-22; keep in sync with city pages.
+    // All 7 days — confirmed by owner 2026-05-22.
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '08:00',
     closes: '21:00',

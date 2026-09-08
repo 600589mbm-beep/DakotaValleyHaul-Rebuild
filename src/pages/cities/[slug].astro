@@ -1,12 +1,12 @@
 ---
 import SiteNav from '../../components/SiteNav.astro';
-import { PRICE_RANGE } from '../../data/servicePolicy.js';
+import { PICKUP_REQUIREMENTS, QUOTE_POLICY, SCHEDULING_POLICY, SPECIALTY_POLICY } from '../../data/servicePolicy.js';
 import { Icon } from 'astro-icon/components';
 import { PRICE_FLOOR, CITY_TESTIMONIALS_ENABLED } from '../../data/booking.js';
 import Layout from '../../layouts/Layout.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
-import { BUSINESS_ID, SAME_AS } from '../../data/schemaBusiness.js';
+import { businessNode, BUSINESS_ID } from '../../data/schemaBusiness.js';
 import { services } from '../../data/services.js';
 import { pickPhotos, buildAlt } from '../../data/photos.js';
 import { iconForService } from '../../data/serviceIcons.js';
@@ -23,71 +23,38 @@ const { city, slug } = Astro.props;
 const cityPhotos = pickPhotos(slug, 3);
 const heroPhoto = cityPhotos[0];
 const galleryPhotos = cityPhotos.slice(1);
+const hasIllustrations = cityPhotos.some((photo) => photo.illustration);
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
 const canonical = `https://dakotavalleyjunkremovalservice.com/cities/${slug}/`;
+const quoteForm = `/quote/?city=${encodeURIComponent(city.name)}`;
 const citySms = `${smsLink}?&body=${encodeURIComponent(`Junk removal quote for ${city.name}, MN.\nPlease send photos and item details.`)}`;
 const faqs = cityFaqs(city, slug);
 
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
+    businessNode,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dakotavalleyjunkremovalservice.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/#areas' },
+        { '@type': 'ListItem', position: 2, name: 'Service areas', item: 'https://dakotavalleyjunkremovalservice.com/service-areas/' },
         { '@type': 'ListItem', position: 3, name: `${city.name}, MN` },
       ],
     },
     {
       '@type': 'Service',
       name: `Junk Removal in ${city.name}, MN`,
-      provider: { '@id': 'https://dakotavalleyjunkremovalservice.com/#business' },
+      provider: { '@id': BUSINESS_ID },
       areaServed: {
         '@type': 'City',
         name: city.name,
-        containedIn: { '@type': 'AdministrativeArea', name: city.county },
+        containedInPlace: { '@type': 'AdministrativeArea', name: city.county },
       },
       description: city.intro,
       serviceType: 'Curbside and garage junk pickup',
-      ...(city.geo && {
-        provider: {
-          '@id': 'https://dakotavalleyjunkremovalservice.com/#business',
-        },
-      }),
-    },
-    {
-      '@type': 'LocalBusiness',
-      '@id': BUSINESS_ID,   // resolves the Service.provider reference on-page
-      name: `Dakota Valley Junk Removal — ${city.name}`,
-      url: canonical,
-      sameAs: SAME_AS,
-      telephone: '+1-952-232-5107',
-      email: 'info@dakotavalleyjunkremovalservice.com',
-      priceRange: PRICE_RANGE,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '1964 Rahncliff Ct, Ste 200, #22342',
-        addressLocality: 'Eagan',
-        addressRegion: 'MN',
-        postalCode: '55122',
-        addressCountry: 'US',
-      },
-      ...(city.geo && {
-        geo: { '@type': 'GeoCoordinates', latitude: city.geo.latitude, longitude: city.geo.longitude },
-      }),
-      areaServed: { '@type': 'City', name: city.name, containedIn: { '@type': 'AdministrativeArea', name: city.county } },
-      serviceType: ['Curbside junk pickup', 'Garage junk pickup', 'Furniture removal', 'Appliance recycling'],
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '08:00',
-        closes: '21:00',
-      },
-      // No aggregateRating: we do not assert review ratings until they come from a
-      // verified source (Google). Fabricated rating schema is review spam.
     },
     faqSchema(faqs),
   ],
@@ -107,17 +74,18 @@ const schema = {
         <p class="breadcrumb">
           <a href="/">Home</a>
           <span aria-hidden="true"> / </span>
-          <a href="/#areas">Service areas</a>
+          <a href="/service-areas/">Service areas</a>
           <span aria-hidden="true"> / </span>
           <span>{city.name}</span>
         </p>
         <h1>Junk Removal in <span class="city-accent">{city.name}, MN</span></h1>
         <p class="hero-copy">{city.intro}</p>
         <p class="hero-copy" data-service-scope>Curbside, driveway and accessible-garage pickup only. No inside-home pickup.</p>
+        <p class="hero-copy">Paid pickup at your address. Send item photos for a written quote, approve the total, then confirm an available pickup window with the crew.</p>
         <div class="hero-actions">
           <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={18} /> Text photos to start</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-          <a class="button secondary" href="/quote/"><Icon name="lucide:camera" size={18} /> Get a Quote</a>
+          <a class="button secondary" href={quoteForm}><Icon name="lucide:camera" size={18} /> Get a Quote</a>
         </div>
         <p class="hero-meta">
           <Icon name="lucide:map-pin" size={15} /> {city.county} &middot; Loads from $85 &middot; Curbside and garage pickup
@@ -145,7 +113,7 @@ const schema = {
         </div>
       </div>
       <p class="section-copy" style="margin-bottom: 24px">
-        Dakota Valley provides comprehensive junk hauling in {city.name}, MN — including furniture removal, appliance recycling, full garage cleanouts, yard waste, mattress disposal, and estate cleanouts. Crews handle the loading; you stage items at the curb or in the garage.
+        Request paid pickup of furniture, mattresses, appliances, garage clutter and yard debris in {city.name}, MN. For garage and estate cleanouts, items must be sorted and safely staged before arrival. Send photos to confirm the accepted items, access and disposal needs; the crew loads only the approved staged items.
       </p>
       <div class="city-service-grid">
         {Object.entries(services).slice(0, 6).map(([sl, s]) => (
@@ -199,10 +167,11 @@ const schema = {
     <section class="section city-gallery">
       <div class="section-head">
         <div>
-          <p class="section-kicker">{city.name} job photos</p>
-          <h2>Real loads, real curbs.</h2>
+          <p class="section-kicker">{hasIllustrations ? 'Pickup illustrations' : 'Pickup photos'}</p>
+          <h2>{hasIllustrations ? 'Examples of items staged for pickup.' : 'Items ready for pickup.'}</h2>
         </div>
       </div>
+      {hasIllustrations && <p class="section-copy" data-illustration-disclosure>These illustrations show pickup examples. They are not photographs of completed jobs in {city.name}.</p>}
       <div class="city-gallery-grid">
         {galleryPhotos.map((p) => (
           <figure>
@@ -213,6 +182,7 @@ const schema = {
               alt={buildAlt(p.desc, city.name)}
               loading="lazy"
             />
+            <figcaption>{p.illustration ? 'Illustration: ' : ''}{p.desc}</figcaption>
           </figure>
         ))}
       </div>
@@ -226,7 +196,7 @@ const schema = {
         </div>
       </div>
       <p class="section-copy" style="margin-bottom: 24px">
-        Most {city.name} jobs are garage cleanouts, furniture removal, and appliance recycling. Each service has its own landing page with pricing examples, accepted items, and the request flow.
+        Explore accepted items, staging requirements and photo-quote details for each service in {city.name}. Outdoor specialty projects and rental requests require separate review and written approval.
       </p>
       <div class="city-grid">
         {Object.entries(services).map(([serviceSlug, s]) => (
@@ -245,8 +215,10 @@ const schema = {
         </div>
       </div>
       <p class="section-copy">
-        Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before booking. The written quote covers the items, volume, weight, access and disposal needs shown in your photos and details. When those match, the approved total stays the same. Any change to the agreed scope requires a revised quote that you approve before work begins. <a href="/pricing/">How photo quotes work</a>.
+        Eligible curbside, driveway or accessible-garage pickups have an $85 minimum. This is not a flat price for every item. Send photos for the exact total in writing before confirming pickup. {QUOTE_POLICY} <a href="/pricing/">How photo quotes work</a>.
       </p>
+      <p class="section-copy">{SPECIALTY_POLICY}</p>
+      <p class="section-copy"><a href={`/quote/${slug}/`} data-city-quote-guide>How to prepare your {city.name} quote request</a>: photos to send, local pickup details and answers before you request a price.</p>
     </section>
 
     <section class="section">
@@ -257,8 +229,9 @@ const schema = {
         </div>
       </div>
       <p class="section-copy">
-        Pickup is by appointment after you approve the written quote and the crew confirms an available window. Timing depends on your address, job size and route capacity. Same-day pickup may be available, but is not guaranteed.
+        {SCHEDULING_POLICY}
       </p>
+      <p class="section-copy">{PICKUP_REQUIREMENTS}</p>
     </section>
 
     <section class="section">
@@ -281,12 +254,12 @@ const schema = {
     <section class="section city-cta">
       <div>
         <h2>Ready for pickup in {city.name}?</h2>
-        <p>Text photos, item details, and a preferred pickup window. The crew confirms and handles the rest.</p>
+        <p>Send photos and item details for a written quote. Approve the total before confirming an available pickup window. A quote request does not reserve an appointment.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href={citySms}><Icon name="lucide:message-square-text" size={16} /> Text {phoneDisplay}</a>
           <span class="price-floor"><Icon name="lucide:tag" size={14} />{PRICE_FLOOR}</span>
-        <a class="button secondary" href="/quote/">Get a Quote</a>
+        <a class="button secondary" href={quoteForm}>Get a Quote</a>
       </div>
     </section>
 
@@ -294,7 +267,7 @@ const schema = {
 
     <div class="mobile-cta" aria-label="Mobile contact actions">
       <a class="button primary" href={citySms}>Text</a>
-      <a class="button secondary" href="/quote/">Get a Quote</a>
+      <a class="button secondary" href={quoteForm}>Get a Quote</a>
     </div>
   </main>
 </Layout>
