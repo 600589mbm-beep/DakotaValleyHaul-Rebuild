@@ -25,30 +25,33 @@ export const homepagePhotos = homepageIds.map(id => photos.find(item => item.id 
 // Prefer relevant item photography where supplied. Other services show a
 // general staged-item example; captions describe only what is pictured.
 const preferredPhoto = {
-  'junk-pickup': 'garage-household-items',
-  'furniture-removal': 'garage-furniture-panels',
+  'junk-pickup': 'garage-mixed-items',
+  'furniture-removal': 'garage-patio-furniture',
   'garage-cleanout': 'garage-cardboard-furniture',
   'yard-debris': 'outdoor-wood-and-trim',
   'mattress-removal': 'garage-mattresses',
   'electronics-removal': 'garage-mixed-items',
   'estate-cleanout': 'garage-mixed-items',
   'hoarder-cleanout': 'garage-cardboard-furniture',
-  'attic-cleanout': 'garage-household-items',
-  'basement-cleanout': 'garage-furniture-panels',
+  'attic-cleanout': 'garage-mixed-items',
+  'basement-cleanout': 'garage-patio-furniture',
   'fence-removal': 'outdoor-lumber',
   'shed-removal': 'outdoor-wood-and-trim',
-  'demolition': 'stacked-garage-boards',
-  'single-item-pickup': 'garage-mattress-box-springs',
-  'appliance-recycling': 'garage-household-items',
-  'scrap-metal-removal': 'garage-household-items',
-  'hot-tub-removal': 'garage-household-items',
+  'demolition': 'outdoor-wood-and-trim',
+  'single-item-pickup': 'garage-mattresses',
+  'appliance-recycling': 'garage-mixed-items',
+  'scrap-metal-removal': 'garage-mixed-items',
+  'hot-tub-removal': 'garage-mixed-items',
   'dumpster-rental': 'outdoor-wood-and-trim',
 };
 
 export function pickPhotos(slug, count = 2) {
   const hash = [...slug].reduce((total, character) => total + character.charCodeAt(0), 0);
   const preferred = photos.find(item => item.id === preferredPhoto[slug]);
-  const start = preferred ? photos.indexOf(preferred) : hash % photos.length;
+  // Reserve larger originals for wide hero images; smaller originals still
+  // appear in gallery cards at a size suited to their supplied resolution.
+  const heroPhotos = photos.filter(item => item.width >= 800);
+  const start = photos.indexOf(preferred || heroPhotos[hash % heroPhotos.length]);
   return Array.from({ length: Math.min(Math.max(0, count), photos.length) }, (_, i) => photos[(start + i) % photos.length]);
 }
 
