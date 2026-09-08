@@ -8,7 +8,7 @@ import SiteFooter from '../../components/SiteFooter.astro';
 import { cities, getCitySlugs } from '../../data/cities.js';
 import { businessNode, BUSINESS_ID } from '../../data/schemaBusiness.js';
 import { services } from '../../data/services.js';
-import { pickPhotos, buildAlt } from '../../data/photos.js';
+import { pickPhotos, describePhoto } from '../../data/photos.js';
 import { iconForService } from '../../data/serviceIcons.js';
 import { cityFaqs, faqSchema } from '../../data/comboContent.js';
 
@@ -23,7 +23,6 @@ const { city, slug } = Astro.props;
 const cityPhotos = pickPhotos(slug, 3);
 const heroPhoto = cityPhotos[0];
 const galleryPhotos = cityPhotos.slice(1);
-const hasIllustrations = cityPhotos.some((photo) => photo.illustration);
 const phoneDisplay = '(952) 232-5107';
 const smsLink = 'sms:+19522325107';
 const email = 'info@dakotavalleyjunkremovalservice.com';
@@ -98,11 +97,11 @@ const schema = {
         src={heroPhoto.src}
         width={heroPhoto.width}
         height={heroPhoto.height}
-        alt={buildAlt(heroPhoto.desc, city.name)}
+        alt={describePhoto(heroPhoto)}
         loading="eager"
         fetchpriority="high"
       />
-      <figcaption>{buildAlt(heroPhoto.desc, city.name)}</figcaption>
+      <figcaption>{describePhoto(heroPhoto)} · Photo supplied by Dakota Valley Junk Removal.</figcaption>
     </figure>
 
     <section class="section city-services">
@@ -164,25 +163,28 @@ const schema = {
       </section>
     )}
 
-    <section class="section city-gallery">
+    <section class="section city-gallery" data-authentic-photos>
       <div class="section-head">
         <div>
-          <p class="section-kicker">{hasIllustrations ? 'Pickup illustrations' : 'Pickup photos'}</p>
-          <h2>{hasIllustrations ? 'Examples of items staged for pickup.' : 'Items ready for pickup.'}</h2>
+          <p class="section-kicker">Real job photos</p>
+          <h2>A closer look at our work.</h2>
         </div>
       </div>
-      {hasIllustrations && <p class="section-copy" data-illustration-disclosure>These illustrations show pickup examples. They are not photographs of completed jobs in {city.name}.</p>}
+      <p class="section-copy" data-photo-provenance>These photos come from Dakota Valley Junk Removal’s job collection. For service in {city.name}, send photos of your own items for a written quote.</p>
       <div class="city-gallery-grid">
         {galleryPhotos.map((p) => (
           <figure>
-            <img
-              src={p.src}
-              width={p.width}
-              height={p.height}
-              alt={buildAlt(p.desc, city.name)}
-              loading="lazy"
-            />
-            <figcaption>{p.illustration ? 'Illustration: ' : ''}{p.desc}</figcaption>
+            <a href={p.src} aria-label={`View full photo: ${describePhoto(p)}`}>
+              <img
+                src={p.src}
+                width={p.width}
+                height={p.height}
+                alt={describePhoto(p)}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>{describePhoto(p)}</figcaption>
           </figure>
         ))}
       </div>
@@ -271,3 +273,10 @@ const schema = {
     </div>
   </main>
 </Layout>
+
+<style>
+  .city-gallery-grid a { display: block; }
+  .city-gallery-grid a:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+  .city-gallery-grid img { height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+  .city-gallery-grid figcaption { padding: 16px 18px; font-size: 15px; line-height: 1.55; }
+</style>

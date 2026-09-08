@@ -1,36 +1,24 @@
-# Photo shot list — Dakota Valley Junk Removal
+# Job photography — Dakota Valley Junk Removal
 
-**Why this exists:** the site currently ships brand-safe vector *illustrations*
-(`public/illustrations/*.svg`) as placeholders. The originals in this folder
-were removed on 2026-05-25 because they were **not real job photos** — they were
-screenshots of a competitor's booking app and CRM screens that exposed customer
-names, emails, home addresses and phone numbers. Do not re-add them.
+The website now uses authentic job photographs supplied by the business. The homepage shows six selected photos, city pages show three, and service pages use a relevant photo where the collection contains one. The photographs are reused across service-area pages; their placement does not establish the city where a photograph was taken.
 
-In junk removal, **proof = trust**. Real photos will move conversion more than
-any copy change. Shoot these, then follow "How to swap in" below.
+The previous illustrated before/after sliders are no longer shown on the homepage. None of the current uploads have been confirmed as a matched before/after pair.
 
-## Priority shots (shoot first)
+## Useful photos to add next
 
-1. **Hero** — the branded truck loaded with junk, parked at a Twin Cities home,
-   landscape, shot slightly low so the truck looks big. Daylight. (LCP image.)
-2. **Before/after × 3 pairs** — same framing, two photos each:
-   - Garage cleanout (cluttered → empty/swept)
-   - Curbside furniture pile (pile → clean curb)
-   - Estate / full room (full → cleared)
-3. **Crew in action** — two people loading a sofa or fridge into the truck.
-4. **Truck close-up** — logo/wrap visible, clean.
-5. **Heavy/awkward items** — hot tub, piano, treadmill, shed, riding mower
-   (one each if you have them; these are the moat — competitors duck them).
+1. Clear views of furniture, mattresses and appliances safely staged at the curb, driveway or accessible garage.
+2. The crew loading approved staged items, with permission from anyone pictured.
+3. The branded truck or trailer at a job, with the main subject clearly visible.
+4. Matched before/after views of the same staged pickup area, taken from the same position and confirmed as the same job.
+5. Approved outdoor specialty work, such as a hot-tub or shed project, with its separately quoted scope described accurately.
 
-## How to swap in
-1. Optimize: max 1600px wide, ~80% quality JPEG/WebP. Drop into
-   `public/attached_assets/`.
-2. Edit `src/data/photos.js` — replace `src`/`width`/`height`/`desc` and set
-   `illustration: false`. Write `desc` describing what's literally in the frame.
-3. Before/after pairs go in `src/data/beforeAfter.js`.
-4. `npm run build` — alt text + `image-sitemap.xml` regenerate across all pages.
+Choose photos that show the business's current service scope. Avoid customer documents, personal details and identifiable addresses in published images. Do not restore old screenshots of booking or customer-management systems.
 
-## Alt-text rule
-Describe what's IN the frame: truck model if visible, the items (sofa, fridge,
-branches), the setting (curbside, garage, driveway), the crew action (loading,
-sweeping). Wrong alt text is worse than none.
+## Add a photograph
+
+1. Add the owner-approved photo to `public/photos/` with a descriptive filename. Keep the source image available and use its actual width and height in the registry.
+2. Add its `src`, `width`, `height` and factual `desc` to `src/data/photos.js`. Keep homepage selections and service matches consistent with what is visible.
+3. Describe the objects, setting and action in the photo. Do not append a city, capture date, service claim or before/after label unless that detail has been verified.
+4. Run `npm run build && npm test`. The image sitemap regenerates and checks that its photos and captions match the displayed pages.
+
+For Google Business Profile, use these same authentic source photos with accurate context. Publishing a photo on this website does not also upload it to the Business Profile.

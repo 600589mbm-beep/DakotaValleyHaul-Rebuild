@@ -50,8 +50,7 @@ const quoteForm = `/quote/?city=${encodeURIComponent(city.name)}`;
 
 const otherServices = Object.entries(services).filter(([slug]) => slug !== serviceSlug);
 const otherCities = nearestCities(citySlug, 12).map((slug) => [slug, cities[slug]]);
-const comboPhotos = pickPhotos(citySlug, 2);
-const heroPhoto = comboPhotos[0];
+const heroPhoto = pickPhotos(serviceSlug, 1)[0];
 const serviceLabel = (slug, item) => slug === 'junk-pickup' ? 'Junk removal' : item.name;
 
 const schema = {
