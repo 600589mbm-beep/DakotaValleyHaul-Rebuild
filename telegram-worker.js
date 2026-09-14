@@ -7,8 +7,80 @@ import { handleTelegramWebhook, leadButtons, readLead, recordVisit, saveLead, tr
 const ALLOWED_ORIGINS = new Set([
   'https://dakotavalleyjunkremovalservice.com',
   'https://www.dakotavalleyjunkremovalservice.com',
+  'https://jsmcommercialservice.com',
+  'https://www.jsmcommercialservice.com',
   'https://600589mbm-beep.github.io',
 ]);
+
+const JSM_PATHS = new Set(['/jsm', '/jsm/']);
+const JSM_THANK_YOU_URL = 'https://jsmcommercialservice.com/thank-you/';
+const JSM_RESERVED_FIELDS = new Set(['_subject', '_next', '_gotcha']);
+const JSM_FIELD_ORDER = [
+  'name',
+  'company',
+  'phone',
+  'email',
+  'best_contact_time',
+  'contact_method',
+  'facility_type',
+  'building_name',
+  'building_address',
+  'city_zip',
+  'number_of_locations',
+  'frequency',
+  'square_footage',
+  'parking_capacity',
+  'sidewalk_area',
+  'services_needed',
+  'trigger_depth',
+  'business_hours',
+  'open_by_time',
+  'weekend_operation',
+  'loading_access',
+  'priority_areas',
+  'current_challenge',
+  'walkthrough_date',
+  'walkthrough_time',
+  'alternate_date',
+  'rfp_due_date',
+  'document_url',
+  'rfp_notes',
+  'contact_permission',
+  'walkthrough_timezone',
+];
+const JSM_FIELD_LABELS = {
+  name: 'Name',
+  company: 'Company / management firm',
+  phone: 'Phone',
+  email: 'Email',
+  best_contact_time: 'Best contact time',
+  contact_method: 'Preferred contact method',
+  facility_type: 'Facility / property type',
+  building_name: 'Property / building name',
+  building_address: 'Property address',
+  city_zip: 'City / ZIP',
+  number_of_locations: 'Number of locations',
+  frequency: 'Service / agreement type',
+  square_footage: 'Facility / lot size',
+  parking_capacity: 'Parking capacity',
+  sidewalk_area: 'Sidewalk area',
+  services_needed: 'Services requested',
+  trigger_depth: 'Snow trigger depth',
+  business_hours: 'Business hours',
+  open_by_time: 'Preferred open-by time',
+  weekend_operation: 'Weekend operation',
+  loading_access: 'Loading / delivery access',
+  priority_areas: 'Priority areas / requirements',
+  current_challenge: 'Service priorities / notes',
+  walkthrough_date: 'Preferred site-walk date',
+  walkthrough_time: 'Preferred site-walk time',
+  alternate_date: 'Alternate date',
+  rfp_due_date: 'Proposal / RFP due date',
+  document_url: 'RFP / site-plan link',
+  rfp_notes: 'RFP requirements / instructions',
+  contact_permission: 'Contact permission',
+  walkthrough_timezone: 'Walkthrough timezone',
+};
 
 function clean(value) {
   return String(value || '').trim();
@@ -82,6 +154,112 @@ async function sendTelegramFile(apiBase, env, file, index, total, customerName) 
   return documentResponse.ok && documentResult.ok === true;
 }
 
+function jsmValue(formData, key) {
+  const values = formData.getAll(key).map((value) => clean(value)).filter(Boolean);
+  return [...new Set(values)].join(', ');
+}
+
+function jsmTitle(formData) {
+  const formType = clean(formData.get('form_type')).toLowerCase();
+  const isSnow = formType.includes('snow');
+  const isSiteWalk = Boolean(
+    clean(formData.get('building_name'))
+    || clean(formData.get('walkthrough_date'))
+    || clean(formData.get('rfp_due_date'))
+  );
+  if (isSnow && isSiteWalk) return '❄️ NEW JSM SNOW SITE-WALK / RFP REQUEST';
+  if (isSnow) return '❄️ NEW JSM SNOW QUOTE REQUEST';
+  return '🧹 NEW JSM FACILITY / CLEANING REQUEST';
+}
+
+function jsmMessage(formData) {
+  const formType = clean(formData.get('form_type')) || 'commercial-services';
+  const lines = [
+    jsmTitle(formData),
+    'Source: jsmcommercialservice.com',
+    `Request type: ${titleCase(formType)}`,
+    '',
+  ];
+  const seen = new Set(['form_type']);
+
+  const addField = (key) => {
+    if (seen.has(key) || JSM_RESERVED_FIELDS.has(key)) return;
+    const value = jsmValue(formData, key);
+    seen.add(key);
+    if (!value) return;
+    const label = JSM_FIELD_LABELS[key] || titleCase(key);
+    lines.push(`${label}: ${value}`);
+  };
+
+  for (const key of JSM_FIELD_ORDER) addField(key);
+  for (const [key] of formData.entries()) addField(key);
+  return lines.join('\n');
+}
+
+function telegramTextChunks(text, maxLength = 3800) {
+  const chunks = [];
+  let current = '';
+  for (const line of String(text).split('\n')) {
+    if (line.length > maxLength) {
+      if (current) {
+        chunks.push(current);
+        current = '';
+      }
+      for (let offset = 0; offset < line.length; offset += maxLength) {
+        chunks.push(line.slice(offset, offset + maxLength));
+      }
+      continue;
+    }
+    const next = current ? `${current}\n${line}` : line;
+    if (next.length > maxLength) {
+      if (current) chunks.push(current);
+      current = line;
+    } else {
+      current = next;
+    }
+  }
+  if (current) chunks.push(current);
+  return chunks.length ? chunks : ['JSM form submission received.'];
+}
+
+async function sendTelegramText(apiBase, env, text) {
+  const chunks = telegramTextChunks(text);
+  for (const [index, chunk] of chunks.entries()) {
+    const messageText = index === 0 ? chunk : `JSM lead continued (${index + 1}/${chunks.length})\n${chunk}`;
+    const response = await fetch(`${apiBase}/sendMessage`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(telegramBody(env, {
+        text: messageText,
+        disable_web_page_preview: true,
+      })),
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok !== true) return false;
+  }
+  return true;
+}
+
+async function handleJsmForm(request, env, apiBase) {
+  const formData = await request.formData();
+
+  // Quietly accept honeypot submissions so bots do not learn how the filter works.
+  if (clean(formData.get('_gotcha'))) return Response.redirect(JSM_THANK_YOU_URL, 303);
+
+  const required = ['name', 'phone', 'city_zip', 'facility_type', 'frequency'];
+  const missing = required.filter((field) => !clean(formData.get(field)));
+  if (missing.length) {
+    return json(request, { success: false, error: `Missing ${missing.join(', ')}.` }, 400);
+  }
+
+  const sent = await sendTelegramText(apiBase, env, jsmMessage(formData));
+  if (!sent) {
+    return json(request, { success: false, received: false, error: 'Telegram rejected the JSM form submission.' }, 502);
+  }
+
+  return Response.redirect(JSM_THANK_YOU_URL, 303);
+}
+
 export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
@@ -122,6 +300,12 @@ export default {
 
     if (!token || !chatId) {
       return json(request, { success: false, error: 'Telegram is not configured yet.' }, 500);
+    }
+
+    const apiBase = `https://api.telegram.org/bot${token}`;
+    if (JSM_PATHS.has(path)) {
+      try { return await handleJsmForm(request, env, apiBase); }
+      catch { return json(request, { success: false, error: 'Could not send the JSM request.' }, 500); }
     }
 
     try {
@@ -169,7 +353,6 @@ export default {
           : { success: false, received: true, leadId, error: 'The request was received, but not every photo reached Telegram. Please text the photos as a backup.' }, existing.delivery === 'received' ? 200 : 502);
       }
 
-      const apiBase = `https://api.telegram.org/bot${token}`;
       const estimate = payload.estimateMin && payload.estimateMax
         ? `$${payload.estimateMin} - $${payload.estimateMax}`
         : 'Not provided';
